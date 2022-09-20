@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 14:44:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/05/09 18:22:30 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:44:29 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ char	who_is_it(char **map)
 
 void	ft_break_the_game(t_program *data, char *end_msg)
 {
-	mlx_clear_window(data->mlx, data->window.reference);
-	mlx_string_put(data->mlx, data->window.reference,
-		data->window.size.x / 2 - 30, data->window.size.y / 2,
-		0xffffffff, end_msg);
-	mlx_hook(data->window.reference, 2, 1L << 0, *ft_close, data);
+	(void)end_msg;
+//	mlx_clear_window(data->mlx, data->window.reference);
+//	mlx_string_put(data->mlx, data->window.reference,
+//		data->window.size.x / 2 - 30, data->window.size.y / 2,
+//		0xffffffff, end_msg);
+//	mlx_hook(data->window.reference, 2, 1L << 0, *ft_close, data);
 	mlx_loop(data->mlx);
 }

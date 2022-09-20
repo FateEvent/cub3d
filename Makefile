@@ -6,13 +6,12 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/09/20 12:51:39 by faventur         ###   ########.fr        #
+#    Updated: 2022/09/20 14:46:45 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c window.c image.c hooks.c maps.c utils.c display_image.c \
-	pixies.c moves.c tools.c check.c colours.c colour_conversions.c \
-	display.c
+SRCS = main.c window.c hooks.c maps.c utils.c display.c pixies.c \
+		moves.c tools.c check.c colours.c colour_conversions.c
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 

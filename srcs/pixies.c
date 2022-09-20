@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/20 13:31:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:43:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,15 @@ void	ft_invoke_pixie(char c, int *i, t_program *data, t_image *pixie)
 
 static void	from_texture_to_image(t_program *data, t_image *pixie)
 {
-	pixie[0].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
-	pixie[1].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
-	pixie[2].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
-	pixie[3].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
-	pixie[4].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
-	pixie[5].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
-	pixie[6].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
-	pixie[7].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
-	pixie[8].img = mlx_texture_to_image(data->mlx, pixie[0].texture);
+	pixie[0].img = mlx_texture_to_image(data->mlx, &pixie[0].texture->texture);
+	pixie[1].img = mlx_texture_to_image(data->mlx, &pixie[1].texture->texture);
+	pixie[2].img = mlx_texture_to_image(data->mlx, &pixie[2].texture->texture);
+	pixie[3].img = mlx_texture_to_image(data->mlx, &pixie[3].texture->texture);
+	pixie[4].img = mlx_texture_to_image(data->mlx, &pixie[4].texture->texture);
+	pixie[5].img = mlx_texture_to_image(data->mlx, &pixie[5].texture->texture);
+	pixie[6].img = mlx_texture_to_image(data->mlx, &pixie[6].texture->texture);
+	pixie[7].img = mlx_texture_to_image(data->mlx, &pixie[7].texture->texture);
+	pixie[8].img = mlx_texture_to_image(data->mlx, &pixie[8].texture->texture);
 }
 
 t_image	*ft_put_sprite(t_program *data)
@@ -109,15 +109,15 @@ t_image	*ft_put_sprite(t_program *data)
 	t_image	*pixie;
 
 	pixie = malloc(sizeof(t_image) * 9);
-	pixie[0].texture = mlx_load_xpm("images/wall.xpm");
-	pixie[1].texture = mlx_load_xpm("images/sugarcane.xpm");
-	pixie[2].texture = mlx_load_xpm("images/house.xpm");
-	pixie[3].texture = mlx_load_xpm("images/grass_tile.xpm");
-	pixie[4].texture = mlx_load_xpm("images/befana_right.xpm");
-	pixie[5].texture = mlx_load_xpm("images/befana_front.xpm");
-	pixie[6].texture = mlx_load_xpm("images/befana_back.xpm");
-	pixie[7].texture = mlx_load_xpm("images/befana_left.xpm");
-	pixie[8].texture = mlx_load_xpm("images/death.xpm");
+	pixie[0].texture = mlx_load_xpm42("images/wall.xpm");
+	pixie[1].texture = mlx_load_xpm42("images/sugarcane.xpm");
+	pixie[2].texture = mlx_load_xpm42("images/house.xpm");
+	pixie[3].texture = mlx_load_xpm42("images/grass_tile.xpm");
+	pixie[4].texture = mlx_load_xpm42("images/befana_right.xpm");
+	pixie[5].texture = mlx_load_xpm42("images/befana_front.xpm");
+	pixie[6].texture = mlx_load_xpm42("images/befana_back.xpm");
+	pixie[7].texture = mlx_load_xpm42("images/befana_left.xpm");
+	pixie[8].texture = mlx_load_xpm42("images/death.xpm");
 	from_texture_to_image(data, pixie);
 	return (pixie);
 }

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/20 13:30:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:41:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ typedef struct s_color {
 
 /* all info needed for an image */
 typedef struct s_image {
-	void			*reference;
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
-	t_vector		size;
-	char			*pixels;
-	int				bits_per_pixel;
-	int				line_size;
-	int				endian;
+	void		*reference;
+	xpm_t		*texture;
+	mlx_image_t	*img;
+	t_vector	size;
+	char		*pixels;
+	int			bits_per_pixel;
+	int			line_size;
+	int			endian;
 }				t_image;
 
 typedef struct s_program {
@@ -93,7 +93,6 @@ typedef struct s_update
 t_window	ft_new_window(void *mlx, int width, int height, char *name);
 t_vector	calculate_window_size(char **map);
 
-t_image		ft_new_sprite(void *mlx, char *path);
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
 t_vector	ft_get_char_pos(char **map);
