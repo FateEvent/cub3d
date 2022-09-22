@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:54:00 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/18 17:30:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:37:41 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	turn_pixel_to_color(char *pixel, t_color color)
 	pixel[2] = color.r;
 	pixel[3] = color.a;
 }
-
+/*
 void	turn_img_to_color(t_image *image, t_color color)
 {
 	int	x;
@@ -66,3 +66,4 @@ void	turn_img_to_color(t_image *image, t_color color)
 		y++;
 	}
 }
+*/

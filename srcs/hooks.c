@@ -6,12 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/20 14:37:02 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:26:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
+/*
 void	ft_input(int key, void *param)
 {
 	t_program	*program;
@@ -43,3 +43,4 @@ void	ft_update(void *param)
 	ft_invoke_char(program, program->pixies, vars.basic_pos, vars.b_var);
 	ft_invoke_enemy(program, program->pixies, vars.villain_pos, vars.v_var);
 }
+*/

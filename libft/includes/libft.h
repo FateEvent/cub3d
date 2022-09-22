@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:19:34 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/12 17:31:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:50:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdio.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
+
+typedef struct s_split
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	size_t	tab_size;
+	size_t	str_len;
+	char	**strtab;
+}					t_split;
 
 typedef struct s_list
 {
@@ -105,9 +116,13 @@ size_t	ft_chartab_len(char **arr);
 int		ft_power(int n, int power);
 char	ft_binary2char(char *binary);
 int		ft_strtolol(const char *str);
-int		ft_strstrbool(const char *haystack, const char *needle);
-void	ft_delete(void *as);
 void	ft_arr_freer(char **arr);
+char	**ft_arr_freer_index(char **arr, size_t *index);
 void	ft_puterror(const char *str);
+char	**ft_arrdup(char **arr);
+size_t	ft_arrlen(char **array);
+void	ft_arr_display(char **arr);
+void	ft_arr_display_size(char **arr, size_t size);
+void	ft_intarr_freer(int **arr);
 
 #endif

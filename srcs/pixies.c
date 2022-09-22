@@ -6,12 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/20 14:43:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:36:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
+/*
 void	ft_invoke_enemy(t_program *data, t_image *pixie, t_vector pos, int var)
 {
 	mlx_image_to_window(data->mlx, pixie[3].img,
@@ -51,7 +51,7 @@ static void	ft_invoke_pixie_pt2(int *i, t_program *data, t_image *pixie)
 		i[1] * (pixie[3].size.x - 1),
 		i[0] * (pixie[3].size.y - 1));
 }
-
+*/
 /*
 static void	ft_invoke_pixie_pt2(char c, int *i, t_program *data, t_image *pixie)
 {
@@ -63,6 +63,7 @@ static void	ft_invoke_pixie_pt2(char c, int *i, t_program *data, t_image *pixie)
 			i[0] * (pixie[3].size.y - 1));
 }
 */
+/*
 void	ft_invoke_pixie(char c, int *i, t_program *data, t_image *pixie)
 {
 	if (c == '1')
@@ -90,7 +91,7 @@ void	ft_invoke_pixie(char c, int *i, t_program *data, t_image *pixie)
 	else
 		ft_invoke_pixie_pt2(i, data, pixie);
 }
-
+*/
 static void	from_texture_to_image(t_program *data, t_image *pixie)
 {
 	pixie[0].img = mlx_texture_to_image(data->mlx, &pixie[0].texture->texture);

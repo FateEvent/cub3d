@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   MLX42.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 00:33:01 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/08/10 13:00:48 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   MLX42.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 00:33:01 by W2Wizard      #+  #+#    #+#             */
+/*   Updated: 2022/09/21 15:46:08 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ extern "C" {
  * @param width The width of the texture.
  * @param height The height of the texture.
  * @param pixels The literal pixel data.
- * @param bytes_per_pixel The amounst of bytes in a pixel, always 4.
+ * @param bytes_per_pixel The amount of bytes in a pixel, always 4.
  */
 typedef struct mlx_texture
 {
@@ -639,7 +639,7 @@ mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height);
  * Draws a new instance of an image, it will then share the same
  * pixel buffer as the image.
  * 
- * NOTE: Keep in mind that the instance array gets reallocated, try to
+ * NOTE: Keep in mind that the instance array gets reallocated, try
  * to store the return value to the instance! 
  * NOT the pointer! It will become invalid!
  * 

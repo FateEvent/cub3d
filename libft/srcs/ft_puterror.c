@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puterror.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 14:07:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/29 14:08:04 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:28:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_puterror(const char *str)
 {
-	ft_putendl_fd(str, 2);
-	exit(0);
+	if (str)
+	{
+		ft_putendl_fd(str, 2);
+	}
 }

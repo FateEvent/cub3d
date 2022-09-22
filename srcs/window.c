@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:13:29 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/20 14:27:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:03:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,4 @@ t_vector	calculate_window_size(char **map)
 	size.x *= 63;
 	size.y *= 63;
 	return (size);
-}
-
-t_window	ft_new_window(void *mlx, int width, int height, char *name)
-{
-	t_window	window;
-
-	(void)name;
-	window.reference = mlx_new_image(mlx, width, height);
-	window.size.x = width;
-	window.size.y = height;
-//	mlx_key_hook(window.reference, 17, 0, ft_close, 0);
-	return (window);
 }

@@ -6,11 +6,18 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/20 14:00:52 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:28:31 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+static void ft_hook(void* param)
+{
+	const mlx_t* mlx = param;
+
+	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -19,21 +26,23 @@ int	main(int argc, char *argv[])
 	int			i;
 
 	i = 0;
-	program.mlx = mlx_init(512, 512, "test", true);
 	check_args(argc);
-	check_map_extension(argv);
+//	check_map_extension(argv);
 	program.map = ft_map_reader(argv[1]);
-	if (!program.map || !ft_map_parser(program.map))
+//	if (!program.map || !ft_map_parser(program.map))
+//		ft_puterror("Error!");
+	if (!program.map)
 		ft_puterror("Error!");
 	program.frame = 0;
-	program.step_counter = 0;
 	size = calculate_window_size(program.map);
-	program.window = ft_new_window(program.mlx, size.x, size.y,
-			"Befana!");
-	program.pixies = ft_put_sprite(&program);
-	ft_display_map(&program, program.map, program.pixies);
-//	mlx_loop_hook(program.mlx, *ft_input, &program);
-	mlx_loop_hook(program.mlx, *ft_update, &program);
+	program.mlx = mlx_init(HEIGHT, WIDTH, "cub3d", true);
+	program.img.img = mlx_new_image(program.mlx, HEIGHT, WIDTH);
+	if (!program.img.img) //|| (mlx_image_to_window(program.mlx,
+			//	program.img.img, 0, 0) < 0))
+		ft_puterror("Error!");
+	ft_display_map(&program);
+	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
+	mlx_loop_hook(program.mlx, ft_hook, program.mlx);
 	mlx_loop(program.mlx);
 	mlx_terminate(program.mlx);
 }

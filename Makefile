@@ -6,22 +6,36 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/09/20 14:49:26 by faventur         ###   ########.fr        #
+#    Updated: 2022/09/22 15:00:23 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c window.c hooks.c maps.c utils.c display.c pixies.c \
-		moves.c tools.c check.c colours.c colour_conversions.c
+NAME = cub3d
 
-OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
+CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
 LINKS = -lglfw -L /goinfre/faventur/.brew/Cellar/glfw/3.3.8/lib/
 
+SRC_PATH = srcs/
+
+OBJ_PATH = bin/
+
+C_EXTENSION = .c
+
+SRCS_FILES = main window hooks maps utils display pixies moves tools \
+		check colours colour_conversions
+
+OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
+
 RM =	rm -f
 
-NAME = cub3d
+SRCS_FILES_EXT 		+= 	$(addsuffix $(C_EXTENSION), $(SRCS_FILES))
+
+SRCS 				+= 	$(addprefix $(SRC_PATH), $(SRCS_FILES_EXT))
+
+OBJS 				= 	$(addprefix $(OBJ_PATH), $(SRCS_FILES_EXT:c=o))
 
 NONE = \033[0m
 HIGREEN = \033[92m
@@ -46,7 +60,7 @@ exe: all
 	@./$(NAME)
 
 clean:
-	@$(RM) libft.a $(OBJS)
+	@$(RM) libft.a libmlx42.a $(OBJS)
 	@$(MAKE) clean -C ./libft
 	@$(MAKE) fclean -C ./MLX42
 

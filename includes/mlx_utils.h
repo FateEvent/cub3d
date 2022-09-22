@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/20 14:41:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:48:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
+# define HEIGHT 2000
+# define WIDTH 2000
 
 // ----------------------------------
 // STRUCTS
@@ -53,24 +55,17 @@ typedef struct s_color {
 
 /* all info needed for an image */
 typedef struct s_image {
-	void		*reference;
 	xpm_t		*texture;
 	mlx_image_t	*img;
-	t_vector	size;
-	char		*pixels;
-	int			bits_per_pixel;
-	int			line_size;
-	int			endian;
 }				t_image;
 
 typedef struct s_program {
-	mlx_t		*mlx;
-	t_window	window;
-	t_image		*pixies;
-	char		**map;
-	int			frame;
-	int			key;
-	int			step_counter;
+	mlx_t	*mlx;
+	t_image	img;
+//	t_image	*pixies;
+	char	**map;
+	int		frame;
+	int		key;
 }				t_program;
 
 typedef struct s_nme
@@ -90,7 +85,6 @@ typedef struct s_update
 // ---------------------------------
 // FUNCTIONS
 
-t_window	ft_new_window(void *mlx, int width, int height, char *name);
 t_vector	calculate_window_size(char **map);
 
 t_vector	ft_get_coordinates(char **map, char prop);
@@ -104,7 +98,7 @@ void		ft_invoke_char(t_program *data, t_image *pixie, t_vector pos,
 				int var);
 void		ft_invoke_enemy(t_program *data, t_image *pixie, t_vector pos,
 				int var);
-void		ft_display_map(t_program *data, char **map, t_image *pixie);
+void		ft_display_map(t_program *data);
 
 void		ft_display_moves(t_program *d, int key, t_vector pos, int *counter);
 void		move_ur_ass(t_program *data);
