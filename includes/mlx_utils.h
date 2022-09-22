@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/22 16:06:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:27:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,13 @@ t_vector	ft_get_char_pos(char **map);
 char		who_is_it(char **map);
 void		ft_put_background(t_program *data, char *path);
 t_image		*ft_put_sprite(t_program *data);
-void		ft_invoke_pixie(char c, int *i, t_program *data, t_image *pixie);
+void		ft_invoke_pixie(char c, uint32_t *i, t_program *data,
+				t_image *pixie);
 void		ft_invoke_char(t_program *data, t_image *pixie, t_vector pos,
 				int var);
 void		ft_invoke_enemy(t_program *data, t_image *pixie, t_vector pos,
 				int var);
-void		ft_display_map(t_program *data);
+void		ft_display_map(t_program *data, t_image *pixie);
 
 void		ft_display_moves(t_program *d, int key, t_vector pos, int *counter);
 void		move_ur_ass(t_program *data);
@@ -122,5 +123,10 @@ void		check_map_extension(char *argv[]);
 
 void		ft_break_the_game(t_program *data, char *end_msg);
 int			ft_close(void);
+
+// my useless tools !!!
+void		ft_put_background(t_program *data, char *path);
+void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
+				uint32_t color);
 
 #endif
