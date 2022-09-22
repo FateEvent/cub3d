@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/21 15:47:52 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:14:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,26 @@ void	ft_display_map(t_program *data)
 {
 	uint32_t	h;
 	uint32_t	w;
+	t_vector	size;
 
 	h = -1;
-	while (++h * 63 < HEIGHT && data->map[h])
+	size = calculate_window_size(data->map);
+	while (++h < size.y)
 	{
 		w = -1;
-		while (++w * 63 < WIDTH && data->map[h][w] != '\n')
+		while (++w < size.x)
+		{
+			mlx_put_pixel(data->img.img, w, h, 0x0FFFFFF);
+		}
+	}
+	h = -1;
+	while (++h < size.y && data->map[h])
+	{
+		w = -1;
+		while (++w < size.x && data->map[h][w] != '\n')
 		{
 			if (data->map[h][w] == 1)
-				mlx_draw_square(data->img.img, 63, 63, 0x0FFFFFF);
+				mlx_put_pixel(data->img.img, w, h, 0x666666);
 		}
 	}
 	

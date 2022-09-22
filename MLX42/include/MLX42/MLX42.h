@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 00:33:01 by W2Wizard      #+  #+#    #+#             */
-/*   Updated: 2022/09/21 15:46:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:29:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ typedef struct mlx
 	double		delta_time;
 }	mlx_t;
 
-// The error codes used to idenfity the correct error message.
+// The error codes used to identify the correct error message.
 typedef enum mlx_errno
 {
 	MLX_SUCCESS = 0,	// No Errors

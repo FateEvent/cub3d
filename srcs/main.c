@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/21 14:28:31 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:09:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void ft_hook(void* param)
 {
-	const mlx_t* mlx = param;
+	const mlx_t* mlx;
 
-	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
+	mlx = param;
+//	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_program	program;
-	t_vector	size;
 	int			i;
 
 	i = 0;
@@ -34,7 +34,6 @@ int	main(int argc, char *argv[])
 	if (!program.map)
 		ft_puterror("Error!");
 	program.frame = 0;
-	size = calculate_window_size(program.map);
 	program.mlx = mlx_init(HEIGHT, WIDTH, "cub3d", true);
 	program.img.img = mlx_new_image(program.mlx, HEIGHT, WIDTH);
 	if (!program.img.img) //|| (mlx_image_to_window(program.mlx,

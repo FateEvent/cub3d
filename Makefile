@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/09/22 15:00:23 by faventur         ###   ########.fr        #
+#    Updated: 2022/09/22 15:20:39 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
 LINKS = -lglfw -L /goinfre/faventur/.brew/Cellar/glfw/3.3.8/lib/
+
+LIBLINKS = -I./MLX42/include/MLX42 -I./includes -I./libft/includes
 
 SRC_PATH = srcs/
 
@@ -49,18 +51,22 @@ $(NAME): $(OBJS)
 	@$(MAKE) -sC ./MLX42
 	@mv ./libft/libft.a .
 	@mv ./MLX42/libmlx42.a .
-	@gcc $(FLAGS) $(OBJS) $(LINKS) libft.a libmlx42.a -o $(NAME)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS)
 	@echo "$(CURSIVE)$(HIBLUE)Parce qu'ouvrir une fenêtre,$(NONE)"
 	@echo "$(CURSIVE)$(HIGREEN)c'est surfait.$(NONE)"
 
 .c.o:
-	gcc -Wall -Wextra -Werror -c -I./MLX42/include/MLX42 -I./includes -I./libft/includes $< -o ${<:.c=.o}
+	@$(CC) $(FLAGS) -c $(LIBLINKS) $< -o ${<:.c=.o}
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c 
+	@mkdir -p $(dir $@)
+	${CC} ${FLAGS} ${LIBLINKS} -c $< -o $@
 
 exe: all
 	@./$(NAME)
 
 clean:
-	@$(RM) libft.a libmlx42.a $(OBJS)
+	@$(RM) -r libft.a libmlx42.a $(OBJ_PATH)
 	@$(MAKE) clean -C ./libft
 	@$(MAKE) fclean -C ./MLX42
 

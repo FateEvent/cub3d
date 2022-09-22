@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/21 13:48:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:06:21 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
-# define HEIGHT 2000
-# define WIDTH 2000
+# define HEIGHT 1000
+# define WIDTH 1000
 
 // ----------------------------------
 // STRUCTS
@@ -35,8 +35,8 @@ typedef struct s_prop {
 /* vector with an x and y */
 typedef struct s_vector
 {
-	int	x;
-	int	y;
+	uint32_t	x;
+	uint32_t	y;
 }				t_vector;
 
 /* A pointer to the window and its size */
