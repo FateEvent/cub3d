@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/22 17:27:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:10:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,11 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
-# define HEIGHT 1000
-# define WIDTH 1000
+# define WIDTH 640
+# define HEIGHT 480
 
 // ----------------------------------
 // STRUCTS
-
-typedef struct s_prop {
-	int	item;
-	int	exit;
-	int	start_pos;
-}				t_prop;
 
 /* vector with an x and y */
 typedef struct s_vector
@@ -38,12 +32,6 @@ typedef struct s_vector
 	uint32_t	x;
 	uint32_t	y;
 }				t_vector;
-
-/* A pointer to the window and its size */
-typedef struct s_window {
-	void		*reference;
-	t_vector	size;
-}				t_window;
 
 /* The 4 values that define a color */
 typedef struct s_color {
@@ -60,13 +48,50 @@ typedef struct s_image {
 }				t_image;
 
 typedef struct s_program {
-	mlx_t	*mlx;
-	t_image	img;
-//	t_image	*pixies;
-	char	**map;
-	int		frame;
-	int		key;
+	mlx_t			*mlx;
+	t_image			img;
+//	t_image			*pixies;
+	char			**map;
+	int				frame;
+	int				key;
+	t_screen		*screen;
+	t_render		*render;
+	t_ray_casting	*rc;
+	t_player		*player;
 }				t_program;
+
+typedef struct s_screen {
+	uint32_t	width;
+	uint32_t	height;
+	uint32_t	half_width;
+	uint32_t	half_height;
+}				t_screen;
+
+typedef struct s_render {
+	uint32_t	delay;
+}				t_render;
+
+typedef struct s_ray_casting {
+	uint32_t	increment_angle;
+	uint32_t	precision;
+}				t_ray_casting;
+
+typedef struct s_player {
+	uint32_t	fov;
+	uint32_t	half_fov;
+	uint32_t	x;
+	uint32_t	y;
+	uint32_t	angle;
+}				t_player;
+
+
+
+// to take out
+typedef struct s_prop {
+	int	item;
+	int	exit;
+	int	start_pos;
+}				t_prop;
 
 typedef struct s_nme
 {

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 14:44:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/20 14:44:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/23 09:50:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ char	who_is_it(char **map)
 
 	pos = ft_get_x_and_y(map, 'P');
 	who = 'P';
-	if (pos.x == -1)
+	if (pos.x == 3000)
 	{
 		pos = ft_get_x_and_y(map, 'L');
 		who = 'L';
 	}
-	if (pos.x == -1)
+	if (pos.x == 3000)
 	{
 		pos = ft_get_x_and_y(map, 'F');
 		who = 'F';
 	}
-	if (pos.x == -1)
+	if (pos.x == 3000)
 	{
 		pos = ft_get_x_and_y(map, 'B');
 		who = 'B';

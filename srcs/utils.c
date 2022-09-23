@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/05/09 18:16:49 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/23 09:50:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ t_vector	ft_get_coordinates(char **map, char prop)
 		coord.x = 0;
 		coord.y++;
 	}
-	coord.x = -1;
-	coord.y = -1;
+	coord.x = 3000;
+	coord.y = 3000;
 	return (coord);
 }
 
@@ -73,8 +73,8 @@ t_vector	ft_get_x_and_y(char **map, char prop)
 		coord.x = 0;
 		coord.y++;
 	}
-	coord.x = -1;
-	coord.y = -1;
+	coord.x = 3000;
+	coord.y = 3000;
 	return (coord);
 }
 
@@ -83,11 +83,11 @@ t_vector	ft_get_char_pos(char **map)
 	t_vector	pos;
 
 	pos = ft_get_x_and_y(map, 'P');
-	if (pos.x == -1)
+	if (pos.x == 3000)
 		pos = ft_get_x_and_y(map, 'L');
-	if (pos.x == -1)
+	if (pos.x == 3000)
 		pos = ft_get_x_and_y(map, 'F');
-	if (pos.x == -1)
+	if (pos.x == 3000)
 		pos = ft_get_x_and_y(map, 'B');
 	return (pos);
 }
