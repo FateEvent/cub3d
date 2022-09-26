@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/09/22 17:12:11 by faventur         ###   ########.fr        #
+#    Updated: 2022/09/26 10:08:55 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJ_PATH = bin/
 C_EXTENSION = .c
 
 SRCS_FILES = main window hooks maps utils display pixies moves tools \
-		check colours colour_conversions useless_tools
+		check colours colour_conversions useless_tools ray_casting_tools
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 

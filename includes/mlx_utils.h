@@ -6,17 +6,17 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/23 16:10:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/26 09:44:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_UTILS_H
 # define MLX_UTILS_H
 
-# include <MLX42.h>
 # include <fcntl.h>
 # include <sys/types.h>
 # include <math.h>
+# include <MLX42.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
@@ -48,16 +48,16 @@ typedef struct s_image {
 }				t_image;
 
 typedef struct s_program {
-	mlx_t			*mlx;
-	t_image			img;
-//	t_image			*pixies;
-	char			**map;
-	int				frame;
-	int				key;
-	t_screen		*screen;
-	t_render		*render;
-	t_ray_casting	*rc;
-	t_player		*player;
+	mlx_t					*mlx;
+	t_image					img;
+//	t_image					*pixies;
+	char					**map;
+	int						frame;
+	int						key;
+	struct s_screen			*screen;
+	struct s_render			*render;
+	struct s_ray_casting	*rc;
+	struct s_player			*player;
 }				t_program;
 
 typedef struct s_screen {

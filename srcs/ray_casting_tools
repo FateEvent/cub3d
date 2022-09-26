@@ -1,0 +1,31 @@
+#include "mlx_utils.h"
+
+void	let_s_get_started(t_program *data)
+{
+	setInterval(function() {
+		clearScreen();
+		rayCasting();
+	}, data->render->delay);
+}
+
+function clearScreen() {
+	screenContext.clearRect(0, 0, data.screen.width, data.screen.height);
+}
+
+function rayCasting() {}
+
+/*
+void	draw_a_line(t_vector dest, t_vector view, uint32_t color)
+{
+	screenContext.strokeStyle = cssColor;
+	screenContext.beginPath();
+	screenContext.moveTo(x1, y1);
+	screenContext.lineTo(x2, y2);
+	screenContext.stroke();
+}
+*/
+
+uint32_t	degrees_to_radians(uint32_t degrees)
+{
+	return (degrees * M_PI / 180);
+}

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/23 16:16:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/26 10:09:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void ft_hook(void* param)
 
 void	init_struct(t_program *data)
 {
-	data->screen->width = 640;
-	data->screen->height = 480;
+	data->screen->width = WIDTH;
+	data->screen->height = HEIGHT;
 	data->render->delay = 30;
 	data->rc->precision = 64;
 	data->player->fov = 60;
