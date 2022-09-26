@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/26 10:09:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:31:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void ft_hook(void* param)
+void	ft_hook(void* param)
 {
 	const mlx_t* mlx;
 
@@ -20,10 +20,10 @@ static void ft_hook(void* param)
 //	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 }
 
-void	init_struct(t_program *data)
+void	init_struct_child(t_program *data, t_vector size)
 {
-	data->screen->width = WIDTH;
-	data->screen->height = HEIGHT;
+	data->screen->width = size.x;
+	data->screen->height = size.y;
 	data->render->delay = 30;
 	data->rc->precision = 64;
 	data->player->fov = 60;
@@ -36,10 +36,31 @@ void	init_struct(t_program *data)
 	data->player->half_fov = data->player->fov / 2;
 }
 
+void	init_struct(t_program *data, t_vector size)
+{
+	data->screen = malloc(sizeof(*data->screen));
+	data->render = malloc(sizeof(*data->render));
+	data->rc = malloc(sizeof(*data->rc));
+	data->player = malloc(sizeof(*data->player));
+	if (!data->screen || !data->render || !data->rc || !data->player)
+	{
+		if (data->screen)
+			free(data->screen);
+		if (data->render)
+			free(data->render);
+		if (data->rc)
+			free(data->rc);
+		if (data->player)
+			free(data->player);
+		exit(1);
+	}
+	init_struct_child(data, size);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_program	program;
-	t_image		*pixies;
+	t_vector	size;
 	int			i;
 
 	i = 0;
@@ -50,17 +71,19 @@ int	main(int argc, char *argv[])
 //		ft_puterror("Error!");
 	if (!program.map)
 		ft_puterror("Error!");
-	init_struct(&program);
+	size = calculate_window_size(program.map);
+	init_struct(&program, size);
 	program.frame = 0;
-	program.mlx = mlx_init(HEIGHT, WIDTH, "cub3d", true);
-	program.img.img = mlx_new_image(program.mlx, HEIGHT, WIDTH);
+	program.mlx = mlx_init(size.x, size.y, "cub3d", true);
+	program.img.img = mlx_new_image(program.mlx, size.x, size.y);
 	if (!program.img.img) //|| (mlx_image_to_window(program.mlx,
 			//	program.img.img, 0, 0) < 0))
 		ft_puterror("Error!");
-	pixies = ft_put_sprite(&program);
-	ft_display_map(&program, pixies);
+	program.pixies = ft_put_sprite(&program);
+//	ft_display_map(&program, program.pixies);
 	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
-	mlx_loop_hook(program.mlx, ft_hook, program.mlx);
+	mlx_loop_hook(program.mlx, ft_update, &program);
+//	mlx_loop_hook(program.mlx, ft_hook, program.mlx);
 	mlx_loop(program.mlx);
 	mlx_terminate(program.mlx);
 }

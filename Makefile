@@ -6,15 +6,17 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/09/26 10:08:55 by faventur         ###   ########.fr        #
+#    Updated: 2022/09/26 14:22:22 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
+ARGS = map.ber
+
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 
 LINKS = -lglfw -L /goinfre/faventur/.brew/Cellar/glfw/3.3.8/lib/
 
@@ -51,7 +53,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) -sC ./MLX42
 	@mv ./libft/libft.a .
 	@mv ./MLX42/libmlx42.a .
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) -fsanitize=address
 	@echo "$(CURSIVE)$(HIBLUE)Parce qu'ouvrir une fenêtre,$(NONE)"
 	@echo "$(CURSIVE)$(HIGREEN)c'est surfait.$(NONE)"
 
@@ -63,16 +65,20 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	${CC} ${FLAGS} ${LIBLINKS} -c $< -o $@
 
 exe: all
-	@./$(NAME)
+	@./$(NAME) $(ARGS)
 
 clean:
 	@$(RM) -r libft.a libmlx42.a $(OBJ_PATH)
 	@$(MAKE) clean -C ./libft
-	@$(MAKE) fclean -C ./MLX42
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) fclean -C ./libft
-	@$(MAKE) fclean -C ./MLX42
 
 re: fclean all
+
+relib: fclean
+	@$(MAKE) re -sC ./MLX42
+	@$(MAKE) all
+
+.PHONY: all exe clean fclean re

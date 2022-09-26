@@ -40,3 +40,16 @@ void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 		}
 	}
 }
+
+void	mlx_draw_line(mlx_image_t *img, uint32_t a_x, uint32_t a_y,
+			uint32_t y, uint32_t color)
+{
+	uint32_t	h;
+
+	h = 0;
+	while (a_y + h <= y)
+	{
+		mlx_put_pixel(img, a_x, a_y + h, color);
+		h++;
+	}
+}

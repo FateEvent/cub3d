@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/26 09:44:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:19:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,9 @@ typedef struct s_image {
 typedef struct s_program {
 	mlx_t					*mlx;
 	t_image					img;
-//	t_image					*pixies;
+	t_image					*pixies;
 	char					**map;
 	int						frame;
-	int						key;
 	struct s_screen			*screen;
 	struct s_render			*render;
 	struct s_ray_casting	*rc;
@@ -153,5 +152,10 @@ int			ft_close(void);
 void		ft_put_background(t_program *data, char *path);
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 				uint32_t color);
+void		mlx_draw_line(mlx_image_t *img, uint32_t a_x, uint32_t a_y,
+				uint32_t y, uint32_t color);
+
+void		ray_casting(t_program *data);
+uint32_t	degrees_to_radians(uint32_t degrees);
 
 #endif

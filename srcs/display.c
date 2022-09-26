@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/22 18:50:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:15:49 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ void	ft_display_moves(t_program *d, int key, t_vector pos, int *counter)
 void	ft_display_map(t_program *data, t_image *pixie)
 {
 	uint32_t	i[2];
-	t_vector	size;
+//	t_vector	size;
 	char		c;
 
-	size = calculate_window_size(data->map);
+//	size = calculate_window_size(data->map);
 	i[0] = 0;
-	while (i[0] * pixie[0].texture->texture.height < size.y && data->map[i[0]])
+	while (i[0] * pixie[0].texture->texture.height < HEIGHT && data->map[i[0]])
 	{
 		i[1] = 0;
-		while (i[1] * pixie[0].texture->texture.width < size.x
+		while (i[1] * pixie[0].texture->texture.width < WIDTH
 			&& data->map[i[0]][i[1]] != '\n')
 		{
 			c = data->map[i[0]][i[1]];
