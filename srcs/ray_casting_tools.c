@@ -44,6 +44,7 @@ void	ray_casting(t_program *data)
 
 	ray_angle = data->player->angle - data->player->half_fov;
 	ray_count = 0;
+	wall_height = 0;
 	while (ray_count < data->screen->width)
 	{
 		ray.x = data->player->x;
