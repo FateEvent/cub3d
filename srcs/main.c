@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/26 17:31:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/27 10:29:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ void	ft_hook(void* param)
 
 void	init_struct_child(t_program *data, t_vector size)
 {
-	data->screen->width = size.x;
-	data->screen->height = size.y;
+	(void)size;
+	data->screen->width = WIDTH;
+	data->screen->height = HEIGHT;
 	data->render->delay = 30;
 	data->rc->precision = 64;
 	data->player->fov = 60;
-	data->player->x = 2;
+	data->player->x = 6;
 	data->player->y = 2;
 	data->player->angle = 90;
 	data->screen->half_width = data->screen->width / 2;
@@ -74,12 +75,12 @@ int	main(int argc, char *argv[])
 	size = calculate_window_size(program.map);
 	init_struct(&program, size);
 	program.frame = 0;
-	program.mlx = mlx_init(size.x, size.y, "cub3d", true);
-	program.img.img = mlx_new_image(program.mlx, size.x, size.y);
+	program.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
+	program.img.img = mlx_new_image(program.mlx, WIDTH, HEIGHT);
 	if (!program.img.img) //|| (mlx_image_to_window(program.mlx,
 			//	program.img.img, 0, 0) < 0))
 		ft_puterror("Error!");
-	program.pixies = ft_put_sprite(&program);
+//	program.pixies = ft_put_sprite(&program);
 //	ft_display_map(&program, program.pixies);
 	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);

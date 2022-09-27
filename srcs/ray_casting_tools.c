@@ -33,14 +33,14 @@ void	ray_calculator(t_program *data, t_vector *ray, uint32_t	ray_angle)
 */
 void	ray_casting(t_program *data)
 {
-	uint32_t	ray_angle;
-	uint32_t	ray_count;
+	double	ray_angle;
+	double	ray_count;
 	t_vector	ray;
 	double		ray_cos;
 	double		ray_sin;
-	uint32_t	wall;
-	uint32_t	distance;
-	uint32_t	wall_height;
+	double	wall;
+	double	distance;
+	double	wall_height;
 
 	ray_angle = data->player->angle - data->player->half_fov;
 	ray_count = 0;
@@ -57,24 +57,19 @@ void	ray_casting(t_program *data)
 			ray.x += ray_cos;
 			ray.y += ray_sin;
 
+			ft_printf("%s\n", data->map[(uint32_t)floor(ray.y)]);
 			wall = data->map[(uint32_t)floor(ray.y)][(uint32_t)floor(ray.x)];
 		}
-		distance = sqrt(pow(data->player->x - ray.x, 2)
-				+ pow(data->player->y - ray.y, 2));
-		ft_printf("ciao");
-		if (distance)
-			wall_height = (uint32_t)floor(data->screen->half_height / distance);
-		ft_printf("ciao");
-		mlx_draw_line(data->img.img, 0, ray_count, data->screen->half_height - wall_height, 0x00FFFFFF);
-		mlx_draw_line(data->img.img, data->screen->half_height - wall_height, ray_count, data->screen->half_height + wall_height, 0xC70039FF);
-		mlx_draw_line(data->img.img, data->screen->half_height + wall_height, ray_count, data->screen->half_height,  0xDAF7A6FF);
+		distance = sqrt(pow(data->player->x - ray.x, 2) + pow(data->player->y - ray.y, 2));
+		wall_height = (uint32_t)floor(data->screen->half_height / distance);
+		mlx_draw_line(data->img.img, ray_count, 0, ray_count, data->screen->half_height - wall_height, 0x00FFFFFF);
+		mlx_draw_line(data->img.img, ray_count, data->screen->half_height - wall_height, ray_count, data->screen->half_height + wall_height, 0xC70039FF);
+		mlx_draw_line(data->img.img, ray_count, data->screen->half_height + wall_height, ray_count, data->screen->half_height,  0xDAF7A6FF);
 
 		// Increment
 		ray_angle += data->rc->increment_angle;
 		ray_count++;
 	}
-
-
 }
 
 uint32_t	degrees_to_radians(uint32_t degrees)

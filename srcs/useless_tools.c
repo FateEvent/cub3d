@@ -41,15 +41,18 @@ void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 	}
 }
 
-void	mlx_draw_line(mlx_image_t *img, uint32_t a_x, uint32_t a_y,
-			uint32_t y, uint32_t color)
+void	mlx_draw_line(mlx_image_t *img, int x0, int y0,
+			int x1, int y1, uint32_t color)
 {
-	uint32_t	h;
-
-	h = 0;
-	while (a_y + h <= y)
-	{
-		mlx_put_pixel(img, a_x, a_y + h, color);
-		h++;
-	}
+  uint32_t	dx =  abs (x1 - x0), sx = x0 < x1 ? 1 : -1;
+  uint32_t	dy = -abs (y1 - y0), sy = y0 < y1 ? 1 : -1; 
+  uint32_t	err = dx + dy, e2; /* error value e_xy */
+ 
+  for (;;){  /* loop */
+    mlx_put_pixel(img, x0, y0, color);
+    if (x0 == x1 && y0 == y1) break;
+    e2 = 2 * err;
+    if (e2 >= dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+    if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+  }
 }

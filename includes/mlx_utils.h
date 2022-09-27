@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/26 17:19:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:29:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 1024
+# define HEIGHT 512
 
 // ----------------------------------
 // STRUCTS
@@ -152,8 +152,8 @@ int			ft_close(void);
 void		ft_put_background(t_program *data, char *path);
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 				uint32_t color);
-void		mlx_draw_line(mlx_image_t *img, uint32_t a_x, uint32_t a_y,
-				uint32_t y, uint32_t color);
+void		mlx_draw_line(mlx_image_t *img, int x0, int y0,
+				int x1, int y1, uint32_t color);
 
 void		ray_casting(t_program *data);
 uint32_t	degrees_to_radians(uint32_t degrees);
