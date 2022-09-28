@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/27 11:29:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:40:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_program {
 	mlx_t					*mlx;
 	t_image					img;
 	t_image					*pixies;
-	char					**map;
+	struct s_map			*map;
 	int						frame;
 	struct s_screen			*screen;
 	struct s_render			*render;
@@ -83,7 +83,11 @@ typedef struct s_player {
 	uint32_t	angle;
 }				t_player;
 
-
+typedef struct s_map {
+	char		**map;
+	int			width;
+	int			height;
+}				t_map;
 
 // to take out
 typedef struct s_prop {
@@ -154,6 +158,8 @@ void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 				uint32_t color);
 void		mlx_draw_line(mlx_image_t *img, int x0, int y0,
 				int x1, int y1, uint32_t color);
+void		draw_vertical_line(mlx_image_t *img, int x, int draw_start,
+				int draw_end, uint32_t color);
 
 void		ray_casting(t_program *data);
 uint32_t	degrees_to_radians(uint32_t degrees);

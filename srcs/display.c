@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/26 15:15:49 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:32:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@
 static void	ft_display_moves_pt2(t_program *d, t_vector pos, int key,
 		int *counter)
 {
-	if (key == 1 && d->map[pos.y + 1][pos.x] != '1')
+	if (key == 1 && d->map->map[pos.y + 1][pos.x] != '1')
 	{
-		if (d->map[pos.y + 1][pos.x] == 'C' || d->map[pos.y + 1][pos.x] == '0')
+		if (d->map->map[pos.y + 1][pos.x] == 'C' || d->map->map[pos.y + 1][pos.x] == '0')
 		{
-			d->map[pos.y][pos.x] = '0';
-			d->map[pos.y + 1][pos.x] = 'F';
+			d->map->map[pos.y][pos.x] = '0';
+			d->map->map[pos.y + 1][pos.x] = 'F';
 			(*counter)++;
 		}
-		else if (d->map[pos.y + 1][pos.x] == 'E' && verify_conditions(d->map))
+		else if (d->map->map[pos.y + 1][pos.x] == 'E' && verify_conditions(d->map->map))
 			ft_break_the_game(d, "You win!");
 	}
-	else if (key == 13 && d->map[pos.y - 1][pos.x] != '1')
+	else if (key == 13 && d->map->map[pos.y - 1][pos.x] != '1')
 	{
-		if (d->map[pos.y - 1][pos.x] == 'C' || d->map[pos.y - 1][pos.x] == '0')
+		if (d->map->map[pos.y - 1][pos.x] == 'C' || d->map->map[pos.y - 1][pos.x] == '0')
 		{
-			d->map[pos.y][pos.x] = '0';
-			d->map[pos.y - 1][pos.x] = 'B';
+			d->map->map[pos.y][pos.x] = '0';
+			d->map->map[pos.y - 1][pos.x] = 'B';
 			(*counter)++;
 		}
-		else if (d->map[pos.y - 1][pos.x] == 'E' && verify_conditions(d->map))
+		else if (d->map->map[pos.y - 1][pos.x] == 'E' && verify_conditions(d->map->map))
 			ft_break_the_game(d, "You win!");
 	}
 	else if (key == 53)
@@ -49,26 +49,26 @@ static void	ft_display_moves_pt2(t_program *d, t_vector pos, int key,
 
 void	ft_display_moves(t_program *d, int key, t_vector pos, int *counter)
 {
-	if (key == 0 && d->map[pos.y][pos.x - 1] != '1')
+	if (key == 0 && d->map->map[pos.y][pos.x - 1] != '1')
 	{
-		if (d->map[pos.y][pos.x - 1] == 'C' || d->map[pos.y][pos.x - 1] == '0')
+		if (d->map->map[pos.y][pos.x - 1] == 'C' || d->map->map[pos.y][pos.x - 1] == '0')
 		{
-			d->map[pos.y][pos.x] = '0';
-			d->map[pos.y][pos.x - 1] = 'L';
+			d->map->map[pos.y][pos.x] = '0';
+			d->map->map[pos.y][pos.x - 1] = 'L';
 			(*counter)++;
 		}
-		else if (d->map[pos.y][pos.x - 1] == 'E' && verify_conditions(d->map))
+		else if (d->map->map[pos.y][pos.x - 1] == 'E' && verify_conditions(d->map->map))
 			ft_break_the_game(d, "You win!");
 	}
-	else if (key == 2 && d->map[pos.y][pos.x + 1] != '1')
+	else if (key == 2 && d->map->map[pos.y][pos.x + 1] != '1')
 	{
-		if (d->map[pos.y][pos.x + 1] == 'C' || d->map[pos.y][pos.x + 1] == '0')
+		if (d->map->map[pos.y][pos.x + 1] == 'C' || d->map->map[pos.y][pos.x + 1] == '0')
 		{
-			d->map[pos.y][pos.x] = '0';
-			d->map[pos.y][pos.x + 1] = 'P';
+			d->map->map[pos.y][pos.x] = '0';
+			d->map->map[pos.y][pos.x + 1] = 'P';
 			(*counter)++;
 		}
-		else if (d->map[pos.y][pos.x + 1] == 'E' && verify_conditions(d->map))
+		else if (d->map->map[pos.y][pos.x + 1] == 'E' && verify_conditions(d->map->map))
 			ft_break_the_game(d, "You win!");
 	}
 	else
@@ -78,18 +78,16 @@ void	ft_display_moves(t_program *d, int key, t_vector pos, int *counter)
 void	ft_display_map(t_program *data, t_image *pixie)
 {
 	uint32_t	i[2];
-//	t_vector	size;
 	char		c;
 
-//	size = calculate_window_size(data->map);
 	i[0] = 0;
-	while (i[0] * pixie[0].texture->texture.height < HEIGHT && data->map[i[0]])
+	while (i[0] * pixie[0].texture->texture.height < HEIGHT && data->map->map[i[0]])
 	{
 		i[1] = 0;
 		while (i[1] * pixie[0].texture->texture.width < WIDTH
-			&& data->map[i[0]][i[1]] != '\n')
+			&& data->map->map[i[0]][i[1]] != '\n')
 		{
-			c = data->map[i[0]][i[1]];
+			c = data->map->map[i[0]][i[1]];
 			ft_invoke_pixie(c, i, data, pixie);
 			i[1]++;
 		}

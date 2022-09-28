@@ -6,12 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 14:44:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/05/09 20:28:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:33:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
+/*
 void	track_ur_move_down(t_program *data, t_nme death)
 {
 	if (data->map[death.pos.y + 1][death.pos.x] != '1'
@@ -82,3 +82,4 @@ void	move_ur_ass(t_program *data)
 		&& data->map[death.pos.y - 1][death.pos.x - 1] == '1')
 		track_ur_move_up(data, death);
 }
+*/
