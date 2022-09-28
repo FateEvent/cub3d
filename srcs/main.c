@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/28 13:44:46 by faventur         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:22:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	init_struct(t_program *data)
 
 void	calculate_map_size(t_program *data)
 {
-	data->map->width = 0;
 	data->map->height = 0;
 	while (data->map->map[data->map->height])
 	{
+		data->map->width = 0;
 		while (data->map->map[data->map->height][data->map->width])
 		{
 			data->map->width++;

@@ -23,7 +23,7 @@ void	ft_update(void *param)
 
 void	ray_casting(t_program *data)
 {
-	double posX = 22, posY = 12;  //x and y start position
+	double posX = 8, posY = 4;  //x and y start position
 	double dirX = -1, dirY = 0; //initial direction vector
 	double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
 	for(int x = 0; x < data->map->width; x++)
@@ -88,11 +88,11 @@ void	ray_casting(t_program *data)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			ft_printf("%d, %d", mapX, mapY);
-			if (data->map->map[mapX][mapY] > 0) hit = 1;
+			ft_printf("%d, %d\n", mapX, mapY);
+			if (data->map->map[mapY][mapX] > 48) hit = 1;
 		}
 		if (side == 0) perpWallDist = (sideDistX - deltaDistX);
-		else          perpWallDist = (sideDistY - deltaDistY);
+		else perpWallDist = (sideDistY - deltaDistY);
 		//Calculate height of line to draw on screen
 		int lineHeight = (int)(data->map->height / perpWallDist);
 		//calculate lowest and highest pixel to fill in current stripe
@@ -103,19 +103,15 @@ void	ray_casting(t_program *data)
 
 		//choose wall color
 		uint32_t	color;
-		switch(data->map->map[mapX][mapY])
+		ft_printf("%d\n", data->map->map[mapY][mapX]);
+		switch(data->map->map[mapY][mapX])
 		{
-			case 1:  color = 0xFF000000; break; //red
+			case 49:  color = 0xFF000000; break; //red
 			default: color = 0xFFFF0000; break; //yellow
 		}
 		//give x and y sides different brightness
 		if(side == 1) {color = color / 2;}
 		//draw the pixels of the stripe as a vertical line
-		draw_vertical_line(data->img.img, x, drawStart, drawEnd, 0xFFFFFFFF);
+		draw_vertical_line(data->img.img, x, drawStart, drawEnd, color);
 	}
-}
-
-uint32_t	degrees_to_radians(uint32_t degrees)
-{
-	return (degrees * M_PI / 180);
 }
