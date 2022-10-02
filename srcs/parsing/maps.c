@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 14:25:26 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/28 16:07:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/02 15:45:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	ft_wall_parser(char **map)
 	return (1);
 }
 
-static int	ft_prop_counter(char **map)
+static int	ft_start_pos_counter(char **map)
 {
 	int		i;
 	int		j;
@@ -65,18 +65,15 @@ static int	ft_prop_counter(char **map)
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] == 'C')
-				obj.item++;
-			if (map[i][j] == 'E')
-				obj.exit++;
-			if (map[i][j] == 'P')
+			if (map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'W' || map[i][j] == 'E')
 				obj.start_pos++;
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	if (obj.item > 0 && obj.exit > 0 && obj.start_pos == 1)
+	if (obj.start_pos == 1)
 		return (1);
 	return (0);
 }
@@ -97,7 +94,7 @@ int	ft_map_parser(char **map)
 		}
 		i++;
 	}
-	if (ft_prop_counter(map) && ft_wall_parser(map))
+	if (ft_start_pos_counter(map) && ft_wall_parser(map))
 		return (1);
 	ft_puterror("The map doesn't seem valid!");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/23 09:50:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/02 15:45:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	verify_conditions(char **map)
 
 void	ft_prop_init(t_prop *obj)
 {
-	obj->item = 0;
-	obj->exit = 0;
 	obj->start_pos = 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/28 16:21:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/02 15:44:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ typedef struct s_map {
 
 // to take out
 typedef struct s_prop {
-	int	item;
-	int	exit;
 	int	start_pos;
 }				t_prop;
 

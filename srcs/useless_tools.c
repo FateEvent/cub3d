@@ -9,10 +9,10 @@ void	ft_put_background(t_program *data, char *path)
 	bg.texture = mlx_load_xpm42(path);
 	bg.img = mlx_texture_to_image(data->mlx, &bg.texture->texture);
 	i = 0;
-	while (i * bg.texture->texture.height < data->map->height)
+	while (i * bg.texture->texture.height < (uint32_t)data->map->height)
 	{
 		j = 0;
-		while (j * bg.texture->texture.width < data->map->width)
+		while (j * bg.texture->texture.width < (uint32_t)data->map->width)
 		{
 			mlx_image_to_window(data->mlx, bg.img,
 				j * (63 - 1), i * (63 - 1));
