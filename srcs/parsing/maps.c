@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 14:25:26 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/02 15:45:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:08:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ int	ft_map_parser(char **map)
 	{
 		if (ft_strlen(map[i]) != line)
 		{
-			ft_puterror("The map doesn't seem valid!");
+			ft_puterror("error: invalid map format");
 			return (0);
 		}
 		i++;
 	}
 	if (ft_start_pos_counter(map) && ft_wall_parser(map))
 		return (1);
-	ft_puterror("The map doesn't seem valid!");
+	ft_puterror("error: invalid map format");
 	return (0);
 }
 

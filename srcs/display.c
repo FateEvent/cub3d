@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/28 12:32:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:05:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_display_moves_pt2(t_program *d, t_vector pos, int key,
 			d->map->map[pos.y + 1][pos.x] = 'F';
 			(*counter)++;
 		}
-		else if (d->map->map[pos.y + 1][pos.x] == 'E' && verify_conditions(d->map->map))
+		else if (d->map->map[pos.y + 1][pos.x] == 'E')
 			ft_break_the_game(d, "You win!");
 	}
 	else if (key == 13 && d->map->map[pos.y - 1][pos.x] != '1')
@@ -40,7 +40,7 @@ static void	ft_display_moves_pt2(t_program *d, t_vector pos, int key,
 			d->map->map[pos.y - 1][pos.x] = 'B';
 			(*counter)++;
 		}
-		else if (d->map->map[pos.y - 1][pos.x] == 'E' && verify_conditions(d->map->map))
+		else if (d->map->map[pos.y - 1][pos.x] == 'E')
 			ft_break_the_game(d, "You win!");
 	}
 	else if (key == 53)
@@ -57,7 +57,7 @@ void	ft_display_moves(t_program *d, int key, t_vector pos, int *counter)
 			d->map->map[pos.y][pos.x - 1] = 'L';
 			(*counter)++;
 		}
-		else if (d->map->map[pos.y][pos.x - 1] == 'E' && verify_conditions(d->map->map))
+		else if (d->map->map[pos.y][pos.x - 1] == 'E')
 			ft_break_the_game(d, "You win!");
 	}
 	else if (key == 2 && d->map->map[pos.y][pos.x + 1] != '1')
@@ -68,7 +68,7 @@ void	ft_display_moves(t_program *d, int key, t_vector pos, int *counter)
 			d->map->map[pos.y][pos.x + 1] = 'P';
 			(*counter)++;
 		}
-		else if (d->map->map[pos.y][pos.x + 1] == 'E' && verify_conditions(d->map->map))
+		else if (d->map->map[pos.y][pos.x + 1] == 'E')
 			ft_break_the_game(d, "You win!");
 	}
 	else
