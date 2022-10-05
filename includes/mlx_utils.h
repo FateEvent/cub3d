@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/02 16:05:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/05 11:38:51 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct s_vector
 	uint32_t	x;
 	uint32_t	y;
 }				t_vector;
+
+typedef struct s_vector2
+{
+	double	x;
+	double	y;
+}				t_vector2;
 
 /* The 4 values that define a color */
 typedef struct s_color {

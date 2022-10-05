@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/28 16:22:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:05:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	main(int argc, char *argv[])
 	int			i;
 
 	i = 0;
+	(void)argv;
 	check_args(argc);
 //	check_map_extension(argv);
 //	if (!program.map->map || !ft_map_parser(program.map->map))
@@ -89,7 +90,6 @@ int	main(int argc, char *argv[])
 	program.map->map = ft_map_reader(argv[1]);
 	if (!program.map->map)
 		ft_puterror("Error!");
-	calculate_map_size(&program);
 	program.frame = 0;
 	program.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	program.img.img = mlx_new_image(program.mlx, WIDTH, HEIGHT);
