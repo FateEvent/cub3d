@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/06 14:35:30 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:27:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <math.h>
 # include <MLX42.h>
 # include "libft.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
 # define WIDTH 640
 # define HEIGHT 480
 
@@ -150,6 +148,7 @@ void		ft_update(void *param);
 
 void		ft_prop_init(t_prop *obj);
 
+void		check(int argc, char **argv);
 void		check_args(char argc);
 void		check_map_extension(char *argv[]);
 

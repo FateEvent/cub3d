@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 17:03:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/02 16:07:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:30:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ void	check_map_extension(char *argv[])
 	if (fd == -1)
 		ft_puterror("error: the file doesn't exist");
 	close(fd);
+}
+
+void	check(int argc, char **argv)
+{
+	check_args(argc);
+	check_map_extension(argv);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/06 15:03:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:17:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,7 @@ int	main(int argc, char *argv[])
 	int			i;
 
 	i = 0;
-	(void)argv;
-	check_args(argc);
-//	check_map_extension(argv);
+	check(argc, argv);
 //	if (!program.map->map || !ft_map_parser(program.map->map))
 //		ft_puterror("Error!");
 	init_struct(&program);
