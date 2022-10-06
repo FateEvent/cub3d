@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/05 11:38:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:26:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@
 /* vector with an x and y */
 typedef struct s_vector
 {
-	uint32_t	x;
-	uint32_t	y;
+	int	x;
+	int	y;
 }				t_vector;
 
 typedef struct s_vector2
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 }				t_vector2;
 
 /* The 4 values that define a color */
@@ -159,10 +159,8 @@ int			ft_close(void);
 void		ft_put_background(t_program *data, char *path);
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 				uint32_t color);
-void		mlx_draw_line(mlx_image_t *img, int x0, int y0,
-				int x1, int y1, uint32_t color);
-void		draw_vertical_line(mlx_image_t *img, int x, int draw_start,
-				int draw_end, uint32_t color);
+void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
+				uint32_t color);
 
 void		ray_casting(t_program *data);
 uint32_t	degrees_to_radians(uint32_t degrees);

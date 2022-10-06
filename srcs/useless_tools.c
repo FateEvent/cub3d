@@ -55,12 +55,12 @@ void	mlx_draw_line(mlx_image_t *img, int x0, int y0,
 }
 */
 
-void	draw_vertical_line(mlx_image_t *img, int x, int draw_start,
+void	draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 			int draw_end, uint32_t color)
 {
-	while (draw_start < draw_end)
+	while (draw_start.y < draw_end)
 	{
-		mlx_put_pixel(img, x, draw_start, color);
-		draw_start++;
+		mlx_put_pixel(img, draw_start.x, draw_start.y, color);
+		draw_start.x++;
 	}
 }

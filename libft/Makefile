@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 17:55:49 by faventur          #+#    #+#              #
-#    Updated: 2022/09/22 14:50:11 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/06 10:00:13 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ OBJS_BT	= $(addprefix btrees/, ${SRCS_BT:.c=.o})
 NAME	= libft.a
 
 .c.o:
+		echo "libft compiling in progress... $<$(_END)"
 		gcc -Wall -Wextra -Werror -g -c -I./includes $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
