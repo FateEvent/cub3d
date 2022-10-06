@@ -37,10 +37,12 @@ void	ray_casting(t_program *data)
 		}
 
 		// Pythagoras theorem
-		float distance = sqrt(pow(data->player->x - ray.x, 2) + pow(data->player->y - ray.y, 2));
-
+		float distance = sqrtf(powf(data->player->x - ray.x, 2) + powf(data->player->y - ray.y, 2));	// * cosf(degrees_to_radians(ray_angle - 0)); où 0 = rotation du joueur
+		printf("distance %f pow1 %f pow2 %f\n", sqrtf(powf(data->player->x - ray.x, 2) + powf(data->player->y - ray.y, 2)), powf(data->player->x - ray.x, 2), powf(data->player->y - ray.y, 2));
+		printf("after pow %f - %f, %f - %f\n\n", data->player->x, ray.x, data->player->y, ray.y);
 		// Wall height
 		float wall_height = floorf((float)data->screen->half_height / distance);
+		printf("floor %f half height %d dist %f\n", floorf((float)data->screen->half_height / distance), data->screen->half_height, distance);
 
 		// Draw
 		printf("printf1: %d %d\n%f %d\n\n",ray_count, data->screen->half_height, wall_height, data->screen->height);
