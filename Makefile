@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/05 11:01:09 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/06 11:41:33 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ C_EXTENSION = .c
 
 MAIN_PATH	=	
 MAIN_FILES 	= 	main window hooks utils display pixies moves tools \
-				colours colour_conversions useless_tools ray_casting_tools \
-				display_map
+				colours colour_conversions drawing_tools ray_casting_tools \
+				display_map vec_utils
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 PARSE_PATH	=	parsing/

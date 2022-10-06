@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/05 14:26:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:35:30 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
-# define WIDTH 1024
-# define HEIGHT 512
+# define WIDTH 640
+# define HEIGHT 480
 
 // ----------------------------------
 // STRUCTS
@@ -58,7 +58,7 @@ typedef struct s_program {
 	t_image					img;
 	t_image					*pixies;
 	struct s_map			*map;
-	int						frame;
+	uint32_t				frame;
 	struct s_screen			*screen;
 	struct s_render			*render;
 	struct s_ray_casting	*rc;
@@ -66,10 +66,10 @@ typedef struct s_program {
 }				t_program;
 
 typedef struct s_screen {
-	uint32_t	width;
-	uint32_t	height;
-	uint32_t	half_width;
-	uint32_t	half_height;
+	int	width;
+	int	height;
+	int	half_width;
+	int	half_height;
 }				t_screen;
 
 typedef struct s_render {
@@ -77,16 +77,16 @@ typedef struct s_render {
 }				t_render;
 
 typedef struct s_ray_casting {
-	uint32_t	increment_angle;
-	uint32_t	precision;
+	float	increment_angle;
+	float	precision;
 }				t_ray_casting;
 
 typedef struct s_player {
-	uint32_t	fov;
-	uint32_t	half_fov;
-	uint32_t	x;
-	uint32_t	y;
-	uint32_t	angle;
+	float	fov;
+	float	half_fov;
+	float	x;
+	float	y;
+	float	angle;
 }				t_player;
 
 typedef struct s_map {
@@ -117,13 +117,10 @@ typedef struct s_update
 // ---------------------------------
 // FUNCTIONS
 
-t_vector	calculate_window_size(char **map);
-
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
 t_vector	ft_get_char_pos(char **map);
 char		who_is_it(char **map);
-void		ft_put_background(t_program *data, char *path);
 t_image		*ft_put_sprite(t_program *data);
 void		ft_invoke_pixie(char c, uint32_t *i, t_program *data,
 				t_image *pixie);
@@ -141,6 +138,10 @@ void		track_ur_move_right(t_program *data, t_nme death);
 void		track_ur_move_down(t_program *data, t_nme death);
 int			ft_swing(t_program *data);
 
+// window functions
+int			ft_close(void);
+void		fill_window(t_program *data, uint32_t color);
+
 int			ft_map_parser(char **map);
 char		**ft_map_reader(char *filename);
 
@@ -153,16 +154,21 @@ void		check_args(char argc);
 void		check_map_extension(char *argv[]);
 
 void		ft_break_the_game(t_program *data, char *end_msg);
-int			ft_close(void);
 
-// my useless tools !!!
-void		ft_put_background(t_program *data, char *path);
+// drawing tools
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 				uint32_t color);
 void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 				uint32_t color);
+void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
+				int draw_end, uint32_t color);
 
 void		ray_casting(t_program *data);
-uint32_t	degrees_to_radians(uint32_t degrees);
+float		degrees_to_radians(float degrees);
+
+// vector utils
+t_vector2	ft_floattovec2(float x, float y);
+float		ft_vect2_distance_calc(t_vector2 start, t_vector2 finish);
+void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
 
 #endif

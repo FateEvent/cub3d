@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:13:29 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/28 12:26:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:34:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,12 @@
 int	ft_close(void)
 {
 	exit(0);
+}
+
+void	fill_window(t_program *data, uint32_t color)
+{
+	mlx_image_t	*frame;
+
+	frame = data->img.img;
+	mlx_draw_square(frame, frame->width, frame->height, color);
 }

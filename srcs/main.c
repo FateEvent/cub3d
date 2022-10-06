@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/05 12:05:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:03:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	init_struct_child(t_program *data)
 	data->screen->width = WIDTH;
 	data->screen->height = HEIGHT;
 	data->render->delay = 30;
-	data->rc->precision = 64;
-	data->player->fov = 60;
-	data->player->x = 6;
-	data->player->y = 2;
-	data->player->angle = 90;
+	data->rc->precision = 64.0f;
+	data->player->fov = 60.0f;
+	data->player->x = 6.0f;
+	data->player->y = 2.0f;
+	data->player->angle = 90.0f;
 	data->screen->half_width = data->screen->width / 2;
 	data->screen->half_height = data->screen->height / 2;
-	data->rc->increment_angle = data->player->angle / data->screen->width;
-	data->player->half_fov = data->player->fov / 2;
+	data->rc->increment_angle = (float)data->player->angle / (float)data->screen->width;
+	data->player->half_fov = (float)data->player->fov / 2.0f;
 }
 
 void	init_struct(t_program *data)
