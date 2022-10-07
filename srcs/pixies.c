@@ -6,45 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/09/22 18:53:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:19:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-/*
-void	ft_invoke_enemy(t_program *data, t_image *pixie, t_vector pos, int var)
-{
-	mlx_image_to_window(data->mlx, pixie[3].img,
-		pos.x * (pixie[3].size.x - 1),
-		pos.y * (pixie[3].size.y - 1));
-	mlx_image_to_window(data->mlx, pixie[8].img,
-		pos.x * (pixie[8].size.x - 1),
-		pos.y * (pixie[8].size.y - var));
-}
 
-void	ft_invoke_char(t_program *data, t_image *pixie, t_vector pos, int var)
-{
-	mlx_image_to_window(data->mlx, pixie[3].img,
-		pos.x * (pixie[3].size.x - 1),
-		pos.y * (pixie[3].size.y - 1));
-	if (data->map[pos.y][pos.x] == 'P')
-		mlx_image_to_window(data->mlx, pixie[4].img,
-			pos.x * (pixie[4].size.x - 1),
-			pos.y * (pixie[4].size.y - var));
-	else if (data->map[pos.y][pos.x] == 'F')
-		mlx_image_to_window(data->mlx, pixie[5].img,
-			pos.x * (pixie[5].size.x - 1),
-			pos.y * (pixie[5].size.y - var));
-	else if (data->map[pos.y][pos.x] == 'B')
-		mlx_image_to_window(data->mlx, pixie[6].img,
-			pos.x * (pixie[6].size.x - 1),
-			pos.y * (pixie[6].size.y - var));
-	else if (data->map[pos.y][pos.x] == 'L')
-		mlx_image_to_window(data->mlx, pixie[7].img,
-			pos.x * (pixie[7].size.x - 1),
-			pos.y * (pixie[7].size.y - var));
-}
-*/
 static void	ft_invoke_pixie_pt2(uint32_t *i, t_program *data, t_image *pixie)
 {
 	mlx_image_to_window(data->mlx, pixie[3].img,

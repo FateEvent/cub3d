@@ -3,75 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/06 17:24:36 by albaur           ###   ########.fr       */
+=======
+/*   Updated: 2022/10/07 14:23:46 by faventur         ###   ########.fr       */
+>>>>>>> cf6b520019f2554992bb97b9934745cf244b129a
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	ft_hook(void* param)
+void	init_texture(t_program *data)
 {
-	const mlx_t* mlx;
-
-	mlx = param;
-//	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-}
-
-void	init_struct_child(t_program *data)
-{
-	data->screen->width = WIDTH;
-	data->screen->height = HEIGHT;
-	data->render->delay = 30;
-	data->rc->precision = 64.0f;
-	data->player->fov = 60.0f;
-	data->player->x = 6.0f;
-	data->player->y = 2.0f;
-	data->player->angle = 90.0f;
-	data->screen->half_width = data->screen->width / 2;
-	data->screen->half_height = data->screen->height / 2;
-	data->rc->increment_angle = (float)data->player->angle / (float)data->screen->width;
-	data->player->half_fov = (float)data->player->fov / 2.0f;
+	data->texture.width = 8;
+	data->texture.height = 8;
+	data->texture.bitmap = ft_map_reader("texture.txt");
+	data->texture.colors = malloc(sizeof(t_color) * 2);
+	data->texture.colors[0].r = 255;
+	data->texture.colors[0].g = 241;
+	data->texture.colors[0].b = 232;
+	data->texture.colors[0].a = 255;
+	data->texture.colors[1].r = 195;
+	data->texture.colors[1].g = 194;
+	data->texture.colors[1].b = 199;
+	data->texture.colors[1].a = 255;
 }
 
 void	init_struct(t_program *data)
 {
-	data->screen = malloc(sizeof(*data->screen));
-	data->render = malloc(sizeof(*data->render));
-	data->rc = malloc(sizeof(*data->rc));
-	data->player = malloc(sizeof(*data->player));
-	data->map = malloc(sizeof(*data->map));
-	if (!data->screen || !data->render || !data->rc || !data->player
-		|| !data->map)
-	{
-		if (data->screen)
-			free(data->screen);
-		if (data->render)
-			free(data->render);
-		if (data->rc)
-			free(data->rc);
-		if (data->player)
-			free(data->player);
-		if (data->map)
-			free(data->map);
-		exit(1);
-	}
-	init_struct_child(data);
+	data->screen.width = WIDTH;
+	data->screen.height = HEIGHT;
+	data->screen.scale = 1;
+	data->render.delay = 30;
+	data->rc.precision = 64.0f;
+	data->player.fov = 60.0f;
+	data->player.x = 6.0f;
+	data->player.y = 2.0f;
+	data->player.angle = 90.0f;
+	data->screen.half_width = data->screen.width / 2;
+	data->screen.half_height = data->screen.height / 2;
+	data->player.half_fov = data->player.fov / 2;
+	data->player.speed.movement = 0.5f;
+	data->player.speed.rotation = 5.0f;
+	data->proj.width = data->screen.width / data->screen.scale;
+	data->proj.height = data->screen.height / data->screen.scale;
+	data->proj.half_width = data->proj.width / 2;
+	data->proj.half_height = data->proj.height / 2;
+	data->rc.increment_angle = data->player.fov / data->proj.width;
+	init_texture(data);
 }
 
 void	calculate_map_size(t_program *data)
 {
-	data->map->height = 0;
-	while (data->map->map[data->map->height])
+	data->map.height = 0;
+	while (data->map.map[data->map.height])
 	{
-		data->map->width = 0;
-		while (data->map->map[data->map->height][data->map->width])
+		data->map.width = 0;
+		while (data->map.map[data->map.height][data->map.width])
 		{
-			data->map->width++;
+			data->map.width++;
 		}
-		data->map->height++;
+		data->map.height++;
 	}
 }
 
@@ -82,11 +77,11 @@ int	main(int argc, char *argv[])
 
 	i = 0;
 	check(argc, argv);
-//	if (!program.map->map || !ft_map_parser(program.map->map))
+//	if (!program.map.map || !ft_map_parser(program.map.map))
 //		ft_puterror("Error!");
 	init_struct(&program);
-	program.map->map = ft_map_reader(argv[1]);
-	if (!program.map->map)
+	program.map.map = ft_map_reader(argv[1]);
+	if (!program.map.map)
 		ft_puterror("Error!");
 	program.frame = 0;
 	program.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
@@ -98,7 +93,7 @@ int	main(int argc, char *argv[])
 //	ft_display_map(&program, program.pixies);
 	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
-//	mlx_loop_hook(program.mlx, ft_hook, program.mlx);
+	mlx_key_hook(program.mlx, ft_key_input, &program);
 	mlx_loop(program.mlx);
 	mlx_terminate(program.mlx);
 }

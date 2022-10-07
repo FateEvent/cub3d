@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/10/07 10:33:32 by albaur           ###   ########.fr        #
+=======
+#    Updated: 2022/10/07 14:20:45 by faventur         ###   ########.fr        #
+>>>>>>> cf6b520019f2554992bb97b9934745cf244b129a
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +25,8 @@ OBJ_PATH = bin/
 C_EXTENSION = .c
 
 MAIN_PATH	=	
-MAIN_FILES 	= 	main window hooks utils display pixies moves tools \
-				colours colour_conversions drawing_tools ray_casting_tools \
+MAIN_FILES 	= 	main window hooks utils display pixies colours \
+				colour_conversions drawing_tools ray_casting_tools \
 				display_map vec_utils
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
