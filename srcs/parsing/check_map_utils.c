@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/07 15:08:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/07 15:13:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,8 @@ static int	wall_check(char **map)
 		{
 			if (map[i][j] == ' ')
 			{
-				//if (detect_gap(map, i, j) == -1)
-				//	++ret;
+				if (detect_gap(map, i, j) == -1)
+					++ret;
 			}
 			//if ((j == 0 && map[i][j] != '1') || (j == ft_strlen(map[i]) - 1 && map[i][j] != '1'))
 			//	++ret;
@@ -186,5 +186,7 @@ int	check_map_components(char **map)
 {
 	if (min_check(map) == -1 || invalid_check(map) == -1 || wall_check(map) == -1)
 		return (-1);
-	return (0);
+	printf("coucou c bon\n");
+	return (-1);
+	//return (0);
 }
