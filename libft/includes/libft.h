@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:15:57 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/06 16:34:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/07 10:27:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	**ft_arrndup(char **str, int i);
 char	**ft_arrstrndup(char **str, int i);
 char	**ft_arrdup_before(char **str, char *name);
 char	**ft_arrdup_after(char **str, char *name);
+void	freearr(char **str);
 
 // gnl
 char	*get_next_line(int fd);
@@ -126,4 +127,5 @@ void	throw_error(char *msg, int err);
 int		ret_err(char *str, char *str2, int i);
 void	ret_null(char *str, char *str2);
 void	ft_puterror(const char *str);
+void	throw_err_ex(const char *str);
 #endif

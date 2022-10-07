@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/06 16:27:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/07 10:27:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ void		ft_prop_init(t_prop *obj);
 void		check(int argc, char **argv);
 void		check_args(char argc);
 void		check_map_extension(char *argv[]);
+void		check_map_integrity(char *path);
+int			check_map_components(char **map);
 
 void		ft_break_the_game(t_program *data, char *end_msg);
 

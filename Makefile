@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/06 16:12:22 by albaur           ###   ########.fr        #
+#    Updated: 2022/10/07 10:33:32 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MAIN_FILES 	= 	main window hooks utils display pixies moves tools \
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 PARSE_PATH	=	parsing/
-PARSE_FILES =	check maps
+PARSE_FILES =	check maps check_map check_map_utils
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES)) 
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})

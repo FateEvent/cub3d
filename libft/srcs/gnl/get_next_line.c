@@ -3,107 +3,117 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 13:09:24 by albaur            #+#    #+#             */
-/*   Updated: 2022/04/19 05:06:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/06 17:08:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*magic_read(int fd, char *keep)
+static char *ft_rest(char *reading_buf)
 {
-	int		pos;
-	char	*str;
+	int i;
+	int j;
+	char *s;
 
-	pos = 0;
-	str = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!str)
-		return (0);
-	pos++;
-	while (pos != 0 && !gnl_strchr(keep, '\n'))
+	i = ft_strlen(reading_buf);
+	j = 0;
+	if (!reading_buf)
+		return (NULL);
+	while (reading_buf[j] && reading_buf[j] != '\n')
+		j++;
+	if (reading_buf[j] == '\0')
 	{
-		pos = read(fd, str, BUFFER_SIZE);
-		if (pos == -1)
-		{
-			free(str);
-			return (0);
-		}
-		str[pos] = '\0';
-		keep = gnl_strjoin(keep, str);
+		free(reading_buf);
+		return (NULL);
 	}
-	free(str);
-	return (keep);
+	s = (char *)malloc(sizeof(char) * (i - j));
+	if (!s)
+		return (NULL);
+	i = 0;
+	j++;
+	while (reading_buf[j])
+		s[i++] = reading_buf[j++];
+	s[i] = '\0';
+	free(reading_buf);
+	return (s);
 }
 
-static char	*magic_line(char *keep)
+static char *ft_last_line(char *reading_buf)
 {
-	int		pos;
-	char	*str;
-
-	pos = 0;
-	if (keep[pos] == '\0')
-		return (0);
-	while (keep[pos] != '\n' && keep[pos] != '\0')
-		pos++;
-	str = (char *)malloc(sizeof(char) * (pos + 2));
-	if (!str)
-		return (0);
-	pos = 0;
-	while (keep[pos] != '\n' && keep[pos] != '\0')
-	{
-		str[pos] = keep[pos];
-		pos++;
-	}
-	if (keep[pos] == '\n')
-	{
-		str[pos] = keep[pos];
-		pos++;
-	}
-	str[pos] = '\0';
-	return (str);
-}
-
-static char	*magic_keep(char *keep)
-{
-	int		i;
-	int		j;
-	char	*str;
+	char *s;
+	int i;
 
 	i = 0;
-	j = 0;
-	while (keep[i] != '\n' && keep[i] != '\0')
+	if (!reading_buf)
+		return (NULL);
+	while (reading_buf[i] && reading_buf[i] != '\n')
 		i++;
-	if (keep[i] == '\0')
+	if (reading_buf[0] == '\0')
+		return (NULL);
+	s = (char *)malloc(sizeof(char) * (i + 2));
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (reading_buf[i] != '\n' && reading_buf[i])
 	{
-		free(keep);
-		return (0);
+		s[i] = reading_buf[i];
+		i++;
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(keep) - i + 1));
-	if (!str)
-		return (0);
-	i++;
-	while (keep[i] != '\0')
-	{
-		str[j++] = keep[i++];
-	}
-	str[j] = '\0';
-	free(keep);
-	return (str);
+	if (reading_buf[i] == '\n')
+		s[i++] = '\n';
+	s[i] = '\0';
+	return (s);
 }
 
-char	*get_next_line(int fd)
+static char *ft_reader(int fd, char *buffer, char *reading_buf, char *tmp)
 {
-	static char	*keep;
-	char		*str;
+	int bytes_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	keep = magic_read(fd, keep);
-	if (!keep)
-		return (0);
-	str = magic_line(keep);
-	keep = magic_keep(keep);
-	return (str);
+	bytes_read = 1;
+	while (bytes_read)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		buffer[bytes_read] = '\0';
+		tmp = reading_buf;
+		if (!tmp)
+		{
+			tmp = (char *)malloc(sizeof(char) * 1);
+			tmp[0] = '\0';
+		}
+		reading_buf = ft_strjoin(tmp, buffer);
+		free(tmp);
+		if (ft_strchr(reading_buf, '\n') != NULL)
+			break;
+	}
+	free(buffer);
+	return (reading_buf);
+}
+
+char *get_next_line(int fd)
+{
+	char *buffer;
+	static char *reading_buf;
+	char *ret;
+	char *tmp;
+
+	tmp = NULL;
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (NULL);
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	reading_buf = ft_reader(fd, buffer, reading_buf, tmp);
+	if (!reading_buf)
+		return (NULL);
+	ret = ft_last_line(reading_buf);
+	reading_buf = ft_rest(reading_buf);
+	return (ret);
 }

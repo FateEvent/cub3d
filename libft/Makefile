@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 21:47:06 by albaur            #+#    #+#              #
-#    Updated: 2022/10/06 16:31:03 by albaur           ###   ########.fr        #
+#    Updated: 2022/10/07 10:26:11 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,11 @@ C_EXTENSION = .c
 
 ARR_PATH	=	arr/
 ARR_FILES 	= 	ft_arrdup_after ft_arrdup_before ft_arrdup ft_arrjoin \
-				ft_arrlen ft_arrndup ft_freearr
+				ft_arrlen ft_arrndup freearr
 SRCS_FILES	+=	$(addprefix $(ARR_PATH), $(ARR_FILES))
 
 ERROR_PATH	=	error/
-ERROR_FILES = 	ret_null ret_err throw_error ft_puterror
+ERROR_FILES = 	ret_null ret_err throw_error ft_puterror throw_err_ex
 SRCS_FILES	+=	$(addprefix $(ERROR_PATH), $(ERROR_FILES))
 
 GNL_PATH	=	gnl/
