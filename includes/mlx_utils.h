@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 10:32:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 12:21:50 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,19 @@ typedef struct s_render {
 	uint32_t	delay;
 }				t_render;
 
+typedef struct s_projection {
+	float	width;
+	float	height;
+	float	half_width;
+	float	half_height;
+}				t_projection;
+
 typedef struct s_screen {
-	int	width;
-	int	height;
-	int	half_width;
-	int	half_height;
+	uint32_t	width;
+	uint32_t	height;
+	uint32_t	half_width;
+	uint32_t	half_height;
+	uint32_t	scale;
 }				t_screen;
 
 /* all info needed for an image */
@@ -95,16 +103,17 @@ typedef struct s_program {
 	struct s_map			map;
 	uint32_t				frame;
 	struct s_screen			screen;
+	struct s_projection		proj;
 	struct s_render			render;
 	struct s_ray_casting	rc;
 	struct s_player			player;
 }				t_program;
 
 typedef struct s_key_input {
-	float	player_cos;
-	float	player_sin;
-	float	new_x;
-	float	new_y;
+	float		player_cos;
+	float		player_sin;
+	float		new_x;
+	float		new_y;
 }				t_key_input;
 
 // to take out

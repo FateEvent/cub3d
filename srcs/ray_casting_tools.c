@@ -21,7 +21,7 @@ void	ft_update(void *param)
 void	ray_casting(t_program *data)
 {
 	float	ray_angle = data->player.angle - data->player.half_fov;
-	for(int ray_count = 0; ray_count < data->screen.width; ray_count++) {
+	for(uint32_t ray_count = 0; ray_count < data->proj.width; ray_count++) {
 		
 		// Ray data
 		t_vector2	ray = ft_floattovec2(data->player.x, data->player.y);
@@ -41,13 +41,13 @@ void	ray_casting(t_program *data)
 		distance = distance * cosf(degrees_to_radians(ray_angle - data->player.angle));
 
 		// Wall height
-		float wall_height = floorf((float)data->screen.half_height / distance);
+		float wall_height = floorf((float)data->proj.half_height / distance);
 
 		// Draw
 		t_vector2	vec = ft_floattovec2(ray_count, 0);
-		t_vector2	vec2 = ft_floattovec2(ray_count, (float)(data->screen.half_height - wall_height));
-		t_vector2	vec3 = ft_floattovec2(ray_count, (float)(data->screen.half_height + wall_height));
-		t_vector2	vec4 = ft_floattovec2(ray_count, (float)(data->screen.height));
+		t_vector2	vec2 = ft_floattovec2(ray_count, (float)(data->proj.half_height - wall_height));
+		t_vector2	vec3 = ft_floattovec2(ray_count, (float)(data->proj.half_height + wall_height));
+		t_vector2	vec4 = ft_floattovec2(ray_count, (float)(data->proj.height));
 		draw_line(data->img.img, vec, vec2, 0x00FFFFFF);
 		draw_line(data->img.img, vec2, vec3, 0xFF0000FF);
 		draw_line(data->img.img, vec3, vec4, 0x00FF00FF);

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 10:10:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 12:26:50 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_struct(t_program *data)
 {
 	data->screen.width = WIDTH;
 	data->screen.height = HEIGHT;
+	data->screen.scale = 4;
 	data->render.delay = 30;
 	data->rc.precision = 64.0f;
 	data->player.fov = 60.0f;
@@ -32,10 +33,14 @@ void	init_struct(t_program *data)
 	data->player.angle = 90.0f;
 	data->screen.half_width = data->screen.width / 2;
 	data->screen.half_height = data->screen.height / 2;
-	data->rc.increment_angle = data->player.angle / data->screen.width;
-	data->player.half_fov = (float)data->player.fov / 2.0f;
+	data->player.half_fov = data->player.fov / 2;
 	data->player.speed.movement = 0.5f;
 	data->player.speed.rotation = 5.0f;
+	data->proj.width = data->screen.width / data->screen.scale;
+	data->proj.height = data->screen.height / data->screen.scale;
+	data->proj.half_width = data->proj.width / 2;
+	data->proj.half_height = data->proj.height / 2;
+	data->rc.increment_angle = data->player.fov / data->proj.width;
 }
 
 void	calculate_map_size(t_program *data)
