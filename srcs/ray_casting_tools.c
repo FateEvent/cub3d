@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 18:41:49 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:36:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ void	ray_casting(t_program *data)
 		t_texture	texture = data->textures;	//the guy uses an array of textures, wall - 1 is used 'cause the wall types range from 1 to 3 in the map, so from 0 to 2 in the array
 
 		// Calcule texture position
-		int	texture_pos_x = floorf((texture.width * (int)(ray.x + ray.y)) % texture.width);
-
+		int	texture_pos_x = (int)(texture.width * (ray.x + ray.y)) % texture.width;	// roger, we have a problem, x_pos reste la même
 		// Draw
 		t_vector2	vec = ft_floattovec2(ray_count, 0);
 		t_vector2	vec2 = ft_floattovec2(ray_count, (float)(data->proj.half_height - wall_height));

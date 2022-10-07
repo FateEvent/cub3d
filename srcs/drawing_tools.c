@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 18:42:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:39:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_line_beta(t_program *data, t_vector2 start, t_vector2 finish,
 		draw_line_beta_pt2(data, start, finish, texture);
 }
 */
-void	draw_texture(t_program *data, int x, float wall_height,
+void	draw_texture(t_program *data, float x, float wall_height,
 		int texture_pos_x, t_texture texture)
 {
 	float	y_incrementer;
@@ -89,14 +89,12 @@ void	draw_texture(t_program *data, int x, float wall_height,
 
 	y_incrementer = (wall_height * 2) / texture.height;
 	y = data->proj.half_height - wall_height;
-
 	for (int i = 0; i < texture.height; i++)
 	{
 		vec = ft_floattovec2(x, y);
 		vec2 = ft_floattovec2(x, y + (y_incrementer + 0.5));
 		draw_line(data->img.img, vec, vec2,
 			rgb_to_hex(texture.colors[texture.bitmap[i][texture_pos_x] + '0']));
-		printf("%x\n", rgb_to_hex(texture.colors[texture.bitmap[i][texture_pos_x] + '0']));
 		y += y_incrementer;
 	}
 }
