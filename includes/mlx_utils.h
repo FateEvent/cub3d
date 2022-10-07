@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/06 16:27:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/07 10:32:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_UTILS_H
 # define MLX_UTILS_H
 
+# include <stdio.h>
 # include <fcntl.h>
 # include <sys/types.h>
 # include <math.h>
@@ -45,6 +46,42 @@ typedef struct s_color {
 	int	a;
 }	t_color;
 
+typedef struct s_map {
+	char		**map;
+	int			width;
+	int			height;
+}				t_map;
+
+typedef struct s_speed {
+	float	movement;
+	float	rotation;
+}				t_speed;
+
+typedef struct s_player {
+	float			fov;
+	float			half_fov;
+	float			x;
+	float			y;
+	float			angle;
+	struct s_speed	speed;
+}				t_player;
+
+typedef struct s_ray_casting {
+	float	increment_angle;
+	float	precision;
+}				t_ray_casting;
+
+typedef struct s_render {
+	uint32_t	delay;
+}				t_render;
+
+typedef struct s_screen {
+	int	width;
+	int	height;
+	int	half_width;
+	int	half_height;
+}				t_screen;
+
 /* all info needed for an image */
 typedef struct s_image {
 	xpm_t		*texture;
@@ -55,43 +92,20 @@ typedef struct s_program {
 	mlx_t					*mlx;
 	t_image					img;
 	t_image					*pixies;
-	struct s_map			*map;
+	struct s_map			map;
 	uint32_t				frame;
-	struct s_screen			*screen;
-	struct s_render			*render;
-	struct s_ray_casting	*rc;
-	struct s_player			*player;
+	struct s_screen			screen;
+	struct s_render			render;
+	struct s_ray_casting	rc;
+	struct s_player			player;
 }				t_program;
 
-typedef struct s_screen {
-	int	width;
-	int	height;
-	int	half_width;
-	int	half_height;
-}				t_screen;
-
-typedef struct s_render {
-	uint32_t	delay;
-}				t_render;
-
-typedef struct s_ray_casting {
-	float	increment_angle;
-	float	precision;
-}				t_ray_casting;
-
-typedef struct s_player {
-	float	fov;
-	float	half_fov;
-	float	x;
-	float	y;
-	float	angle;
-}				t_player;
-
-typedef struct s_map {
-	char		**map;
-	int			width;
-	int			height;
-}				t_map;
+typedef struct s_key_input {
+	float	player_cos;
+	float	player_sin;
+	float	new_x;
+	float	new_y;
+}				t_key_input;
 
 // to take out
 typedef struct s_prop {
@@ -111,6 +125,14 @@ typedef struct s_update
 	int			b_var;
 	int			v_var;
 }				t_update;
+
+enum e_key {
+	UP = 87,
+	DOWN = 83,
+	LEFT = 65,
+	RIGHT = 68,
+	ESCAPE = 256
+};
 
 // ---------------------------------
 // FUNCTIONS
@@ -143,7 +165,7 @@ void		fill_window(t_program *data, uint32_t color);
 int			ft_map_parser(char **map);
 char		**ft_map_reader(char *filename);
 
-void		ft_input(int key, void *param);
+void		ft_key_input(mlx_key_data_t keydata, void *param);
 void		ft_update(void *param);
 
 void		ft_prop_init(t_prop *obj);

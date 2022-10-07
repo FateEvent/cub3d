@@ -6,12 +6,11 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/06 14:26:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:17:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-#include <stdio.h>
 
 void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 			uint32_t color)
@@ -46,7 +45,6 @@ static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 	while (y < (int)finish.y)
 	{
 		x = w * (float)y + p;
-		printf("%f %d\n", x, y);
 		mlx_put_pixel(img, (int)x, y, color);
 		y++;
 	}
