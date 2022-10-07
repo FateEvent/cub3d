@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 00:33:01 by W2Wizard      #+  #+#    #+#             */
-/*   Updated: 2022/09/22 15:29:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:46:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ typedef struct mlx_key_data
  * @param pixels The literal pixel data.
  * @param instances An instance carries the X, Y, Z location data.
  * @param count The element count of the instances array.
- * @param enabled If true the image is drawn onto the screen, else its not.
+ * @param enabled If true the image is drawn onto the screen, else it's not.
  * @param context Abstracted OpenGL data.
  */
 typedef struct mlx_image

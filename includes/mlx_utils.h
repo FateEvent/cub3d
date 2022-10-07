@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 15:11:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/07 18:40:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ typedef struct s_color {
 	int	a;
 }				t_color;
 
-struct s_texture {
-	uint32_t		width;
-	uint32_t		height;
+typedef struct s_texture {
+	int				width;
+	int				height;
 	char			**bitmap;
 	struct s_color	*colors;
-}		t_texture;
+}				t_texture;
 
 typedef struct s_speed {
 	float	movement;
@@ -73,7 +73,7 @@ typedef struct s_ray_casting {
 }				t_ray_casting;
 
 typedef struct s_render {
-	uint32_t	delay;
+	int	delay;
 }				t_render;
 
 typedef struct s_projection {
@@ -84,11 +84,11 @@ typedef struct s_projection {
 }				t_projection;
 
 typedef struct s_screen {
-	uint32_t	width;
-	uint32_t	height;
-	uint32_t	half_width;
-	uint32_t	half_height;
-	uint32_t	scale;
+	int	width;
+	int	height;
+	int	half_width;
+	int	half_height;
+	int	scale;
 }				t_screen;
 
 typedef struct s_map {
@@ -114,7 +114,7 @@ typedef struct s_program {
 	struct s_render			render;
 	struct s_ray_casting	rc;
 	struct s_player			player;
-	struct s_texture		texture;
+	struct s_texture		textures;
 }				t_program;
 
 typedef struct s_key_input {
@@ -171,6 +171,10 @@ void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 				uint32_t color);
 void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 				uint32_t draw_end, uint32_t color);
+void		draw_texture(t_program *data, int x, float wall_height,
+				int texture_pos_x, t_texture texture);
+void		draw_line_beta(t_program *data, t_vector2 start, t_vector2 finish,
+				t_texture texture);
 
 void		ray_casting(t_program *data);
 float		degrees_to_radians(float degrees);
@@ -179,5 +183,15 @@ float		degrees_to_radians(float degrees);
 t_vector2	ft_floattovec2(float x, float y);
 float		ft_vect2_distance_calc(t_vector2 start, t_vector2 finish);
 void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
+
+// colour tools
+t_color		new_color(int r, int g, int b, int a);
+t_color		hex_to_rgb_converter(int hex_value);
+t_color		lerp(t_color a, t_color b, float t);
+int			rgb_to_hex(t_color rgb);
+int			add_shade(double distance, int color);
+int			get_opposite(int color);
+void		turn_pixel_to_color(char *pixel, t_color color);
+void		turn_img_to_color(t_image *image, t_color color);
 
 #endif
