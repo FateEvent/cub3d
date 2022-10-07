@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 09:17:23 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:26:16 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 }
 
 void	draw_vertical_line(mlx_image_t *img, t_vector draw_start,
-			int draw_end, uint32_t color)
+			uint32_t draw_end, uint32_t color)
 {
 	while (draw_start.y < draw_end)
 	{

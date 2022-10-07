@@ -6,25 +6,33 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 12:26:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:23:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	ft_hook(void* param)
+void	init_texture(t_program *data)
 {
-	const mlx_t* mlx;
-
-	mlx = param;
-//	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
+	data->texture.width = 8;
+	data->texture.height = 8;
+	data->texture.bitmap = ft_map_reader("texture.txt");
+	data->texture.colors = malloc(sizeof(t_color) * 2);
+	data->texture.colors[0].r = 255;
+	data->texture.colors[0].g = 241;
+	data->texture.colors[0].b = 232;
+	data->texture.colors[0].a = 255;
+	data->texture.colors[1].r = 195;
+	data->texture.colors[1].g = 194;
+	data->texture.colors[1].b = 199;
+	data->texture.colors[1].a = 255;
 }
 
 void	init_struct(t_program *data)
 {
 	data->screen.width = WIDTH;
 	data->screen.height = HEIGHT;
-	data->screen.scale = 4;
+	data->screen.scale = 1;
 	data->render.delay = 30;
 	data->rc.precision = 64.0f;
 	data->player.fov = 60.0f;
@@ -41,6 +49,7 @@ void	init_struct(t_program *data)
 	data->proj.half_width = data->proj.width / 2;
 	data->proj.half_height = data->proj.height / 2;
 	data->rc.increment_angle = data->player.fov / data->proj.width;
+	init_texture(data);
 }
 
 void	calculate_map_size(t_program *data)
@@ -81,7 +90,6 @@ int	main(int argc, char *argv[])
 	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
-//	mlx_loop_hook(program.mlx, ft_hook, program.mlx);
 	mlx_loop(program.mlx);
 	mlx_terminate(program.mlx);
 }

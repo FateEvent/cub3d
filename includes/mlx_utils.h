@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 12:21:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:26:45 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 /* vector with an x and y */
 typedef struct s_vector
 {
-	int	x;
-	int	y;
+	uint32_t	x;
+	uint32_t	y;
 }				t_vector;
 
 typedef struct s_vector2
@@ -44,13 +44,14 @@ typedef struct s_color {
 	int	g;
 	int	b;
 	int	a;
-}	t_color;
+}				t_color;
 
-typedef struct s_map {
-	char		**map;
-	int			width;
-	int			height;
-}				t_map;
+struct s_texture {
+	uint32_t		width;
+	uint32_t		height;
+	char			**bitmap;
+	struct s_color	*colors;
+}		t_texture;
 
 typedef struct s_speed {
 	float	movement;
@@ -90,6 +91,12 @@ typedef struct s_screen {
 	uint32_t	scale;
 }				t_screen;
 
+typedef struct s_map {
+	char		**map;
+	int			width;
+	int			height;
+}				t_map;
+
 /* all info needed for an image */
 typedef struct s_image {
 	xpm_t		*texture;
@@ -107,6 +114,7 @@ typedef struct s_program {
 	struct s_render			render;
 	struct s_ray_casting	rc;
 	struct s_player			player;
+	struct s_texture		texture;
 }				t_program;
 
 typedef struct s_key_input {
@@ -121,20 +129,6 @@ typedef struct s_prop {
 	int	start_pos;
 }				t_prop;
 
-typedef struct s_nme
-{
-	t_vector	pos;
-	t_vector	prev;
-}				t_nme;
-
-typedef struct s_update
-{
-	t_vector	basic_pos;
-	t_vector	villain_pos;
-	int			b_var;
-	int			v_var;
-}				t_update;
-
 enum e_key {
 	UP = 87,
 	DOWN = 83,
@@ -148,27 +142,12 @@ enum e_key {
 
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
-t_vector	ft_get_char_pos(char **map);
-char		who_is_it(char **map);
 t_image		*ft_put_sprite(t_program *data);
 void		ft_invoke_pixie(char c, uint32_t *i, t_program *data,
 				t_image *pixie);
-void		ft_invoke_char(t_program *data, t_image *pixie, t_vector pos,
-				int var);
-void		ft_invoke_enemy(t_program *data, t_image *pixie, t_vector pos,
-				int var);
 void		ft_display_map(t_program *data, t_image *pixie);
 
-void		ft_display_moves(t_program *d, int key, t_vector pos, int *counter);
-void		move_ur_ass(t_program *data);
-void		track_ur_move_left(t_program *data, t_nme death);
-void		track_ur_move_up(t_program *data, t_nme death);
-void		track_ur_move_right(t_program *data, t_nme death);
-void		track_ur_move_down(t_program *data, t_nme death);
-int			ft_swing(t_program *data);
-
 // window functions
-int			ft_close(void);
 void		fill_window(t_program *data, uint32_t color);
 
 int			ft_map_parser(char **map);
@@ -183,15 +162,13 @@ void		check(int argc, char **argv);
 void		check_args(char argc);
 void		check_map_extension(char *argv[]);
 
-void		ft_break_the_game(t_program *data, char *end_msg);
-
 // drawing tools
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 				uint32_t color);
 void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 				uint32_t color);
 void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
-				int draw_end, uint32_t color);
+				uint32_t draw_end, uint32_t color);
 
 void		ray_casting(t_program *data);
 float		degrees_to_radians(float degrees);
