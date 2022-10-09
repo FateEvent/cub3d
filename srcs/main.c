@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 18:12:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:37:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	init_struct(t_program *data)
 	data->proj.half_width = data->proj.width / 2;
 	data->proj.half_height = data->proj.height / 2;
 	data->rc.increment_angle = data->player.fov / data->proj.width;
-	init_texture(data);
-//	data->pixies = ft_put_sprite(data);
+//	init_texture(data);
+	data->pixies = ft_put_sprite(data);
 }
 
 void	calculate_map_size(t_program *data)
