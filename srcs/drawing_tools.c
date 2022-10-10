@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:57:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:25:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_texture_from_img(t_program *data, float x, float wall_height,
 		vec = ft_floattovec2(x, y);
 		vec2 = ft_floattovec2(x, y + (y_incrementer + 0.5));
 		draw_line(data->img.img, vec, vec2,
-			rgb_to_hex(data->pixies->img->pixels[texture.bitmap[i][texture_pos_x]]));
+			rgb_to_hex(data->pixies[0].texture->texture.pixels[i * 4[texture_pos_x]]));
 		y += y_incrementer;
 	}
 }
