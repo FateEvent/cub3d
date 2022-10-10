@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:46:20 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:54:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,26 @@ void	ft_invoke_pixie(char c, uint32_t *i, t_program *data, t_image *pixie)
 
 static void	from_texture_to_image(t_program *data, t_image *pixie)
 {
-	printf("void? %p %p\n", &pixie->texture->texture, &pixie->texture);
-	pixie->img = mlx_texture_to_image(data->mlx, &pixie->texture->texture);
-	if (!pixie->img)
+	pixie[0].img = mlx_texture_to_image(data->mlx, &pixie[0].texture->texture);
+	pixie[1].img = mlx_texture_to_image(data->mlx, &pixie[1].texture->texture);
+	if (!pixie[0].img || !pixie[1].img)
 		return ;
-//	pixie[1].img = mlx_texture_to_image(data->mlx, &pixie[1].texture->texture);
 }
 
 t_image	*ft_put_sprite(t_program *data)
 {
 	t_image	*pixie;
 
-	pixie = malloc(sizeof(t_image));
+	pixie = malloc(sizeof(t_image) * 2);
 	if (!pixie)
 		return (NULL);
 	ft_bzero(pixie, sizeof(*pixie));
-	pixie->texture = mlx_load_xpm42("/Users/faventur/Desktop/Ecole42/Cursus/cub3d/images/wall.xpm42");
-	if (!pixie->texture)
+	pixie[0].texture = mlx_load_xpm42("images/wall.xpm42");
+	pixie[1].texture = mlx_load_xpm42("images/grass_tile.xpm42");
+	if (!pixie[0].texture || !pixie[1].texture)
 		return (NULL);
-//	pixie[1].texture = mlx_load_xpm42("images/grass_tile.xpm42");
 	from_texture_to_image(data, pixie);
-	if (!pixie->img)
+	if (!pixie[0].img || !pixie[1].img)
 		return (NULL);
 	return (pixie);
 }

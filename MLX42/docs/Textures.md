@@ -20,18 +20,18 @@ Textures:
 * Can be interpreted as a painters "color palette".
 * Created by loading an image file FROM disk.
 * Simply contains the pixels, width, height and bytes per pixel information.
-* Do not get displayed on the window. directly
+* Do not get displayed directly on the window.
 
 Images:
 * Can be interpreted as a painter's "canvas".
 * Can be created FROM a texture or an empty buffer!
-* Carries more information besides what the image buffer is such as instance count.
-* Also holds pixel data but is shared among its instances, it is not loaded from disk but stored in memory.
+* Carry more information besides what the image buffer is such as an  instance count.
+* Also hold pixel data but are shared among their instances, they are not loaded from disk but stored in memory.
 
 ## Example
 
 So to summarize, in order to display a sprite image onto our window we would first load the texture from 
-disk onto our memory and store the information onto a `mlx_texture_t*`. After that we create a new `mlx_image_t*` 
+disk onto our memory and store the information onto a `mlx_texture_t *`. After that we create a new `mlx_image_t *` 
 based on the information given by the texture and then we can display our image onto the window.
 
 Below is a small code example of how this would be achieved:

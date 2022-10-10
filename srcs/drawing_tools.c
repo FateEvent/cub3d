@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/09 18:09:02 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:57:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	draw_texture_from_img(t_program *data, float x, float wall_height,
 void	draw_texture(t_program *data, float x, float wall_height,
 		int texture_pos_x, t_texture texture)
 {
-	float	y_incrementer;
-	float	y;
+	float		y_incrementer;
+	float		y;
 	t_vector2	vec;
 	t_vector2	vec2;
 

@@ -82,7 +82,7 @@ int32_t	main(void)
 }
 ```
 
-After we have put an instance of an image onto the window we can simply the change the position of the image at any time
+After we have put an instance of an image onto the window we can simply change the position of the image at any time
 we want it to be moved:
 ```c
 // Modify the x & y position of an already existing instance.
@@ -92,7 +92,7 @@ img->instances[0].y += 5;
 
 ## Transparency
 In regards to transparency, aka the `z` value, use `mlx_set_instance_depth` to set the z/depth value of the image.
-The z value determines the depth of the image, as in, is it in the foreground or background.
+The z value determines the depth of the image, as if it is in the foreground or background.
 
 If two instances are on the same z layer and are transparent, the transparency breaks and the instances cut off each other.
 To prevent this by default any new instances put onto window will be on their own layer.
