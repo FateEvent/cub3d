@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 15:11:18 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/09 18:37:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	init_texture(t_program *data)
 {
-	data->texture.width = 8;
-	data->texture.height = 8;
-	data->texture.bitmap = ft_map_reader("texture.txt");
-	data->texture.colors = malloc(sizeof(t_color) * 2);
-	data->texture.colors[0].r = 255;
-	data->texture.colors[0].g = 241;
-	data->texture.colors[0].b = 232;
-	data->texture.colors[0].a = 255;
-	data->texture.colors[1].r = 195;
-	data->texture.colors[1].g = 194;
-	data->texture.colors[1].b = 199;
-	data->texture.colors[1].a = 255;
+	data->textures.width = 8;
+	data->textures.height = 8;
+	data->textures.bitmap = ft_map_reader("texture.txt");
+	data->textures.colors = malloc(sizeof(t_color) * 2);
+	data->textures.colors[0].r = 255;
+	data->textures.colors[0].g = 241;
+	data->textures.colors[0].b = 232;
+	data->textures.colors[0].a = 255;
+	data->textures.colors[1].r = 195;
+	data->textures.colors[1].g = 194;
+	data->textures.colors[1].b = 199;
+	data->textures.colors[1].a = 255;
 }
 
 void	init_struct(t_program *data)
@@ -49,7 +49,8 @@ void	init_struct(t_program *data)
 	data->proj.half_width = data->proj.width / 2;
 	data->proj.half_height = data->proj.height / 2;
 	data->rc.increment_angle = data->player.fov / data->proj.width;
-	init_texture(data);
+//	init_texture(data);
+	data->pixies = ft_put_sprite(data);
 }
 
 void	calculate_map_size(t_program *data)
@@ -85,8 +86,6 @@ int	main(int argc, char *argv[])
 	if (!program.img.img) //|| (mlx_image_to_window(program.mlx,
 			//	program.img.img, 0, 0) < 0))
 		ft_puterror("Error!");
-//	program.pixies = ft_put_sprite(&program);
-//	ft_display_map(&program, program.pixies);
 	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);

@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:59:33 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/18 17:30:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:24:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "forms_and_colours.h"
+#include "mlx_utils.h"
 
-int	rgb_to_hex_converter(t_color rgb)
+int	rgb_to_hex(t_color rgb)
 {
 	return (rgb.a << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
 }
@@ -47,7 +47,7 @@ int	add_shade(double distance, int color)
 	if (distance >= 0 && distance <= 1)
 	{
 		rgb = lerp(rgb, black, distance);
-		color = rgb_to_hex_converter(rgb);
+		color = rgb_to_hex(rgb);
 		return (color);
 	}
 	return (0x0);
@@ -65,6 +65,6 @@ int	get_opposite(int color)
 	complem.g = white.g - rgb.g;
 	complem.b = white.b - rgb.b;
 	complem.a = white.a - rgb.a;
-	color = rgb_to_hex_converter(rgb);
+	color = rgb_to_hex(rgb);
 	return (color);
 }
