@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/10 15:17:15 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/10 15:45:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,14 @@ static int	gap_check(char **map)
 	return (0);
 }
 
+static int	hole_check_is(char c)
+{
+	if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W')
+		return (-1);
+	else
+		return (0);
+}
+
 static int	hole_check(char **map)
 {
 	size_t	i;
@@ -238,21 +246,21 @@ static int	hole_check(char **map)
 			ret = 0;
 			if (map[i][j] == '0')
 			{
-				if (j > 0 && (map[i][j - 1] == '0' || map[i][j - 1] == '1' || map[i][j - 1] == 'S'))
+				if (j > 0 && !hole_check_is(map[i][j - 1]))
 					++ret;
-				if (j < ft_strlen(map[i]) - 1 && (map[i][j + 1] == '0' || map[i][j + 1] == '1' || map[i][j + 1] == 'S'))
+				if (j < ft_strlen(map[i]) - 1 && !hole_check_is(map[i][j + 1]))
 					++ret;
-				if (i > 0 && (map[i - 1][j] == '0' || map[i - 1][j] == '1' || map[i - 1][j] == 'S'))
+				if (i > 0 && !hole_check_is(map[i - 1][j]))
 					++ret;
-				if (i < al && (map[i + 1][j] == '0' || map[i + 1][j] == '1' || map[i + 1][j] == 'S'))
+				if (i < al && !hole_check_is(map[i + 1][j]))
 					++ret;
-				if (i > 0 && j > 0 && (map[i - 1][j - 1] == '0' || map[i - 1][j - 1] == '1' || map[i - 1][j - 1] == 'S'))
+				if (i > 0 && j > 0 && !hole_check_is(map[i - 1][j - 1]))
 					++ret;
-				if (i > 0 && j < ft_strlen(map[i]) - 1 && (map[i - 1][j + 1] == '0' || map[i - 1][j + 1] == '1' || map[i - 1][j + 1] == 'S'))
+				if (i > 0 && j < ft_strlen(map[i]) - 1 && !hole_check_is(map[i - 1][j + 1]))
 					++ret;
-				if (i < al && j > 0 && (map[i + 1][j - 1] == '0' || map[i + 1][j - 1] == '1' || map[i + 1][j - 1] == 'S'))
+				if (i < al && j > 0 && !hole_check_is(map[i + 1][j - 1]))
 					++ret;
-				if (i < al && j < ft_strlen(map[i]) - 1 && (map[i + 1][j + 1] == '0' || map[i + 1][j + 1] == '1' || map[i + 1][j + 1] == 'S'))
+				if (i < al && j < ft_strlen(map[i]) - 1 && !hole_check_is(map[i + 1][j + 1]))
 					++ret;
 			}
 			if (map[i][j] == '0' && ret != 8)
