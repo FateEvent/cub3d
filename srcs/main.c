@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/09 18:37:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:51:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	init_struct(t_program *data)
 	data->proj.half_width = data->proj.width / 2;
 	data->proj.half_height = data->proj.height / 2;
 	data->rc.increment_angle = data->player.fov / data->proj.width;
-//	init_texture(data);
-	data->pixies = ft_put_sprite(data);
 }
 
 void	calculate_map_size(t_program *data)
@@ -74,14 +72,16 @@ int	main(int argc, char *argv[])
 
 	i = 0;
 	check(argc, argv);
+	program.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 //	if (!program.map.map || !ft_map_parser(program.map.map))
 //		ft_puterror("Error!");
 	init_struct(&program);
+	init_texture(&program);
+	program.pixies = ft_put_sprite(&program);
 	program.map.map = ft_map_reader(argv[1]);
 	if (!program.map.map)
 		ft_puterror("Error!");
 	program.frame = 0;
-	program.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	program.img.img = mlx_new_image(program.mlx, WIDTH, HEIGHT);
 	if (!program.img.img) //|| (mlx_image_to_window(program.mlx,
 			//	program.img.img, 0, 0) < 0))
