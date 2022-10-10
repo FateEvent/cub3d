@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 17:03:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 15:15:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:21:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	check(int argc, char **argv)
 {
 	check_args(argc);
 	check_map_extension(argv);
-//	check_map_integrity(argv[1]);
+	check_map_integrity(argv[1]);
 }
