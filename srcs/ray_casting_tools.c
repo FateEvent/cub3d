@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 20:36:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:03:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	ray_casting(t_program *data)
 		t_vector2	vec3 = ft_floattovec2(ray_count, (float)(data->proj.half_height + wall_height));
 		t_vector2	vec4 = ft_floattovec2(ray_count, (float)(data->proj.height));
 		draw_line(data->img.img, vec, vec2, 0x000000FF);
-		draw_texture(data, ray_count, wall_height, texture_pos_x, texture);
+//		draw_texture(data, ray_count, wall_height, texture_pos_x, texture);
+		draw_texture_from_img(data, ray_count, wall_height, texture_pos_x);
 		draw_line(data->img.img, vec3, vec4, 0x5F574FFF);
 
 		// Increment

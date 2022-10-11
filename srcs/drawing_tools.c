@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/10 17:25:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:24:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,80 @@ void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 		}
 	}
 }
-/*
+
+t_color	ft_rgb_retriever(t_color *rgb)
+{
+	return (*rgb);
+}
+
+t_color	*rgb_node_creator(t_image *image, uint32_t i)
+{
+	t_color	*rgb;
+
+	rgb = malloc(sizeof(*rgb));
+	rgb->r = image->img->pixels[i];
+	rgb->g = image->img->pixels[i + 1];
+	rgb->b = image->img->pixels[i + 2];
+	rgb->a = image->img->pixels[i + 3];
+	return (rgb);
+}
+
+t_node	*ft_stack_scroll(t_stack *lst, size_t index)
+{
+	t_node	*tmp;
+	size_t	i;
+
+	tmp = lst->top;
+	i = 0;
+	while (tmp && i < index)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (tmp);
+}
+
+t_stack	*turn_img_into_rgblist(t_program *data)
+{
+	t_stack	*lst;
+
+	lst = ft_stacknew();
+	for (uint32_t i = 0; i < data->img.img->height * data->img.img->width; i += 4) {
+        ft_stackadd_bottom(lst, ft_newnode(rgb_node_creator(&data->pixies[0], i)));
+    }
+    return (lst);
+}
+
 void	draw_texture_from_img(t_program *data, float x, float wall_height,
 		int texture_pos_x)
 {
-	float	y_incrementer;
-	float	y;
+	float		y_incrementer;
+	float		y;
 	t_vector2	vec;
 	t_vector2	vec2;
+//	t_stack		*lst;
+//	t_node		*tmp;
+	t_color		rgb;
+	
 
+//	lst = turn_img_into_rgblist(data);
 	y_incrementer = (wall_height * 2) / data->pixies->img->height;
 	y = data->proj.half_height - wall_height;
-	for (int i = 0; i < data->pixies->img->height; i++)
+	for (uint32_t i = 0; i < data->pixies->img->height; i++)
 	{
 		vec = ft_floattovec2(x, y);
 		vec2 = ft_floattovec2(x, y + (y_incrementer + 0.5));
-		draw_line(data->img.img, vec, vec2,
-			rgb_to_hex(data->pixies[0].texture->texture.pixels[i * 4[texture_pos_x]]));
+		rgb.r = data->pixies[0].img->pixels[(i * data->pixies->img->width + texture_pos_x) * 4];
+		rgb.g = data->pixies[0].img->pixels[((i * data->pixies->img->width + texture_pos_x) * 4)];
+		rgb.b = data->pixies[0].img->pixels[((i * data->pixies->img->width + texture_pos_x) * 4)];
+		rgb.a = data->pixies[0].img->pixels[((i * data->pixies->img->width + texture_pos_x) * 4)];
+//		tmp = ft_stack_scroll(lst, (i * data->pixies->img->width + texture_pos_x) * 4);
+//		draw_line(data->img.img, vec, vec2, rgb_to_hex(ft_rgb_retriever((t_color *)tmp->content)));
+		draw_line(data->img.img, vec, vec2, rgb_to_hex(rgb));
 		y += y_incrementer;
 	}
 }
-*/
+
 void	draw_texture(t_program *data, float x, float wall_height,
 		int texture_pos_x, t_texture texture)
 {
