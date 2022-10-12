@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:15:57 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/11 16:39:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:37:01 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	**ft_arrstrndup(char **str, int i);
 char	**ft_arrdup_before(char **str, char *name);
 char	**ft_arrdup_after(char **str, char *name);
 void	freearr(char **str);
+void	ft_arr_display(char **arr);
 
 // gnl
 char	*get_next_line(int fd);

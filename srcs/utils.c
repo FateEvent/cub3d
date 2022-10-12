@@ -6,11 +6,25 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 14:20:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:42:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+void	ft_uchar_arr_display(unsigned char *arr, size_t size)
+{
+	size_t	i;
+
+	if (!arr)
+		return ;
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("%d\n", arr[i]);
+		i++;
+	}
+}
 
 void	ft_prop_init(t_prop *obj)
 {
