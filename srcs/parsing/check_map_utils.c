@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/12 14:53:42 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/12 19:20:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ static int	min_check(char **map)
 
 static int	space_check(char **map, ssize_t i, ssize_t j)
 {
-	size_t	tmp;
+	ssize_t	tmp;
 
 	tmp = j;
-	while (map[i][tmp] && tmp >= 0)
+	while (tmp >= 0 && map[i][tmp])
 	{
 		if (map[i][tmp] == '1')
 			return (0);
 		--tmp;
 	}
 	tmp = j;
-	while (map[i][tmp] && tmp <= ft_strlen(map[i]) - 1)
+	while (map[i][tmp] && tmp <= (ssize_t)ft_strlen(map[i]) - 1)
 	{
 		if (map[i][tmp] == '1')
 			return (0);
