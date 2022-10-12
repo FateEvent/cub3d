@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 14:52:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:04:29 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	init_struct(t_program *data)
 	data->screen.half_width = data->screen.width / 2;
 	data->screen.half_height = data->screen.height / 2;
 	data->player.half_fov = data->player.fov / 2;
-	data->player.speed.movement = 0.5f;
-	data->player.speed.rotation = 5.0f;
+	data->player.speed.movement = 0.05f;
+	data->player.speed.rotation = 3.0f;
 	data->proj.width = data->screen.width / data->screen.scale;
 	data->proj.height = data->screen.height / data->screen.scale;
 	data->proj.half_width = data->proj.width / 2;

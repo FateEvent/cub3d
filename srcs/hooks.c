@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 14:43:46 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/12 15:03:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	ft_key_input_child(t_program *data, mlx_key_data_t keydata)
 {
 	t_key_input	var;
+	int			angle;
 
 	if (keydata.key == DOWN)
 	{
@@ -31,9 +32,18 @@ static void	ft_key_input_child(t_program *data, mlx_key_data_t keydata)
 		}
 	}
 	else if (keydata.key == LEFT)
+	{
 		data->player.angle -= data->player.speed.rotation;
+		angle = data->player.angle;
+		angle %= 360;
+
+	}
 	else if (keydata.key == RIGHT)
+	{
 		data->player.angle += data->player.speed.rotation;
+		angle = data->player.angle;
+		angle %= 360;
+	}
 	else if (keydata.key == ESCAPE)
 		exit(0);
 }
