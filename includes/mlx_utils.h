@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/11 17:08:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:42:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_program {
 	t_image					*pixies;
 	struct s_map			map;
 	uint32_t				frame;
+	uint32_t				img_index;
 	struct s_screen			screen;
 	struct s_projection		proj;
 	struct s_render			render;
@@ -193,5 +194,7 @@ int			add_shade(double distance, int color);
 int			get_opposite(int color);
 void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
+
+void		ft_uchar_arr_display(unsigned char *arr, size_t size);
 
 #endif

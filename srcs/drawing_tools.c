@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 13:31:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:53:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	draw_texture_from_img(t_program *data, float x, float wall_height,
 	
 	y_incrementer = (wall_height * 2) / data->pixies->img->height;
 	y = data->proj.half_height - wall_height;
+//	data->img_index = 0;	// je le mettrai dans mon ray_casting, selon wall - 1
 	for (uint32_t i = 0; i < data->pixies->img->height * 4; i += 4)
 	{
 		vec = ft_floattovec2(x, y);
@@ -50,7 +51,6 @@ void	draw_texture_from_img(t_program *data, float x, float wall_height,
 		rgb.a = data->pixies[0].img->pixels[(i * data->pixies->img->width + texture_pos_x) + 3];
 //		printf("%d\n", data->pixies[0].img->pixels[(i * data->pixies->img->width + texture_pos_x)]);
 		draw_line(data->img.img, vec, vec2, rgb_to_hex(rgb));
-		
 		y += y_incrementer;
 	}
 }
