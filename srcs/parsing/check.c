@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 17:03:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/10 12:21:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/12 14:37:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ void	check_args(char argc)
 		throw_err_ex("Error: Invalid number of arguments.");
 }
 
-void	check(int argc, char **argv)
+t_map	*check(int argc, char **argv)
 {
+	t_map	*map;
+
+	map = NULL;
 	check_args(argc);
 	check_map_extension(argv);
-	check_map_integrity(argv[1]);
+	map = check_map_integrity(argv[1]);
+	return (map);
 }

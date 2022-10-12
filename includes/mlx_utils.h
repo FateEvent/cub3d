@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 19:42:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:41:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,13 @@ typedef struct s_screen {
 }				t_screen;
 
 typedef struct s_map {
-	char		**map;
-	int			width;
-	int			height;
+	char	**map;
+	char	*northTexture;
+	char	*southTexture;
+	char	*westTexture;
+	char	*eastTexture;
+	t_color	floorColor;
+	t_color	ceilingColor;
 }				t_map;
 
 /* all info needed for an image */
@@ -107,7 +111,7 @@ typedef struct s_program {
 	mlx_t					*mlx;
 	t_image					img;
 	t_image					*pixies;
-	struct s_map			map;
+	struct s_map			*map;
 	uint32_t				frame;
 	struct s_screen			screen;
 	struct s_projection		proj;
@@ -158,10 +162,10 @@ void		ft_update(void *param);
 
 void		ft_prop_init(t_prop *obj);
 
-void		check(int argc, char **argv);
+t_map		*check(int argc, char **argv);
 void		check_args(char argc);
 void		check_map_extension(char *argv[]);
-void		check_map_integrity(char *path);
+t_map		*check_map_integrity(char *path);
 int			check_map_components(char **map);
 
 // drawing tools

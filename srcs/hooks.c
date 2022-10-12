@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 12:02:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:43:46 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_key_input_child(t_program *data, mlx_key_data_t keydata)
 			* data->player.speed.movement;
 		var.new_x = data->player.x - var.player_cos;
 		var.new_y = data->player.y - var.player_sin;
-		if (data->map.map[(int)floorf(var.new_y)][(int)floorf(var.new_x)] == 48)
+		if (data->map->map[(int)floorf(var.new_y)][(int)floorf(var.new_x)] == 48)
 		{
 			data->player.x = var.new_x;
 			data->player.y = var.new_y;
@@ -52,7 +52,7 @@ void	ft_key_input(mlx_key_data_t keydata, void *param)
 			* data->player.speed.movement;
 		var.new_x = data->player.x + var.player_cos;
 		var.new_y = data->player.y + var.player_sin;
-		if (data->map.map[(int)floorf(var.new_y)][(int)floorf(var.new_x)] == 48)
+		if (data->map->map[(int)floorf(var.new_y)][(int)floorf(var.new_x)] == 48)
 		{
 			data->player.x = var.new_x;
 			data->player.y = var.new_y;
