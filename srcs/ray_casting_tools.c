@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 13:29:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:51:46 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ray_casting(t_program *data)
 		while (wall == 48) {
 			ray.x += cosf(degrees_to_radians(ray_angle)) / data->rc.precision;
 			ray.y += sinf(degrees_to_radians(ray_angle)) / data->rc.precision;
-			wall = data->map.map[(int)floorf(ray.y)][(int)floorf(ray.x)];
+			wall = data->map->map[(int)floorf(ray.y)][(int)floorf(ray.x)];
 		}
 
 		// Pythagoras theorem

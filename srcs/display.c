@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 10:01:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:43:46 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	ft_display_map(t_program *data, t_image *pixie)
 	char		c;
 
 	i[0] = 0;
-	while (i[0] * pixie[0].texture->texture.height < HEIGHT && data->map.map[i[0]])
+	while (i[0] * pixie[0].texture->texture.height < HEIGHT && data->map->map[i[0]])
 	{
 		i[1] = 0;
 		while (i[1] * pixie[0].texture->texture.width < WIDTH
-			&& data->map.map[i[0]][i[1]] != '\n')
+			&& data->map->map[i[0]][i[1]] != '\n')
 		{
-			c = data->map.map[i[0]][i[1]];
+			c = data->map->map[i[0]][i[1]];
 			ft_invoke_pixie(c, i, data, pixie);
 			i[1]++;
 		}
