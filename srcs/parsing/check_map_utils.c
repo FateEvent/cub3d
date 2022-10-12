@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/10 15:45:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/12 14:53:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,11 +264,7 @@ static int	hole_check(char **map)
 					++ret;
 			}
 			if (map[i][j] == '0' && ret != 8)
-			{
-				printf ("ret %i\n", ret);
-				printf ("i %zu j %zu = %c\n", i, j, map[i][j]);
 				return (-1);
-			}
 		}
 	}
 	return (0);
