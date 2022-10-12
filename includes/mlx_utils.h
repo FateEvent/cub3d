@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 14:52:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:11:41 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_player {
 	float			y;
 	float			angle;
 	struct s_speed	speed;
+	int				radius;
 }				t_player;
 
 typedef struct s_ray_casting {
@@ -127,6 +128,8 @@ typedef struct s_key_input {
 	float		player_sin;
 	float		new_x;
 	float		new_y;
+	float		check_x;
+	float		check_y;
 }				t_key_input;
 
 // to take out

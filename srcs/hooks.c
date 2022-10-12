@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 15:03:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:13:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ static void	ft_key_input_child(t_program *data, mlx_key_data_t keydata)
 			data->player.y = var.new_y;
 		}
 	}
-	else if (keydata.key == LEFT)
+	if (keydata.key == LEFT)
 	{
 		data->player.angle -= data->player.speed.rotation;
 		angle = data->player.angle;
 		angle %= 360;
 
 	}
-	else if (keydata.key == RIGHT)
+	if (keydata.key == RIGHT)
 	{
 		data->player.angle += data->player.speed.rotation;
 		angle = data->player.angle;
 		angle %= 360;
 	}
-	else if (keydata.key == ESCAPE)
+	if (keydata.key == ESCAPE)
 		exit(0);
 }
 
@@ -62,6 +62,9 @@ void	ft_key_input(mlx_key_data_t keydata, void *param)
 			* data->player.speed.movement;
 		var.new_x = data->player.x + var.player_cos;
 		var.new_y = data->player.y + var.player_sin;
+		var.check_x = floorf(var.new_x + var.player_cos * data->player.radius);
+        var.check_y = floorf(var.new_y + var.player_sin * data->player.radius);
+
 		if (data->map->map[(int)floorf(var.new_y)][(int)floorf(var.new_x)] == 48)
 		{
 			data->player.x = var.new_x;

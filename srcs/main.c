@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 15:04:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:09:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	init_struct(t_program *data)
 	data->render.delay = 30;
 	data->rc.precision = 64.0f;
 	data->player.fov = 60.0f;
-	data->player.x = 6.0f;
-	data->player.y = 2.0f;
+	data->player.x = 16.0f;
+	data->player.y = 4.0f;
 	data->player.angle = 90.0f;
 	data->screen.half_width = data->screen.width / 2;
 	data->screen.half_height = data->screen.height / 2;
@@ -49,6 +49,7 @@ void	init_struct(t_program *data)
 	data->proj.half_width = data->proj.width / 2;
 	data->proj.half_height = data->proj.height / 2;
 	data->rc.increment_angle = data->player.fov / data->proj.width;
+	data->player.radius = 10;
 	init_texture(data);
 }
 
