@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:48:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/12 14:37:02 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/12 14:58:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,18 +219,18 @@ t_map	*check_map_integrity(char *path)
 	if (check_map_settings(mapStruct, map) == -1)
 	{
 		freearr(map);
-		throw_err_ex("Error : Invalid map file.1");
+		throw_err_ex("Error : Invalid map file.");
 	}
 	mapStruct->map = get_map_description(map);
 	if (mapStruct->map == NULL)
 	{
 		freearr(map);
-		throw_err_ex("Error : Invalid map file.2");
+		throw_err_ex("Error : Invalid map file.");
 	}
 	if (check_map_components(mapStruct->map) == -1)
 	{
 		freearr(map);
-		throw_err_ex("Error : Invalid map file.3");
+		throw_err_ex("Error : Invalid map file.");
 	}
 	freearr(map);
 	return (mapStruct);
