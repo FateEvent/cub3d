@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 13:53:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:06:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 	w = (finish.x - start.x) / (finish.y - start.y);
 	p = start.x - w * start.y;
 	y = (int)start.y;
-	while (y < (int)finish.y)
+	while (y < (int)finish.y && y > 0)
 	{
 		x = w * (float)y + p;
 		mlx_put_pixel(img, (int)x, y, color);

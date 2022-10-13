@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/13 10:25:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/13 11:42:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_struct(t_program *data)
 	data->screen.width = WIDTH;
 	data->screen.height = HEIGHT;
 	data->screen.scale = 1;
-	data->render.delay = 30;
+	data->render.delay = 1;
 	data->rc.precision = 64.0f;
 	data->player.fov = 60.0f;
 	data->player.x = 16.0f;
@@ -67,7 +67,7 @@ int	main(int argc, char *argv[])
 	program.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	program.img.img = mlx_new_image(program.mlx, WIDTH, HEIGHT);
 	if (!program.img.img)
-		ft_puterror("Error!");
+		throw_err_ex("Error : Creating new MLX image failed.");
 	program.pixies = ft_put_sprite(&program);
 	if (!program.pixies)
 		throw_err_ex("Error : Loading texture failed.");
