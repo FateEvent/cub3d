@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixies.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 14:42:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/13 10:25:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ t_image	*ft_put_sprite(t_program *data)
 	if (!pixie)
 		return (NULL);
 	ft_bzero(pixie, sizeof(*pixie));
-	pixie[0].texture = mlx_load_xpm42("/Users/faventur/Desktop/Ecole42/Cursus/cub3d/images/wall.xpm42");
-	pixie[1].texture = mlx_load_xpm42("/Users/faventur/Desktop/Ecole42/Cursus/cub3d/images/grass_tile.xpm42");
+	pixie[0].texture = mlx_load_xpm42("./images/wall.xpm42");
+	pixie[1].texture = mlx_load_xpm42("./images/grass_tile.xpm42");
 	if (!pixie[0].texture || !pixie[1].texture)
 		return (NULL);
 	from_texture_to_image(data, pixie);

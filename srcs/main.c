@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 16:09:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/13 10:25:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	main(int argc, char *argv[])
 	if (!program.img.img)
 		ft_puterror("Error!");
 	program.pixies = ft_put_sprite(&program);
+	if (!program.pixies)
+		throw_err_ex("Error : Loading texture failed.");
 	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
