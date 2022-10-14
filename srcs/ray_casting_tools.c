@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 16:42:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:50:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ray_casting(t_data *data)
 		t_color color;
 		switch (data->map->map[data->ray_data.map_y][data->ray_data.map_x])
 		{
-			case 1:
+			case 49:
 				color.r = 255;
 				color.g = 0;
 				color.b = 0;
@@ -126,6 +126,7 @@ void	ray_casting(t_data *data)
 			color.a /= 2;
 		}
 
+		printf("pix %d %d %d %d\n", x, data->ray_data.drawstart, data->ray_data.drawend, rgb_to_hex(color));
 		//draw the pixels of the stripe as a vertical line
 		t_vector	vec = ft_inttovec(x, data->ray_data.drawstart);
 		draw_vertical_line(data->img.img, vec, data->ray_data.drawend, rgb_to_hex(color));
