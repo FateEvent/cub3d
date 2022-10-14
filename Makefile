@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/07 15:11:07 by albaur           ###   ########.fr        #
+#    Updated: 2022/10/14 18:24:48 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ MAIN_FILES 	= 	main window hooks utils display pixies colours \
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 PARSE_PATH	=	parsing/
-PARSE_FILES =	check maps check_map check_map_utils
+PARSE_FILES =	check check_map check_map_utils check_map_utils2 gap_check \
+				gap_check_reverse get_color get_color2 get_texture hole_check \
+				invalid_check wall_check
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES)) 
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})

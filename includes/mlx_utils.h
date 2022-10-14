@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 16:38:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:17:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,20 @@ typedef struct s_map_data
 	int		nb_move;
 }	t_map_data;
 
+typedef struct s_getcolor {
+	ssize_t	i;
+	ssize_t	j;
+	ssize_t	k;
+	char	**colors;
+	t_color	rgba;
+}			t_getcolor;
+
+typedef struct s_ctexture {
+	char	c1;
+	char	c2;
+	int		index;
+}			t_ctexture;
+
 enum e_key {
 	UP = 87,
 	DOWN = 83,
@@ -198,11 +212,22 @@ void		ft_update(void *param);
 
 //void		ft_prop_init(t_prop *obj);
 
+// parsing
 t_map		*check(int argc, char **argv);
 void		check_args(char argc);
 void		check_map_extension(char *argv[]);
 t_map		*check_map_integrity(char *path);
 int			check_map_components(char **map);
+char		**get_map_description(char **map);
+int			get_color(char *str, t_map *mapStruct, int mode);
+int			get_color_check(char **colors, ssize_t j, ssize_t k);
+int			get_texture(char *str, t_map *mapStruct, int mode);
+int			invalid_check(char **map);
+int			wall_check(char **map);
+int			gap_check(char **map);
+int			gap_check_reverse(char **map, ssize_t i, ssize_t j);
+int			space_check(char **map, ssize_t i, ssize_t j);
+int			hole_check(char **map);
 
 // drawing tools
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
