@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/13 11:42:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/14 14:12:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_texture(t_program *data)
 	data->textures.colors[1].b = 199;
 	data->textures.colors[1].a = 255;
 }
-
+/*
 void	init_struct(t_program *data)
 {
 	data->screen.width = WIDTH;
@@ -52,11 +52,21 @@ void	init_struct(t_program *data)
 	data->player.radius = 10;
 	init_texture(data);
 }
+*/
+void	init_struct(t_data *data)
+{
+	data->ray_data.pos_x = 16.0;
+	data->ray_data.pos_y = 4.0;
+	data->ray_data.dir_x = -1.0;
+	data->ray_data.dir_y = 0.0;
+	data->ray_data.plane_x = 0.0;
+	data->ray_data.plane_y = 0.66;
+}
 
 int	main(int argc, char *argv[])
 {
-	t_program	program;
-	int			i;
+	t_data	program;
+	int		i;
 
 	i = 0;
 	program.map = check(argc, argv);

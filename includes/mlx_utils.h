@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 11:10:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:12:14 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@
 # include <math.h>
 # include <MLX42.h>
 # include "libft.h"
-# define WIDTH 640
-# define HEIGHT 480
+#define WIDTH 640
+#define HEIGHT 480
+#define texWidth 64
+#define texHeight 64
 
-// ----------------------------------
-// STRUCTS
-
-/* vector with an x and y */
 typedef struct s_vector
 {
 	uint32_t	x;
@@ -38,13 +36,24 @@ typedef struct s_vector2
 	float	y;
 }				t_vector2;
 
-/* The 4 values that define a color */
 typedef struct s_color {
 	int	r;
 	int	g;
 	int	b;
 	int	a;
 }				t_color;
+
+typedef struct s_image {
+	xpm_t		*texture;
+	mlx_image_t	*img;
+}				t_image;
+
+typedef struct sprite
+{
+	double	x;
+	double	y;
+	int		texture;
+}	t_sprite;
 
 typedef struct s_texture {
 	int				width;
@@ -53,89 +62,114 @@ typedef struct s_texture {
 	struct s_color	*colors;
 }				t_texture;
 
-typedef struct s_speed {
-	float	movement;
-	float	rotation;
-}				t_speed;
+typedef struct s_ray_data
+{
+	double		resolution_x;
+	double		resolution_y;
+	double		camera_x;
+	double		plane_x;
+	double		plane_y;
+	double		dir_x;
+	double		dir_y;
+	double		raydir_x;
+	double		raydir_y;
+	double		pos_x;
+	double		pos_y;
+	int			map_x;
+	int			map_y;
+	double		ray_side_x;
+	double		ray_side_y;
+	double		ray_delta_x;
+	double		ray_delta_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	double		walldistance;
+	int			lineheight;	
+	int			drawstart;	
+	int			drawend;	
+	int			color;
+	double		rotate_left;
+	double		rotate_right;
+	int			texx;
+	int			texy;
+	int			text_select;
+	double		wall_x;
+	double		step;
+	double		texpos;
+	char		**map;
+}	t_ray;
 
-typedef struct s_player {
-	float			fov;
-	float			half_fov;
-	float			x;
-	float			y;
-	float			angle;
-	struct s_speed	speed;
-	int				radius;
-}				t_player;
-
-typedef struct s_ray_casting {
-	float	increment_angle;
-	float	precision;
-}				t_ray_casting;
-
-typedef struct s_render {
-	int	delay;
-}				t_render;
-
-typedef struct s_projection {
-	float	width;
-	float	height;
-	float	half_width;
-	float	half_height;
-}				t_projection;
-
-typedef struct s_screen {
-	int	width;
-	int	height;
-	int	half_width;
-	int	half_height;
-	int	scale;
-}				t_screen;
+typedef struct s_key
+{
+	int	move_forward;
+	int	move_back;
+	int	move_left;
+	int	move_right;
+	int	rotate_left;
+	int	rotate_right;
+}	t_key;
 
 typedef struct s_map {
 	char	**map;
-	char	*northTexture;
-	char	*southTexture;
-	char	*westTexture;
-	char	*eastTexture;
-	t_color	floorColor;
-	t_color	ceilingColor;
+	char	*north_texture;
+	char	*south_texture;
+	char	*west_texture;
+	char	*east_texture;
+	t_color	floor_color;
+	t_color	ceiling_color;
 }				t_map;
 
-/* all info needed for an image */
-typedef struct s_image {
-	xpm_t		*texture;
-	mlx_image_t	*img;
-}				t_image;
+typedef struct s_data
+{
+	mlx_t		*mlx;
+	t_image		img;
+	t_image		*pixies;
+	t_map		*map;
+	uint32_t	frame;
+	uint32_t	img_index;
+	t_texture	texture[8];
+	int			floor;
+	int			ceiling;
+	void		*display;
+	char		*display_add;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	char		player_spawn_dir;
+	int			player_spawn_pos[2];
+	int			edge_size;
+	int			fov;
+	int			shadding;
+	int			resolution_x;
+	int			resolution_y;
+	double		move_speed;
+	double		rotate_speed;
+	t_ray		ray_data;
+	t_key		key;
+	int			keycode;
+	int			textures_nb;
+	int			fd;
+	t_map		map;
+	int			is_map_started;
+}	t_data;
 
-typedef struct s_program {
-	mlx_t					*mlx;
-	t_image					img;
-	t_image					*pixies;
-	struct s_map			*map;
-	uint32_t				frame;
-	uint32_t				img_index;
-	struct s_screen			screen;
-	struct s_projection		proj;
-	struct s_render			render;
-	struct s_ray_casting	rc;
-	struct s_player			player;
-	struct s_texture		textures;
-}				t_program;
-
-typedef struct s_key_input {
-	float		player_cos;
-	float		player_sin;
-	float		new_x;
-	float		new_y;
-	float		check_x;
-	float		check_y;
-}				t_key_input;
-
-// to take out
-typedef struct s_prop {
-	int	start_pos;
-}				t_prop;
+typedef struct s_map_data
+{
+	char	**map;
+	int		x_start;
+	int		y_start;
+	int		pos_x;
+	int		pos_y;
+	int		width;
+	int		height;
+	char	dir;
+	int		nb_pass;
+	int		no_move_possible;
+	int		is_againt_wall;
+	int		nb_move;
+}	t_map_data;
 
 enum e_key {
 	UP = 87,
