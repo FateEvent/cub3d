@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:24:33 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:26:21 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 	w = (finish.x - start.x) / (finish.y - start.y);
 	p = start.x - w * start.y;
 	y = (int)start.y;
-//	while (y < (int)finish.y && y > 0) // a strange effect on top of a wall is provoked when the wall is getting out of the screen; and the ceiling becomes red :o
-	while (y < (int)finish.y)
+	while (y < (int)finish.y && y > 0) // a strange effect on top of a wall is provoked when the wall is getting out of the screen; and the ceiling becomes red :o
+//	while (y < (int)finish.y)
 	{
 		x = w * (float)y + p;
 		mlx_put_pixel(img, (int)x, y, color);
