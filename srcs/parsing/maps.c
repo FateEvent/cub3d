@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 14:25:26 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/04 15:08:07 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:30:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 */
 
 #include "mlx_utils.h"
-
+/*
 static int	ft_wall_parser(char **map)
 {
 	int		i;
@@ -99,3 +99,4 @@ int	ft_map_parser(char **map)
 	ft_puterror("error: invalid map format");
 	return (0);
 }
+*/

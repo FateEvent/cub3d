@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 14:12:14 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:38:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct s_ray_data
 	double		wall_x;
 	double		step;
 	double		texpos;
-	char		**map;
 }	t_ray;
 
 typedef struct s_key
@@ -141,7 +140,7 @@ typedef struct s_data
 	int			player_spawn_pos[2];
 	int			edge_size;
 	int			fov;
-	int			shadding;
+	int			shading;
 	int			resolution_x;
 	int			resolution_y;
 	double		move_speed;
@@ -151,7 +150,6 @@ typedef struct s_data
 	int			keycode;
 	int			textures_nb;
 	int			fd;
-	t_map		map;
 	int			is_map_started;
 }	t_data;
 
@@ -184,13 +182,13 @@ enum e_key {
 
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
-t_image		*ft_put_sprite(t_program *data);
-void		ft_invoke_pixie(char c, uint32_t *i, t_program *data,
-				t_image *pixie);
-void		ft_display_map(t_program *data, t_image *pixie);
+//t_image		*ft_put_sprite(t_program *data);
+//void		ft_invoke_pixie(char c, uint32_t *i, t_program *data,
+//				t_image *pixie);
+//void		ft_display_map(t_program *data, t_image *pixie);
 
 // window functions
-void		fill_window(t_program *data, uint32_t color);
+void		fill_window(t_data *data, uint32_t color);
 
 int			ft_map_parser(char **map);
 char		**ft_map_reader(char *filename);
@@ -198,7 +196,7 @@ char		**ft_map_reader(char *filename);
 void		ft_key_input(mlx_key_data_t keydata, void *param);
 void		ft_update(void *param);
 
-void		ft_prop_init(t_prop *obj);
+//void		ft_prop_init(t_prop *obj);
 
 t_map		*check(int argc, char **argv);
 void		check_args(char argc);
@@ -213,12 +211,12 @@ void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 				uint32_t color);
 void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 				uint32_t draw_end, uint32_t color);
-void		draw_texture(t_program *data, float x, float wall_height,
-				int texture_pos_x, t_texture texture);
-void		draw_texture_from_img(t_program *data, float x, float wall_height,
-				int texture_pos_x);
+//void		draw_texture(t_program *data, float x, float wall_height,
+//				int texture_pos_x, t_texture texture);
+//void		draw_texture_from_img(t_program *data, float x, float wall_height,
+//				int texture_pos_x);
 
-void		ray_casting(t_program *data);
+void		ray_casting(t_data *data);
 float		degrees_to_radians(float degrees);
 
 // vector utils

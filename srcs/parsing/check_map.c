@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:48:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/12 14:58:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/14 16:31:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static int	get_color(char *str, t_map *mapStruct, int mode)
 				return (-1);
 			}
 			if (mode == 0)
-				mapStruct->floorColor = rgba;
+				mapStruct->floor_color = rgba;
 			else if (mode == 1)
-				mapStruct->ceilingColor = rgba;
+				mapStruct->ceiling_color = rgba;
 			freearr(colors);
 			return (0);
 		}
@@ -98,13 +98,13 @@ static int	get_texture(char *str, t_map *mapStruct, int mode)
 			}
 			close(fd);
 			if (mode == 0)
-				mapStruct->northTexture = path;
+				mapStruct->north_texture = path;
 			else if (mode == 1)
-				mapStruct->southTexture = path;
+				mapStruct->south_texture = path;
 			else if (mode == 2)
-				mapStruct->westTexture = path;
+				mapStruct->west_texture = path;
 			else if (mode == 3)
-				mapStruct->eastTexture = path;
+				mapStruct->east_texture = path;
 			return (0);
 		}
 	}

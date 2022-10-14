@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pixies.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/13 10:25:42 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/14 15:24:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
+/*
 static void	ft_invoke_pixie_pt2(uint32_t *i, t_program *data, t_image *pixie)
 {
 	mlx_image_to_window(data->mlx, pixie[3].img,
@@ -67,3 +67,4 @@ t_image	*ft_put_sprite(t_program *data)
 	ft_uchar_arr_display(pixie[0].texture->texture.pixels, 35);
 	return (pixie);
 }
+*/

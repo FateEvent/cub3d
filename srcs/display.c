@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 14:43:46 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/14 15:24:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 
 #include "mlx_utils.h"
-
+/*
 void	ft_display_map(t_program *data, t_image *pixie)
 {
 	uint32_t	i[2];
@@ -37,3 +37,4 @@ void	ft_display_map(t_program *data, t_image *pixie)
 		i[0]++;
 	}
 }
+*/

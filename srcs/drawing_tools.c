@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:26:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:25:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 		}
 	}
 }
-
-void	draw_texture_from_img(t_program *data, float x, float wall_height,
+/*
+void	draw_texture_from_img(t_data *data, float x, float wall_height,
 		int texture_pos_x)
 {
 	float		y_incrementer;
@@ -55,7 +55,7 @@ void	draw_texture_from_img(t_program *data, float x, float wall_height,
 	}
 }
 
-void	draw_texture(t_program *data, float x, float wall_height,
+void	draw_texture(t_data *data, float x, float wall_height,
 		int texture_pos_x, t_texture texture)
 {
 	float		y_incrementer;
@@ -74,7 +74,7 @@ void	draw_texture(t_program *data, float x, float wall_height,
 		y += y_incrementer;
 	}
 }
-
+*/
 static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 		uint32_t color)
 {

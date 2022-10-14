@@ -6,12 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 16:32:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:22:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
+/*
 static void	ft_key_input_child(t_program *data, mlx_key_data_t keydata)
 {
 	t_key_input	var;
@@ -73,3 +73,4 @@ void	ft_key_input(mlx_key_data_t keydata, void *param)
 	else
 		ft_key_input_child(data, keydata);
 }
+*/
