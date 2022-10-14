@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 16:11:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/14 11:10:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,8 +188,10 @@ void		ray_casting(t_program *data);
 float		degrees_to_radians(float degrees);
 
 // vector utils
+t_vector	ft_inttovec(int x, int y);
 t_vector2	ft_floattovec2(float x, float y);
 float		ft_vect2_distance_calc(t_vector2 start, t_vector2 finish);
+void		ft_vec_swap(t_vector *start, t_vector *finish);
 void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
 
 // colour tools

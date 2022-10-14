@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/13 12:06:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:24:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_texture_from_img(t_program *data, float x, float wall_height,
 	for (uint32_t i = 0; i < data->pixies->img->height * 4; i += 4)
 	{
 		vec = ft_floattovec2(x, y);
-		vec2 = ft_floattovec2(x, y + (y_incrementer + 0.5));
+		vec2 = ft_floattovec2(x, y + y_incrementer);
 		rgb.r = data->pixies[0].img->pixels[(i * data->pixies->img->width + texture_pos_x)];
 		rgb.g = data->pixies[0].img->pixels[(i * data->pixies->img->width + texture_pos_x) + 1];
 		rgb.b = data->pixies[0].img->pixels[(i * data->pixies->img->width + texture_pos_x) + 2];
@@ -68,7 +68,7 @@ void	draw_texture(t_program *data, float x, float wall_height,
 	for (int i = 0; i < texture.height; i++)
 	{
 		vec = ft_floattovec2(x, y);
-		vec2 = ft_floattovec2(x, y + (y_incrementer + 0.5));
+		vec2 = ft_floattovec2(x, y + y_incrementer);
 		draw_line(data->img.img, vec, vec2,
 			rgb_to_hex(texture.colors[texture.bitmap[i][texture_pos_x] + '0']));
 		y += y_incrementer;
@@ -88,7 +88,8 @@ static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 	w = (finish.x - start.x) / (finish.y - start.y);
 	p = start.x - w * start.y;
 	y = (int)start.y;
-	while (y < (int)finish.y && y > 0)
+//	while (y < (int)finish.y && y > 0) // a strange effect on top of a wall is provoked when the wall is getting out of the screen; and the ceiling becomes red :o
+	while (y < (int)finish.y)
 	{
 		x = w * (float)y + p;
 		mlx_put_pixel(img, (int)x, y, color);
