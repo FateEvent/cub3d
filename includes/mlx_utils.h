@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 21:15:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 22:31:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 typedef struct s_vector
 {
-	uint32_t	x;
-	uint32_t	y;
+	int	x;
+	int	y;
 }				t_vector;
 
 typedef struct s_vector2
@@ -135,9 +135,9 @@ typedef struct s_data
 	t_window	window;
 	t_image		img;
 	t_map		*map;
-	uint32_t	frame;
-	uint32_t	render_delay;
-	uint32_t	img_index;
+	int	frame;
+	int	render_delay;
+	int	img_index;
 	t_image		*textures;
 	int			floor;
 	int			ceiling;
@@ -213,13 +213,12 @@ enum e_key {
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
-//void		ft_invoke_pixie(char c, uint32_t *i, t_program *data,
+//void		ft_invoke_pixie(char c, int *i, t_program *data,
 //				t_image *pixie);
 //void		ft_display_map(t_program *data, t_image *pixie);
 
 // window functions
 t_window	ft_new_window(void *mlx, int width, int height, char *name);
-void		fill_window(t_data *data, uint32_t color);
 int			ft_close(void);
 
 t_image		ft_new_image(void *mlx, int width, int height);
@@ -228,8 +227,8 @@ t_image		ft_new_texture(void *mlx, char *path);
 int			ft_map_parser(char **map);
 char		**ft_map_reader(char *filename);
 
-void		ft_key_input(int key, void *param);
-void		ft_update(void *param);
+int			ft_key_input(int key, void *param);
+int			ft_update(void *param);
 
 //void		ft_prop_init(t_prop *obj);
 
@@ -251,12 +250,12 @@ int			space_check(char **map, ssize_t i, ssize_t j);
 int			hole_check(char **map);
 
 // drawing tools
-void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
-				uint32_t color);
-void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
-				uint32_t color);
-void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
-				uint32_t draw_end, uint32_t color);
+void		mlx_draw_square(t_image *img, int width, int height,
+				int color);
+void		draw_line(t_image *img, t_vector2 start, t_vector2 finish,
+				int color);
+void		draw_vertical_line(t_image *img, t_vector draw_start,
+				int draw_end, int color);
 //void		draw_texture(t_program *data, float x, float wall_height,
 //				int texture_pos_x, t_texture texture);
 //void		draw_texture_from_img(t_program *data, float x, float wall_height,
@@ -283,7 +282,7 @@ int			get_opposite(int color);
 void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
 
-void		ft_my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void		ft_my_mlx_pixel_put(t_image *img, int x, int y, int color);
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);
 
 #endif

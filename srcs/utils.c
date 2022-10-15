@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 21:04:04 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 22:17:20 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ t_vector	ft_get_x_and_y(char **map, char prop)
 	return (coord);
 }
 
-void	ft_my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	ft_my_mlx_pixel_put(t_image *img, int x, int y, int color)
 {
 	static int	octet;
 
 	if (octet == 0)
-		octet = data->bits_per_pixel / 8;
-	*(unsigned int *)(data->display_add
-			+ (y * data->line_length + x * 4)) = color;
+		octet = img->bits_per_pixel / 8;
+	*(unsigned int *)(img->pixels
+			+ (y * img->line_size + x * 4)) = color;
 }

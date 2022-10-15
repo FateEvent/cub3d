@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:13:29 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 20:32:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 22:30:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,4 @@ t_window	ft_new_window(void *mlx, int width, int height, char *name)
 	window.size.y = height;
 	mlx_hook(window.reference, 17, 0, ft_close, 0);
 	return (window);
-}
-
-void	fill_window(t_data *data, uint32_t color)
-{
-	mlx_draw_square(data, data->window.size.x, data->window.size.y, color);
 }

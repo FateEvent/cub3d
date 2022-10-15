@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 21:16:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 22:29:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	init_struct(t_program *data)
 	init_texture(data);
 }
 */
+
 void	init_struct(t_data *data)
 {
 	data->ray_data.pos_x = 16.0;
@@ -81,15 +82,15 @@ int	main(int argc, char *argv[])
 	program.mlx = mlx_init();
 	program.window = ft_new_window(program.mlx, WIDTH, HEIGHT, "cub3d");
 	if (!program.window.reference)
-		throw_err_ex("Error : Creating new MLX image failed.");
+		throw_err_ex("Error: Failed to create a new MLX image.");
 	program.img = ft_new_image(program.mlx, WIDTH, HEIGHT);
 	program.textures = NULL;
 	program.textures = ft_load_textures(&program);
 	if (!program.textures)
-		throw_err_ex("Error : Failed to load texture.");
+		throw_err_ex("Error: Failed to load texture.");
 	mlx_put_image_to_window(program.mlx, program.window.reference,
 		program.img.reference, 0, 0);
-	mlx_key_hook(program.window.reference, (void *)ft_key_input, &program);
-	mlx_loop_hook(program.mlx, *ft_update, &program);
+	mlx_key_hook(program.window.reference, ft_key_input, &program);
+	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_loop(program.mlx);
 }

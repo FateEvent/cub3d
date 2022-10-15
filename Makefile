@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/15 20:40:11 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/15 22:40:22 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,10 +51,10 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -sC ./libft
-	@$(MAKE) -sC ./MLX42
+	@$(MAKE) -sC ./MLX
 	@mv ./libft/libft.a .
-	@mv ./MLX42/libmlx42.a .
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) -fsanitize=address
+	@mv ./mlx/libmlx.a .
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx.a $(LINKS) -fsanitize=address
 	@echo "$(CURSIVE)$(HIBLUE)Parce qu'ouvrir une fenêtre,$(NONE)"
 	@echo "$(CURSIVE)$(HIGREEN)c'est surfait.$(NONE)"
 
@@ -69,7 +69,7 @@ exe: all
 	@./$(NAME) $(ARGS)
 
 clean:
-	@$(RM) -r libft.a libmlx42.a $(OBJ_PATH)
+	@$(RM) -r libft.a libmlx.a $(OBJ_PATH)
 	@$(MAKE) clean -C ./libft
 
 fclean: clean
@@ -79,7 +79,7 @@ fclean: clean
 re: fclean all
 
 relib: fclean
-	@$(MAKE) re -sC ./MLX42
+	@$(MAKE) re -sC ./mlx
 	@$(MAKE) all
 
 .PHONY: all exe clean fclean re

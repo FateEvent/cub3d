@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 21:16:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 22:00:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void	ft_key_input_child(t_data *data, int key)
+static int	ft_key_input_child(t_data *data, int key)
 {
 	t_var	var;
 
@@ -37,9 +37,10 @@ static void	ft_key_input_child(t_data *data, int key)
 	}
 	if (key == ESCAPE)
 		exit(0);
+	return (0);
 }
 
-void	ft_key_input(int key, void *param)
+int	ft_key_input(int key, void *param)
 {
 	t_data	*data;
 
@@ -63,5 +64,6 @@ void	ft_key_input(int key, void *param)
 			data->ray_data.pos_x -= data->ray_data.dir_x * data->move_speed;
 	}
 	else
-		ft_key_input_child(data, key);
+		return (ft_key_input_child(data, key));
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 20:35:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 22:37:50 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	ft_update(void *param)
+int	ft_update(void *param)
 {
 	t_data	*data;
 
@@ -24,6 +24,7 @@ void	ft_update(void *param)
 //		fill_window(data, 0x650000FF);
 		ray_casting(data);
 	}
+	return (0);
 }
 
 void	ray_casting(t_data *data)
@@ -116,7 +117,7 @@ void	ray_casting(t_data *data)
 			if(data->ray_data.side == 1 && data->ray_data.raydir_y < 0) data->ray_data.texx = texWidth - data->ray_data.texx - 1;
 
 			// How much to increase the texture coordinate per screen pixel
-			data->ray_data.step = 1.0 * (double)data->textures[data->ray_data.text_select].img->height / (double)data->ray_data.lineheight;
+			data->ray_data.step = 1.0 * (double)data->textures[data->ray_data.text_select].size.y / (double)data->ray_data.lineheight;
 			// Starting texture coordinate
 			data->ray_data.texpos = (data->ray_data.drawstart - HEIGHT / 2 + data->ray_data.lineheight / 2) * data->ray_data.step;
 			ft_print_texture(data, x);
@@ -166,7 +167,7 @@ void	ray_casting(t_data *data)
 			printf("pix %d %d %d %d\n", x, data->ray_data.drawstart, data->ray_data.drawend, rgb_to_hex(color));
 			//draw the pixels of the stripe as a vertical line
 			t_vector	vec = ft_inttovec(x, data->ray_data.drawstart);
-			draw_vertical_line(data->img.img, vec, data->ray_data.drawend, rgb_to_hex(color));
+			draw_vertical_line(&data->img, vec, data->ray_data.drawend, rgb_to_hex(color));
 		}
 	}
 }
