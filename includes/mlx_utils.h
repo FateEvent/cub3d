@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 17:04:24 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 21:15:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <math.h>
-# include <MLX42.h>
+# include <mlx.h>
 # include "libft.h"
 #define WIDTH 640
 #define HEIGHT 480
@@ -44,14 +44,18 @@ typedef struct s_color {
 }				t_color;
 
 typedef struct s_image {
-	xpm_t		*texture;
-	mlx_image_t	*img;
-	char		*addr;
+	void		*reference;
+	t_vector	size;
+	char		*pixels;
 	int			bits_per_pixel;
-	int			line_length;
+	int			line_size;
 	int			endian;
-
 }				t_image;
+
+typedef struct s_window {
+	void		*reference;
+	t_vector	size;
+}				t_window;
 
 typedef struct sprite
 {
@@ -61,10 +65,10 @@ typedef struct sprite
 }	t_sprite;
 
 typedef struct s_texture {
-	int				width;
-	int				height;
-	char			**bitmap;
-	struct s_color	*colors;
+	int		width;
+	int		height;
+	char	**bitmap;
+	t_color	*colors;
 }				t_texture;
 
 typedef struct s_ray_data
@@ -103,7 +107,6 @@ typedef struct s_ray_data
 	double		wall_x;
 	double		step;
 	double		texpos;
-	uint32_t	buffer[480][640];
 }	t_ray;
 
 typedef struct s_key
@@ -128,7 +131,8 @@ typedef struct s_map {
 
 typedef struct s_data
 {
-	mlx_t		*mlx;
+	void		*mlx;
+	t_window	window;
 	t_image		img;
 	t_map		*map;
 	uint32_t	frame;
@@ -196,11 +200,11 @@ typedef struct s_ctexture {
 }			t_ctexture;
 
 enum e_key {
-	UP = 87,
-	DOWN = 83,
-	LEFT = 65,
-	RIGHT = 68,
-	ESCAPE = 256
+	UP = 1,
+	DOWN = 13,
+	LEFT = 0,
+	RIGHT = 2,
+	ESCAPE = 53
 };
 
 // ---------------------------------
@@ -214,12 +218,17 @@ t_image		*ft_load_textures(t_data *data);
 //void		ft_display_map(t_program *data, t_image *pixie);
 
 // window functions
+t_window	ft_new_window(void *mlx, int width, int height, char *name);
 void		fill_window(t_data *data, uint32_t color);
+int			ft_close(void);
+
+t_image		ft_new_image(void *mlx, int width, int height);
+t_image		ft_new_texture(void *mlx, char *path);
 
 int			ft_map_parser(char **map);
 char		**ft_map_reader(char *filename);
 
-void		ft_key_input(mlx_key_data_t keydata, void *param);
+void		ft_key_input(int key, void *param);
 void		ft_update(void *param);
 
 //void		ft_prop_init(t_prop *obj);
@@ -274,6 +283,7 @@ int			get_opposite(int color);
 void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
 
+void		ft_my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);
 
 #endif

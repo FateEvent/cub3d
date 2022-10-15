@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 19:07:19 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:34:16 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
+void	mlx_draw_square(t_image *data, uint32_t width, uint32_t height,
 			uint32_t color)
 {
 	uint32_t	h;
@@ -24,7 +24,7 @@ void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 		w = -1;
 		while (++w < width)
 		{
-			mlx_put_pixel(img, w, h, color);
+			ft_my_mlx_pixel_put(data, w, h, color);
 		}
 	}
 }
@@ -55,9 +55,9 @@ void	ft_print_texture(t_data *data, int x)
 		data->ray_data.texy = (int)data->ray_data.texpos & (data->textures[data->ray_data.text_select].img->height - 1);
 		data->ray_data.texpos += data->ray_data.step;
 		uint32_t color = get_rgba(data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx],
-			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx + 1],
-			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx + 2],
-			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx + 3]);
+			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->width * data->ray_data.texy + data->ray_data.texx + 1],
+			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->width * data->ray_data.texy + data->ray_data.texx + 2],
+			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->width * data->ray_data.texy + data->ray_data.texx + 3]);
 		//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 		if (data->ray_data.side == 1) color = (color >> 1) & 8355711;
 		mlx_put_pixel(data->img.img, x, data->ray_data.drawstart, color);

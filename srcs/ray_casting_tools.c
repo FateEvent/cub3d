@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 19:08:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:35:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	ft_update(void *param)
 	data->frame++;
 	if (data->frame % 30 == 0)	// 30 is the render delay
 	{
-		fill_window(data, 0x650000FF);
+		mlx_clear_window(data->mlx, data->window.reference);
+//		fill_window(data, 0x650000FF);
 		ray_casting(data);
 	}
 }

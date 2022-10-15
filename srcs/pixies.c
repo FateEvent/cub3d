@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 15:13:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:45:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,6 @@ void	ft_invoke_pixie(char c, uint32_t *i, t_program *data, t_image *pixie)
 		ft_invoke_pixie_pt2(i, data, pixie);
 }
 */
-static void	from_texture_to_image(t_data *data, t_image *texture)
-{
-	texture[0].img = mlx_texture_to_image(data->mlx, &texture[0].texture->texture);
-	texture[1].img = mlx_texture_to_image(data->mlx, &texture[1].texture->texture);
-	if (!texture[0].img || !texture[1].img)
-		return ;
-}
 
 t_image	*ft_load_textures(t_data *data)
 {
@@ -57,13 +50,9 @@ t_image	*ft_load_textures(t_data *data)
 	if (!texture)
 		return (NULL);
 	ft_bzero(texture, sizeof(*texture));
-	texture[0].texture = mlx_load_xpm42("./images/wall.xpm42");
-	texture[1].texture = mlx_load_xpm42("./images/grass_tile.xpm42");
-	if (!texture[0].texture || !texture[1].texture)
+	texture[0] = ft_new_texture(data->mlx, "./images/wall.xpm42");
+	texture[1] = ft_new_texture(data->mlx, "./images/grass_tile.xpm42");
+	if (!texture[0].reference || !texture[1].reference)
 		return (NULL);
-	from_texture_to_image(data, texture);
-	if (!texture[0].img || !texture[1].img)
-		return (NULL);
-	ft_uchar_arr_display(texture[0].texture->texture.pixels, 35);
 	return (texture);
 }
