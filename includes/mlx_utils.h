@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 16:38:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 10:52:50 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct s_data
 	t_image		*pixies;
 	t_map		*map;
 	uint32_t	frame;
+	uint32_t	render_delay;
 	uint32_t	img_index;
 	t_texture	texture[8];
 	int			floor;
@@ -151,7 +152,13 @@ typedef struct s_data
 	int			textures_nb;
 	int			fd;
 	int			is_map_started;
-}	t_data;
+}				t_data;
+
+typedef struct s_var
+{
+	double	old_dir_x;
+	double	old_plane_x;
+}				t_var;
 
 typedef struct s_map_data
 {

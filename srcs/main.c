@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 16:34:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 11:06:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ void	init_struct(t_data *data)
 	data->ray_data.dir_y = 0.0;
 	data->ray_data.plane_x = 0.0;
 	data->ray_data.plane_y = 0.66;
+	data->move_speed = 0.05;
+	data->rotate_speed = 2;
+	data->frame = 0;
+	data->render_delay = 30;
 }
 
 int	main(int argc, char *argv[])
@@ -73,7 +77,6 @@ int	main(int argc, char *argv[])
 	program.map = check(argc, argv);
 	if (!program.map->map)
 		ft_puterror("Error!");
-	program.frame = 0;
 	init_struct(&program);
 	program.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	program.img.img = mlx_new_image(program.mlx, WIDTH, HEIGHT);
@@ -84,7 +87,7 @@ int	main(int argc, char *argv[])
 	//	throw_err_ex("Error : Loading texture failed.");
 	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
-//	mlx_key_hook(program.mlx, ft_key_input, &program);
+	mlx_key_hook(program.mlx, ft_key_input, &program);
 	mlx_loop(program.mlx);
 	mlx_terminate(program.mlx);
 }
