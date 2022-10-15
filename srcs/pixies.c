@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 15:24:19 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 15:13:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,30 @@ void	ft_invoke_pixie(char c, uint32_t *i, t_program *data, t_image *pixie)
 	else
 		ft_invoke_pixie_pt2(i, data, pixie);
 }
-
-static void	from_texture_to_image(t_program *data, t_image *pixie)
+*/
+static void	from_texture_to_image(t_data *data, t_image *texture)
 {
-	pixie[0].img = mlx_texture_to_image(data->mlx, &pixie[0].texture->texture);
-	pixie[1].img = mlx_texture_to_image(data->mlx, &pixie[1].texture->texture);
-	if (!pixie[0].img || !pixie[1].img)
+	texture[0].img = mlx_texture_to_image(data->mlx, &texture[0].texture->texture);
+	texture[1].img = mlx_texture_to_image(data->mlx, &texture[1].texture->texture);
+	if (!texture[0].img || !texture[1].img)
 		return ;
 }
 
-t_image	*ft_put_sprite(t_program *data)
+t_image	*ft_load_textures(t_data *data)
 {
-	t_image	*pixie;
+	t_image	*texture;
 
-	pixie = malloc(sizeof(t_image) * 2);
-	if (!pixie)
+	texture = malloc(sizeof(t_image) * 2);
+	if (!texture)
 		return (NULL);
-	ft_bzero(pixie, sizeof(*pixie));
-	pixie[0].texture = mlx_load_xpm42("./images/wall.xpm42");
-	pixie[1].texture = mlx_load_xpm42("./images/grass_tile.xpm42");
-	if (!pixie[0].texture || !pixie[1].texture)
+	ft_bzero(texture, sizeof(*texture));
+	texture[0].texture = mlx_load_xpm42("./images/wall.xpm42");
+	texture[1].texture = mlx_load_xpm42("./images/grass_tile.xpm42");
+	if (!texture[0].texture || !texture[1].texture)
 		return (NULL);
-	from_texture_to_image(data, pixie);
-	if (!pixie[0].img || !pixie[1].img)
+	from_texture_to_image(data, texture);
+	if (!texture[0].img || !texture[1].img)
 		return (NULL);
-	ft_uchar_arr_display(pixie[0].texture->texture.pixels, 35);
-	return (pixie);
+	ft_uchar_arr_display(texture[0].texture->texture.pixels, 35);
+	return (texture);
 }
-*/

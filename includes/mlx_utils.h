@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 11:54:07 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 15:01:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_ray_data
 	double		wall_x;
 	double		step;
 	double		texpos;
+	uint32_t	buffer[480][640];
 }	t_ray;
 
 typedef struct s_key
@@ -124,12 +125,11 @@ typedef struct s_data
 {
 	mlx_t		*mlx;
 	t_image		img;
-	t_image		*pixies;
 	t_map		*map;
 	uint32_t	frame;
 	uint32_t	render_delay;
 	uint32_t	img_index;
-	t_texture	texture[8];
+	t_image		*textures;
 	int			floor;
 	int			ceiling;
 	void		*display;
@@ -203,7 +203,7 @@ enum e_key {
 
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
-//t_image		*ft_put_sprite(t_program *data);
+t_image		*ft_load_textures(t_data *data);
 //void		ft_invoke_pixie(char c, uint32_t *i, t_program *data,
 //				t_image *pixie);
 //void		ft_display_map(t_program *data, t_image *pixie);

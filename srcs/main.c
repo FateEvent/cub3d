@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 11:06:52 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 15:00:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	main(int argc, char *argv[])
 	program.img.img = mlx_new_image(program.mlx, WIDTH, HEIGHT);
 	if (!program.img.img)
 		throw_err_ex("Error : Creating new MLX image failed.");
-	//program.pixies = ft_put_sprite(&program);
+	program.textures = NULL;
+	program.textures = ft_load_textures(&program);
 	//if (!program.pixies)
 	//	throw_err_ex("Error : Loading texture failed.");
 	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
