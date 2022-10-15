@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 15:24:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 19:08:43 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	ray_casting(t_data *data)
 		data->ray_data.drawend = data->ray_data.lineheight / 2 + HEIGHT / 2;
 		if(data->ray_data.drawend >= HEIGHT) data->ray_data.drawend = HEIGHT - 1;
 
-//		if (data->textures)
-//		{
+		if (data->textures)
+		{
 		
 			//texturing calculations
 			data->ray_data.text_select = data->map->map[data->ray_data.map_y][data->ray_data.map_x] - 49; //1 subtracted from it so that texture 0 can be used!
@@ -115,29 +115,28 @@ void	ray_casting(t_data *data)
 			if(data->ray_data.side == 1 && data->ray_data.raydir_y < 0) data->ray_data.texx = texWidth - data->ray_data.texx - 1;
 
 			// How much to increase the texture coordinate per screen pixel
-			data->ray_data.step = 1.0 * texHeight / data->ray_data.lineheight;
+			data->ray_data.step = 1.0 * (double)data->textures[data->ray_data.text_select].img->height / (double)data->ray_data.lineheight;
 			// Starting texture coordinate
 			data->ray_data.texpos = (data->ray_data.drawstart - HEIGHT / 2 + data->ray_data.lineheight / 2) * data->ray_data.step;
+			ft_print_texture(data, x);
+/*
 			for (int y = data->ray_data.drawstart; y < data->ray_data.drawend; y++)
 			{
 				// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-				data->ray_data.texy = (int)data->ray_data.texpos & (texHeight - 1);
+				data->ray_data.texy = (int)data->ray_data.texpos & (data->textures[data->ray_data.text_select].img->height - 1);
 				data->ray_data.texpos += data->ray_data.step;
 				printf("col %d %d\n", data->ray_data.text_select, data->textures->img->width * data->ray_data.texy + data->ray_data.texx);
-				uint32_t color = data->textures[data->ray_data.text_select].img->pixels[texHeight * data->ray_data.texy + data->ray_data.texx];
+				uint32_t color = data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx];
 				//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 				if (data->ray_data.side == 1) color = (color >> 1) & 8355711;
-				data->ray_data.buffer[y][x] = color;
+				
+//				ft_uchar_arr_display(data->textures[data->ray_data.text_select].img->pixels, data->textures[data->ray_data.text_select].img->height * 4 * data->textures[data->ray_data.text_select].img->width);
 
-				printf("pix %d %d %d %d\n", x, data->ray_data.drawstart, data->ray_data.drawend, color);
-				//draw the pixels of the stripe as a vertical line
-				t_vector	vec = ft_inttovec(x, data->ray_data.drawstart);
-				draw_vertical_line(data->img.img, vec, data->ray_data.drawend, color);
 			}
-//		}
-//		else
-//		{
-	/*
+*/
+		}
+		else
+		{
 			//choose wall color
 			t_color color;
 			switch (data->map->map[data->ray_data.map_y][data->ray_data.map_x])
@@ -167,8 +166,7 @@ void	ray_casting(t_data *data)
 			//draw the pixels of the stripe as a vertical line
 			t_vector	vec = ft_inttovec(x, data->ray_data.drawstart);
 			draw_vertical_line(data->img.img, vec, data->ray_data.drawend, rgb_to_hex(color));
-	*/
-//		}
+		}
 	}
 }
 

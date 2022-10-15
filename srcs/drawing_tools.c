@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 16:58:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 19:07:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,43 @@ void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 		}
 	}
 }
+
+int get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+/*
+void	ft_print_texture(t_data *data, int x)
+{
+	while (data->ray_data.drawstart <= data->ray_data.drawend)
+	{
+		data->ray_data.texy = (int)data->ray_data.texpos & (data->textures[data->ray_data.text_select].img->height - 1);
+		data->ray_data.texpos += data->ray_data.step;
+		ft_my_mlx_pixel_put(data, x, data->ray_data.drawstart,
+			img_add[data->textures[data->ray_data.text_select].img->width * data->ray_data.texy + data->ray_data.texx]);
+		data->ray_data.drawstart++;
+	}
+}
+*/
+
+void	ft_print_texture(t_data *data, int x)
+{
+	while (data->ray_data.drawstart <= data->ray_data.drawend)
+	{
+		data->ray_data.texy = (int)data->ray_data.texpos & (data->textures[data->ray_data.text_select].img->height - 1);
+		data->ray_data.texpos += data->ray_data.step;
+		uint32_t color = get_rgba(data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx],
+			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx + 1],
+			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx + 2],
+			data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx + 3]);
+		//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+		if (data->ray_data.side == 1) color = (color >> 1) & 8355711;
+		mlx_put_pixel(data->img.img, x, data->ray_data.drawstart, color);
+		data->ray_data.drawstart++;
+	}
+}
+
 /*
 void	draw_texture_from_img(t_data *data, float x, float wall_height,
 		int texture_pos_x)

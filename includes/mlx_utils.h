@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 15:01:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/15 17:04:24 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ typedef struct s_color {
 typedef struct s_image {
 	xpm_t		*texture;
 	mlx_image_t	*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+
 }				t_image;
 
 typedef struct sprite
@@ -247,6 +252,7 @@ void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 //				int texture_pos_x, t_texture texture);
 //void		draw_texture_from_img(t_program *data, float x, float wall_height,
 //				int texture_pos_x);
+void		ft_print_texture(t_data *data, int x);
 
 void		ray_casting(t_data *data);
 float		degrees_to_radians(float degrees);
