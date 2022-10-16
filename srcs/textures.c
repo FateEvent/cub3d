@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixies.c                                           :+:      :+:    :+:   */
+/*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 15:13:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:21:20 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ t_image	*ft_load_textures(t_data *data)
 	from_texture_to_image(data, texture);
 	if (!texture[0].img || !texture[1].img)
 		return (NULL);
-	ft_uchar_arr_display(texture[0].texture->texture.pixels, 35);
 	return (texture);
 }

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 19:08:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:07:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,71 +119,28 @@ void	ray_casting(t_data *data)
 			// Starting texture coordinate
 			data->ray_data.texpos = (data->ray_data.drawstart - HEIGHT / 2 + data->ray_data.lineheight / 2) * data->ray_data.step;
 			ft_print_texture(data, x);
-/*
-			for (int y = data->ray_data.drawstart; y < data->ray_data.drawend; y++)
-			{
-				// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-				data->ray_data.texy = (int)data->ray_data.texpos & (data->textures[data->ray_data.text_select].img->height - 1);
-				data->ray_data.texpos += data->ray_data.step;
-				printf("col %d %d\n", data->ray_data.text_select, data->textures->img->width * data->ray_data.texy + data->ray_data.texx);
-				uint32_t color = data->textures[data->ray_data.text_select].img->pixels[data->textures[data->ray_data.text_select].img->height * data->ray_data.texy + data->ray_data.texx];
-				//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
-				if (data->ray_data.side == 1) color = (color >> 1) & 8355711;
-				
-//				ft_uchar_arr_display(data->textures[data->ray_data.text_select].img->pixels, data->textures[data->ray_data.text_select].img->height * 4 * data->textures[data->ray_data.text_select].img->width);
-
-			}
-*/
 		}
 		else
 		{
 			//choose wall color
-			t_color color;
+			uint32_t color;
 			switch (data->map->map[data->ray_data.map_y][data->ray_data.map_x])
 			{
 				case 49:
-					color.r = 255;
-					color.g = 0;
-					color.b = 0;
-					color.a = 255;
+					color = get_rgba(255, 0, 0, 255);
 					break ;
 				default:
-					color.r = 0;
-					color.g = 255;
-					color.b = 0;
-					color.a = 255;
+					color = get_rgba(0, 255, 0, 255);
 					break;
 			}
 			//give x and y sides different brightness
-			if(data->ray_data.side == 1)
-			{
-				color.r /= 2;
-				color.g /= 2;
-				color.b /= 2;
-				color.a /= 2;
-			}
-			printf("pix %d %d %d %d\n", x, data->ray_data.drawstart, data->ray_data.drawend, rgb_to_hex(color));
+			if (data->ray_data.side == 1)
+				color = (color >> 1) & 8355711;
+			
+			printf("pix %d %d %d %d\n", x, data->ray_data.drawstart, data->ray_data.drawend, color);
 			//draw the pixels of the stripe as a vertical line
 			t_vector	vec = ft_inttovec(x, data->ray_data.drawstart);
-			draw_vertical_line(data->img.img, vec, data->ray_data.drawend, rgb_to_hex(color));
+			draw_vertical_line(data->img.img, vec, data->ray_data.drawend, color);
 		}
 	}
 }
-
-/*
-void	ray_casting(t_program *data)
-{
-	t_vector2	vec;
-	t_vector2	vec2;
-	t_vector2	vec3;
-	t_vector2	vec4;
-
-	vec = ft_floattovec2(480, 0);
-	vec2 = ft_floattovec2(480, 0);
-	vec3 = ft_floattovec2(480, 240);
-	vec4 = ft_floattovec2(480, 63);
-	draw_line(data->img.img, vec, vec2, 0x00FFFFFF);
-	draw_line(data->img.img, vec2, vec3, 0xFF0000FF);
-	draw_line(data->img.img, vec3, vec4, 0x00FF00FF);
-}
-*/

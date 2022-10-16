@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 15:23:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:45:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,25 @@ t_vector	ft_get_x_and_y(char **map, char prop)
 	coord.x = 3000;
 	coord.y = 3000;
 	return (coord);
+}
+
+uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width, size_t height)
+{
+	uint32_t	*hex_arr;
+	size_t		i;
+	size_t		j;
+
+	if (!arr)
+		return (NULL);
+	hex_arr = malloc(sizeof(uint32_t) * width * height);
+	i = 0;
+	j = 0;
+	while (i < width * height * 4 && j < width * height)
+	{
+		hex_arr[j] = get_rgba(arr[i], arr[i + 1], arr[i + 2], arr[i + 3]);
+//		ft_printf("%d\n", hex_arr[j]);
+		i += 4;
+		j++;
+	}
+	return (hex_arr);
 }

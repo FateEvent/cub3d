@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/15 17:04:24 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:33:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #define HEIGHT 480
 #define texWidth 64
 #define texHeight 64
+#define BPP 4
 
 typedef struct s_vector
 {
@@ -50,7 +51,7 @@ typedef struct s_image {
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-
+	uint32_t	color_arr;
 }				t_image;
 
 typedef struct sprite
@@ -268,6 +269,7 @@ void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
 t_color		new_color(int r, int g, int b, int a);
 t_color		hex_to_rgb_converter(int hex_value);
 t_color		lerp(t_color a, t_color b, float t);
+int 		get_rgba(int r, int g, int b, int a);
 int			rgb_to_hex(t_color rgb);
 int			add_shade(double distance, int color);
 int			get_opposite(int color);
@@ -275,5 +277,6 @@ void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
 
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);
+uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width, size_t height);
 
 #endif
