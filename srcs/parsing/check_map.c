@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:48:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/14 17:24:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/17 10:41:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 
 static int	check_texture(t_map *m, char *map, int *count, t_ctexture c)
 {
-	if (c.c2 == '\0')
+	if (c.str[1] == '\0')
 	{
-		if (map[0] == c.c1 && map[1] == ' ')
+		if (map[0] == c.str[0] && map[1] == ' ')
 		{
 			if (get_color(map, m, c.index) == -1)
 				return (1);
 			++*count;
+			return (0);
 		}
 	}
 	else
 	{
-		if (map[0] == c.c1 && map[1] == c.c2 && map[2] == ' ')
+		if (map[0] == c.str[0] && map[1] == c.str[1] && map[2] == ' ')
 		{
 			if (get_texture(map, m, c.index) == -1)
 				return (1);
 			++*count;
+			return (0);
 		}
 	}
-	return (0);
+	return (1);
 }
 
 static int	check_map_settings(t_map *m, char **map)
@@ -46,12 +48,12 @@ static int	check_map_settings(t_map *m, char **map)
 	{
 		if (ft_strlen(map[i]) < 3)
 			return (-1);
-		if (!check_texture(m, map[i], &count, (t_ctexture){'N', 'O', 0})
-			|| !check_texture(m, map[i], &count, (t_ctexture){'S', 'O', 1})
-			|| !check_texture(m, map[i], &count, (t_ctexture){'W', 'E', 2})
-			|| !check_texture(m, map[i], &count, (t_ctexture){'E', 'A', 3})
-			|| !check_texture(m, map[i], &count, (t_ctexture){'F', '\0', 0})
-			|| !check_texture(m, map[i], &count, (t_ctexture){'C', '\0', 1}))
+		if (!check_texture(m, map[i], &count, (t_ctexture){"NO", 0})
+			|| !check_texture(m, map[i], &count, (t_ctexture){"SO", 1})
+			|| !check_texture(m, map[i], &count, (t_ctexture){"WE", 2})
+			|| !check_texture(m, map[i], &count, (t_ctexture){"EA", 3})
+			|| !check_texture(m, map[i], &count, (t_ctexture){"C\0", 0})
+			|| !check_texture(m, map[i], &count, (t_ctexture){"F\0", 1}))
 			continue ;
 		else
 		{

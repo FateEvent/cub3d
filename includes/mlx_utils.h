@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/17 11:28:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:31:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,8 +191,7 @@ typedef struct s_getcolor {
 }			t_getcolor;
 
 typedef struct s_ctexture {
-	char	c1;
-	char	c2;
+	char	str[2];
 	int		index;
 }			t_ctexture;
 

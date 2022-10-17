@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:56:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/14 18:20:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/17 10:12:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	get_texture(char *str, t_map *mapStruct, int mode)
 			if (get_texture_file(path))
 				return (get_texture_ret(path));
 			get_texture_mode(mapStruct, mode, path);
-			free(path);
 			return (0);
 		}
 	}
