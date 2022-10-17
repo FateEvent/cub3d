@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/16 17:45:03 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:22:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,18 @@ void	ft_print_texture(t_data *data, int x)
 	int			text_select;
 	int			img_width;
 	uint8_t		*pixels;
-	uint32_t	*hex;
+	uint32_t	**hex;
 
 	ray = data->ray_data;
 	text_select = ray.text_select;
 	img_width = data->textures[text_select].img->width;
 	pixels = data->textures[text_select].img->pixels;
-	hex = ft_from_uchar_to_hex_arr(pixels, img_width, data->textures[text_select].img->height);
+	hex = ft_from_uchar_to_hex_buf(pixels, img_width, data->textures[text_select].img->height);
 	while (ray.drawstart <= ray.drawend)
 	{
 		ray.texy = (int)ray.texpos & (data->textures[text_select].img->height - 1);
 		ray.texpos += ray.step;
-		uint32_t color = hex[img_width * ray.texy + ray.texx];
+		uint32_t color = hex[(ray.texy + ray.drawstart) % data->textures[text_select].img->height][ray.texx];
 		//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 		if (ray.side == 1) color = (color >> 1) & 8355711;
 		mlx_put_pixel(data->img.img, x, ray.drawstart, color);
