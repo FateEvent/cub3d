@@ -6,11 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/17 17:17:15 by albaur           ###   ########.fr       */
-=======
-/*   Updated: 2022/10/17 14:22:32 by faventur         ###   ########.fr       */
->>>>>>> de682cfe3fa98614c7571f89bf9a4f16c783481b
+/*   Updated: 2022/10/17 17:40:34 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +64,13 @@ void	ft_print_texture(t_data *data, int x, int x2)
 	int			text_select;
 	int			img_width;
 	uint8_t		*pixels;
-	uint32_t	**hex;
+	uint32_t	*hex;
 
 	ray = data->ray_data;
 	text_select = ray.text_select;
 	img_width = data->textures[text_select].img->width;
 	pixels = data->textures[text_select].img->pixels;
-	hex = ft_from_uchar_to_hex_buf(pixels, img_width, data->textures[text_select].img->height);
+	hex = ft_from_uchar_to_hex_arr(pixels, img_width, data->textures[text_select].img->height);
 	while (ray.drawstart <= ray.drawend)
 	{
 		ray.texy = (int)ray.texpos & (data->textures[text_select].img->height - 1);
