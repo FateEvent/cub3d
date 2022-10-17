@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/17 16:53:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/17 17:37:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,7 @@ void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
 
 // colour tools
 t_color		new_color(int r, int g, int b, int a);
-t_color		hex_to_rgb_converter(int hex_value);
+t_color		hex_to_rgb(uint32_t hex_value);
 t_color		lerp(t_color a, t_color b, float t);
 int 		get_rgba(int r, int g, int b, int a);
 int			rgb_to_hex(t_color rgb);
@@ -278,5 +278,9 @@ void		turn_img_to_color(t_image *image, t_color color);
 
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);
 uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width, size_t height);
+uint32_t	**hex_buf_creator(uint32_t *arr, size_t width, size_t height);
+uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width, size_t height);
+t_color		**rgb_buf_creator(uint32_t **buf, size_t width, size_t height);
+t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width, size_t height);
 
 #endif

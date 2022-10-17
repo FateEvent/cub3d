@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freearr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:22:41 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/07 10:26:47 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/17 11:24:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,24 @@
 
 void	freearr(char **str)
 {
-	int		i;
+	int	i;
 
-	i = 0;
 	if (!str)
 		return ;
 	i = 0;
 	while (str[i])
 		free(str[i++]);
 	free(str);
+}
+
+void	free_uint_arr(uint32_t **arr)
+{
+	int	i;
+
+	if (!arr)
+		return ;
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }

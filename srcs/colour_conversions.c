@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:59:33 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/11 17:08:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:01:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_color	lerp(t_color a, t_color b, float t)
 	return (a);
 }
 
-t_color	hex_to_rgb_converter(int hex_value)
+t_color	hex_to_rgb(uint32_t hex_value)
 {	
 	t_color	rgb;
 
@@ -42,8 +42,8 @@ int	add_shade(double distance, int color)
 	t_color	rgb;
 	t_color	black;
 
-	rgb = hex_to_rgb_converter(color);
-	black = hex_to_rgb_converter(0xff000000);
+	rgb = hex_to_rgb(color);
+	black = hex_to_rgb(0xff000000);
 	if (distance >= 0 && distance <= 1)
 	{
 		rgb = lerp(rgb, black, distance);
@@ -59,8 +59,8 @@ int	get_opposite(int color)
 	t_color	white;
 	t_color	complem;
 
-	rgb = hex_to_rgb_converter(color);
-	white = hex_to_rgb_converter(0xffffffff);
+	rgb = hex_to_rgb(color);
+	white = hex_to_rgb(0xffffffff);
 	complem.r = white.r - rgb.r;
 	complem.g = white.g - rgb.g;
 	complem.b = white.b - rgb.b;
