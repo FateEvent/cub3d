@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/16 17:07:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:31:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_update(void *param)
 
 	data = (t_data *)param;
 	data->frame++;
-	if (data->frame % 30 == 0)	// 30 is the render delay
+	if (data->frame % 1 == 0)	// 30 is the render delay
 	{
 		fill_window(data, 0x650000FF);
 		ray_casting(data);
@@ -63,6 +63,8 @@ void	ray_casting(t_data *data)
 			data->ray_data.ray_side_y = (data->ray_data.map_y + 1.0 - data->ray_data.pos_y) * data->ray_data.ray_delta_y;
 		}
 		//perform DDA
+		float dist = 0;
+
 		while (data->ray_data.hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
@@ -70,12 +72,14 @@ void	ray_casting(t_data *data)
 			{
 				data->ray_data.ray_side_x += data->ray_data.ray_delta_x;
 				data->ray_data.map_x += data->ray_data.step_x;
+				dist += data->ray_data.step_x;
 				data->ray_data.side = 0;
 			}
 			else
 			{
 				data->ray_data.ray_side_y += data->ray_data.ray_delta_y;
 				data->ray_data.map_y += data->ray_data.step_y;
+				dist += data->ray_data.step_y;
 				data->ray_data.side = 1;
 			}
 			//Check if ray has data->ray_data.hit a wall
@@ -84,11 +88,15 @@ void	ray_casting(t_data *data)
 				data->ray_data.hit = 1;	
 			}
 		}
+		
 		if (data->ray_data.side == 0)
 			data->ray_data.walldistance = data->ray_data.ray_side_x - data->ray_data.ray_delta_x;
 		else
 			data->ray_data.walldistance = data->ray_data.ray_side_y - data->ray_data.ray_delta_y;
 
+		data->ray_data.intersection.x = data->ray_data.pos_x + (data->ray_data.dir_x * dist);
+		data->ray_data.intersection.y = data->ray_data.pos_y + (data->ray_data.dir_y * dist);
+		
 		//Calculate height of line to draw on screen
 		data->ray_data.lineheight = (int)(HEIGHT / data->ray_data.walldistance);
 
@@ -118,7 +126,14 @@ void	ray_casting(t_data *data)
 			data->ray_data.step = 1.0 * (double)data->textures[data->ray_data.text_select].img->height / (double)data->ray_data.lineheight;
 			// Starting texture coordinate
 			data->ray_data.texpos = (data->ray_data.drawstart - HEIGHT / 2 + data->ray_data.lineheight / 2) * data->ray_data.step;
-			ft_print_texture(data, x);
+			int x2 = ((data->textures[0].img->width * (int)(data->ray_data.intersection.x + data->ray_data.intersection.y)) % data->textures[0].img->width);
+			//printf("1 %u\n", (data->textures[0].img->width));
+			//printf("2 %u\n", (data->textures[0].img->width * (int)(data->ray_data.intersection.x + data->ray_data.intersection.y)));
+			//printf("3 %u\n", (data->textures[0].img->width * (int)(data->ray_data.intersection.x + data->ray_data.intersection.y)) % data->textures[0].img->width);
+			ft_print_texture(data, x, x2);
+			// printf("dist %f\n", data->ray_data.intersection.x + data->ray_data.intersection.y);
+			// printf("dist %i\n", (int)(data->ray_data.intersection.x + data->ray_data.intersection.y));
+			// printf("%d\n", (((int)(data->ray_data.intersection.x + data->ray_data.intersection.y)) % data->textures[0].img->width));
 		}
 		else
 		{

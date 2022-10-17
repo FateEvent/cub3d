@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/17 10:30:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/17 16:53:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_ray_data
 	double		step;
 	double		texpos;
 	uint32_t	buffer[480][640];
+	t_vector2	intersection;
 }	t_ray;
 
 typedef struct s_key
@@ -252,7 +253,7 @@ void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 //				int texture_pos_x, t_texture texture);
 //void		draw_texture_from_img(t_program *data, float x, float wall_height,
 //				int texture_pos_x);
-void		ft_print_texture(t_data *data, int x);
+void		ft_print_texture(t_data *data, int x, int x2);
 
 void		ray_casting(t_data *data);
 float		degrees_to_radians(float degrees);

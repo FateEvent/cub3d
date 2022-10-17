@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/16 17:20:26 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/17 17:06:51 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) -sC ./MLX42
 	@mv ./libft/libft.a .
 	@mv ./MLX42/libmlx42.a .
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) -fsanitize=address
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) #-fsanitize=address
 	@echo "$(CURSIVE)$(HIBLUE)Parce qu'ouvrir une fenêtre,$(NONE)"
 	@echo "$(CURSIVE)$(HIGREEN)c'est surfait.$(NONE)"
 
