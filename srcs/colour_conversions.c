@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour_conversions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:59:33 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/17 11:01:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:53:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	rgb_to_hex(t_color rgb)
 {
-	return (rgb.a << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
+	return (rgb.r << 24 | rgb.g << 16 | rgb.b << 8 | rgb.a);
 }
 
 t_color	lerp(t_color a, t_color b, float t)

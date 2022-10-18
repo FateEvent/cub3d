@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:43:20 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/14 18:19:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:50:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_color	get_color_rgb(char **colors)
 	rgba.r = ft_atoi(colors[0]);
 	rgba.g = ft_atoi(colors[1]);
 	rgba.b = ft_atoi(colors[2]);
-	rgba.a = 0;
+	rgba.a = 255;
 	return (rgba);
 }
 

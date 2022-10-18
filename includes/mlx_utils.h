@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 16:17:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:47:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,7 @@ void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 //				int texture_pos_x);
 void		ft_print_texture(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
+void		draw_floor(t_data *data, int x);
 
 void		ray_casting(t_data *data);
 float		degrees_to_radians(float degrees);
