@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/18 11:19:46 by albaur           ###   ########.fr        #
+#    Updated: 2022/10/18 12:22:52 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3d
 ARGS = map.cub
 CC = gcc
 FLAGS = -Wall -Wextra -Werror -g3
-LINKS = -lglfw -L /goinfre/${USER}/.brew/Cellar/glfw/3.3.8/lib/
+LINKS = -lglfw -L /goinfre/${USER}/.brew/Cellar/glfw/3.3.8/lib/ #-ldl -lm #linuxflags
 LIBLINKS = -I./MLX42/include/MLX42 -I./includes -I./libft/includes
 SRC_PATH = srcs/
 OBJ_PATH = bin/

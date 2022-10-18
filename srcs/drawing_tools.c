@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 16:54:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 12:16:54 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,10 @@ int get_rgba(int r, int g, int b, int a)
 void	draw_floor(t_data *data, int x)
 {
 	t_ray	ray;
-	size_t	width;
 	size_t	height;
 	int		half_height;
-	int		y;
 	
 	ray = data->ray_data;
-	y = ray.drawstart;
-	width = data->textures[ray.text_select].img->width;
 	height = HEIGHT;
 	half_height = height / 2;
 	draw_line(data->img.img, (t_vector2){x, half_height + ray.lineheight / 2}, (t_vector2){x, height}, rgb_to_hex(data->map->floor_color));
@@ -53,14 +49,10 @@ void	draw_floor(t_data *data, int x)
 void	draw_ceiling(t_data *data, int x)
 {
 	t_ray	ray;
-	size_t	width;
 	size_t	height;
 	int		half_height;
-	int		y;
 	
 	ray = data->ray_data;
-	y = ray.drawstart;
-	width = data->textures[ray.text_select].img->width;
 	height = HEIGHT;
 	half_height = height / 2;
 	draw_line(data->img.img, (t_vector2){x, 0}, (t_vector2){x, half_height - ray.lineheight / 2}, rgb_to_hex(data->map->ceiling_color));
@@ -75,8 +67,8 @@ void	ft_print_texture(t_data *data, int x)
 	uint32_t	color;
 	uint32_t	*texture;
 
-	y = ray.drawstart;
 	ray = data->ray_data;
+	y = ray.drawstart;
 	width = data->textures[ray.text_select].img->width;
 	height = data->textures[ray.text_select].img->height;
 	texture = ft_from_uchar_to_hex_arr(data->textures[ray.text_select].img->pixels, width, height);
@@ -101,6 +93,8 @@ static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 
 	if (start.y > finish.y)
 		ft_vec2_swap(&start, &finish);
+	if ((int)start.y >= HEIGHT)
+		return ;
 	w = (finish.x - start.x) / (finish.y - start.y);
 	p = start.x - w * start.y;
 	y = (int)start.y;

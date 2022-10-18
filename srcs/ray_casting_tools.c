@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 16:48:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 12:04:53 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ void	ft_update(void *param)
 
 	data = (t_data *)param;
 	data->frame++;
-	if (data->frame % 1 == 0)	// 30 is the render delay
+	if (data->frame % 1 == 0 && data->refresh == 1)	// 30 is the render delay
 	{
 		fill_window(data, 0x650000FF);
 		ray_casting(data);
+		data->refresh = 0;
 	}
 }
 
@@ -29,17 +30,13 @@ void	ray_casting(t_data *data)
 {
 	t_ray		*ray;
 	size_t		x;
-	size_t		y;
 	int			width;
 	int			height;
-	uint32_t	*texture;
 
 	x = 0;
-	y = 0;
 	width = WIDTH;
 	height = HEIGHT;
 	ray = &data->ray_data;
-	texture = ft_from_uchar_to_hex_arr(data->textures[0].img->pixels, data->textures[0].img->width, data->textures[0].img->height);
 	while (x < WIDTH)
 	{
 		ray->camera_x = 2 * x / (double)width - 1;

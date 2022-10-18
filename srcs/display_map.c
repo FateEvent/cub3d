@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:12:25 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/12 14:35:52 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:25:43 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ char	**ft_map_reader(char *filename)
 	char	*buffer;
 	char	*temp;
 	int		fd;
-	int		i;
 
 	fd = open(filename, O_RDONLY);
-	i = 0;
 	buffer = malloc(sizeof(char) * 1);
 	if (!buffer)
 		return (NULL);

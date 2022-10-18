@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 16:49:16 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 11:58:10 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ void	init_struct(t_data *data)
 	data->frame = 0;
 	data->render_delay = 30;
 	data->ray_data.text_select = 0;
+	data->refresh = 1;
 }
 
 int	main(int argc, char *argv[])
 {
 	t_data	program;
-	int		i;
 
-	i = 0;
 	program.map = check(argc, argv);
 	if (!program.map->map)
 		ft_puterror("Error!");

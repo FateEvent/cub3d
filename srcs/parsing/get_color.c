@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:43:20 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/18 16:50:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 11:28:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	get_color(char *str, t_map *mapStruct, int mode)
 			c.colors = ft_split(str + c.i, ',');
 			if (ft_arrlen(c.colors) != 3)
 				return (get_color_ret(c.colors, -1));
-			if (get_color_check(c.colors, c.j, c.k))
+			if (get_color_check(c.colors, c.j))
 				return (get_color_ret(c.colors, -1));
 			c.rgba = get_color_rgb(c.colors);
 			if (get_color_invalid(c.rgba))

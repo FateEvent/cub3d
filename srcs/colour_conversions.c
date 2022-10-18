@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour_conversions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:59:33 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 16:53:09 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 11:23:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,8 @@ int	add_shade(double distance, int color)
 int	get_opposite(int color)
 {
 	t_color	rgb;
-	t_color	white;
-	t_color	complem;
 
 	rgb = hex_to_rgb(color);
-	white = hex_to_rgb(0xffffffff);
-	complem.r = white.r - rgb.r;
-	complem.g = white.g - rgb.g;
-	complem.b = white.b - rgb.b;
-	complem.a = white.a - rgb.a;
 	color = rgb_to_hex(rgb);
 	return (color);
 }

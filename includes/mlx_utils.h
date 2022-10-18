@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 16:47:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 12:21:00 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ typedef struct s_ray_data
 	double		wall_x;
 	double		step;
 	double		texpos;
-	uint32_t	buffer[480][640];
-	int			pitch;
 }	t_ray;
 
 typedef struct s_key
@@ -159,6 +157,7 @@ typedef struct s_data
 	int			textures_nb;
 	int			fd;
 	int			is_map_started;
+	int			refresh;
 }				t_data;
 
 typedef struct s_var
@@ -233,7 +232,7 @@ t_map		*check_map_integrity(char *path);
 int			check_map_components(char **map);
 char		**get_map_description(char **map);
 int			get_color(char *str, t_map *mapStruct, int mode);
-int			get_color_check(char **colors, ssize_t j, ssize_t k);
+int			get_color_check(char **colors, ssize_t j);
 int			get_texture(char *str, t_map *mapStruct, int mode);
 int			invalid_check(char **map);
 int			wall_check(char **map);
