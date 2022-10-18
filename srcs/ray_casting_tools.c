@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 15:30:49 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:36:21 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	ray_casting(t_data *data)
 			ray->texx = data->textures[ray->text_select].img->width - ray->texx - 1;
 		ray->step = 1.0 * data->textures[ray->text_select].img->height / ray->lineheight;
 		ray->texpos = (ray->drawstart - height / 2 + ray->lineheight / 2) * ray->step;
+		draw_ceiling(data, x);
 		ft_print_texture(data, x);
 		++x;
 	}

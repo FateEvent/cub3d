@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 15:30:53 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:34:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,20 @@ int get_rgba(int r, int g, int b, int a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-/*
-void	ft_print_texture(t_data *data, int x)
+void	draw_ceiling(t_data *data, int x)
 {
-	while (data->ray_data.drawstart <= data->ray_data.drawend)
-	{
-		data->ray_data.texy = (int)data->ray_data.texpos & (data->textures[data->ray_data.text_select].img->height - 1);
-		data->ray_data.texpos += data->ray_data.step;
-		ft_my_mlx_pixel_put(data, x, data->ray_data.drawstart,
-			img_add[data->textures[data->ray_data.text_select].img->width * data->ray_data.texy + data->ray_data.texx]);
-		data->ray_data.drawstart++;
-	}
-}
-*/
-
-void	ft_my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	static int	octet;
-
-	if (octet == 0)
-		octet = BPP / 8;
-	*(unsigned int *)(data->img.img->pixels
-			+ (y * data->line_length + x * 4)) = color;
+	t_ray	ray;
+	size_t	width;
+	size_t	height;
+	int		half_height;
+	int		y;
+	
+	ray = data->ray_data;
+	y = ray.drawstart;
+	width = data->textures[ray.text_select].img->width;
+	height = data->textures[ray.text_select].img->height;
+	half_height = height / 2;
+	draw_line(data->img.img, (t_vector2){0, x}, (t_vector2){x, half_height - ray.lineheight}, get_rgba(0, 255, 0, 0));
 }
 
 void	ft_print_texture(t_data *data, int x)
@@ -112,6 +104,10 @@ void	draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 	int		x;
 	float	y;
 
+	if (start.x < 0 || start.y < 0)
+		return ;
+	if (finish.x < 0 || finish.y < 0)
+		return ;
 	if (finish.x != start.x)
 		m = (finish.y - start.y) / (finish.x - start.x);
 	if (finish.x != start.x && fabsf(m) <= 1)
