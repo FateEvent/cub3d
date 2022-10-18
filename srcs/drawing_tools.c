@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 14:49:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 15:14:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,9 @@ void	ft_print_texture(t_data *data, int x)
 	texture = ft_from_uchar_to_hex_arr(data->textures[ray.text_select].img->pixels, width, height);
 	while (y < ray.drawend)
 	{
-		ray.texy = (int)ray.texpos & (65 - 1);
+		ray.texy = (int)ray.texpos & (height - 1);
 		ray.texpos += ray.step;
-		//printf("texy %i\n", ray.texy);
-		color = texture[(ray.texy * width) + ray.texx];
+		color = texture[((ray.texy * width) + ray.texx)];
 		mlx_put_pixel(data->img.img, x, y, color);
 		++y;
 	}

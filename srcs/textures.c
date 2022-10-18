@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/17 17:04:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 15:09:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_image	*ft_load_textures(t_data *data)
 	if (!texture)
 		return (NULL);
 	ft_bzero(texture, sizeof(*texture));
-	texture[0].texture = mlx_load_xpm42("./images/wall.xpm42");
+	texture[0].texture = mlx_load_xpm42("./images/test.xpm42");
 	texture[1].texture = mlx_load_xpm42("./images/grass_tile.xpm42");
 	if (!texture[0].texture || !texture[1].texture)
 		return (NULL);
