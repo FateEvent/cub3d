@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 15:18:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 15:30:49 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,10 @@ void	ray_casting(t_data *data)
 		else
 			ray->walldistance = (ray->ray_side_y - ray->ray_delta_y);
 		ray->lineheight = (int)(height / ray->walldistance);
-		ray->pitch = 100;
-		ray->drawstart = -ray->lineheight / 2 + height / 2 + ray->pitch;
+		ray->drawstart = -ray->lineheight / 2 + height / 2;
 		if (ray->drawstart < 0)
 			ray->drawstart = 0;
-		ray->drawend = ray->lineheight / 2 + height / 2 + ray->pitch;
+		ray->drawend = ray->lineheight / 2 + height / 2;
 		if (ray->drawend >= height)
 			ray->drawend = height - 1;
 		if (ray->side == 0)
@@ -110,7 +109,7 @@ void	ray_casting(t_data *data)
 		if (ray->side == 1 && ray->raydir_y < 0)
 			ray->texx = data->textures[ray->text_select].img->width - ray->texx - 1;
 		ray->step = 1.0 * data->textures[ray->text_select].img->height / ray->lineheight;
-		ray->texpos = (ray->drawstart - ray->pitch - height / 2 + ray->lineheight / 2) * ray->step;
+		ray->texpos = (ray->drawstart - height / 2 + ray->lineheight / 2) * ray->step;
 		ft_print_texture(data, x);
 		++x;
 	}
