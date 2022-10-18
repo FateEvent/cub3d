@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:59:33 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 11:23:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 13:33:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_color	hex_to_rgb(uint32_t hex_value)
 {	
 	t_color	rgb;
 
-	rgb.a = ((hex_value >> 24) & 0xff);
-	rgb.r = ((hex_value >> 16) & 0xff);
-	rgb.g = ((hex_value >> 8) & 0xff);
-	rgb.b = ((hex_value) & 0xff);
+	rgb.r = ((hex_value >> 24) & 0xff);
+	rgb.g = ((hex_value >> 16) & 0xff);
+	rgb.b = ((hex_value >> 8) & 0xff);
+	rgb.a = ((hex_value) & 0xff);
 	return (rgb);
 }
 

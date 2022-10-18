@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 12:16:54 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 15:28:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,23 @@ void	draw_ceiling(t_data *data, int x)
 	draw_line(data->img.img, (t_vector2){x, 0}, (t_vector2){x, half_height - ray.lineheight / 2}, rgb_to_hex(data->map->ceiling_color));
 }
 
+uint32_t	get_shading(uint32_t color, t_ray ray)
+{
+	t_color	table;
+	double	multiplier;
+	double	distance;
+	double	intensity;
+
+	distance = ray.walldistance;
+	if (distance <= 1.00)
+		return (color);
+	table = hex_to_rgb(color);
+	intensity = 1 - ((distance / 100) * 2);
+	multiplier = 1 + (distance / intensity);
+	table.a = table.a * (intensity / distance * multiplier);
+	return (rgb_to_hex(table));
+}
+
 void	ft_print_texture(t_data *data, int x)
 {
 	t_ray		ray;
@@ -77,6 +94,7 @@ void	ft_print_texture(t_data *data, int x)
 		ray.texy = (int)ray.texpos & (height - 1);
 		ray.texpos += ray.step;
 		color = texture[((ray.texy * width) + ray.texx)];
+		color = get_shading(color, ray);
 		mlx_put_pixel(data->img.img, x, y, color);
 		++y;
 	}
