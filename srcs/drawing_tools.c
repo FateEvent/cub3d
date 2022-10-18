@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/17 17:40:34 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 14:49:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,30 @@ void	ft_my_mlx_pixel_put(t_data *data, int x, int y, int color)
 			+ (y * data->line_length + x * 4)) = color;
 }
 
-void	ft_print_texture(t_data *data, int x, int x2)
+void	ft_print_texture(t_data *data, int x)
 {
 	t_ray		ray;
-	int			text_select;
-	int			img_width;
-	uint8_t		*pixels;
-	uint32_t	*hex;
+	size_t		width;
+	size_t		height;
+	int			y;
+	uint32_t	color;
+	uint32_t	*texture;
 
+	y = ray.drawstart;
 	ray = data->ray_data;
-	text_select = ray.text_select;
-	img_width = data->textures[text_select].img->width;
-	pixels = data->textures[text_select].img->pixels;
-	hex = ft_from_uchar_to_hex_arr(pixels, img_width, data->textures[text_select].img->height);
-	while (ray.drawstart <= ray.drawend)
+	width = data->textures[ray.text_select].img->width;
+	height = data->textures[ray.text_select].img->height;
+	texture = ft_from_uchar_to_hex_arr(data->textures[ray.text_select].img->pixels, width, height);
+	while (y < ray.drawend)
 	{
-		ray.texy = (int)ray.texpos & (data->textures[text_select].img->height - 1);
+		ray.texy = (int)ray.texpos & (65 - 1);
 		ray.texpos += ray.step;
-		uint32_t color = hex[img_width * ray.texy + x2];
-		//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
-		if (ray.side == 1) color = (color >> 1) & 8355711;
-		mlx_put_pixel(data->img.img, x, ray.drawstart, color);
-		//printf("%i\n", x2);
-//		ft_my_mlx_pixel_put(data, x, ray.drawstart, color);
-		ray.drawstart++;
+		//printf("texy %i\n", ray.texy);
+		color = texture[(ray.texy * width) + ray.texx];
+		mlx_put_pixel(data->img.img, x, y, color);
+		++y;
 	}
+
 }
 
 static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,

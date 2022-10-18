@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/17 17:31:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/18 14:47:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,135 +27,91 @@ void	ft_update(void *param)
 
 void	ray_casting(t_data *data)
 {
-	for(int x = 0; x < WIDTH; x++)
+	t_ray		*ray;
+	size_t		x;
+	size_t		y;
+	int			width;
+	int			height;
+	uint32_t	*texture;
+
+	x = 0;
+	y = 0;
+	width = WIDTH;
+	height = HEIGHT;
+	ray = &data->ray_data;
+	texture = ft_from_uchar_to_hex_arr(data->textures[0].img->pixels, data->textures[0].img->width, data->textures[0].img->height);
+	while (x < WIDTH)
 	{
-		//calculate ray position and direction
-		data->ray_data.camera_x = 2 * x / (double)WIDTH - 1; //x-coordinate in camera space
-		data->ray_data.raydir_x = data->ray_data.dir_x + data->ray_data.plane_x * data->ray_data.camera_x;
-		data->ray_data.raydir_y = data->ray_data.dir_y + data->ray_data.plane_y * data->ray_data.camera_x;
-		//which box of the map we're in
-		data->ray_data.map_x = (int)data->ray_data.pos_x;
-		data->ray_data.map_y = (int)data->ray_data.pos_y;
-
-		data->ray_data.ray_delta_x = (data->ray_data.raydir_x == 0) ? 1e30 : fabs(1 / data->ray_data.raydir_x);
-		data->ray_data.ray_delta_y = (data->ray_data.raydir_y == 0) ? 1e30 : fabs(1 / data->ray_data.raydir_y);
-
-		//what direction to step in x or y-direction (either +1 or -1)
-		data->ray_data.hit = 0; //was there a wall hit?
-		if (data->ray_data.raydir_x < 0)
+		ray->camera_x = 2 * x / (double)width - 1;
+		ray->raydir_x = ray->dir_x + ray->plane_x * ray->camera_x;
+		ray->raydir_y = ray->dir_y + ray->plane_y * ray->camera_x;
+		ray->map_x = (int)ray->pos_x;
+		ray->map_y = (int)ray->pos_y;
+		ray->ray_delta_x = (ray->raydir_x == 0) ? 1e30 : fabs(1 / ray->raydir_x);
+		ray->ray_delta_y = (ray->raydir_y == 0) ? 1e30 : fabs(1 / ray->raydir_y);
+		if (ray->raydir_x < 0)
 		{
-			data->ray_data.step_x = -1;
-			data->ray_data.ray_side_x = (data->ray_data.pos_x - data->ray_data.map_x) * data->ray_data.ray_delta_x;
+			ray->step_x = -1;
+			ray->ray_side_x = (ray->pos_x - ray->map_x) * ray->ray_delta_x;
 		}
 		else
 		{
-			data->ray_data.step_x = 1;
-			data->ray_data.ray_side_x = (data->ray_data.map_x + 1.0 - data->ray_data.pos_x) * data->ray_data.ray_delta_x;
+			ray->step_x = 1;
+			ray->ray_side_x = (ray->map_x + 1.0 - ray->pos_x) * ray->ray_delta_x;
 		}
-		if (data->ray_data.raydir_y < 0)
+		if (ray->raydir_y < 0)
 		{
-			data->ray_data.step_y = -1;
-			data->ray_data.ray_side_y = (data->ray_data.pos_y - data->ray_data.map_y) * data->ray_data.ray_delta_y;
+			ray->step_y = -1;
+			ray->ray_side_y = (ray->pos_y - ray->map_y) * ray->ray_delta_y;
 		}
 		else
 		{
-			data->ray_data.step_y = 1;
-			data->ray_data.ray_side_y = (data->ray_data.map_y + 1.0 - data->ray_data.pos_y) * data->ray_data.ray_delta_y;
+			ray->step_y = 1;
+			ray->ray_side_y = (ray->map_y + 1.0 - ray->pos_y) * ray->ray_delta_y;
 		}
-		//perform DDA
-		float dist = 0;
-
-		while (data->ray_data.hit == 0)
+		ray->hit = 0;
+		while (ray->hit == 0)
 		{
-			//jump to next map square, either in x-direction, or in y-direction
-			if (data->ray_data.ray_side_x < data->ray_data.ray_side_y)
+			if (ray->ray_side_x < ray->ray_side_y)
 			{
-				data->ray_data.ray_side_x += data->ray_data.ray_delta_x;
-				data->ray_data.map_x += data->ray_data.step_x;
-				dist += data->ray_data.step_x;
-				data->ray_data.side = 0;
+				ray->ray_side_x += ray->ray_delta_x;
+				ray->map_x += ray->step_x;
+				ray->side = 0;
 			}
 			else
 			{
-				data->ray_data.ray_side_y += data->ray_data.ray_delta_y;
-				data->ray_data.map_y += data->ray_data.step_y;
-				dist += data->ray_data.step_y;
-				data->ray_data.side = 1;
+				ray->ray_side_y += ray->ray_delta_y;
+				ray->map_y += ray->step_y;
+				ray->side = 1;
 			}
-			//Check if ray has data->ray_data.hit a wall
-			if (data->map->map[data->ray_data.map_y][data->ray_data.map_x] > 48)
-			{
-				data->ray_data.hit = 1;	
-			}
+			if (data->map->map[ray->map_y][ray->map_x] > 48)
+				ray->hit = 1;
 		}
-		
-		if (data->ray_data.side == 0)
-			data->ray_data.walldistance = data->ray_data.ray_side_x - data->ray_data.ray_delta_x;
+		if (ray->side == 0)
+			ray->walldistance = (ray->ray_side_x - ray->ray_delta_x);
 		else
-			data->ray_data.walldistance = data->ray_data.ray_side_y - data->ray_data.ray_delta_y;
-
-		data->ray_data.intersection.x = data->ray_data.pos_x + (data->ray_data.dir_x * dist);
-		data->ray_data.intersection.y = data->ray_data.pos_y + (data->ray_data.dir_y * dist);
-		
-		//Calculate height of line to draw on screen
-		data->ray_data.lineheight = (int)(HEIGHT / data->ray_data.walldistance);
-
-		//calculate lowest and highest pixel to fill in current stripe
-		data->ray_data.drawstart = -data->ray_data.lineheight / 2 + HEIGHT / 2;
-		if(data->ray_data.drawstart < 0) data->ray_data.drawstart = 0;
-		data->ray_data.drawend = data->ray_data.lineheight / 2 + HEIGHT / 2;
-		if(data->ray_data.drawend >= HEIGHT) data->ray_data.drawend = HEIGHT - 1;
-
-		if (data->textures)
-		{
-		
-			//texturing calculations
-			data->ray_data.text_select = data->map->map[data->ray_data.map_y][data->ray_data.map_x] - 49; //1 subtracted from it so that texture 0 can be used!
-
-			//calculate value of data->ray_data.wall_x
-	 		if (data->ray_data.side == 0) data->ray_data.wall_x = data->ray_data.pos_y + data->ray_data.walldistance * data->ray_data.raydir_y;
-			else           data->ray_data.wall_x = data->ray_data.pos_x + data->ray_data.walldistance * data->ray_data.raydir_x;
-			data->ray_data.wall_x -= floor((data->ray_data.wall_x));
-
-	 		//x coordinate on the texture
-	 		data->ray_data.texx = (int)(data->ray_data.wall_x * (double)texWidth);
-	 		if(data->ray_data.side == 0 && data->ray_data.raydir_x > 0) data->ray_data.texx = texWidth - data->ray_data.texx - 1;
-			if(data->ray_data.side == 1 && data->ray_data.raydir_y < 0) data->ray_data.texx = texWidth - data->ray_data.texx - 1;
-
-			// How much to increase the texture coordinate per screen pixel
-			data->ray_data.step = 1.0 * (double)data->textures[data->ray_data.text_select].img->height / (double)data->ray_data.lineheight;
-			// Starting texture coordinate
-			data->ray_data.texpos = (data->ray_data.drawstart - HEIGHT / 2 + data->ray_data.lineheight / 2) * data->ray_data.step;
-			int x2 = ((data->textures[0].img->width * (int)(data->ray_data.intersection.x + data->ray_data.intersection.y)) % data->textures[0].img->width);
-			//printf("1 %u\n", (data->textures[0].img->width));
-			//printf("2 %u\n", (data->textures[0].img->width * (int)(data->ray_data.intersection.x + data->ray_data.intersection.y)));
-			//printf("3 %u\n", (data->textures[0].img->width * (int)(data->ray_data.intersection.x + data->ray_data.intersection.y)) % data->textures[0].img->width);
-			ft_print_texture(data, x, x2);
-			// printf("dist %f\n", data->ray_data.intersection.x + data->ray_data.intersection.y);
-			// printf("dist %i\n", (int)(data->ray_data.intersection.x + data->ray_data.intersection.y));
-			// printf("%d\n", (((int)(data->ray_data.intersection.x + data->ray_data.intersection.y)) % data->textures[0].img->width));
-		}
+			ray->walldistance = (ray->ray_side_y - ray->ray_delta_y);
+		ray->lineheight = (int)(height / ray->walldistance);
+		ray->pitch = 100;
+		ray->drawstart = -ray->lineheight / 2 + height / 2 + ray->pitch;
+		if (ray->drawstart < 0)
+			ray->drawstart = 0;
+		ray->drawend = ray->lineheight / 2 + height / 2 + ray->pitch;
+		if (ray->drawend >= height)
+			ray->drawend = height - 1;
+		if (ray->side == 0)
+			ray->wall_x = ray->pos_y + ray->walldistance * ray->raydir_y;
 		else
-		{
-			//choose wall color
-			uint32_t color;
-			switch (data->map->map[data->ray_data.map_y][data->ray_data.map_x])
-			{
-				case 49:
-					color = get_rgba(255, 0, 0, 255);
-					break ;
-				default:
-					color = get_rgba(0, 255, 0, 255);
-					break;
-			}
-			//give x and y sides different brightness
-			if (data->ray_data.side == 1)
-				color = (color >> 1) & 8355711;
-			
-			printf("pix %d %d %d %d\n", x, data->ray_data.drawstart, data->ray_data.drawend, color);
-			//draw the pixels of the stripe as a vertical line
-			t_vector	vec = ft_inttovec(x, data->ray_data.drawstart);
-			draw_vertical_line(data->img.img, vec, data->ray_data.drawend, color);
-		}
+			ray->wall_x = ray->pos_x + ray->walldistance * ray->raydir_x;
+		ray->wall_x -= floor(ray->wall_x);
+		ray->texx = (int)(ray->wall_x * (double)data->textures[ray->text_select].img->width);
+		if (ray->side == 0 && ray->raydir_x > 0)
+			ray->texx = data->textures[ray->text_select].img->width - ray->texx - 1;
+		if (ray->side == 1 && ray->raydir_y < 0)
+			ray->texx = data->textures[ray->text_select].img->width - ray->texx - 1;
+		ray->step = 1.0 * data->textures[ray->text_select].img->height / ray->lineheight;
+		ray->texpos = (ray->drawstart - ray->pitch - height / 2 + ray->lineheight / 2) * ray->step;
+		ft_print_texture(data, x);
+		++x;
 	}
 }

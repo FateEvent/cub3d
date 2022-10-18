@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/16 16:56:46 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:44:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	init_struct(t_data *data)
 	data->rotate_speed = 0.05;
 	data->frame = 0;
 	data->render_delay = 30;
+	data->ray_data.text_select = 0;
 }
 
 int	main(int argc, char *argv[])
