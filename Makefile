@@ -6,26 +6,26 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/19 16:33:50 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/19 16:45:09 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
-ARGS = map.cub
-CC = gcc
-FLAGS = -Wall -Wextra -Werror -g3
-LINKS = -lglfw -L /goinfre/${USER}/.brew/Cellar/glfw/3.3.8/lib/ #-ldl -lm #linuxflags
-LIBLINKS = -I./MLX42/include/MLX42 -I./includes -I./libft/includes
-SRC_PATH = srcs/
-OBJ_PATH = bin/
-C_EXTENSION = .c
+NAME		=	cub3d
+ARGS		=	map.cub
+CC			=	gcc
+FLAGS		=	-Wall -Wextra -Werror -g3
+LINKS		=	-lglfw -L /goinfre/${USER}/.brew/Cellar/glfw/3.3.8/lib/ #-ldl -lm #linuxflags
+LIBLINKS	=	-I./MLX42/include/MLX42 -I./includes -I./libft/includes
+SRC_PATH	=	srcs/
+OBJ_PATH	=	bin/
+C_EXTENSION	=	.c
 
 MAIN_PATH	=	
-MAIN_FILES 	= 	main display display_map
+MAIN_FILES	=	main display display_map
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 PARSE_PATH	=	parsing/
-PARSE_FILES =	check check_map check_map_utils check_map_utils2 gap_check \
+PARSE_FILES	=	check check_map check_map_utils check_map_utils2 gap_check \
 				gap_check_reverse get_color get_color2 get_texture hole_check \
 				invalid_check wall_check get_spawn_position
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES))
@@ -35,27 +35,27 @@ MLXT_FILES	=	textures window colours colour_conversions
 SRCS_FILES	+=	$(addprefix $(MLXT_PATH), $(MLXT_FILES))
 
 UTILS_PATH	=	utils/
-UTILS_FILES =	drawing_tools utils ft_from_uchar_to_rgb_buf vec_utils
+UTILS_FILES	=	drawing_tools utils ft_from_uchar_to_rgb_buf vec_utils
 SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	ray_casting/
-RC_FILES 	= 	hooks ray_casting_tools wall_casting wall_casting_vol2
+RC_FILES	=	hooks ray_casting_tools wall_casting wall_casting_vol2
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 
-RM =	rm -f
+RM	=	rm -f
 
-SRCS_FILES_EXT 		+= 	$(addsuffix $(C_EXTENSION), $(SRCS_FILES))
+SRCS_FILES_EXT	+=	$(addsuffix $(C_EXTENSION), $(SRCS_FILES))
 
-SRCS 				+= 	$(addprefix $(SRC_PATH), $(SRCS_FILES_EXT))
+SRCS			+=	$(addprefix $(SRC_PATH), $(SRCS_FILES_EXT))
 
-OBJS 				= 	$(addprefix $(OBJ_PATH), $(SRCS_FILES_EXT:c=o))
+OBJS			=	$(addprefix $(OBJ_PATH), $(SRCS_FILES_EXT:c=o))
 
-NONE = \033[0m
-HIGREEN = \033[92m
-HIBLUE = \033[94m
-CURSIVE = \033[3m
+NONE	= \033[0m
+HIGREEN	= \033[92m
+HIBLUE	= \033[94m
+CURSIVE	= \033[3m
 
 all: $(NAME)
 
