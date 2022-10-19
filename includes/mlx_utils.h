@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 12:21:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/19 12:11:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,8 +209,6 @@ enum e_key {
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
-//void		ft_invoke_pixie(char c, uint32_t *i, t_program *data,
-//				t_image *pixie);
 //void		ft_display_map(t_program *data, t_image *pixie);
 
 // window functions
@@ -221,8 +219,6 @@ char		**ft_map_reader(char *filename);
 
 void		ft_key_input(mlx_key_data_t keydata, void *param);
 void		ft_update(void *param);
-
-//void		ft_prop_init(t_prop *obj);
 
 // parsing
 t_map		*check(int argc, char **argv);
@@ -248,10 +244,6 @@ void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 				uint32_t color);
 void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 				uint32_t draw_end, uint32_t color);
-//void		draw_texture(t_program *data, float x, float wall_height,
-//				int texture_pos_x, t_texture texture);
-//void		draw_texture_from_img(t_program *data, float x, float wall_height,
-//				int texture_pos_x);
 void		ft_print_texture(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
