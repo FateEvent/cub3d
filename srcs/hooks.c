@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 12:02:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/19 14:26:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@ static void	ft_key_input_child(t_data *data, mlx_key_data_t keydata)
 
 	if (keydata.key == (keys_t)LEFT)
 	{
-		var.old_dir_x = data->ray_data.dir_x;
-		data->ray_data.dir_x = data->ray_data.dir_x * cos(data->rotate_speed) - data->ray_data.dir_y * sin(data->rotate_speed);
-		data->ray_data.dir_y = var.old_dir_x * sin(data->rotate_speed) + data->ray_data.dir_y * cos(data->rotate_speed);
-		var.old_plane_x = data->ray_data.plane_x;
-		data->ray_data.plane_x = data->ray_data.plane_x * cos(data->rotate_speed) - data->ray_data.plane_y * sin(data->rotate_speed);
-		data->ray_data.plane_y = var.old_plane_x * sin(data->rotate_speed) + data->ray_data.plane_y * cos(data->rotate_speed);
+		var.old_dir_x = data->ray_data.dir.x;
+		data->ray_data.dir.x = data->ray_data.dir.x * cos(data->rotate_speed) - data->ray_data.dir.y * sin(data->rotate_speed);
+		data->ray_data.dir.y = var.old_dir_x * sin(data->rotate_speed) + data->ray_data.dir.y * cos(data->rotate_speed);
+		var.old_plane_x = data->ray_data.plane.x;
+		data->ray_data.plane.x = data->ray_data.plane.x * cos(data->rotate_speed) - data->ray_data.plane.y * sin(data->rotate_speed);
+		data->ray_data.plane.y = var.old_plane_x * sin(data->rotate_speed) + data->ray_data.plane.y * cos(data->rotate_speed);
 		data->refresh = 1;
 
 	}
 	if (keydata.key == (keys_t)RIGHT)
 	{
-		var.old_dir_x = data->ray_data.dir_x;
-		data->ray_data.dir_x = data->ray_data.dir_x * cos(-data->rotate_speed) - data->ray_data.dir_y * sin(-data->rotate_speed);
-		data->ray_data.dir_y = var.old_dir_x * sin(-data->rotate_speed) + data->ray_data.dir_y * cos(-data->rotate_speed);
-		var.old_plane_x = data->ray_data.plane_x;
-		data->ray_data.plane_x = data->ray_data.plane_x * cos(-data->rotate_speed) - data->ray_data.plane_y * sin(-data->rotate_speed);
-		data->ray_data.plane_y = var.old_plane_x * sin(-data->rotate_speed) + data->ray_data.plane_y * cos(-data->rotate_speed);
+		var.old_dir_x = data->ray_data.dir.x;
+		data->ray_data.dir.x = data->ray_data.dir.x * cos(-data->rotate_speed) - data->ray_data.dir.y * sin(-data->rotate_speed);
+		data->ray_data.dir.y = var.old_dir_x * sin(-data->rotate_speed) + data->ray_data.dir.y * cos(-data->rotate_speed);
+		var.old_plane_x = data->ray_data.plane.x;
+		data->ray_data.plane.x = data->ray_data.plane.x * cos(-data->rotate_speed) - data->ray_data.plane.y * sin(-data->rotate_speed);
+		data->ray_data.plane.y = var.old_plane_x * sin(-data->rotate_speed) + data->ray_data.plane.y * cos(-data->rotate_speed);
 		data->refresh = 1;
 	}
 	if (keydata.key == (keys_t)ESCAPE)
@@ -48,22 +48,22 @@ void	ft_key_input(mlx_key_data_t keydata, void *param)
 	data = (t_data *)param;
 	if (keydata.key == (keys_t)UP)
 	{
-		if (data->map->map[(int)(data->ray_data.pos_y)]
-			[(int)(data->ray_data.pos_x + data->ray_data.dir_x * data->move_speed)] <= '0')
-			data->ray_data.pos_x += data->ray_data.dir_x * data->move_speed;
-		if (data->map->map[(int)(data->ray_data.pos_y + data->ray_data.dir_y * data->move_speed)]
-			[(int)(data->ray_data.pos_x)] <= '0')
-			data->ray_data.pos_y += data->ray_data.dir_y * data->move_speed;
+		if (data->map->map[(int)(data->ray_data.pos.y)]
+			[(int)(data->ray_data.pos.x + data->ray_data.dir.x * data->move_speed)] <= '0')
+			data->ray_data.pos.x += data->ray_data.dir.x * data->move_speed;
+		if (data->map->map[(int)(data->ray_data.pos.y + data->ray_data.dir.y * data->move_speed)]
+			[(int)(data->ray_data.pos.x)] <= '0')
+			data->ray_data.pos.y += data->ray_data.dir.y * data->move_speed;
 		data->refresh = 1;
 	}
 	if (keydata.key == (keys_t)DOWN)
 	{
-		if (data->map->map[(int)(data->ray_data.pos_y - data->ray_data.dir_y * data->move_speed)]
-			[(int)(data->ray_data.pos_x)] <= '0')
-			data->ray_data.pos_y -= data->ray_data.dir_y * data->move_speed;
-		if (data->map->map[(int)(data->ray_data.pos_y)]
-			[(int)(data->ray_data.pos_x - data->ray_data.dir_x * data->move_speed)] <= '0')
-			data->ray_data.pos_x -= data->ray_data.dir_x * data->move_speed;
+		if (data->map->map[(int)(data->ray_data.pos.y - data->ray_data.dir.y * data->move_speed)]
+			[(int)(data->ray_data.pos.x)] <= '0')
+			data->ray_data.pos.y -= data->ray_data.dir.y * data->move_speed;
+		if (data->map->map[(int)(data->ray_data.pos.y)]
+			[(int)(data->ray_data.pos.x - data->ray_data.dir.x * data->move_speed)] <= '0')
+			data->ray_data.pos.x -= data->ray_data.dir.x * data->move_speed;
 		data->refresh = 1;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 13:35:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:19:20 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	init_struct(t_data *data)
 {
-	data->ray_data.pos_x = 16.0;
-	data->ray_data.pos_y = 4.0;
-	data->ray_data.dir_x = -1.0;
-	data->ray_data.dir_y = 0.0;
-	data->ray_data.plane_x = 0.0;
-	data->ray_data.plane_y = 0.66;
+	data->ray_data.pos.x = 16.0;
+	data->ray_data.pos.y = 4.0;
+	data->ray_data.dir.x = -1.0;
+	data->ray_data.dir.y = 0.0;
+	data->ray_data.plane.x = 0.0;
+	data->ray_data.plane.y = 0.66;
 	data->move_speed = 0.3;
 	data->rotate_speed = 0.05;
 	data->frame = 0;

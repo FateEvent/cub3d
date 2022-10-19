@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/18 15:28:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/19 14:27:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void	ft_print_texture(t_data *data, int x)
 	texture = ft_from_uchar_to_hex_arr(data->textures[ray.text_select].img->pixels, width, height);
 	while (y < ray.drawend)
 	{
-		ray.texy = (int)ray.texpos & (height - 1);
+		ray.tex.y = (int)ray.texpos & (height - 1);
 		ray.texpos += ray.step;
-		color = texture[((ray.texy * width) + ray.texx)];
+		color = texture[((ray.tex.y * width) + ray.tex.x)];
 		color = get_shading(color, ray);
 		mlx_put_pixel(data->img.img, x, y, color);
 		++y;

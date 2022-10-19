@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 14:09:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:24:44 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <math.h>
 # include <MLX42.h>
 # include "libft.h"
-#define WIDTH 640
-#define HEIGHT 480
-#define texWidth 64
-#define texHeight 64
-#define BPP 4
+# define WIDTH 640
+# define HEIGHT 480
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
+# define BPP 4
 
 typedef struct s_vector
 {
@@ -73,22 +73,14 @@ typedef struct s_ray_data
 	double		resolution_x;
 	double		resolution_y;
 	double		camera_x;
-	double		plane_x;
-	double		plane_y;
-	double		dir_x;
-	double		dir_y;
-	double		raydir_x;
-	double		raydir_y;
-	double		pos_x;
-	double		pos_y;
-	int			map_x;
-	int			map_y;
-	double		ray_side_x;
-	double		ray_side_y;
-	double		ray_delta_x;
-	double		ray_delta_y;
-	int			step_x;
-	int			step_y;
+	t_vector2	plane;
+	t_vector2	dir;
+	t_vector2	ray_dir;
+	t_vector2	pos;
+	t_vector	map_pos;
+	t_vector2	ray_side;
+	t_vector2	ray_delta;
+	t_vector	step_coord;
 	int			hit;
 	int			side;
 	double		walldistance;
@@ -98,13 +90,12 @@ typedef struct s_ray_data
 	int			color;
 	double		rotate_left;
 	double		rotate_right;
-	int			texx;
-	int			texy;
+	t_vector	tex;
 	int			text_select;
 	double		wall_x;
 	double		step;
 	double		texpos;
-}	t_ray;
+}				t_ray;
 
 typedef struct s_key
 {
@@ -249,7 +240,7 @@ void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
 t_color		new_color(int r, int g, int b, int a);
 t_color		hex_to_rgb(uint32_t hex_value);
 t_color		lerp(t_color a, t_color b, double t);
-int 		get_rgba(int r, int g, int b, int a);
+int			get_rgba(int r, int g, int b, int a);
 int			rgb_to_hex(t_color rgb);
 int			add_shade(double distance, int color);
 int			get_opposite(int color);
@@ -257,10 +248,13 @@ void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
 
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);
-uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width, size_t height);
+uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width,
+				size_t height);
 uint32_t	**hex_buf_creator(uint32_t *arr, size_t width, size_t height);
-uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width, size_t height);
+uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width,
+				size_t height);
 t_color		**rgb_buf_creator(uint32_t **buf, size_t width, size_t height);
-t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width, size_t height);
+t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
+				size_t height);
 
 #endif
