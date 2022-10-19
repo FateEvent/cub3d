@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 14:24:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:33:16 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,6 @@ typedef struct s_color {
 typedef struct s_image {
 	xpm_t		*texture;
 	mlx_image_t	*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	uint32_t	color_arr;
 }				t_image;
 
 typedef struct sprite
@@ -68,45 +63,6 @@ typedef struct s_texture {
 	struct s_color	*colors;
 }				t_texture;
 
-typedef struct s_ray_data
-{
-	double		resolution_x;
-	double		resolution_y;
-	double		camera_x;
-	t_vector2	plane;
-	t_vector2	dir;
-	t_vector2	ray_dir;
-	t_vector2	pos;
-	t_vector	map_pos;
-	t_vector2	ray_side;
-	t_vector2	ray_delta;
-	t_vector	step_coord;
-	int			hit;
-	int			side;
-	double		walldistance;
-	int			lineheight;	
-	int			drawstart;	
-	int			drawend;	
-	int			color;
-	double		rotate_left;
-	double		rotate_right;
-	t_vector	tex;
-	int			text_select;
-	double		wall_x;
-	double		step;
-	double		texpos;
-}				t_ray;
-
-typedef struct s_key
-{
-	int	move_forward;
-	int	move_back;
-	int	move_left;
-	int	move_right;
-	int	rotate_left;
-	int	rotate_right;
-}	t_key;
-
 typedef struct s_map {
 	char		**map;
 	char		*north_texture;
@@ -119,6 +75,59 @@ typedef struct s_map {
 	char		dir;
 }				t_map;
 
+typedef struct s_ray_data
+{
+	t_vector2	resolution;
+	double		camera_x;
+	t_vector2	plane;
+	t_vector2	dir;
+	t_vector2	ray_dir;
+	t_vector2	pos;
+	t_vector	map_pos;
+	t_vector2	ray_side;
+	t_vector2	ray_delta;
+	t_vector	step_coord;
+	int			hit;
+	int			side;
+	double		wall_distance;
+	int			line_height;	
+	int			draw_start;	
+	int			draw_end;	
+	int			color;
+	double		rotate_left;
+	double		rotate_right;
+	t_vector	tex;
+	int			text_select;
+	double		wall_x;
+	double		step;
+	double		tex_pos;
+	t_map		*map;
+}				t_ray;
+
+typedef struct s_key
+{
+	int	move_forward;
+	int	move_back;
+	int	move_left;
+	int	move_right;
+	int	rotate_left;
+	int	rotate_right;
+}	t_key;
+
+typedef struct s_speed
+{
+	double		movement;
+	double		rotation;
+}				t_speed;
+
+typedef struct s_player
+{
+	char		player_spawn_dir;
+	t_vector	player_spawn_pos;
+	int			fov;
+	t_speed		speed;
+}				t_player;
+
 typedef struct s_data
 {
 	mlx_t		*mlx;
@@ -128,28 +137,14 @@ typedef struct s_data
 	uint32_t	render_delay;
 	uint32_t	img_index;
 	t_image		*textures;
-	int			floor;
-	int			ceiling;
-	void		*display;
-	char		*display_add;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	char		player_spawn_dir;
-	int			player_spawn_pos[2];
 	int			edge_size;
-	int			fov;
 	int			shading;
-	int			resolution_x;
-	int			resolution_y;
-	double		move_speed;
-	double		rotate_speed;
+	t_vector2	resolution;
+	t_player	player;
 	t_ray		ray_data;
 	t_key		key;
 	int			keycode;
-	int			textures_nb;
 	int			fd;
-	int			is_map_started;
 	int			refresh;
 }				t_data;
 
@@ -215,6 +210,17 @@ int			space_check(char **map, ssize_t i, ssize_t j);
 int			hole_check(char **map);
 int			get_spawn_position(t_map *m);
 
+// ray casting tools
+void		ray_casting(t_data *data);
+void		ray_data_init(t_data *data, t_ray *ray, int x);
+void		ray_delta_calculator(t_ray *ray);
+void		rayside_calculator(t_ray *ray);
+void		ray_launcher(t_ray *ray);
+void		wall_distance_calculator(t_ray *ray);
+void		wall_line_calculator(t_ray *ray);
+void		texture_x_pos_calculator(t_data *data, t_ray *ray);
+void		texture_y_pos_calculator(t_data *data, t_ray *ray);
+
 // drawing tools
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 				uint32_t color);
@@ -225,9 +231,6 @@ void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 void		ft_print_texture(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
-
-void		ray_casting(t_data *data);
-double		degrees_to_radians(double degrees);
 
 // vector utils
 t_vector	ft_inttovec(int x, int y);

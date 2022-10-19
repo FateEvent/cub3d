@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 14:19:20 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:11:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	init_struct(t_data *data)
 	data->ray_data.dir.y = 0.0;
 	data->ray_data.plane.x = 0.0;
 	data->ray_data.plane.y = 0.66;
-	data->move_speed = 0.3;
-	data->rotate_speed = 0.05;
+	data->player.speed.movement = 0.3;
+	data->player.speed.rotation = 0.05;
 	data->frame = 0;
 	data->render_delay = 30;
 	data->ray_data.text_select = 0;

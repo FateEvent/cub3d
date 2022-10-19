@@ -1,54 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_from_uchar_to_rgb_buf.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/17 11:27:51 by faventur         ###   ########.fr       */
+/*   Created: 2022/10/19 16:00:51 by faventur          #+#    #+#             */
+/*   Updated: 2022/10/19 16:00:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	ft_uchar_arr_display(unsigned char *arr, size_t size)
-{
-	size_t	i;
-
-	if (!arr)
-		return ;
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%d\n", arr[i]);
-		i++;
-	}
-}
-
-t_vector	ft_get_x_and_y(char **map, char prop)
-{
-	t_vector	coord;
-
-	coord.x = 0;
-	coord.y = 0;
-	while (map[coord.y])
-	{
-		while (map[coord.y][coord.x])
-		{
-			if (map[coord.y][coord.x] == prop)
-				return (coord);
-			coord.x++;
-		}
-		coord.x = 0;
-		coord.y++;
-	}
-	coord.x = 3000;
-	coord.y = 3000;
-	return (coord);
-}
-
-uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width, size_t height)
+uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width,
+				size_t height)
 {
 	uint32_t	*hex_arr;
 	size_t		i;
@@ -62,7 +27,6 @@ uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width, size_t heig
 	while (i < width * height * 4 && j < width * height)
 	{
 		hex_arr[j] = get_rgba(arr[i], arr[i + 1], arr[i + 2], arr[i + 3]);
-//		ft_printf("%d\n", hex_arr[j]);
 		i += 4;
 		j++;
 	}
@@ -88,7 +52,6 @@ uint32_t	**hex_buf_creator(uint32_t *arr, size_t width, size_t height)
 		while (j < width && k < height * width)
 		{
 			hex_buf[i][j] = arr[k];
-//			ft_printf("%d\n", hex_buf[i][j]);
 			j++;
 			k++;
 		}
@@ -122,7 +85,8 @@ t_color	**rgb_buf_creator(uint32_t **buf, size_t width, size_t height)
 	return (rgb_buf);
 }
 
-uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width, size_t height)
+uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width,
+				size_t height)
 {
 	uint32_t	*hex_arr;
 	uint32_t	**hex_buf;
@@ -133,7 +97,8 @@ uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width, size_t hei
 	return (hex_buf);
 }
 
-t_color	**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width, size_t height)
+t_color	**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
+			size_t height)
 {
 	uint32_t	*hex_arr;
 	uint32_t	**hex_buf;

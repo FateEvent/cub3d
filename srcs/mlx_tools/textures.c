@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 12:10:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:56:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 static void	from_texture_to_image(t_data *data, t_image *texture)
 {
-	texture[0].img = mlx_texture_to_image(data->mlx, &texture[0].texture->texture);
-	texture[1].img = mlx_texture_to_image(data->mlx, &texture[1].texture->texture);
+	texture[0].img = mlx_texture_to_image(data->mlx,
+			&texture[0].texture->texture);
+	texture[1].img = mlx_texture_to_image(data->mlx,
+			&texture[1].texture->texture);
 	if (!texture[0].img || !texture[1].img)
 		return ;
 }

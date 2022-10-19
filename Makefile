@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/19 13:54:30 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/19 16:33:50 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,26 @@ OBJ_PATH = bin/
 C_EXTENSION = .c
 
 MAIN_PATH	=	
-MAIN_FILES 	= 	main window hooks utils display textures colours \
-				colour_conversions drawing_tools ray_casting_tools \
-				display_map vec_utils
+MAIN_FILES 	= 	main display display_map
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 PARSE_PATH	=	parsing/
 PARSE_FILES =	check check_map check_map_utils check_map_utils2 gap_check \
 				gap_check_reverse get_color get_color2 get_texture hole_check \
 				invalid_check wall_check get_spawn_position
-SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES)) 
+SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES))
+
+MLXT_PATH	=	mlx_tools/
+MLXT_FILES	=	textures window colours colour_conversions
+SRCS_FILES	+=	$(addprefix $(MLXT_PATH), $(MLXT_FILES))
+
+UTILS_PATH	=	utils/
+UTILS_FILES =	drawing_tools utils ft_from_uchar_to_rgb_buf vec_utils
+SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
+
+RC_PATH		=	ray_casting/
+RC_FILES 	= 	hooks ray_casting_tools wall_casting wall_casting_vol2
+SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 

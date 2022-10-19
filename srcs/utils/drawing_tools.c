@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 14:27:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:54:41 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	draw_floor(t_data *data, int x)
 	ray = data->ray_data;
 	height = HEIGHT;
 	half_height = height / 2;
-	draw_line(data->img.img, (t_vector2){x, half_height + ray.lineheight / 2}, (t_vector2){x, height}, rgb_to_hex(data->map->floor_color));
+	draw_line(data->img.img, (t_vector2){x, half_height + ray.line_height / 2}, (t_vector2){x, height}, rgb_to_hex(data->map->floor_color));
 }
 
 void	draw_ceiling(t_data *data, int x)
@@ -55,7 +55,7 @@ void	draw_ceiling(t_data *data, int x)
 	ray = data->ray_data;
 	height = HEIGHT;
 	half_height = height / 2;
-	draw_line(data->img.img, (t_vector2){x, 0}, (t_vector2){x, half_height - ray.lineheight / 2}, rgb_to_hex(data->map->ceiling_color));
+	draw_line(data->img.img, (t_vector2){x, 0}, (t_vector2){x, half_height - ray.line_height / 2}, rgb_to_hex(data->map->ceiling_color));
 }
 
 uint32_t	get_shading(uint32_t color, t_ray ray)
@@ -65,7 +65,7 @@ uint32_t	get_shading(uint32_t color, t_ray ray)
 	double	distance;
 	double	intensity;
 
-	distance = ray.walldistance;
+	distance = ray.wall_distance;
 	if (distance <= 1.00)
 		return (color);
 	table = hex_to_rgb(color);
@@ -85,14 +85,14 @@ void	ft_print_texture(t_data *data, int x)
 	uint32_t	*texture;
 
 	ray = data->ray_data;
-	y = ray.drawstart;
+	y = ray.draw_start;
 	width = data->textures[ray.text_select].img->width;
 	height = data->textures[ray.text_select].img->height;
 	texture = ft_from_uchar_to_hex_arr(data->textures[ray.text_select].img->pixels, width, height);
-	while (y < ray.drawend)
+	while (y < ray.draw_end)
 	{
-		ray.tex.y = (int)ray.texpos & (height - 1);
-		ray.texpos += ray.step;
+		ray.tex.y = (int)ray.tex_pos & (height - 1);
+		ray.tex_pos += ray.step;
 		color = texture[((ray.tex.y * width) + ray.tex.x)];
 		color = get_shading(color, ray);
 		mlx_put_pixel(data->img.img, x, y, color);
