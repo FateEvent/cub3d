@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 12:11:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:09:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct s_vector
 
 typedef struct s_vector2
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }				t_vector2;
 
 typedef struct s_color {
@@ -117,13 +117,15 @@ typedef struct s_key
 }	t_key;
 
 typedef struct s_map {
-	char	**map;
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
-	t_color	floor_color;
-	t_color	ceiling_color;
+	char		**map;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	t_color		floor_color;
+	t_color		ceiling_color;
+	t_vector	spawn_pos;
+	char		dir;
 }				t_map;
 
 typedef struct s_data
@@ -165,22 +167,6 @@ typedef struct s_var
 	double	old_dir_x;
 	double	old_plane_x;
 }				t_var;
-
-typedef struct s_map_data
-{
-	char	**map;
-	int		x_start;
-	int		y_start;
-	int		pos_x;
-	int		pos_y;
-	int		width;
-	int		height;
-	char	dir;
-	int		nb_pass;
-	int		no_move_possible;
-	int		is_againt_wall;
-	int		nb_move;
-}	t_map_data;
 
 typedef struct s_getcolor {
 	ssize_t	i;
@@ -236,6 +222,7 @@ int			gap_check(char **map);
 int			gap_check_reverse(char **map, ssize_t i, ssize_t j);
 int			space_check(char **map, ssize_t i, ssize_t j);
 int			hole_check(char **map);
+int			get_spawn_position(t_map *m);
 
 // drawing tools
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
@@ -249,19 +236,19 @@ void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 
 void		ray_casting(t_data *data);
-float		degrees_to_radians(float degrees);
+double		degrees_to_radians(double degrees);
 
 // vector utils
 t_vector	ft_inttovec(int x, int y);
-t_vector2	ft_floattovec2(float x, float y);
-float		ft_vect2_distance_calc(t_vector2 start, t_vector2 finish);
+t_vector2	ft_doubletovec2(double x, double y);
+double		ft_vect2_distance_calc(t_vector2 start, t_vector2 finish);
 void		ft_vec_swap(t_vector *start, t_vector *finish);
 void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
 
 // colour tools
 t_color		new_color(int r, int g, int b, int a);
 t_color		hex_to_rgb(uint32_t hex_value);
-t_color		lerp(t_color a, t_color b, float t);
+t_color		lerp(t_color a, t_color b, double t);
 int 		get_rgba(int r, int g, int b, int a);
 int			rgb_to_hex(t_color rgb);
 int			add_shade(double distance, int color);

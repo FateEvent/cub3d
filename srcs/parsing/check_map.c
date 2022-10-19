@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:48:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/17 10:41:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/19 14:04:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ static int	check_map_settings(t_map *m, char **map)
 	return (0);
 }
 
+static void	check_map_integrity_vol2(t_map *m, char **map)
+{
+	if (check_map_components(m->map) == -1)
+	{
+		freearr(map);
+		throw_err_ex("Error : Invalid map file.");
+	}
+	freearr(map);
+}
+
 t_map	*check_map_integrity(char *path)
 {
 	t_map	*mapstruct;
@@ -85,12 +95,8 @@ t_map	*check_map_integrity(char *path)
 		freearr(map);
 		throw_err_ex("Error : Invalid map file.");
 	}
-	if (check_map_components(mapstruct->map) == -1)
-	{
-		freearr(map);
-		throw_err_ex("Error : Invalid map file.");
-	}
-	freearr(map);
+	check_map_integrity_vol2(mapstruct, map);
+	get_spawn_position(mapstruct);
 	return (mapstruct);
 }
 

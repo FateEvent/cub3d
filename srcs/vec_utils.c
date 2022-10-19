@@ -6,15 +6,15 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:36:35 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 11:04:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:10:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-float	ft_vect2_distance_calc(t_vector2 start, t_vector2 finish)
+double	ft_vect2_distance_calc(t_vector2 start, t_vector2 finish)
 {
-	float	distance;
+	double	distance;
 
 	distance = sqrtf(powf(start.x - finish.x, 2) + powf(start.y - finish.y, 2));
 	return (distance);
@@ -29,7 +29,7 @@ t_vector	ft_inttovec(int x, int y)
 	return (vec);
 }
 
-t_vector2	ft_floattovec2(float x, float y)
+t_vector2	ft_doubletovec2(double x, double y)
 {
 	t_vector2	vec;
 

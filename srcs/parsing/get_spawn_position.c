@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   get_spawn_position.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/08 17:03:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 13:56:12 by faventur         ###   ########.fr       */
+/*   Created: 2022/10/19 13:43:33 by faventur          #+#    #+#             */
+/*   Updated: 2022/10/19 13:53:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	check_args(char argc)
+int	get_spawn_position(t_map *m)
 {
-	if (argc != 2)
-		throw_err_ex("Error: Invalid number of arguments.");
+	size_t	i;
+	size_t	j;
+
+	i = -1;
+	while (m->map[++i])
+	{
+		j = -1;
+		while (m->map[i][++j])
+		{
+			if (m->map[i][j] == 'N' || m->map[i][j] == 'S' || m->map[i][j] == 'E'
+				|| m->map[i][j] == 'W')
+			{
+				m->dir = m->map[i][j];
+				m->spawn_pos.y = i;
+				m->spawn_pos.x = j;
+				return (0);
+			}
+		}
+	}
+	return (-1);
 }
 
-t_map	*check(int argc, char **argv)
-{
-	check_args(argc);
-	check_map_extension(argv);
-	return (check_map_integrity(argv[1]));
-}

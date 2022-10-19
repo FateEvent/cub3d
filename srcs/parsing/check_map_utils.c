@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/14 18:10:16 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/19 13:42:16 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ static int	min_check(char **map)
 		printf("Invalid player position.\n");
 		return (-1);
 	}
-	else
-		return (0);
+	return (0);
 }
 
 int	space_check(char **map, ssize_t i, ssize_t j)

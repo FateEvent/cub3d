@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/18 12:22:52 by albaur           ###   ########.fr        #
+#    Updated: 2022/10/19 13:54:30 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 PARSE_PATH	=	parsing/
 PARSE_FILES =	check check_map check_map_utils check_map_utils2 gap_check \
 				gap_check_reverse get_color get_color2 get_texture hole_check \
-				invalid_check wall_check
+				invalid_check wall_check get_spawn_position
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES)) 
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
@@ -54,7 +54,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) -sC ./MLX42
 	@mv ./libft/libft.a .
 	@mv ./MLX42/libmlx42.a .
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) -fsanitize=address
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) #-fsanitize=address
 	@echo "$(CURSIVE)$(HIBLUE)Parce qu'ouvrir une fenêtre,$(NONE)"
 	@echo "$(CURSIVE)$(HIGREEN)c'est surfait.$(NONE)"
 
