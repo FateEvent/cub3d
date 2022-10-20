@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 16:28:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:54:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ray_casting(t_data *data)
 
 	x = 0;
 	ray = &data->ray_data;
-	while (x < WIDTH)
+	while (x < ray->resolution.x)
 	{
 		ray_data_init(data, ray, x);
 		rayside_calculator(ray);

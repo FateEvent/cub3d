@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 12:03:33 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:37:44 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	rayside_calculator(t_ray *ray)
 	}
 }
 
-/*
 void	ray_delta_calculator(t_ray *ray)
 {
 	if (ray->ray_dir.x == 0)
@@ -82,13 +81,6 @@ void	ray_delta_calculator(t_ray *ray)
 	else
 		ray->ray_delta.y = fabs(1 / ray->ray_dir.y);
 }
-*/
-
-void	ray_delta_calculator(t_ray *ray)
-{
-	ray->ray_delta.x = (ray->ray_dir.x == 0) ? 1e30 : fabs(1 / ray->ray_dir.x);
-	ray->ray_delta.y = (ray->ray_dir.y == 0) ? 1e30 : fabs(1 / ray->ray_dir.y);
-}
 
 void	ray_data_init(t_data *data, t_ray *ray, int x)
 {
@@ -99,7 +91,7 @@ void	ray_data_init(t_data *data, t_ray *ray, int x)
 	width = data->textures[ray->text_select].img->width;
 	height = data->textures[ray->text_select].img->height;
 	pixels = data->textures[ray->text_select].img->pixels;
-	ray->camera_x = 2 * x / (double)WIDTH - 1;
+	ray->camera_x = 2 * x / (double)ray->resolution.x - 1;
 	ray->ray_dir.x = ray->dir.x + ray->plane.x * ray->camera_x;
 	ray->ray_dir.y = ray->dir.y + ray->plane.y * ray->camera_x;
 	ray->map_pos.x = (int)ray->pos.x;

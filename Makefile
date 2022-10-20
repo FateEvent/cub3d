@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/19 16:45:09 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/20 14:55:12 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ UTILS_FILES	=	drawing_tools utils ft_from_uchar_to_rgb_buf vec_utils
 SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	ray_casting/
-RC_FILES	=	hooks ray_casting_tools wall_casting wall_casting_vol2
+RC_FILES	=	hooks ray_casting_tools wall_casting wall_casting_vol2 \
+				floor_ceiling_textures
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})

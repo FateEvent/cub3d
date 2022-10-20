@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:59:33 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 14:11:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:50:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,15 @@ t_color	hex_to_rgb(uint32_t hex_value)
 	return (rgb);
 }
 
-int	add_shade(double distance, int color)
+void	turn_pixel_to_color(char *pixel, t_color color)
 {
-	t_color	rgb;
-	t_color	black;
-
-	rgb = hex_to_rgb(color);
-	black = hex_to_rgb(0xff000000);
-	if (distance >= 0 && distance <= 1)
-	{
-		rgb = lerp(rgb, black, distance);
-		color = rgb_to_hex(rgb);
-		return (color);
-	}
-	return (0x0);
+	pixel[0] = color.b;
+	pixel[1] = color.g;
+	pixel[2] = color.r;
+	pixel[3] = color.a;
 }
 
-int	get_opposite(int color)
+int	get_rgba(int r, int g, int b, int a)
 {
-	t_color	rgb;
-
-	rgb = hex_to_rgb(color);
-	color = rgb_to_hex(rgb);
-	return (color);
+	return (r << 24 | g << 16 | b << 8 | a);
 }

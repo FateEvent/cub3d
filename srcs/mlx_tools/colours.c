@@ -6,27 +6,11 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:54:00 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/07 17:34:35 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:50:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
-/*
-** The new_color() function returns a new color, each value going from 0 to
-** 255.
-** 
-** The turn_pixel_to_color() function turns the four first chars of the
-** <pixel> string into the <color> structure. Pixels are defined as follows:
-** the first char is blue, the second one is green, the third one is red and
-** the fourth one represents the alpha or transparency. This order depends
-** on the system, and it is defined by the endian.
-** 
-** The turn_img_to_color() function turns all the pixels of  the <image>
-** structure into the <color> structure. The loops repeat for each pixel
-** of the image as it was a 2D table, and it is applied the formula to
-** separate the colors into the struct.
-*/
 
 t_color	new_color(int r, int g, int b, int a)
 {
@@ -39,31 +23,27 @@ t_color	new_color(int r, int g, int b, int a)
 	return (color);
 }
 
-void	turn_pixel_to_color(char *pixel, t_color color)
+int	add_shade(double distance, int color)
 {
-	pixel[0] = color.b;
-	pixel[1] = color.g;
-	pixel[2] = color.r;
-	pixel[3] = color.a;
-}
-/*
-void	turn_img_to_color(t_image *image, t_color color)
-{
-	uint32_t	x;
-	uint32_t	y;
+	t_color	rgb;
+	t_color	black;
 
-	y = 0;
-	while (y < image->img->height)
+	rgb = hex_to_rgb(color);
+	black = hex_to_rgb(0xff000000);
+	if (distance >= 0 && distance <= 1)
 	{
-		x = 0;
-		while (x < image->img->width)
-		{
-			turn_pixel_to_color(
-				&image->img->pixels[x * 4 + image->img->count * y],
-				color);
-			x++;
-		}
-		y++;
+		rgb = lerp(rgb, black, distance);
+		color = rgb_to_hex(rgb);
+		return (color);
 	}
+	return (0x0);
 }
-*/
+
+int	get_opposite(int color)
+{
+	t_color	rgb;
+
+	rgb = hex_to_rgb(color);
+	color = rgb_to_hex(rgb);
+	return (color);
+}
