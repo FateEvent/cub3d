@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 14:54:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:07:21 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,16 @@ void	ft_print_texture(t_data *data, int x)
 	size_t		height;
 	int			y;
 	uint32_t	color;
-	uint32_t	*texture;
 
 	ray = data->ray_data;
 	y = ray.draw_start;
 	width = data->textures[ray.text_select].img->width;
 	height = data->textures[ray.text_select].img->height;
-	texture = ft_from_uchar_to_hex_arr(data->textures[ray.text_select].img->pixels, width, height);
 	while (y < ray.draw_end)
 	{
 		ray.tex.y = (int)ray.tex_pos & (height - 1);
 		ray.tex_pos += ray.step;
-		color = texture[((ray.tex.y * width) + ray.tex.x)];
+		color = ray.tex_buf[((ray.tex.y * width) + ray.tex.x)];
 		color = get_shading(color, ray);
 		mlx_put_pixel(data->img.img, x, y, color);
 		++y;
