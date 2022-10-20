@@ -6,20 +6,58 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 14:46:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:55:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
+static void	init_direction_child(t_data *data, t_ray *ray)
+{
+	 if (data->map->dir == 'E')
+	{
+		ray->dir.x = -1;
+		ray->dir.y = 0;
+		ray->plane.x = 0;
+		ray->plane.y = -(double)data->player.fov / 100;
+	}
+	if (data->map->dir == 'W')
+	{
+		ray->dir.x = 1;
+		ray->dir.y = 0;
+		ray->plane.x = 0;
+		ray->plane.y = (double)data->player.fov / 100;
+	}
+}
+
+void	init_direction(t_data *data)
+{
+	t_ray	*ray;
+
+	ray = &data->ray_data;
+	if (data->map->dir == 'N')
+	{
+		ray->dir.x = 0;
+		ray->dir.y = -1;
+		ray->plane.x = (double)data->player.fov / 100;
+		ray->plane.y = 0;
+		
+	}
+	if (data->map->dir == 'S')
+	{
+		ray->dir.x = 0;
+		ray->dir.y = 1;
+		ray->plane.x = -(double)data->player.fov / 100;
+		ray->plane.y = 0;
+	}
+	init_direction_child(data, ray);
+		
+}
+
 void	init_struct(t_data *data)
 {
-	data->ray_data.pos.x = 16.0;
-	data->ray_data.pos.y = 4.0;
-	data->ray_data.dir.x = -1.0;
-	data->ray_data.dir.y = 0.0;
-	data->ray_data.plane.x = 0.0;
-	data->ray_data.plane.y = 0.66;
+	data->ray_data.pos.x = data->map->spawn_pos.x;
+	data->ray_data.pos.y = data->map->spawn_pos.y;
 	data->player.speed.movement = 0.3;
 	data->player.speed.rotation = 0.05;
 	data->frame = 0;
@@ -30,6 +68,8 @@ void	init_struct(t_data *data)
 	data->resolution.y = HEIGHT;
 	data->ray_data.resolution.x = data->resolution.x;
 	data->ray_data.resolution.y = data->resolution.y;
+	data->player.fov = 70;
+	init_direction(data);
 }
 
 int	main(int argc, char *argv[])

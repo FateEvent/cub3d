@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 14:31:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:56:31 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_update(void *param)
 static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-if (keydata.key == (keys_t)RIGHT)
+if (keydata.key == (keys_t)LEFT)
 	{
 		var->old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * cos(-var->rotation) - ray->dir.y
@@ -50,7 +50,7 @@ if (keydata.key == (keys_t)RIGHT)
 static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	if (keydata.key == (keys_t)LEFT)
+	if (keydata.key == (keys_t)RIGHT)
 	{
 		var->old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * cos(var->rotation) - ray->dir.y

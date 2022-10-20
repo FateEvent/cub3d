@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 11:14:57 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:27:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,8 @@ int			gap_check_reverse(char **map, ssize_t i, ssize_t j);
 int			space_check(char **map, ssize_t i, ssize_t j);
 int			hole_check(char **map);
 int			get_spawn_position(t_map *m);
+
+void		init_direction(t_data *data);
 
 // ray casting tools
 void		ray_casting(t_data *data);
