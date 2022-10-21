@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 10:24:02 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:00:29 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,11 @@ typedef struct s_var
 	double	old_plane_x;
 	double	rotation;
 	double	movement;
+	size_t		width;
+	size_t		height;
+	uint32_t	color;
+	int			y;
+	uint8_t		*pixels;
 }				t_var;
 
 typedef struct s_getcolor {

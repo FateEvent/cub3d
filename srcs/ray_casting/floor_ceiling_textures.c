@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 10:42:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:08:35 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,24 @@ int	choose_wall_texture(t_data *data)
 
 void	draw_walls(t_data *data, int x)
 {
-	t_ray		ray;
-	size_t		width;
-	size_t		height;
-	int			y;
-	uint32_t	color;
+	t_ray	ray;
+	t_var	var;
 
 	ray = data->ray_data;
-	y = ray.draw_start;
+	var.y = ray.draw_start;
 	ray.text_select = choose_wall_texture(data);
-	width = data->textures[ray.text_select].img->width;
-	height = data->textures[ray.text_select].img->height;
-	while (y < ray.draw_end)
+	var.width = data->textures[ray.text_select].img->width;
+	var.height = data->textures[ray.text_select].img->height;
+	var.pixels = data->textures[ray.text_select].img->pixels;
+	ray.tex_buf = ft_from_uchar_to_hex_arr(var.pixels, var.width,
+		var.height);
+	while (var.y < ray.draw_end)
 	{
-		ray.tex.y = (int)ray.tex_pos & (height - 1);
+		ray.tex.y = (int)ray.tex_pos & (var.height - 1);
 		ray.tex_pos += ray.step;
-		color = ray.tex_buf[((ray.tex.y * width) + ray.tex.x)];
-		color = get_shading(color, ray);
-		mlx_put_pixel(data->img.img, x, y, color);
-		++y;
+		var.color = ray.tex_buf[((ray.tex.y * var.width) + ray.tex.x)];
+		var.color = get_shading(var.color, ray);
+		mlx_put_pixel(data->img.img, x, var.y, var.color);
+		++var.y;
 	}
 }

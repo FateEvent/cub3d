@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 10:30:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:09:07 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,6 @@ void	ray_delta_calculator(t_ray *ray)
 
 void	ray_data_init(t_data *data, t_ray *ray, int x)
 {
-	size_t	width;
-	size_t	height;
-	uint8_t	*pixels;
-
-	width = data->textures[ray->text_select].img->width;
-	height = data->textures[ray->text_select].img->height;
-	pixels = data->textures[ray->text_select].img->pixels;
 	ray->camera_x = 2 * x / (double)ray->resolution.x - 1;
 	ray->ray_dir.x = ray->dir.x + ray->plane.x * ray->camera_x;
 	ray->ray_dir.y = ray->dir.y + ray->plane.y * ray->camera_x;
@@ -98,5 +91,4 @@ void	ray_data_init(t_data *data, t_ray *ray, int x)
 	ray->map_pos.y = (int)ray->pos.y;
 	ray_delta_calculator(ray);
 	ray->map = data->map;
-	ray->tex_buf = ft_from_uchar_to_hex_arr(pixels, width, height);
 }
