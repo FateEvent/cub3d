@@ -1,7 +1,7 @@
-NO ./images/test.xpm42
-SO ./images/test.xpm42
-WE ./images/red_and_brown.xpm42
-EA ./images/red_and_brown.xpm42
+NO ./images/north.xpm42
+SO ./images/south.xpm42
+WE ./images/west.xpm42
+EA ./images/east.xpm42
 
 F 220,100,0
 C 225,30,0
