@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 17:56:31 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:00:00 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_update(void *param)
 static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-if (keydata.key == (keys_t)LEFT)
+if (keydata.key == (keys_t)RIGHT)
 	{
 		var->old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * cos(-var->rotation) - ray->dir.y
@@ -50,7 +50,7 @@ if (keydata.key == (keys_t)LEFT)
 static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	if (keydata.key == (keys_t)RIGHT)
+	if (keydata.key == (keys_t)LEFT)
 	{
 		var->old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * cos(var->rotation) - ray->dir.y
@@ -74,10 +74,10 @@ static void	ft_key_input_child(t_data *data, t_ray *ray, t_var *var,
 	if (keydata.key == (keys_t)DOWN)
 	{
 		if (data->map->map[(int)(ray->pos.y - ray->dir.y * var->movement)]
-			[(int)(ray->pos.x)] <= '0')
+			[(int)(ray->pos.x)] != '1')
 			ray->pos.y -= ray->dir.y * var->movement;
 		if (data->map->map[(int)(ray->pos.y)]
-			[(int)(ray->pos.x - ray->dir.x * var->movement)] <= '0')
+			[(int)(ray->pos.x - ray->dir.x * var->movement)] != '1')
 			ray->pos.x -= ray->dir.x * var->movement;
 		data->refresh = 1;
 	}
@@ -98,10 +98,10 @@ void	ft_key_input(mlx_key_data_t keydata, void *param)
 	if (keydata.key == (keys_t)UP)
 	{
 		if (data->map->map[(int)(ray->pos.y)]
-			[(int)(ray->pos.x + ray->dir.x * var.movement)] <= '0')
+			[(int)(ray->pos.x + ray->dir.x * var.movement)] != '1')
 			ray->pos.x += ray->dir.x * var.movement;
 		if (data->map->map[(int)(ray->pos.y + ray->dir.y * var.movement)]
-			[(int)(ray->pos.x)] <= '0')
+			[(int)(ray->pos.x)] != '1')
 			ray->pos.y += ray->dir.y * var.movement;
 		data->refresh = 1;
 	}

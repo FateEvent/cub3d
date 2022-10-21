@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 11:09:07 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:09:45 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ray_launcher(t_ray *ray)
 			ray->map_pos.y += ray->step_coord.y;
 			ray->side = 1;
 		}
-		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] > 48)
+		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1')
 			ray->hit = 1;
 	}
 }
