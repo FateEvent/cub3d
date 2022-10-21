@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 11:02:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/21 12:22:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	init_direction(t_data *data)
 
 void	init_struct(t_data *data)
 {
-	data->ray_data.pos.x = data->map->spawn_pos.x;
-	data->ray_data.pos.y = data->map->spawn_pos.y;
+	data->ray_data.pos.x = 0.5 + data->map->spawn_pos.x;
+	data->ray_data.pos.y = 0.5 + data->map->spawn_pos.y;
 	data->player.speed.movement = 0.3;
 	data->player.speed.rotation = 0.05;
 	data->frame = 0;
