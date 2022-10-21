@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:12:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:53:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_ray_data
 	double		step;
 	double		tex_pos;
 	t_map		*map;
-	uint32_t	*tex_buf;
+	uint32_t	**tex_buf;
 }				t_ray;
 
 typedef struct s_key
