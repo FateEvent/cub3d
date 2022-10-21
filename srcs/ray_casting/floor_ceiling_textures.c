@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:07:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:12:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,6 @@ uint32_t	get_shading(uint32_t color, t_ray ray)
 	multiplier = 1 + (distance / intensity);
 	table.a = table.a * (intensity / distance * multiplier);
 	return (rgb_to_hex(table));
-}
-
-void	choose_wall_texture(t_ray *ray)
-{
-	if (ray->text_select != 0)
-		return ;
-	if (ray->side == 1 && ray->ray_dir.y < 0)
-		ray->text_select = 0;
-	if (ray->side == 1 && ray->ray_dir.y > 0)
-		ray->text_select = 1;
-	if (ray->side == 0 && ray->ray_dir.x > 0)
-		ray->text_select = 3;
-	if (ray->side == 0 && ray->ray_dir.x < 0)
-		ray->text_select = 2;
 }
 
 void	draw_walls(t_data *data, int x)

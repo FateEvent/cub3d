@@ -6,11 +6,25 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 14:41:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:13:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+void	choose_wall_texture(t_ray *ray)
+{
+	if (ray->text_select != 0)
+		return ;
+	if (ray->side == 1 && ray->ray_dir.y < 0)
+		ray->text_select = 0;
+	if (ray->side == 1 && ray->ray_dir.y > 0)
+		ray->text_select = 1;
+	if (ray->side == 0 && ray->ray_dir.x > 0)
+		ray->text_select = 3;
+	if (ray->side == 0 && ray->ray_dir.x < 0)
+		ray->text_select = 2;
+}
 
 void	texture_y_pos_calculator(t_data *data, t_ray *ray)
 {
