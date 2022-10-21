@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 17:55:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:08:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_direction_child(t_data *data, t_ray *ray)
 {
-	 if (data->map->dir == 'E')
+	if (data->map->dir == 'E')
 	{
 		ray->dir.x = -1;
 		ray->dir.y = 0;
@@ -41,7 +41,6 @@ void	init_direction(t_data *data)
 		ray->dir.y = -1;
 		ray->plane.x = (double)data->player.fov / 100;
 		ray->plane.y = 0;
-		
 	}
 	if (data->map->dir == 'S')
 	{
@@ -51,7 +50,6 @@ void	init_direction(t_data *data)
 		ray->plane.y = 0;
 	}
 	init_direction_child(data, ray);
-		
 }
 
 void	init_struct(t_data *data)

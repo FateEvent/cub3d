@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 14:54:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:24:02 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ray_casting(t_data *data)
 		texture_x_pos_calculator(data, ray);
 		texture_y_pos_calculator(data, ray);
 		draw_ceiling(data, x);
-		ft_print_texture(data, x);
+		draw_walls(data, x);
 		draw_floor(data, x);
 		++x;
 	}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor, ceiling, textures.c                         :+:      :+:    :+:   */
+/*   floor_ceiling_textures.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 14:54:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:24:02 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ uint32_t	get_shading(uint32_t color, t_ray ray)
 	return (rgb_to_hex(table));
 }
 
-void	ft_print_texture(t_data *data, int x)
+void	draw_walls(t_data *data, int x)
 {
 	t_ray		ray;
 	size_t		width;

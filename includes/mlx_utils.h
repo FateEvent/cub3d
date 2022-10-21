@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 16:27:04 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:24:02 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 				uint32_t color);
 void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 				uint32_t draw_end, uint32_t color);
-void		ft_print_texture(t_data *data, int x);
+void		draw_walls(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 
