@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 14:55:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:58:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_update(void *param)
 
 	data = (t_data *)param;
 	data->frame++;
-	if (1)	// 30 is the render delay
+	if (data->refresh == 1)	// 30 is the render delay
 	{
 		ray_casting(data);
 		data->refresh = 0;

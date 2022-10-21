@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 14:51:52 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:05:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <math.h>
 # include <MLX42.h>
 # include "libft.h"
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 1920
+# define HEIGHT 1080
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define BPP 4
