@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:53:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:51:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ typedef struct s_ray_data
 	double		wall_x;
 	double		step;
 	double		tex_pos;
+	double		pcos;
+	double		psin;
+	double		ncos;
+	double		nsin;
 	t_map		*map;
 	uint32_t	**tex_buf;
 }				t_ray;
@@ -151,10 +155,10 @@ typedef struct s_data
 
 typedef struct s_var
 {
-	double	old_dir_x;
-	double	old_plane_x;
-	double	rotation;
-	double	movement;
+	double		old_dir_x;
+	double		old_plane_x;
+	double		rotation;
+	double		movement;
 	size_t		width;
 	size_t		height;
 	uint32_t	color;

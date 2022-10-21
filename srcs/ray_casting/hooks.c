@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:49:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/21 14:55:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,18 @@ void	ft_update(void *param)
 static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-if (keydata.key == (keys_t)RIGHT)
+	if (keydata.key == (keys_t)RIGHT)
 	{
-	double	vcos = cos(-var->rotation);
-	double	vsin = sin(-var->rotation);
 		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * vcos - ray->dir.y
-			* vsin;
-		ray->dir.y = var->old_dir_x * vsin + ray->dir.y
-			* vcos;
+		ray->dir.x = ray->dir.x * ray->ncos - ray->dir.y
+			* ray->nsin;
+		ray->dir.y = var->old_dir_x * ray->nsin + ray->dir.y
+			* ray->ncos;
 		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * vcos - ray->plane.y
-			* vsin;
-		ray->plane.y = var->old_plane_x * vsin + ray->plane.y
-			* vcos;
+		ray->plane.x = ray->plane.x * ray->ncos - ray->plane.y
+			* ray->nsin;
+		ray->plane.y = var->old_plane_x * ray->nsin + ray->plane.y
+			* ray->ncos;
 		data->refresh = 1;
 	}
 	if (keydata.key == (keys_t)ESCAPE)
@@ -53,18 +51,16 @@ static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
 {
 	if (keydata.key == (keys_t)LEFT)
 	{
-		double	vcos = cos(var->rotation);
-		double	vsin = sin(var->rotation);
 		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * vcos - ray->dir.y
-			* vsin;
-		ray->dir.y = var->old_dir_x * vsin + ray->dir.y
-			* vcos;
+		ray->dir.x = ray->dir.x * ray->pcos - ray->dir.y
+			* ray->psin;
+		ray->dir.y = var->old_dir_x * ray->psin + ray->dir.y
+			* ray->pcos;
 		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * vcos - ray->plane.y
-			* vsin;
-		ray->plane.y = var->old_plane_x * vsin + ray->plane.y
-			* vcos;
+		ray->plane.x = ray->plane.x * ray->pcos - ray->plane.y
+			* ray->psin;
+		ray->plane.y = var->old_plane_x * ray->psin + ray->plane.y
+			* ray->pcos;
 		data->refresh = 1;
 	}
 	else

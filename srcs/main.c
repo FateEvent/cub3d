@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:39:57 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/21 14:53:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ void	init_struct(t_data *data)
 	ray->pos.y = 0.5 + data->map->spawn_pos.y;
 	data->player.speed.movement = 0.3;
 	data->player.speed.rotation = 0.05;
+	ray->pcos = cos(data->player.speed.rotation);
+	ray->psin = sin(data->player.speed.rotation);
+	ray->ncos = cos(-data->player.speed.rotation);
+	ray->nsin = sin(-data->player.speed.rotation);
 	data->frame = 0;
 	data->render_delay = 30;
 	ray->text_select = 0;
