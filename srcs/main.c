@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 10:08:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:02:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void	init_direction_child(t_data *data, t_ray *ray)
 		ray->dir.x = -1;
 		ray->dir.y = 0;
 		ray->plane.x = 0;
-		ray->plane.y = -(double)data->player.fov / 100;
+		ray->plane.y = (double)data->player.fov / 100;
 	}
 	if (data->map->dir == 'W')
 	{
 		ray->dir.x = 1;
 		ray->dir.y = 0;
 		ray->plane.x = 0;
-		ray->plane.y = (double)data->player.fov / 100;
+		ray->plane.y = -(double)data->player.fov / 100;
 	}
 }
 
@@ -39,14 +39,14 @@ void	init_direction(t_data *data)
 	{
 		ray->dir.x = 0;
 		ray->dir.y = -1;
-		ray->plane.x = (double)data->player.fov / 100;
+		ray->plane.x = -(double)data->player.fov / 100;
 		ray->plane.y = 0;
 	}
 	if (data->map->dir == 'S')
 	{
 		ray->dir.x = 0;
 		ray->dir.y = 1;
-		ray->plane.x = -(double)data->player.fov / 100;
+		ray->plane.x = (double)data->player.fov / 100;
 		ray->plane.y = 0;
 	}
 	init_direction_child(data, ray);

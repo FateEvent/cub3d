@@ -1,13 +1,13 @@
-NO ./images/wall.xpm42
-SO ./images/wall.xpm42
-WE ./images/wall.xpm42
-EA ./images/wall.xpm42
+NO ./images/test.xpm42
+SO ./images/test.xpm42
+WE ./images/test.xpm42
+EA ./images/test.xpm42
 F 220,100,0
 C 225,30,0
 
-111111111111111
-10000000N000001
-100000000000001
-100000000000001
-100000000000001
-111111111111111
+11111
+10001
+10W01
+10001
+10001
+11111
