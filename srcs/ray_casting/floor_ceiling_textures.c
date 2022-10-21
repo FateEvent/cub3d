@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 10:24:02 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:42:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,22 @@ uint32_t	get_shading(uint32_t color, t_ray ray)
 	return (rgb_to_hex(table));
 }
 
+int	choose_wall_texture(t_data *data)
+{
+	t_ray	*ray;
+
+	ray = &data->ray_data;
+	if (ray->dir.x == 0 && ray->dir.y == -1)
+		return (0);
+	else if (ray->dir.x == 0 && ray->dir.y == 1)
+		return (1);
+	else if (ray->dir.x == -1 && ray->dir.y == 0)
+		return (2);
+	else if (ray->dir.x == 1 && ray->dir.y == 0)
+		return (3);
+	return (0);
+}
+
 void	draw_walls(t_data *data, int x)
 {
 	t_ray		ray;
@@ -66,6 +82,7 @@ void	draw_walls(t_data *data, int x)
 
 	ray = data->ray_data;
 	y = ray.draw_start;
+	ray.text_select = choose_wall_texture(data);
 	width = data->textures[ray.text_select].img->width;
 	height = data->textures[ray.text_select].img->height;
 	while (y < ray.draw_end)
