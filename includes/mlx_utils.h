@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 11:00:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:33:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_ray_data
 	double		step;
 	double		tex_pos;
 	t_map		*map;
-	uint32_t	*tex_buf;
+	uint32_t	**tex_buf;
 }				t_ray;
 
 typedef struct s_key

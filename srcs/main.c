@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:22:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/21 12:39:57 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,23 @@ void	init_direction(t_data *data)
 
 void	init_struct(t_data *data)
 {
-	data->ray_data.pos.x = 0.5 + data->map->spawn_pos.x;
-	data->ray_data.pos.y = 0.5 + data->map->spawn_pos.y;
+	t_ray	*ray;
+
+	ray = &data->ray_data;
+	ray->pos.x = 0.5 + data->map->spawn_pos.x;
+	ray->pos.y = 0.5 + data->map->spawn_pos.y;
 	data->player.speed.movement = 0.3;
 	data->player.speed.rotation = 0.05;
 	data->frame = 0;
 	data->render_delay = 30;
-	data->ray_data.text_select = 0;
+	ray->text_select = 0;
 	data->refresh = 1;
 	data->resolution.x = WIDTH;
 	data->resolution.y = HEIGHT;
-	data->ray_data.resolution.x = data->resolution.x;
-	data->ray_data.resolution.y = data->resolution.y;
+	ray->resolution.x = data->resolution.x;
+	ray->resolution.y = data->resolution.y;
 	data->player.fov = 70;
+	ray->tex_buf = malloc(sizeof(uint32_t *) * 4);
 	init_direction(data);
 }
 

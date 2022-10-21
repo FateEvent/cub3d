@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 11:00:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/21 12:49:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	ft_update(void *param)
 
 	data = (t_data *)param;
 	data->frame++;
-	if (data->frame % 1 == 0 && data->refresh == 1)	// 30 is the render delay
+	if (1)	// 30 is the render delay
 	{
-		fill_window(data, 0x650000FF);
 		ray_casting(data);
 		data->refresh = 0;
 	}
@@ -31,16 +30,18 @@ static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 {
 if (keydata.key == (keys_t)RIGHT)
 	{
+	double	vcos = cos(-var->rotation);
+	double	vsin = sin(-var->rotation);
 		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * cos(-var->rotation) - ray->dir.y
-			* sin(-var->rotation);
-		ray->dir.y = var->old_dir_x * sin(-var->rotation) + ray->dir.y
-			* cos(-var->rotation);
+		ray->dir.x = ray->dir.x * vcos - ray->dir.y
+			* vsin;
+		ray->dir.y = var->old_dir_x * vsin + ray->dir.y
+			* vcos;
 		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * cos(-var->rotation) - ray->plane.y
-			* sin(-var->rotation);
-		ray->plane.y = var->old_plane_x * sin(-var->rotation) + ray->plane.y
-			* cos(-var->rotation);
+		ray->plane.x = ray->plane.x * vcos - ray->plane.y
+			* vsin;
+		ray->plane.y = var->old_plane_x * vsin + ray->plane.y
+			* vcos;
 		data->refresh = 1;
 	}
 	if (keydata.key == (keys_t)ESCAPE)
@@ -52,16 +53,18 @@ static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
 {
 	if (keydata.key == (keys_t)LEFT)
 	{
+		double	vcos = cos(var->rotation);
+		double	vsin = sin(var->rotation);
 		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * cos(var->rotation) - ray->dir.y
-			* sin(var->rotation);
-		ray->dir.y = var->old_dir_x * sin(var->rotation) + ray->dir.y
-			* cos(var->rotation);
+		ray->dir.x = ray->dir.x * vcos - ray->dir.y
+			* vsin;
+		ray->dir.y = var->old_dir_x * vsin + ray->dir.y
+			* vcos;
 		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * cos(var->rotation) - ray->plane.y
-			* sin(var->rotation);
-		ray->plane.y = var->old_plane_x * sin(var->rotation) + ray->plane.y
-			* cos(var->rotation);
+		ray->plane.x = ray->plane.x * vcos - ray->plane.y
+			* vsin;
+		ray->plane.y = var->old_plane_x * vsin + ray->plane.y
+			* vcos;
 		data->refresh = 1;
 	}
 	else

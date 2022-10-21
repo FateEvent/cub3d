@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling_textures.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:07:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:41:01 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,11 @@ void	draw_walls(t_data *data, int x)
 	var.width = data->textures[ray->text_select].img->width;
 	var.height = data->textures[ray->text_select].img->height;
 	var.pixels = data->textures[ray->text_select].img->pixels;
-	ray->tex_buf = ft_from_uchar_to_hex_arr(var.pixels, var.width,
-		var.height);
 	while (var.y < ray->draw_end)
 	{
 		ray->tex.y = (int)ray->tex_pos & (var.height - 1);
 		ray->tex_pos += ray->step;
-		var.color = ray->tex_buf[((ray->tex.y * var.width) + ray->tex.x)];
+		var.color = ray->tex_buf[ray->text_select][((ray->tex.y * var.width) + ray->tex.x)];
 		var.color = get_shading(var.color, *ray);
 		mlx_put_pixel(data->img.img, x, var.y, var.color);
 		++var.y;
