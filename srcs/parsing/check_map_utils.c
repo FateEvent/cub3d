@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/19 13:42:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:18:44 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_map_components(char **map)
 		return (-1);
 	if (wall_check(map) == -1)
 	{
-		printf("Invalid map description. Map must be surrounded by walls.\n");
+		printf("Invalid map description. The map must be surrounded by walls.\n");
 		return (-1);
 	}
 	if (gap_check(map) == -1)
@@ -75,7 +75,7 @@ int	check_map_components(char **map)
 	}
 	if (hole_check(map) == -1)
 	{
-		printf("Invalid map description. There is holes in your map.\n");
+		printf("Invalid map description. There are holes in your map.\n");
 		return (-1);
 	}
 	return (0);

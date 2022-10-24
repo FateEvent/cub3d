@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 14:51:52 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:21:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "libft.h"
 # define WIDTH 640
 # define HEIGHT 480
-# define TEXWIDTH 64
-# define TEXHEIGHT 64
+# define MAPWIDTH 640
+# define MAPHEIGHT 480
 # define BPP 4
 
 typedef struct s_vector
@@ -47,6 +47,7 @@ typedef struct s_color {
 typedef struct s_image {
 	xpm_t		*texture;
 	mlx_image_t	*img;
+	t_vector2	resolution;
 }				t_image;
 
 typedef struct sprite
@@ -93,9 +94,6 @@ typedef struct s_ray_data
 	int			line_height;	
 	int			draw_start;	
 	int			draw_end;	
-	int			color;
-	double		rotate_left;
-	double		rotate_right;
 	t_vector	tex;
 	int			text_select;
 	double		wall_x;
@@ -108,16 +106,6 @@ typedef struct s_ray_data
 	t_map		*map;
 	uint32_t	**tex_buf;
 }				t_ray;
-
-typedef struct s_key
-{
-	int	move_forward;
-	int	move_back;
-	int	move_left;
-	int	move_right;
-	int	rotate_left;
-	int	rotate_right;
-}	t_key;
 
 typedef struct s_speed
 {
@@ -133,21 +121,27 @@ typedef struct s_player
 	t_speed		speed;
 }				t_player;
 
+typedef struct s_screen
+{
+	t_image		window;
+	t_image		display;
+	t_image		map_display;
+	t_vector2	resolution;
+}				t_screen;
+
 typedef struct s_data
 {
 	mlx_t		*mlx;
-	t_image		img;
 	t_map		*map;
+	t_screen	screen;
 	uint32_t	frame;
 	uint32_t	render_delay;
 	uint32_t	img_index;
 	t_image		*textures;
 	int			edge_size;
 	int			shading;
-	t_vector2	resolution;
 	t_player	player;
 	t_ray		ray_data;
-	t_key		key;
 	int			keycode;
 	int			fd;
 	int			refresh;

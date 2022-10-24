@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 14:53:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:24:30 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,14 @@ void	init_struct(t_data *data)
 	data->render_delay = 30;
 	ray->text_select = 0;
 	data->refresh = 1;
-	data->resolution.x = WIDTH;
-	data->resolution.y = HEIGHT;
-	ray->resolution.x = data->resolution.x;
-	ray->resolution.y = data->resolution.y;
+	data->screen.resolution.x = WIDTH;
+	data->screen.resolution.y = HEIGHT + MAPHEIGHT;
+	data->screen.display.resolution.x = WIDTH;
+	data->screen.display.resolution.y = HEIGHT;
+	data->screen.map_display.resolution.x = MAPWIDTH;
+	data->screen.map_display.resolution.y = MAPHEIGHT;
+	ray->resolution.x = data->screen.display.resolution.x;
+	ray->resolution.y = data->screen.display.resolution.y;
 	data->player.fov = 70;
 	ray->tex_buf = malloc(sizeof(uint32_t *) * 4);
 	init_direction(data);
@@ -86,17 +90,21 @@ int	main(int argc, char *argv[])
 	if (!program.map->map)
 		ft_puterror("Error!");
 	init_struct(&program);
-	program.mlx = mlx_init(program.resolution.x, program.resolution.y,
-			"cub3d", true);
-	program.img.img = mlx_new_image(program.mlx, program.resolution.x,
-			program.resolution.y);
-	if (!program.img.img)
+	program.mlx = mlx_init(program.screen.resolution.x,
+			program.screen.resolution.y, "cub3d", true);
+	program.screen.display.img = mlx_new_image(program.mlx,
+			program.screen.display.resolution.x, program.screen.display.resolution.y);
+	if (!program.screen.display.img)
+		throw_err_ex("Error : Creating new MLX image failed.");
+	program.screen.map_display.img = mlx_new_image(program.mlx,
+			program.screen.map_display.resolution.x, program.screen.map_display.resolution.y);
+	if (!program.screen.map_display.img)
 		throw_err_ex("Error : Creating new MLX image failed.");
 	program.textures = NULL;
 	program.textures = ft_load_textures(&program);
 	if (!program.textures)
 		throw_err_ex("Error : Loading texture failed.");
-	mlx_image_to_window(program.mlx, program.img.img, 0, 0);
+	mlx_image_to_window(program.mlx, program.screen.display.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
 	mlx_loop(program.mlx);

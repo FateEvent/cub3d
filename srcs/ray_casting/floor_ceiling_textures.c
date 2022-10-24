@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:53:45 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:54:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_floor(t_data *data, int x)
 	ray = data->ray_data;
 	height = HEIGHT;
 	half_height = height / 2;
-	draw_line(data->img.img, (t_vector2){x, half_height + ray.line_height / 2},
+	draw_line(data->screen.display.img, (t_vector2){x, half_height + ray.line_height / 2},
 		(t_vector2){x, height}, rgb_to_hex(data->map->floor_color));
 }
 
@@ -34,7 +34,7 @@ void	draw_ceiling(t_data *data, int x)
 	ray = data->ray_data;
 	height = HEIGHT;
 	half_height = height / 2;
-	draw_line(data->img.img, (t_vector2){x, 0},
+	draw_line(data->screen.display.img, (t_vector2){x, 0},
 		(t_vector2){x, half_height - ray.line_height / 2},
 		rgb_to_hex(data->map->ceiling_color));
 }
@@ -71,9 +71,10 @@ void	draw_walls(t_data *data, int x)
 	{
 		ray->tex.y = (int)ray->tex_pos & (var.height - 1);
 		ray->tex_pos += ray->step;
-		var.color = ray->tex_buf[ray->text_select][((ray->tex.y * var.width) + ray->tex.x)];
+		var.color = ray->tex_buf[ray->text_select][((ray->tex.y * var.width)
+				+ ray->tex.x)];
 		var.color = get_shading(var.color, *ray);
-		mlx_put_pixel(data->img.img, x, var.y, var.color);
+		mlx_put_pixel(data->screen.display.img, x, var.y, var.color);
 		++var.y;
 	}
 }
