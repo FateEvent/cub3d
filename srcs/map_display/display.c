@@ -6,35 +6,33 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/14 15:24:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:43:38 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** The ft_put_background() function creates a background by the repetition
-** of an image. The amount of times the image is repeated is function of
-** the size of the window.
-*/
-
 #include "mlx_utils.h"
 /*
-void	ft_display_map(t_program *data, t_image *pixie)
+void	ft_display_map(t_image *img, t_map *map)
 {
-	uint32_t	i[2];
-	char		c;
+	t_var	var;
+	char	c;
 
-	i[0] = 0;
-	while (i[0] * pixie[0].texture->texture.height < HEIGHT && data->map->map[i[0]])
+	var.width = img->size.x;
+	var.height = img->size.y;
+	var.i = 0;
+	while (var.i * 2 < var.height && map->map[var.i])
 	{
-		i[1] = 0;
-		while (i[1] * pixie[0].texture->texture.width < WIDTH
-			&& data->map->map[i[0]][i[1]] != '\n')
+		var.j = 0;
+		while (var.j * 2 < var.width
+			&& map->map[var.i][var.j] != '\n')
 		{
-			c = data->map->map[i[0]][i[1]];
-			ft_invoke_pixie(c, i, data, pixie);
-			i[1]++;
+			c = map->map[var.i][var.j];
+			if (c >= '1' && c <= '3')
+				mlx_draw_square(img->img, var.width,
+					var.height, 0xFF6676FF);
+			var.j++;
 		}
-		i[0]++;
+		var.i++;
 	}
 }
 */

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/24 11:27:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:39:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIDTH 640
 # define HEIGHT 480
 # define MAPWIDTH 640
-# define MAPHEIGHT 480
+# define MAPHEIGHT 220
 # define BPP 4
 
 typedef struct s_vector
@@ -37,34 +37,38 @@ typedef struct s_vector2
 	double	y;
 }				t_vector2;
 
-typedef struct s_color {
+typedef struct s_color
+{
 	int	r;
 	int	g;
 	int	b;
 	int	a;
 }				t_color;
 
-typedef struct s_image {
+typedef struct s_image
+{
 	xpm_t		*texture;
 	mlx_image_t	*img;
-	t_vector2	resolution;
+	t_vector2	size;
 }				t_image;
-
-typedef struct sprite
+/*
+typedef struct s_sprite
 {
 	double	x;
 	double	y;
 	int		texture;
 }	t_sprite;
 
-typedef struct s_texture {
+typedef struct s_texture
+{
 	int				width;
 	int				height;
 	char			**bitmap;
 	struct s_color	*colors;
 }				t_texture;
-
-typedef struct s_map {
+*/
+typedef struct s_map
+{
 	char		**map;
 	char		*north_texture;
 	char		*south_texture;
@@ -158,9 +162,12 @@ typedef struct s_var
 	uint32_t	color;
 	int			y;
 	uint8_t		*pixels;
+	uint32_t	i;
+	uint32_t	j;
 }				t_var;
 
-typedef struct s_getcolor {
+typedef struct s_getcolor
+{
 	ssize_t	i;
 	ssize_t	j;
 	ssize_t	k;
@@ -168,21 +175,20 @@ typedef struct s_getcolor {
 	t_color	rgba;
 }			t_getcolor;
 
-typedef struct s_ctexture {
+typedef struct s_ctexture
+{
 	char	str[2];
 	int		index;
 }			t_ctexture;
 
-enum e_key {
+enum e_key
+{
 	UP = 87,
 	DOWN = 83,
 	LEFT = 65,
 	RIGHT = 68,
 	ESCAPE = 256
 };
-
-// ---------------------------------
-// FUNCTIONS
 
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
@@ -192,13 +198,12 @@ t_image		*ft_load_textures(t_data *data);
 // window functions
 void		fill_window(t_data *data, uint32_t color);
 
-int			ft_map_parser(char **map);
-char		**ft_map_reader(char *filename);
-
+// hooks
 void		ft_key_input(mlx_key_data_t keydata, void *param);
 void		ft_update(void *param);
 
-// parsing
+// parsing functions
+char		**ft_map_reader(char *filename);
 t_map		*check(int argc, char **argv);
 void		check_args(char argc);
 void		check_map_extension(char *argv[]);
@@ -241,6 +246,9 @@ void		draw_walls(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 
+// display map functions
+void		ft_display_map(t_image *img, t_map *map);
+
 // vector utils
 t_vector	ft_inttovec(int x, int y);
 t_vector2	ft_doubletovec2(double x, double y);
@@ -259,6 +267,7 @@ int			get_opposite(int color);
 void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
 
+// utils
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);
 uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width,
 				size_t height);

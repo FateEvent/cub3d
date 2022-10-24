@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/21 10:51:06 by albaur           ###   ########.fr        #
+#    Updated: 2022/10/24 13:37:17 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ SRC_PATH	=	srcs/
 OBJ_PATH	=	bin/
 C_EXTENSION	=	.c
 
-MAIN_PATH	=	
-MAIN_FILES	=	main display display_map
+MAIN_PATH	=	main/
+MAIN_FILES	=	main
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 PARSE_PATH	=	parsing/
@@ -30,18 +30,23 @@ PARSE_FILES	=	check check_map check_map_utils check_map_utils2 gap_check \
 				invalid_check wall_check get_spawn_position
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES))
 
-MLXT_PATH	=	mlx_tools/
-MLXT_FILES	=	textures window colours colour_conversions
-SRCS_FILES	+=	$(addprefix $(MLXT_PATH), $(MLXT_FILES))
+MLX_PATH	=	mlx_tools/
+MLX_FILES	=	textures window colours colour_conversions
+SRCS_FILES	+=	$(addprefix $(MLX_PATH), $(MLX_FILES))
 
 UTILS_PATH	=	utils/
-UTILS_FILES	=	drawing_tools utils ft_from_uchar_to_rgb_buf vec_utils
+UTILS_FILES	=	ft_map_reader drawing_tools utils ft_from_uchar_to_rgb_buf \
+				vec_utils
 SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	ray_casting/
 RC_FILES	=	hooks ray_casting_tools wall_casting wall_casting_vol2 \
 				floor_ceiling_textures
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
+
+MD_PATH		=	map_display/
+MD_FILES	=	display
+SRCS_FILES	+=	$(addprefix $(MD_PATH), $(MD_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 

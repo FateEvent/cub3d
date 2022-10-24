@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/24 11:27:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:43:43 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_struct(t_data *data)
 	ray = &data->ray_data;
 	ray->pos.x = 0.5 + data->map->spawn_pos.x;
 	ray->pos.y = 0.5 + data->map->spawn_pos.y;
-	data->player.speed.movement = 0.4;
+	data->player.speed.movement = 0.2;
 	data->player.speed.rotation = 0.3;
 	ray->pcos = cos(data->player.speed.rotation);
 	ray->psin = sin(data->player.speed.rotation);
@@ -71,12 +71,12 @@ void	init_struct(t_data *data)
 	data->refresh = 1;
 	data->screen.resolution.x = WIDTH;
 	data->screen.resolution.y = HEIGHT + MAPHEIGHT;
-	data->screen.display.resolution.x = WIDTH;
-	data->screen.display.resolution.y = HEIGHT;
-	data->screen.map_display.resolution.x = MAPWIDTH;
-	data->screen.map_display.resolution.y = MAPHEIGHT;
-	ray->resolution.x = data->screen.display.resolution.x;
-	ray->resolution.y = data->screen.display.resolution.y;
+	data->screen.display.size.x = WIDTH;
+	data->screen.display.size.y = HEIGHT;
+	data->screen.map_display.size.x = MAPWIDTH;
+	data->screen.map_display.size.y = MAPHEIGHT;
+	ray->resolution.x = data->screen.display.size.x;
+	ray->resolution.y = data->screen.display.size.y;
 	data->player.fov = 70;
 	ray->tex_buf = malloc(sizeof(uint32_t *) * 4);
 	init_direction(data);
@@ -93,17 +93,18 @@ int	main(int argc, char *argv[])
 	program.mlx = mlx_init(program.screen.resolution.x,
 			program.screen.resolution.y, "cub3d", true);
 	program.screen.display.img = mlx_new_image(program.mlx,
-			program.screen.display.resolution.x, program.screen.display.resolution.y);
+			program.screen.display.size.x, program.screen.display.size.y);
 	if (!program.screen.display.img)
 		throw_err_ex("Error : Creating new MLX image failed.");
 	program.screen.map_display.img = mlx_new_image(program.mlx,
-			program.screen.map_display.resolution.x, program.screen.map_display.resolution.y);
+			program.screen.map_display.size.x, program.screen.map_display.size.y);
 	if (!program.screen.map_display.img)
 		throw_err_ex("Error : Creating new MLX image failed.");
 	program.textures = NULL;
 	program.textures = ft_load_textures(&program);
 	if (!program.textures)
 		throw_err_ex("Error : Loading texture failed.");
+//	ft_display_map(&program.screen.map_display, program.map);
 	mlx_image_to_window(program.mlx, program.screen.display.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
