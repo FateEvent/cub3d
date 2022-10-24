@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/24 14:39:04 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:32:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,6 @@ enum e_key
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
-//void		ft_display_map(t_program *data, t_image *pixie);
 
 // window functions
 void		fill_window(t_data *data, uint32_t color);
@@ -247,7 +246,7 @@ void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 
 // display map functions
-void		ft_display_map(t_image *img, t_map *map);
+void		ft_display_map(t_data *data, t_image *tile);
 
 // vector utils
 t_vector	ft_inttovec(int x, int y);

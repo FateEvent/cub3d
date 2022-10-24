@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/24 14:43:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:33:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,13 @@ int	main(int argc, char *argv[])
 			program.screen.map_display.size.x, program.screen.map_display.size.y);
 	if (!program.screen.map_display.img)
 		throw_err_ex("Error : Creating new MLX image failed.");
+	mlx_image_to_window(program.mlx, program.screen.map_display.img,
+		0, program.screen.display.size.y);
 	program.textures = NULL;
 	program.textures = ft_load_textures(&program);
 	if (!program.textures)
 		throw_err_ex("Error : Loading texture failed.");
-//	ft_display_map(&program.screen.map_display, program.map);
+//	ft_display_map(&program, &program.textures[4]);
 	mlx_image_to_window(program.mlx, program.screen.display.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
