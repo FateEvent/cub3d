@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 14:04:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:53:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	draw_walls(t_data *data, int x)
 	t_ray	*ray;
 	t_var	var;
 
+	ft_bzero(&var, sizeof(var));
 	ray = &data->ray_data;
 	var.y = ray->draw_start;
 	choose_wall_texture(ray);

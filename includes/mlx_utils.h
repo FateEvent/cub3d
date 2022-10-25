@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 13:22:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:02:48 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ typedef struct s_ray_data
 	int			hit;
 	int			side;
 	double		wall_distance;
-	int			line_height;	
-	int			draw_start;	
-	int			draw_end;	
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
 	t_vector	tex;
 	int			text_select;
 	double		wall_x;
@@ -107,6 +107,17 @@ typedef struct s_ray_data
 	double		psin;
 	double		ncos;
 	double		nsin;
+	t_vector2	ray_dir0;
+	t_vector2	ray_dir1;
+	int			p;
+	double		pos_z;
+	double		row_distance;
+	t_vector2	floor_step;
+	t_vector2	floor;
+	t_vector	cell;
+	t_vector	t;
+	int			floor_tex;
+	int			ceiling_tex;
 	t_map		*map;
 	uint32_t	**tex_buf;
 }				t_ray;
@@ -160,6 +171,7 @@ typedef struct s_var
 	size_t		width;
 	size_t		height;
 	uint32_t	color;
+	int			x;
 	int			y;
 	uint8_t		*pixels;
 	uint32_t	i;
@@ -223,6 +235,9 @@ int			get_spawn_position(t_map *m);
 void		init_direction(t_data *data);
 
 // ray casting tools
+
+void		floor_casting(t_data *data, t_ray *ray);
+
 void		ray_casting(t_data *data);
 void		ray_data_init(t_data *data, t_ray *ray, int x);
 void		ray_delta_calculator(t_ray *ray);

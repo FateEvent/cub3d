@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 13:39:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:55:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	init_struct(t_data *data)
 	t_ray	*ray;
 
 	ray = &data->ray_data;
+	ft_bzero(ray, sizeof(*ray));
 	ray->pos.x = 0.5 + data->map->spawn_pos.x;
 	ray->pos.y = 0.5 + data->map->spawn_pos.y;
 	data->player.speed.movement = 0.2;

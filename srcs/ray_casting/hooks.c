@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 12:51:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/25 14:54:21 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	ft_key_input(mlx_key_data_t keydata, void *param)
 	t_ray	*ray;
 	t_var	var;
 
+	ft_bzero(&var, sizeof(var));
 	data = (t_data *)param;
 	ray = &data->ray_data;
 	var.rotation = data->player.speed.rotation;
