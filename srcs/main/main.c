@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:12:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:13:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	main(int argc, char *argv[])
 {
 	t_data	program;
 
+	ft_bzero(&program, sizeof(program));
 	program.map = check(argc, argv);
 	if (!program.map->map)
 		ft_puterror("Error!");
