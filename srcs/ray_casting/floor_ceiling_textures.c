@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/24 10:54:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:04:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	draw_walls(t_data *data, int x)
 	var.width = data->textures[ray->text_select].img->width;
 	var.height = data->textures[ray->text_select].img->height;
 	var.pixels = data->textures[ray->text_select].img->pixels;
-	while (var.y < ray->draw_end)
+	while (var.y <= ray->draw_end)
 	{
 		ray->tex.y = (int)ray->tex_pos & (var.height - 1);
 		ray->tex_pos += ray->step;
