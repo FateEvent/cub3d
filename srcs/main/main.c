@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 12:51:57 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/25 13:39:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	init_struct(t_data *data)
 	ray->text_select = 0;
 	data->refresh = 1;
 	data->screen.resolution.x = WIDTH;
-	data->screen.resolution.y = HEIGHT + MAPHEIGHT;
+	data->screen.resolution.y = HEIGHT;
 	data->screen.display.size.x = WIDTH;
 	data->screen.display.size.y = HEIGHT;
 	data->screen.map_display.size.x = MAPWIDTH;
@@ -100,14 +100,14 @@ int	main(int argc, char *argv[])
 			program.screen.map_display.size.x, program.screen.map_display.size.y);
 	if (!program.screen.map_display.img)
 		throw_err_ex("Error : Creating new MLX image failed.");
-	mlx_image_to_window(program.mlx, program.screen.map_display.img,
-		0, program.screen.display.size.y);
 	program.textures = NULL;
 	program.textures = ft_load_textures(&program);
 	if (!program.textures)
 		throw_err_ex("Error : Loading texture failed.");
-//	ft_display_map(&program, &program.textures[4]);
 	mlx_image_to_window(program.mlx, program.screen.display.img, 0, 0);
+//	mlx_image_to_window(program.mlx, program.screen.map_display.img,
+//		0, program.screen.display.size.y / 3);
+//	ft_display_map(&program, &program.textures[4]);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
 	mlx_loop(program.mlx);

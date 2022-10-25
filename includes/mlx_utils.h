@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/24 17:32:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:22:51 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "libft.h"
 # define WIDTH 640
 # define HEIGHT 480
-# define MAPWIDTH 640
-# define MAPHEIGHT 220
+# define MAPWIDTH 100
+# define MAPHEIGHT 100
 # define BPP 4
 
 typedef struct s_vector

@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/24 13:37:17 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/25 13:18:25 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ RC_FILES	=	hooks ray_casting_tools wall_casting wall_casting_vol2 \
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 MD_PATH		=	map_display/
-MD_FILES	=	display
+MD_FILES	=	ft_display_map
 SRCS_FILES	+=	$(addprefix $(MD_PATH), $(MD_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
