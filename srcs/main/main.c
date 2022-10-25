@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:12:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:47:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	init_struct(t_data *data)
 	ray->resolution.x = data->screen.display.size.x;
 	ray->resolution.y = data->screen.display.size.y;
 	data->player.fov = 70;
-	ray->tex_buf = malloc(sizeof(uint32_t *) * 4);
+	ray->tex_buf = malloc(sizeof(uint32_t *) * 6);
 	data->mouse_x = 0;
 	data->mouse_y = 0;
 	init_direction(data);

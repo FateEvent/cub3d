@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:13:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 17:18:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/25 17:48:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	floor_casting(t_data *data, t_ray *ray)
 			ray->t.y = (int)(var.height * (ray->floor.y - ray->cell.y)) & (var.height - 1);
 			ray->floor.x += ray->floor_step.x;
 			ray->floor.y += ray->floor_step.y;
-			ray->floor_tex = 1;
-			ray->ceiling_tex = 2;
+			ray->floor_tex = 5;
+			ray->ceiling_tex = 4;
 			var.color = ray->tex_buf[ray->floor_tex][var.width * ray->t.y + ray->t.x];
 			var.color = get_shading_floor(var.color, *ray, ray->row_distance);
 			mlx_put_pixel(data->screen.display.img, x, var.y, var.color);
