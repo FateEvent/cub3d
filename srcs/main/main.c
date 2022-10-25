@@ -6,9 +6,10 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 14:55:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:12:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "mlx_utils.h"
 
@@ -66,6 +67,10 @@ void	init_struct(t_data *data)
 	ray->psin = sin(data->player.speed.rotation);
 	ray->ncos = cos(-data->player.speed.rotation);
 	ray->nsin = sin(-data->player.speed.rotation);
+	ray->mpcos = cos(data->player.speed.rotation / 2);
+	ray->mpsin = sin(data->player.speed.rotation / 2);
+	ray->mncos = cos(-data->player.speed.rotation / 2);
+	ray->mnsin = sin(-data->player.speed.rotation / 2);
 	data->frame = 0;
 	data->render_delay = 1;
 	ray->text_select = 0;
@@ -80,6 +85,8 @@ void	init_struct(t_data *data)
 	ray->resolution.y = data->screen.display.size.y;
 	data->player.fov = 70;
 	ray->tex_buf = malloc(sizeof(uint32_t *) * 4);
+	data->mouse_x = 0;
+	data->mouse_y = 0;
 	init_direction(data);
 }
 
@@ -105,12 +112,15 @@ int	main(int argc, char *argv[])
 	program.textures = ft_load_textures(&program);
 	if (!program.textures)
 		throw_err_ex("Error : Loading texture failed.");
+//	ft_display_map(&program, &program.textures[4]);
+	mlx_set_cursor_mode(program.mlx, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(program.mlx, program.screen.display.img, 0, 0);
 //	mlx_image_to_window(program.mlx, program.screen.map_display.img,
 //		0, program.screen.display.size.y / 3);
 //	ft_display_map(&program, &program.textures[4]);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
+	mlx_cursor_hook(program.mlx, ft_mouse_input, &program);
 	mlx_loop(program.mlx);
 	mlx_terminate(program.mlx);
 }
