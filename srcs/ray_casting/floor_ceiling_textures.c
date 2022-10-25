@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling_textures.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 14:53:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:26:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	draw_floor(t_data *data, int x)
 	ray = data->ray_data;
 	height = HEIGHT;
 	half_height = height / 2;
-	draw_line(data->screen.display.img, (t_vector2){x, half_height + ray.line_height / 2},
+	draw_line(data->screen.display.img, (t_vector2){x,
+		half_height + ray.line_height / 2},
 		(t_vector2){x, height}, rgb_to_hex(data->map->floor_color));
 }
 

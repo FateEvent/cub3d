@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_from_uchar_to_rgb_buf.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:00:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 16:00:52 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:15:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width,
+uint32_t	*uchar_to_arr(unsigned char *arr, size_t width,
 				size_t height)
 {
 	uint32_t	*hex_arr;
@@ -91,7 +91,7 @@ uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width,
 	uint32_t	*hex_arr;
 	uint32_t	**hex_buf;
 
-	hex_arr = ft_from_uchar_to_hex_arr(arr, width, height);
+	hex_arr = uchar_to_arr(arr, width, height);
 	hex_buf = hex_buf_creator(hex_arr, width, height);
 	free(hex_arr);
 	return (hex_buf);
@@ -104,7 +104,7 @@ t_color	**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 	uint32_t	**hex_buf;
 	t_color		**rgb_buf;
 
-	hex_arr = ft_from_uchar_to_hex_arr(arr, width, height);
+	hex_arr = uchar_to_arr(arr, width, height);
 	hex_buf = hex_buf_creator(hex_arr, width, height);
 	rgb_buf = rgb_buf_creator(hex_buf, width, height);
 	free(hex_arr);

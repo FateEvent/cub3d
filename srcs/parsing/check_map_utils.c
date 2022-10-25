@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/24 11:18:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:24:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_map_components(char **map)
 		return (-1);
 	if (wall_check(map) == -1)
 	{
-		printf("Invalid map description. The map must be surrounded by walls.\n");
+		printf("Invalid map description. Map must be surrounded by walls.\n");
 		return (-1);
 	}
 	if (gap_check(map) == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:12:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:15:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,7 @@ void		turn_img_to_color(t_image *image, t_color color);
 
 // utils
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);
-uint32_t	*ft_from_uchar_to_hex_arr(unsigned char *arr, size_t width,
+uint32_t	*uchar_to_arr(unsigned char *arr, size_t width,
 				size_t height);
 uint32_t	**hex_buf_creator(uint32_t *arr, size_t width, size_t height);
 uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width,
