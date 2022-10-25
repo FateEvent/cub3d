@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:15:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/25 17:02:33 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,7 @@ void		wall_line_calculator(t_ray *ray);
 void		texture_x_pos_calculator(t_data *data, t_ray *ray);
 void		texture_y_pos_calculator(t_data *data, t_ray *ray);
 void		choose_wall_texture(t_ray *ray);
+uint32_t	get_shading(uint32_t color, t_ray ray);
 
 // drawing tools
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
