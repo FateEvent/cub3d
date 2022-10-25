@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/24 17:32:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:45:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ typedef struct s_ray_data
 	double		psin;
 	double		ncos;
 	double		nsin;
+	double		mpcos;
+	double		mpsin;
+	double		mncos;
+	double		mnsin;
 	t_map		*map;
 	uint32_t	**tex_buf;
 }				t_ray;
@@ -149,6 +153,8 @@ typedef struct s_data
 	int			keycode;
 	int			fd;
 	int			refresh;
+	int			mouse_x;
+	int			mouse_y;
 }				t_data;
 
 typedef struct s_var
@@ -199,6 +205,7 @@ void		fill_window(t_data *data, uint32_t color);
 
 // hooks
 void		ft_key_input(mlx_key_data_t keydata, void *param);
+void		ft_mouse_input(double x, double y, void *param);
 void		ft_update(void *param);
 
 // parsing functions
