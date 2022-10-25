@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:13:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:04:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:59:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	floor_casting(t_data *data, t_ray *ray)
 	ft_bzero(&var, sizeof(var));
 	var.y = 0;
 	// je verrai après pour les textures
-	var.width = data->textures[1].img->width;;
+	var.width = data->textures[1].img->width;
 	var.height = data->textures[1].img->height;
 	//FLOOR CASTING
 	while (var.y < ray->resolution.y)
@@ -66,15 +66,13 @@ void	floor_casting(t_data *data, t_ray *ray)
 			// je verrai après pour les textures
 			ray->floor_tex = 1;
 			ray->ceiling_tex = 2;
-			var.pixels = data->textures[ray->floor_tex].img->pixels;
 			// floor
-			var.color = var.pixels[var.width * ray->t.y + ray->t.x];
+			var.color = ray->tex_buf[ray->floor_tex][var.width * ray->t.y + ray->t.x];
 			var.color = (var.color >> 1) & 8355711; // make a bit darker
 			mlx_put_pixel(data->screen.display.img, x, var.y, var.color);
 
 			//ceiling (symmetrical, at ray->resolution.y - y - 1 instead of y)
-			var.pixels = data->textures[ray->ceiling_tex].img->pixels;
-			var.color = var.pixels[var.width * ray->t.y + ray->t.x];
+			var.color = ray->tex_buf[ray->ceiling_tex][var.width * ray->t.y + ray->t.x];
 			var.color = (var.color >> 1) & 8355711; // make a bit darker
 			mlx_put_pixel(data->screen.display.img, x, ray->resolution.y - var.y - 1,
 				var.color);
