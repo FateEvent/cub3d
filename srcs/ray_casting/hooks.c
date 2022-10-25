@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:12:31 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:27:12 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "mlx_utils.h"
 
@@ -19,7 +18,7 @@ void	ft_update(void *param)
 
 	data = (t_data *)param;
 	data->frame++;
-	if (data->refresh == 1)	// 30 is the render delay
+	if (data->refresh == 1)
 	{
 		ray_casting(data);
 		data->refresh = 0;
