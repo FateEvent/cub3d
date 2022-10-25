@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting_vol2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:13:03 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:13:43 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ void	texture_x_pos_calculator(t_data *data, t_ray *ray)
 		ray->wall_x = ray->pos.x + ray->wall_distance * ray->ray_dir.x;
 	ray->wall_x -= floor(ray->wall_x);
 	ray->tex.x = (int)(ray->wall_x * (double)img_width);
-	if (ray->side == 0 && ray->ray_dir.x > 0)
-		ray->tex.x = img_width - ray->tex.x - 1;
-	if (ray->side == 1 && ray->ray_dir.y < 0)
-		ray->tex.x = img_width - ray->tex.x - 1;
 }
 
 void	wall_line_calculator(t_ray *ray)

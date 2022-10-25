@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/24 14:32:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:51:01 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_update(void *param)
 static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	if (keydata.key == (keys_t)RIGHT)
+	if (keydata.key == (keys_t)LEFT)
 	{
 		var->old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * ray->ncos - ray->dir.y
@@ -49,7 +49,7 @@ static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	if (keydata.key == (keys_t)LEFT)
+	if (keydata.key == (keys_t)RIGHT)
 	{
 		var->old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * ray->pcos - ray->dir.y
