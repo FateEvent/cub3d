@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 17:02:33 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/26 12:09:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,8 @@ enum e_key
 	DOWN = 83,
 	LEFT = 65,
 	RIGHT = 68,
+	RIGHT_ARROW = 262,
+	LEFT_ARROW = 263,
 	ESCAPE = 256
 };
 

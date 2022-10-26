@@ -3,14 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:27:12 by albaur           ###   ########.fr       */
+/*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
+/*   Updated: 2022/10/26 12:18:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+static void	ft_mouse_input_child(t_var var, t_ray *ray, t_data *data, double x)
+{
+	if (x > data->mouse_x)
+	{
+		var.old_dir_x = ray->dir.x;
+		ray->dir.x = ray->dir.x * ray->mpcos - ray->dir.y * ray->mpsin;
+		ray->dir.y = var.old_dir_x * ray->mpsin + ray->dir.y * ray->mpcos;
+		var.old_plane_x = ray->plane.x;
+		ray->plane.x = ray->plane.x * ray->mpcos - ray->plane.y * ray->mpsin;
+		ray->plane.y = var.old_plane_x * ray->mpsin + ray->plane.y
+			* ray->mpcos;
+		data->refresh = 1;
+	}
+	data->mouse_x = x;
+}
+
+void	ft_mouse_input(double x, double y, void *param)
+{
+	t_data	*data;
+	t_ray	*ray;
+	t_var	var;
+
+	(void)y;
+	ft_bzero(&var, sizeof(var));
+	data = (t_data *)param;
+	if ((data->mouse_x - x >= -5 && data->mouse_x - x <= 5))
+		return ;
+	ray = &data->ray_data;
+	if (x < data->mouse_x)
+	{
+		var.old_dir_x = ray->dir.x;
+		ray->dir.x = ray->dir.x * ray->mncos - ray->dir.y * ray->mnsin;
+		ray->dir.y = var.old_dir_x * ray->mnsin + ray->dir.y * ray->mncos;
+		var.old_plane_x = ray->plane.x;
+		ray->plane.x = ray->plane.x * ray->mncos - ray->plane.y * ray->mnsin;
+		ray->plane.y = var.old_plane_x * ray->mnsin + ray->plane.y
+			* ray->mncos;
+		data->refresh = 1;
+	}
+	ft_mouse_input_child(var, ray, data, x);
+}
 
 void	ft_update(void *param)
 {
@@ -23,88 +65,4 @@ void	ft_update(void *param)
 		ray_casting(data);
 		data->refresh = 0;
 	}
-}
-
-static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
-				mlx_key_data_t keydata)
-{
-	if (keydata.key == (keys_t)LEFT)
-	{
-		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * ray->ncos - ray->dir.y
-			* ray->nsin;
-		ray->dir.y = var->old_dir_x * ray->nsin + ray->dir.y
-			* ray->ncos;
-		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * ray->ncos - ray->plane.y
-			* ray->nsin;
-		ray->plane.y = var->old_plane_x * ray->nsin + ray->plane.y
-			* ray->ncos;
-		data->refresh = 1;
-	}
-	if (keydata.key == (keys_t)ESCAPE)
-		exit(0);
-}
-
-static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
-				mlx_key_data_t keydata)
-{
-	if (keydata.key == (keys_t)RIGHT)
-	{
-		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * ray->pcos - ray->dir.y
-			* ray->psin;
-		ray->dir.y = var->old_dir_x * ray->psin + ray->dir.y
-			* ray->pcos;
-		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * ray->pcos - ray->plane.y
-			* ray->psin;
-		ray->plane.y = var->old_plane_x * ray->psin + ray->plane.y
-			* ray->pcos;
-		data->refresh = 1;
-	}
-	else
-		ft_key_input_other(data, ray, var, keydata);
-}
-
-static void	ft_key_input_child(t_data *data, t_ray *ray, t_var *var,
-				mlx_key_data_t keydata)
-{
-	if (keydata.key == (keys_t)DOWN)
-	{
-		if (data->map->map[(int)(ray->pos.y - ray->dir.y * var->movement)]
-			[(int)(ray->pos.x)] != '1')
-			ray->pos.y -= ray->dir.y * var->movement;
-		if (data->map->map[(int)(ray->pos.y)]
-			[(int)(ray->pos.x - ray->dir.x * var->movement)] != '1')
-			ray->pos.x -= ray->dir.x * var->movement;
-		data->refresh = 1;
-	}
-	else
-		ft_key_input_rest(data, ray, var, keydata);
-}
-
-void	ft_key_input(mlx_key_data_t keydata, void *param)
-{
-	t_data	*data;
-	t_ray	*ray;
-	t_var	var;
-
-	ft_bzero(&var, sizeof(var));
-	data = (t_data *)param;
-	ray = &data->ray_data;
-	var.rotation = data->player.speed.rotation;
-	var.movement = data->player.speed.movement;
-	if (keydata.key == (keys_t)UP)
-	{
-		if (data->map->map[(int)(ray->pos.y)]
-			[(int)(ray->pos.x + ray->dir.x * var.movement)] != '1')
-			ray->pos.x += ray->dir.x * var.movement;
-		if (data->map->map[(int)(ray->pos.y + ray->dir.y * var.movement)]
-			[(int)(ray->pos.x)] != '1')
-			ray->pos.y += ray->dir.y * var.movement;
-		data->refresh = 1;
-	}
-	else
-		ft_key_input_child(data, ray, &var, keydata);
 }

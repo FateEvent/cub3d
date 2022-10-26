@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/10/25 16:11:16 by faventur         ###   ########.fr        #
+#    Updated: 2022/10/26 12:17:59 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ UTILS_FILES	=	ft_map_reader drawing_tools utils ft_from_uchar_to_rgb_buf \
 SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	ray_casting/
-RC_FILES	=	hooks hooks_2 ray_casting_tools wall_casting wall_casting_vol2 \
+RC_FILES	=	hooks ft_key_input ray_casting_tools wall_casting wall_casting_vol2 \
 				floor_ceiling_textures floor_ceiling_casting
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 

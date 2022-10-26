@@ -3,7 +3,8 @@
 good tutorials are the following ones:
 * <https://github.com/vinibiavatti1/RayCastingTutorial/wiki/Utilities>;
 * <https://lodev.org/cgtutor/raycasting.html>;
-* <https://www.youtube.com/watch?v=NbSee-XM7WA>.
+* <https://www.youtube.com/watch?v=NbSee-XM7WA>;
+* <https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents>;
 
 draw a line:
 * <https://www.youtube.com/watch?v=l-u6uxnOmH0>;
