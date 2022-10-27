@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling_casting.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:13:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 17:48:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/27 17:39:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,47 @@ uint32_t	get_shading_floor(uint32_t color, t_ray ray, double distance)
 	return (rgb_to_hex(table));
 }
 
+void	floor_casting_calculator(t_data *data, t_ray *ray, t_var *var)
+{
+	ray->cell.x = (int)(ray->floor.x);
+	ray->cell.y = (int)(ray->floor.y);
+	ray->t.x = (int)(var->width * (ray->floor.x - ray->cell.x))
+		& (var->width - 1);
+	ray->t.y = (int)(var->height * (ray->floor.y - ray->cell.y))
+		& (var->height - 1);
+	ray->floor.x += ray->floor_step.x;
+	ray->floor.y += ray->floor_step.y;
+	ray->floor_tex = 5;
+	ray->ceiling_tex = 4;
+	var->color = ray->tex_buf[ray->floor_tex][var->width * ray->t.y
+		+ ray->t.x];
+	var->color = get_shading_floor(var->color, *ray, ray->row_distance);
+	mlx_put_pixel(data->screen.display.img, var->x, var->y, var->color);
+	var->color = ray->tex_buf[ray->ceiling_tex][var->width * ray->t.y
+		+ ray->t.x];
+	var->color = get_shading_floor(var->color, *ray, ray->row_distance);
+	mlx_put_pixel(data->screen.display.img, var->x, ray->resolution.y
+		- var->y - 1, var->color);
+	++var->x;
+}
+
+void	floor_casting_init(t_ray *ray, t_var *var)
+{
+	ray->ray_dir0.x = ray->dir.x - ray->plane.x;
+	ray->ray_dir0.y = ray->dir.y - ray->plane.y;
+	ray->ray_dir1.x = ray->dir.x + ray->plane.x;
+	ray->ray_dir1.y = ray->dir.y + ray->plane.y;
+	ray->p = var->y - ray->resolution.y / 2;
+	ray->pos_z = 0.5 * ray->resolution.y;
+	ray->row_distance = ray->pos_z / ray->p;
+	ray->floor_step.x = ray->row_distance * (ray->ray_dir1.x - ray->ray_dir0.x)
+		/ ray->resolution.x;
+	ray->floor_step.y = ray->row_distance * (ray->ray_dir1.y - ray->ray_dir0.y)
+		/ ray->resolution.x;
+	ray->floor.x = ray->pos.x + ray->row_distance * ray->ray_dir0.x;
+	ray->floor.y = ray->pos.y + ray->row_distance * ray->ray_dir0.y;
+}
+
 void	floor_casting(t_data *data, t_ray *ray)
 {
 	t_var	var;
@@ -37,35 +78,10 @@ void	floor_casting(t_data *data, t_ray *ray)
 	var.height = data->textures[1].img->height;
 	while (var.y < ray->resolution.y)
 	{
-		ray->ray_dir0.x = ray->dir.x - ray->plane.x;
-		ray->ray_dir0.y = ray->dir.y - ray->plane.y;
-		ray->ray_dir1.x = ray->dir.x + ray->plane.x;
-		ray->ray_dir1.y = ray->dir.y + ray->plane.y;
-		ray->p = var.y - ray->resolution.y / 2;
-		ray->pos_z = 0.5 * ray->resolution.y;
-		ray->row_distance = ray->pos_z / ray->p;
-		ray->floor_step.x = ray->row_distance * (ray->ray_dir1.x - ray->ray_dir0.x) / ray->resolution.x;
-		ray->floor_step.y = ray->row_distance * (ray->ray_dir1.y - ray->ray_dir0.y) / ray->resolution.x;
-		ray->floor.x = ray->pos.x + ray->row_distance * ray->ray_dir0.x;
-		ray->floor.y = ray->pos.y + ray->row_distance * ray->ray_dir0.y;
-		for(int x = 0; x < ray->resolution.x; ++x)
-		{
-			ray->cell.x = (int)(ray->floor.x);
-			ray->cell.y = (int)(ray->floor.y);
-			ray->t.x = (int)(var.width * (ray->floor.x - ray->cell.x)) & (var.width - 1);
-			ray->t.y = (int)(var.height * (ray->floor.y - ray->cell.y)) & (var.height - 1);
-			ray->floor.x += ray->floor_step.x;
-			ray->floor.y += ray->floor_step.y;
-			ray->floor_tex = 5;
-			ray->ceiling_tex = 4;
-			var.color = ray->tex_buf[ray->floor_tex][var.width * ray->t.y + ray->t.x];
-			var.color = get_shading_floor(var.color, *ray, ray->row_distance);
-			mlx_put_pixel(data->screen.display.img, x, var.y, var.color);
-			var.color = ray->tex_buf[ray->ceiling_tex][var.width * ray->t.y + ray->t.x];
-			var.color = get_shading_floor(var.color, *ray, ray->row_distance);
-			mlx_put_pixel(data->screen.display.img, x, ray->resolution.y - var.y - 1,
-				var.color);
-		}
+		floor_casting_init(ray, &var);
+		var.x = 0;
+		while (var.x < ray->resolution.x)
+			floor_casting_calculator(data, ray, &var);
 		var.y++;
 	}
 }
