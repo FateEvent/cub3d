@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 17:50:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/27 16:35:35 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	init_direction_child(t_data *data, t_ray *ray)
 		ray->plane.y = -(double)data->player.fov / 100;
 	}
 }
+
 
 void	init_direction(t_data *data)
 {
@@ -71,6 +72,7 @@ void	init_struct(t_data *data)
 	ray->mpsin = sin(data->player.speed.rotation / 2);
 	ray->mncos = cos(-data->player.speed.rotation / 2);
 	ray->mnsin = sin(-data->player.speed.rotation / 2);
+	ray->half_width = WIDTH / 2;
 	data->frame = 0;
 	data->render_delay = 1;
 	ray->text_select = 0;
@@ -85,8 +87,6 @@ void	init_struct(t_data *data)
 	ray->resolution.y = data->screen.display.size.y;
 	data->player.fov = 70;
 	ray->tex_buf = malloc(sizeof(uint32_t *) * 6);
-	data->mouse_x = 0;
-	data->mouse_y = 0;
 	init_direction(data);
 }
 

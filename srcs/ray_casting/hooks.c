@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/26 12:18:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:34:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_mouse_input_child(t_var var, t_ray *ray, t_data *data, double x)
 {
-	if (x > data->mouse_x)
+	if (x > ray->half_width)
 	{
 		var.old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * ray->mpcos - ray->dir.y * ray->mpsin;
@@ -25,7 +25,7 @@ static void	ft_mouse_input_child(t_var var, t_ray *ray, t_data *data, double x)
 			* ray->mpcos;
 		data->refresh = 1;
 	}
-	data->mouse_x = x;
+	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
 void	ft_mouse_input(double x, double y, void *param)
@@ -37,10 +37,10 @@ void	ft_mouse_input(double x, double y, void *param)
 	(void)y;
 	ft_bzero(&var, sizeof(var));
 	data = (t_data *)param;
-	if ((data->mouse_x - x >= -5 && data->mouse_x - x <= 5))
-		return ;
 	ray = &data->ray_data;
-	if (x < data->mouse_x)
+	if ((ray->half_width - x >= -5 && ray->half_width - x <= 5))
+		return ;
+	if (x < ray->half_width)
 	{
 		var.old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * ray->mncos - ray->dir.y * ray->mnsin;

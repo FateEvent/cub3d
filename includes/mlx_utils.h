@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/26 12:09:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:33:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_ray_data
 	double		mpsin;
 	double		mncos;
 	double		mnsin;
+	int			half_width;
 	t_map		*map;
 	uint32_t	**tex_buf;
 }				t_ray;
@@ -165,8 +166,6 @@ typedef struct s_data
 	int			keycode;
 	int			fd;
 	int			refresh;
-	int			mouse_x;
-	int			mouse_y;
 }				t_data;
 
 typedef struct s_var
