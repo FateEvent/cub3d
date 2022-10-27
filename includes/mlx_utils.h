@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/26 12:09:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:30:07 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,6 +285,8 @@ void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
 t_color		new_color(int r, int g, int b, int a);
 t_color		hex_to_rgb(uint32_t hex_value);
 t_color		lerp(t_color a, t_color b, double t);
+double		lerp_double(double a, double b, double t);
+double		inv_lerp(double a, double b, double value);
 int			get_rgba(int r, int g, int b, int a);
 int			rgb_to_hex(t_color rgb);
 int			add_shade(double distance, int color);
