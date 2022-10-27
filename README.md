@@ -9,3 +9,6 @@ good tutorials are the following ones:
 draw a line:
 * <https://www.youtube.com/watch?v=l-u6uxnOmH0>;
 * <https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm>;
+
+lerp:
+* <https://www.gamedev.net/articles/programming/general-and-gameplay-programming/inverse-lerp-a-super-useful-yet-often-overlooked-function-r5230>.

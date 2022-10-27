@@ -6,11 +6,20 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 11:54:00 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/20 14:50:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:33:16 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+/*
+** Examples d'utilisation de mes fonctions lerp_double() et inv_lerp():
+** t_color	a = {255, 0, 0, 255};
+** t_color	b = {45, 45, 0, 255};
+** double	rgb = lerp_double(rgb_to_hex(a), rgb_to_hex(b), 0.76);
+** double	t = inv_lerp(rgb_to_hex(a), rgb_to_hex(b), rgb);
+** printf("%f\n", t);
+*/
 
 t_color	new_color(int r, int g, int b, int a)
 {
@@ -46,4 +55,18 @@ int	get_opposite(int color)
 	rgb = hex_to_rgb(color);
 	color = rgb_to_hex(rgb);
 	return (color);
+}
+
+double	lerp_double(double a, double b, double t)
+{
+	a += t * (b - a);
+	return (a);
+}
+
+double	inv_lerp(double a, double b, double value)
+{
+	double	t;
+
+	t = (value - a) / (b - a);
+	return (t);
 }
