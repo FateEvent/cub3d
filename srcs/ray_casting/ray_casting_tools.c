@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:31:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/27 16:12:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ray_casting(t_data *data)
 
 	x = 0;
 	ray = &data->ray_data;
-	floor_casting(data, ray);
+//	if ()	
+		floor_casting(data, ray);
 	while (x < ray->resolution.x)
 	{
 		ray_data_init(data, ray, x);
@@ -29,9 +30,11 @@ void	ray_casting(t_data *data)
 		wall_line_calculator(ray);
 		texture_x_pos_calculator(data, ray);
 		texture_y_pos_calculator(data, ray);
-//		draw_ceiling(data, x);
+//		if ()
+//			draw_ceiling(data, x);
 		draw_walls(data, x);
-//		draw_floor(data, x);
+//		if ()
+//			draw_floor(data, x);
 		++x;
 	}
 }
