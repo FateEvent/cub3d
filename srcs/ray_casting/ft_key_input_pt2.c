@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 10:17:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 13:38:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:58:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ static double	ft_check_double_overflow(double value)
 	else if (value < -1)
 		return (-1);
 	return (value);
+}
+
+static void	ft_key_input_focus(t_ray *ray, mlx_key_data_t keydata)
+{
+	if (keydata.key == (keys_t)MLX_KEY_F && keydata.action == MLX_PRESS)
+	{
+		if (ray->m.focus == 0)
+			ray->m.focus = 1;
+		else
+			ray->m.focus = 0;
+	}
 }
 
 static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var,
@@ -43,6 +54,8 @@ static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var,
 				+ ray->pos.x;
 		data->refresh = 1;
 	}
+	else
+		ft_key_input_focus(ray, keydata);
 }
 
 void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var,

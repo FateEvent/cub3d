@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 14:38:35 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:55:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	init_struct(t_data *data)
 	data->player.fov = 70;
 	ray->tex_buf = malloc(sizeof(uint32_t *) * 6);
 	init_direction(data);
+	ray->m.focus = 0;
 }
 
 int	main(int argc, char *argv[])

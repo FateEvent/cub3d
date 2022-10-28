@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 14:38:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:49:57 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_mouse
 	double		psin;
 	double		ncos;
 	double		nsin;
+	int			focus;
 }			t_mouse;
 
 typedef struct s_key_hook

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/28 14:41:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:51:24 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_mouse_input(double x, double y, void *param)
 	ft_bzero(&var, sizeof(var));
 	data = (t_data *)param;
 	ray = &data->ray_data;
+	if (ray->m.focus == 1)
+		return ;
 	if ((ray->half_width - x >= -5 && ray->half_width - x <= 5))
 		return ;
 	if (x < ray->half_width)
