@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 14:55:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:34:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "mlx_utils.h"
 
@@ -105,20 +104,20 @@ int	main(int argc, char *argv[])
 			program.screen.display.size.x, program.screen.display.size.y);
 	if (!program.screen.display.img)
 		throw_err_ex("Error : Creating new MLX image failed.");
-	program.screen.map_display.img = mlx_new_image(program.mlx,
-			program.screen.map_display.size.x, program.screen.map_display.size.y);
-	if (!program.screen.map_display.img)
-		throw_err_ex("Error : Creating new MLX image failed.");
 	program.textures = NULL;
 	program.textures = ft_load_textures(&program);
 	if (!program.textures)
 		throw_err_ex("Error : Loading texture failed.");
-//	ft_display_map(&program, &program.textures[4]);
+	program.map->minimap = malloc(sizeof(t_minimap));
+	program.map->minimap->img = NULL;
+	program.map->minimap->img = mlx_new_image(program.mlx, 210, 150);
+	program.map->minimap->pos.x = program.ray_data.map_pos.x;
+	program.map->minimap->pos.y = program.ray_data.map_pos.y;
+	get_map_size(&program);
+	get_map_str(&program);
 	mlx_set_cursor_mode(program.mlx, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(program.mlx, program.screen.display.img, 0, 0);
-//	mlx_image_to_window(program.mlx, program.screen.map_display.img,
-//		0, program.screen.display.size.y / 3);
-//	ft_display_map(&program, &program.textures[4]);
+	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
 	mlx_cursor_hook(program.mlx, ft_mouse_input, &program);
 	mlx_loop_hook(program.mlx, ft_update, &program);

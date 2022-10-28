@@ -6,9 +6,10 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 16:24:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:35:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #ifndef MLX_UTILS_H
@@ -38,6 +39,12 @@ typedef struct s_vector2
 	double	y;
 }				t_vector2;
 
+typedef struct s_vector3
+{
+	int	x;
+	int	y;
+}				t_vector3;
+
 typedef struct s_color
 {
 	int	r;
@@ -60,6 +67,13 @@ typedef struct s_sprite
 	int		texture;
 }	t_sprite;
 */
+
+typedef struct s_minimap
+{
+	t_vector2	pos;
+	mlx_image_t	*img;
+}			t_minimap;
+
 typedef struct s_map
 {
 	char		**map;
@@ -71,6 +85,9 @@ typedef struct s_map
 	t_color		ceiling_color;
 	t_vector	spawn_pos;
 	char		dir;
+	t_minimap	*minimap;
+	t_vector2	size;
+	char		*map_str;
 }				t_map;
 
 typedef struct s_mouse
@@ -206,6 +223,16 @@ typedef struct s_ctexture
 	int		index;
 }			t_ctexture;
 
+typedef struct	s_shape
+{
+	int			x;
+	int			y;
+	int			width;
+	int			height;
+	double		dim;
+	t_image		*img;
+}				t_shape;
+
 enum e_key
 {
 	UP = 87,
@@ -249,7 +276,8 @@ int			gap_check_reverse(char **map, ssize_t i, ssize_t j);
 int			space_check(char **map, ssize_t i, ssize_t j);
 int			hole_check(char **map);
 int			get_spawn_position(t_map *m);
-
+void		get_map_size(t_data *data);
+void		get_map_str(t_data *data);
 void		init_direction(t_data *data);
 
 // ray casting tools
@@ -276,6 +304,7 @@ void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
 void		draw_walls(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
+void		draw_minimap(t_data	*data);
 
 // display map functions
 void		ft_display_map(t_data *data, t_image *tile);
