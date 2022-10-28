@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 16:34:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/28 16:48:00 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ int	main(int argc, char *argv[])
 	program.map->minimap = malloc(sizeof(t_minimap));
 	program.map->minimap->img = NULL;
 	program.map->minimap->img = mlx_new_image(program.mlx, 210, 150);
-	program.map->minimap->pos.x = program.ray_data.map_pos.x;
-	program.map->minimap->pos.y = program.ray_data.map_pos.y;
+	program.map->minimap->pos.x = program.ray_data.pos.x;
+	program.map->minimap->pos.y = program.ray_data.pos.y;
 	get_map_size(&program);
 	get_map_str(&program);
 	mlx_set_cursor_mode(program.mlx, MLX_MOUSE_HIDDEN);

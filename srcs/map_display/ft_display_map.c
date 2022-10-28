@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 16:33:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/28 16:47:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ void	draw_minimap(t_data	*data)
 	t_vector3	vec;
 	t_shape		rect;
 
-	data->map->minimap->pos.x -= (data->map->minimap->pos.x - data->ray_data.map_pos.x) * 0.17;
-	data->map->minimap->pos.y -= (data->map->minimap->pos.y - data->ray_data.map_pos.y) * 0.17;
+	data->map->minimap->pos.x -= (data->map->minimap->pos.x - data->ray_data.pos.x) * 0.17;
+	data->map->minimap->pos.y -= (data->map->minimap->pos.y - data->ray_data.pos.y) * 0.17;
 	rect.width = 12;
 	rect.height = 12;
 	rect.x = -fabs(fmod(data->map->minimap->pos.x, 1)) * rect.width;
