@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 14:49:57 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:24:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,8 +269,6 @@ void		choose_wall_texture(t_ray *ray);
 uint32_t	get_shading(uint32_t color, t_ray ray);
 
 // drawing tools
-void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
-				uint32_t color);
 void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 				uint32_t color);
 void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
