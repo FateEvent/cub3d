@@ -1,7 +1,7 @@
-NO ./images/wall.xpm42
-SO ./images/wall.xpm42
-WE ./images/wall.xpm42
-EA ./images/wall.xpm42
+NO ./images/wall1.xpm42
+SO ./images/wall2.xpm42
+WE ./images/wall1.xpm42
+EA ./images/wall2.xpm42
 
 F 220,100,0
 C 225,30,0
