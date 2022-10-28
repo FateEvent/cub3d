@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/27 16:12:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:10:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ void	ray_casting(t_data *data)
 
 	x = 0;
 	ray = &data->ray_data;
+	ray->map = data->map;
 //	if ()	
 		floor_casting(data, ray);
 	while (x < ray->resolution.x)
 	{
-		ray_data_init(data, ray, x);
+		ray_data_init(ray, x);
 		rayside_calculator(ray);
 		ray_launcher(ray);
 		wall_distance_calculator(ray);

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:07:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:10:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ray_delta_calculator(t_ray *ray)
 		ray->ray_delta.y = fabs(1 / ray->ray_dir.y);
 }
 
-void	ray_data_init(t_data *data, t_ray *ray, int x)
+void	ray_data_init(t_ray *ray, int x)
 {
 	ray->camera_x = 2 * x / (double)ray->resolution.x - 1;
 	ray->ray_dir.x = ray->dir.x + ray->plane.x * ray->camera_x;
@@ -91,5 +91,4 @@ void	ray_data_init(t_data *data, t_ray *ray, int x)
 	ray->map_pos.y = (int)ray->pos.y;
 	ray->text_select = 0;
 	ray_delta_calculator(ray);
-	ray->map = data->map;
 }

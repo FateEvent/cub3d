@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 15:10:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/28 16:34:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,6 @@ typedef struct s_sprite
 	double	y;
 	int		texture;
 }	t_sprite;
-
-typedef struct s_texture
-{
-	int				width;
-	int				height;
-	char			**bitmap;
-	struct s_color	*colors;
-}				t_texture;
 */
 
 typedef struct s_minimap
@@ -97,6 +89,38 @@ typedef struct s_map
 	char		*map_str;
 }				t_map;
 
+typedef struct s_mouse
+{
+	double		pcos;
+	double		psin;
+	double		ncos;
+	double		nsin;
+	int			focus;
+}			t_mouse;
+
+typedef struct s_key_hook
+{
+	double		pcos;
+	double		psin;
+	double		ncos;
+	double		nsin;
+}				t_key;
+
+typedef struct s_floor_casting
+{
+	t_vector2	ray_dir0;
+	t_vector2	ray_dir1;
+	int			p;
+	double		pos_z;
+	double		row_distance;
+	t_vector2	floor_step;
+	t_vector2	floor;
+	t_vector	cell;
+	t_vector	t;
+	int			floor_tex;
+	int			ceiling_tex;
+}				t_floor;
+
 typedef struct s_ray_data
 {
 	t_vector2	resolution;
@@ -120,25 +144,9 @@ typedef struct s_ray_data
 	double		wall_x;
 	double		step;
 	double		tex_pos;
-	double		pcos;
-	double		psin;
-	double		ncos;
-	double		nsin;
-	t_vector2	ray_dir0;
-	t_vector2	ray_dir1;
-	int			p;
-	double		pos_z;
-	double		row_distance;
-	t_vector2	floor_step;
-	t_vector2	floor;
-	t_vector	cell;
-	t_vector	t;
-	int			floor_tex;
-	int			ceiling_tex;
-	double		mpcos;
-	double		mpsin;
-	double		mncos;
-	double		mnsin;
+	t_floor		fl;
+	t_key		k;
+	t_mouse		m;
 	int			half_width;
 	t_map		*map;
 	uint32_t	**tex_buf;
@@ -171,7 +179,6 @@ typedef struct s_data
 	mlx_t		*mlx;
 	t_map		*map;
 	t_screen	screen;
-	uint32_t	frame;
 	uint32_t	render_delay;
 	uint32_t	img_index;
 	t_image		*textures;
@@ -245,9 +252,10 @@ void		fill_window(t_data *data, uint32_t color);
 
 // hooks
 void		ft_key_input(mlx_key_data_t keydata, void *param);
+void		ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var,
+				mlx_key_data_t keydata);
 void		ft_mouse_input(double x, double y, void *param);
 void		ft_update(void *param);
-double		ft_check_double_overflow(double value);
 
 // parsing functions
 char		**ft_map_reader(char *filename);
@@ -276,7 +284,7 @@ void		init_direction(t_data *data);
 void		floor_casting(t_data *data, t_ray *ray);
 
 void		ray_casting(t_data *data);
-void		ray_data_init(t_data *data, t_ray *ray, int x);
+void		ray_data_init(t_ray *ray, int x);
 void		ray_delta_calculator(t_ray *ray);
 void		rayside_calculator(t_ray *ray);
 void		ray_launcher(t_ray *ray);
