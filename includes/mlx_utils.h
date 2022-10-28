@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 16:35:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:36:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,8 @@ t_vector	ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
 
 // window functions
+void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
+				uint32_t color);
 void		fill_window(t_data *data, uint32_t color);
 
 // hooks
