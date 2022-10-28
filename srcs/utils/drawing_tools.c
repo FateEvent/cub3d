@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/21 12:04:57 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/28 16:24:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
-void	mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
-			uint32_t color)
-{
-	uint32_t	h;
-	uint32_t	w;
-
-	h = -1;
-	while (++h < height)
-	{
-		w = -1;
-		while (++w < width)
-		{
-			mlx_put_pixel(img, w, h, color);
-		}
-	}
-}
 
 static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 		uint32_t color)
