@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/27 16:35:35 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/28 11:56:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ void	init_struct(t_data *data)
 	ray->pos.y = 0.5 + data->map->spawn_pos.y;
 	data->player.speed.movement = 0.2;
 	data->player.speed.rotation = 0.3;
-	ray->pcos = cos(data->player.speed.rotation);
-	ray->psin = sin(data->player.speed.rotation);
-	ray->ncos = cos(-data->player.speed.rotation);
-	ray->nsin = sin(-data->player.speed.rotation);
-	ray->mpcos = cos(data->player.speed.rotation / 2);
-	ray->mpsin = sin(data->player.speed.rotation / 2);
-	ray->mncos = cos(-data->player.speed.rotation / 2);
-	ray->mnsin = sin(-data->player.speed.rotation / 2);
+	ray->k.pcos = cos(data->player.speed.rotation);
+	ray->k.psin = sin(data->player.speed.rotation);
+	ray->k.ncos = cos(-data->player.speed.rotation);
+	ray->k.nsin = sin(-data->player.speed.rotation);
+	ray->m.pcos = cos(data->player.speed.rotation / 2);
+	ray->m.psin = sin(data->player.speed.rotation / 2);
+	ray->m.ncos = cos(-data->player.speed.rotation / 2);
+	ray->m.nsin = sin(-data->player.speed.rotation / 2);
 	ray->half_width = WIDTH / 2;
 	data->frame = 0;
 	data->render_delay = 1;

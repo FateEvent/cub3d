@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 10:26:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:56:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 	if (keydata.key == (keys_t)LEFT_ARROW)
 	{
 		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * ray->ncos - ray->dir.y
-			* ray->nsin;
-		ray->dir.y = var->old_dir_x * ray->nsin + ray->dir.y
-			* ray->ncos;
+		ray->dir.x = ray->dir.x * ray->k.ncos - ray->dir.y
+			* ray->k.nsin;
+		ray->dir.y = var->old_dir_x * ray->k.nsin + ray->dir.y
+			* ray->k.ncos;
 		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * ray->ncos - ray->plane.y
-			* ray->nsin;
-		ray->plane.y = var->old_plane_x * ray->nsin + ray->plane.y
-			* ray->ncos;
+		ray->plane.x = ray->plane.x * ray->k.ncos - ray->plane.y
+			* ray->k.nsin;
+		ray->plane.y = var->old_plane_x * ray->k.nsin + ray->plane.y
+			* ray->k.ncos;
 		data->refresh = 1;
 	}
 	if (keydata.key == (keys_t)ESCAPE)
@@ -41,15 +41,15 @@ static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
 	if (keydata.key == (keys_t)RIGHT_ARROW)
 	{
 		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * ray->pcos - ray->dir.y
-			* ray->psin;
-		ray->dir.y = var->old_dir_x * ray->psin + ray->dir.y
-			* ray->pcos;
+		ray->dir.x = ray->dir.x * ray->k.pcos - ray->dir.y
+			* ray->k.psin;
+		ray->dir.y = var->old_dir_x * ray->k.psin + ray->dir.y
+			* ray->k.pcos;
 		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * ray->pcos - ray->plane.y
-			* ray->psin;
-		ray->plane.y = var->old_plane_x * ray->psin + ray->plane.y
-			* ray->pcos;
+		ray->plane.x = ray->plane.x * ray->k.pcos - ray->plane.y
+			* ray->k.psin;
+		ray->plane.y = var->old_plane_x * ray->k.psin + ray->plane.y
+			* ray->k.pcos;
 		data->refresh = 1;
 	}
 	else

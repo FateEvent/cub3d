@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/28 10:17:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:57:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static void	ft_mouse_input_child(t_var var, t_ray *ray, t_data *data, double x)
 	if (x > ray->half_width)
 	{
 		var.old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * ray->mpcos - ray->dir.y * ray->mpsin;
-		ray->dir.y = var.old_dir_x * ray->mpsin + ray->dir.y * ray->mpcos;
+		ray->dir.x = ray->dir.x * ray->m.pcos - ray->dir.y * ray->m.psin;
+		ray->dir.y = var.old_dir_x * ray->m.psin + ray->dir.y * ray->m.pcos;
 		var.old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * ray->mpcos - ray->plane.y * ray->mpsin;
-		ray->plane.y = var.old_plane_x * ray->mpsin + ray->plane.y
-			* ray->mpcos;
+		ray->plane.x = ray->plane.x * ray->m.pcos - ray->plane.y * ray->m.psin;
+		ray->plane.y = var.old_plane_x * ray->m.psin + ray->plane.y
+			* ray->m.pcos;
 		data->refresh = 1;
 	}
 	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
@@ -43,12 +43,12 @@ void	ft_mouse_input(double x, double y, void *param)
 	if (x < ray->half_width)
 	{
 		var.old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * ray->mncos - ray->dir.y * ray->mnsin;
-		ray->dir.y = var.old_dir_x * ray->mnsin + ray->dir.y * ray->mncos;
+		ray->dir.x = ray->dir.x * ray->m.ncos - ray->dir.y * ray->m.nsin;
+		ray->dir.y = var.old_dir_x * ray->m.nsin + ray->dir.y * ray->m.ncos;
 		var.old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * ray->mncos - ray->plane.y * ray->mnsin;
-		ray->plane.y = var.old_plane_x * ray->mnsin + ray->plane.y
-			* ray->mncos;
+		ray->plane.x = ray->plane.x * ray->m.ncos - ray->plane.y * ray->m.nsin;
+		ray->plane.y = var.old_plane_x * ray->m.nsin + ray->plane.y
+			* ray->m.ncos;
 		data->refresh = 1;
 	}
 	ft_mouse_input_child(var, ray, data, x);

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 10:27:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:56:45 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,6 @@ typedef struct s_sprite
 	double	y;
 	int		texture;
 }	t_sprite;
-
-typedef struct s_texture
-{
-	int				width;
-	int				height;
-	char			**bitmap;
-	struct s_color	*colors;
-}				t_texture;
 */
 typedef struct s_map
 {
@@ -80,6 +72,37 @@ typedef struct s_map
 	t_vector	spawn_pos;
 	char		dir;
 }				t_map;
+
+typedef struct s_mouse
+{
+	double		pcos;
+	double		psin;
+	double		ncos;
+	double		nsin;
+}			t_mouse;
+
+typedef struct s_key_hook
+{
+	double		pcos;
+	double		psin;
+	double		ncos;
+	double		nsin;
+}				t_key;
+
+typedef struct s_floor_casting
+{
+	t_vector2	ray_dir0;
+	t_vector2	ray_dir1;
+	int			p;
+	double		pos_z;
+	double		row_distance;
+	t_vector2	floor_step;
+	t_vector2	floor;
+	t_vector	cell;
+	t_vector	t;
+	int			floor_tex;
+	int			ceiling_tex;
+}				t_floor;
 
 typedef struct s_ray_data
 {
@@ -104,25 +127,9 @@ typedef struct s_ray_data
 	double		wall_x;
 	double		step;
 	double		tex_pos;
-	double		pcos;
-	double		psin;
-	double		ncos;
-	double		nsin;
-	t_vector2	ray_dir0;
-	t_vector2	ray_dir1;
-	int			p;
-	double		pos_z;
-	double		row_distance;
-	t_vector2	floor_step;
-	t_vector2	floor;
-	t_vector	cell;
-	t_vector	t;
-	int			floor_tex;
-	int			ceiling_tex;
-	double		mpcos;
-	double		mpsin;
-	double		mncos;
-	double		mnsin;
+	t_floor		fl;
+	t_key		k;
+	t_mouse		m;
 	int			half_width;
 	t_map		*map;
 	uint32_t	**tex_buf;
@@ -250,7 +257,7 @@ void		init_direction(t_data *data);
 void		floor_casting(t_data *data, t_ray *ray);
 
 void		ray_casting(t_data *data);
-void		ray_data_init(t_data *data, t_ray *ray, int x);
+void		ray_data_init(t_ray *ray, int x);
 void		ray_delta_calculator(t_ray *ray);
 void		rayside_calculator(t_ray *ray);
 void		ray_launcher(t_ray *ray);
