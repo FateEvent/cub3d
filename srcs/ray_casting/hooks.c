@@ -6,20 +6,11 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/27 17:41:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:17:06 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
-double	ft_check_double_overflow(double value)
-{
-	if (value > 1)
-		return (1);
-	else if (value < -1)
-		return (-1);
-	return (value);
-}
 
 static void	ft_mouse_input_child(t_var var, t_ray *ray, t_data *data, double x)
 {

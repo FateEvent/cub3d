@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/27 17:41:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:27:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,9 +219,10 @@ void		fill_window(t_data *data, uint32_t color);
 
 // hooks
 void		ft_key_input(mlx_key_data_t keydata, void *param);
+void		ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var,
+				mlx_key_data_t keydata);
 void		ft_mouse_input(double x, double y, void *param);
 void		ft_update(void *param);
-double		ft_check_double_overflow(double value);
 
 // parsing functions
 char		**ft_map_reader(char *filename);
