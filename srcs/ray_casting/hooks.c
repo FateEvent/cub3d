@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/28 11:57:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:41:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	ft_update(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	data->frame++;
 	if (data->refresh == 1)
 	{
 		ray_casting(data);

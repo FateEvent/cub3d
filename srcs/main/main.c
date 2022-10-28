@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 11:56:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:38:35 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	init_struct(t_data *data)
 	ray->m.ncos = cos(-data->player.speed.rotation / 2);
 	ray->m.nsin = sin(-data->player.speed.rotation / 2);
 	ray->half_width = WIDTH / 2;
-	data->frame = 0;
 	data->render_delay = 1;
 	ray->text_select = 0;
 	data->refresh = 1;
@@ -119,9 +118,8 @@ int	main(int argc, char *argv[])
 //	mlx_image_to_window(program.mlx, program.screen.map_display.img,
 //		0, program.screen.display.size.y / 3);
 //	ft_display_map(&program, &program.textures[4]);
-	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_key_hook(program.mlx, ft_key_input, &program);
 	mlx_cursor_hook(program.mlx, ft_mouse_input, &program);
+	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_loop(program.mlx);
-	mlx_terminate(program.mlx);
 }

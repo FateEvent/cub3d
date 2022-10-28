@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 10:17:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 10:29:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:38:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var,
 {
 	int	alpha;
 
-	if (keydata.key == (keys_t)RIGHT)
+	if (keydata.key == (keys_t)RIGHT
+		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 	{
 		if (ray->dir.y > 0)
 			alpha = acos(ft_check_double_overflow(ray->dir.x));
@@ -49,7 +50,8 @@ void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var,
 {
 	int	alpha;
 
-	if (keydata.key == (keys_t)LEFT)
+	if (keydata.key == (keys_t)LEFT
+		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 	{
 		if (ray->dir.y > 0)
 			alpha = acos(ft_check_double_overflow(ray->dir.x));

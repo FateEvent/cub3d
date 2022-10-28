@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 11:56:45 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:38:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ typedef struct s_data
 	mlx_t		*mlx;
 	t_map		*map;
 	t_screen	screen;
-	uint32_t	frame;
 	uint32_t	render_delay;
 	uint32_t	img_index;
 	t_image		*textures;

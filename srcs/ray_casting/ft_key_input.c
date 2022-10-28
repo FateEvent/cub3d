@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 11:56:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:50:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	if (keydata.key == (keys_t)LEFT_ARROW)
+	if (keydata.key == (keys_t)LEFT_ARROW
+		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 	{
 		var->old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * ray->k.ncos - ray->dir.y
@@ -38,7 +39,8 @@ static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var,
 static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	if (keydata.key == (keys_t)RIGHT_ARROW)
+	if (keydata.key == (keys_t)RIGHT_ARROW
+		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 	{
 		var->old_dir_x = ray->dir.x;
 		ray->dir.x = ray->dir.x * ray->k.pcos - ray->dir.y
@@ -59,7 +61,8 @@ static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var,
 static void	ft_key_input_child(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	if (keydata.key == (keys_t)DOWN)
+	if (keydata.key == (keys_t)DOWN
+		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 	{
 		if (data->map->map[(int)(ray->pos.y - ray->dir.y * var->movement)]
 			[(int)(ray->pos.x)] != '1')
@@ -79,12 +82,14 @@ void	ft_key_input(mlx_key_data_t keydata, void *param)
 	t_ray	*ray;
 	t_var	var;
 
+//	printf("%d\n", keydata.action);
 	ft_bzero(&var, sizeof(var));
 	data = (t_data *)param;
 	ray = &data->ray_data;
 	var.rotation = data->player.speed.rotation;
 	var.movement = data->player.speed.movement;
-	if (keydata.key == (keys_t)UP)
+	if (keydata.key == (keys_t)UP
+		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 	{
 		if (data->map->map[(int)(ray->pos.y)]
 			[(int)(ray->pos.x + ray->dir.x * var.movement)] != '1')
