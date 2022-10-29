@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 10:17:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 14:58:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:53:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_key_input_focus(t_ray *ray, mlx_key_data_t keydata)
 static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	int	alpha;
+	double	alpha;
 
 	if (keydata.key == (keys_t)RIGHT
 		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
@@ -61,7 +61,7 @@ static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var,
 void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var,
 				mlx_key_data_t keydata)
 {
-	int	alpha;
+	double	alpha;
 
 	if (keydata.key == (keys_t)LEFT
 		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
