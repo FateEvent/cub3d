@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 16:36:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:08:06 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_map
 	t_minimap	*minimap;
 	t_vector2	size;
 	char		*map_str;
+	int			*size_arr;
 }				t_map;
 
 typedef struct s_mouse
@@ -341,5 +342,6 @@ uint32_t	**ft_from_uchar_to_hex_buf(unsigned char *arr, size_t width,
 t_color		**rgb_buf_creator(uint32_t **buf, size_t width, size_t height);
 t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 				size_t height);
+void		ft_print_map(char **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 15:59:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/29 13:30:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ void	ft_uchar_arr_display(unsigned char *arr, size_t size)
 	while (i < size)
 	{
 		ft_printf("%d\n", arr[i]);
+		i++;
+	}
+}
+
+void	ft_print_map(char **map)
+{
+	size_t	i;
+	
+	i = 0;
+	while (map[i])
+	{
+		ft_printf("%s\n", map[i]);
 		i++;
 	}
 }
