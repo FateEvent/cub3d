@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/31 16:39:09 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 17:39:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_mouse_input_child(t_var var, t_ray *ray, t_data *data, double x)
 		ray->plane.x = ray->plane.x * ray->m.pcos - ray->plane.y * ray->m.psin;
 		ray->plane.y = var.old_plane_x * ray->m.psin + ray->plane.y
 			* ray->m.pcos;
+		data->player.yaw += data->player.speed.rotation;
 		data->refresh = 1;
 	}
 	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
@@ -51,6 +52,7 @@ void	ft_mouse_input(double x, double y, void *param)
 		ray->plane.x = ray->plane.x * ray->m.ncos - ray->plane.y * ray->m.nsin;
 		ray->plane.y = var.old_plane_x * ray->m.nsin + ray->plane.y
 			* ray->m.ncos;
+		data->player.yaw -= data->player.speed.rotation;
 		data->refresh = 1;
 	}
 	ft_mouse_input_child(var, ray, data, x);
