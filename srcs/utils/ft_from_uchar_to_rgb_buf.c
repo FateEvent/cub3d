@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_from_uchar_to_rgb_buf.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:00:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:15:58 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 12:22:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ t_color	**rgb_buf_creator(uint32_t **buf, size_t width, size_t height)
 		while (j < width)
 		{
 			rgb_buf[i][j] = hex_to_rgb(buf[i][j]);
-			ft_printf("%d\n", rgb_to_hex(rgb_buf[i][j]));
 			j++;
 		}
 		i++;
