@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/29 16:08:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:54:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define MAPWIDTH 100
 # define MAPHEIGHT 100
 # define BPP 4
+# define numSprites 3
 
 typedef struct s_vector
 {
@@ -59,14 +60,14 @@ typedef struct s_image
 	mlx_image_t	*img;
 	t_vector2	size;
 }				t_image;
-/*
+
 typedef struct s_sprite
 {
 	double	x;
 	double	y;
 	int		texture;
-}	t_sprite;
-*/
+}				t_sprite;
+
 
 typedef struct s_minimap
 {

@@ -3,22 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 10:06:35 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 14:38:45 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+static void	sprite_arr_creator(t_data *data, t_image *texture)
+{
+	size_t	i;
+
+	i = 5;
+	texture[6].texture = mlx_load_xpm42("images/barrel.xpm42");
+	texture[7].texture = mlx_load_xpm42("images/greenlight.xpm42");
+	texture[8].texture = mlx_load_xpm42("images/pillar.xpm42");
+	if (!texture[6].texture || !texture[7].texture || !texture[8].texture)
+		return ;
+	texture[6].img = mlx_texture_to_image(data->mlx,
+			&texture[6].texture->texture);
+	texture[7].img = mlx_texture_to_image(data->mlx,
+			&texture[7].texture->texture);
+	texture[8].img = mlx_texture_to_image(data->mlx,
+			&texture[8].texture->texture);
+	if (!texture[6].img || !texture[7].img || !texture[8].img)
+		return ;
+	while (++i < 9)
+		data->ray_data.tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
+				texture[i].img->width, texture[i].img->height);
+}
 
 static void	from_texture_to_image(t_data *data, t_image *texture)
 {
 	t_ray	*ray;
 	size_t	i;
 
-	i = -1;
 	ray = &data->ray_data;
+	i = -1;
 	texture[0].img = mlx_texture_to_image(data->mlx,
 			&texture[0].texture->texture);
 	texture[1].img = mlx_texture_to_image(data->mlx,
@@ -32,11 +55,12 @@ static void	from_texture_to_image(t_data *data, t_image *texture)
 	texture[5].img = mlx_texture_to_image(data->mlx,
 			&texture[5].texture->texture);
 	if (!texture[0].img || !texture[1].img || !texture[2].img
-		|| !texture[3].img || !texture[4].img)
+		|| !texture[3].img || !texture[4].img || !texture[5].img)
 		return ;
 	while (++i < 6)
 		ray->tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
 				texture[i].img->width, texture[i].img->height);
+	sprite_arr_creator(data, texture);
 }
 
 t_image	*ft_load_textures(t_data *data)
@@ -54,11 +78,12 @@ t_image	*ft_load_textures(t_data *data)
 	texture[4].texture = mlx_load_xpm42("images/ceiling2.xpm42");
 	texture[5].texture = mlx_load_xpm42("images/dirtycarpet1.xpm42");
 	if (!texture[0].texture || !texture[1].texture || !texture[2].texture
-		|| !texture[3].texture || !texture[4].texture)
+		|| !texture[3].texture || !texture[4].texture || !texture[5].texture)
 		return (NULL);
 	from_texture_to_image(data, texture);
 	if (!texture[0].img || !texture[1].img || !texture[2].img
-		|| !texture[3].img || !texture[4].img)
+		|| !texture[3].img || !texture[4].img || !texture[5].img
+		|| !texture[6].img || !texture[7].img || !texture[8].img)
 		return (NULL);
 	return (texture);
 }
