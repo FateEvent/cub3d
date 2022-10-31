@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/29 16:08:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:46:30 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ typedef struct s_data
 	int			keycode;
 	int			fd;
 	int			refresh;
+	int			key;
 }				t_data;
 
 typedef struct s_var
@@ -234,17 +235,6 @@ typedef struct	s_shape
 	t_image		*img;
 }				t_shape;
 
-enum e_key
-{
-	UP = 87,
-	DOWN = 83,
-	LEFT = 65,
-	RIGHT = 68,
-	RIGHT_ARROW = 262,
-	LEFT_ARROW = 263,
-	ESCAPE = 256
-};
-
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
@@ -255,9 +245,9 @@ void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 void		fill_window(t_data *data, uint32_t color);
 
 // hooks
-void		ft_key_input(mlx_key_data_t keydata, void *param);
-void		ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var,
-				mlx_key_data_t keydata);
+void		ft_key_input(t_data *data);
+void		ft_key_hook(mlx_key_data_t keydata, void *param);
+void		ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var);
 void		ft_mouse_input(double x, double y, void *param);
 void		ft_update(void *param);
 

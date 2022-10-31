@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_display_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/29 16:47:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 15:41:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	get_map_str(t_data *data)
 	while (data->map->map[i])
 	{
 		j += ft_strlen(data->map->map[i]);
-		ft_printf("%d\n", ft_strlen(data->map->map[i]));
 		++i;
 	}
 	data->map->map_str = malloc(sizeof(char) * j + 1);
@@ -131,6 +130,7 @@ void	draw_minimap(t_data	*data)
 	t_vector3	vec;
 	t_shape		rect;
 
+	mlx_draw_square(data->map->minimap->img, 210, 150, get_rgba(0, 0, 0, 0));
 	data->map->minimap->pos.x -= (data->map->minimap->pos.x - data->ray_data.pos.x) * 0.17;
 	data->map->minimap->pos.y -= (data->map->minimap->pos.y - data->ray_data.pos.y) * 0.17;
 	rect.width = 12;

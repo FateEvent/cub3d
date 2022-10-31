@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/28 16:45:12 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 16:39:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	ft_update(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
+	ft_key_input(data);
 	if (data->refresh == 1)
 	{
 		ray_casting(data);
-		mlx_draw_square(data->map->minimap->img, 210, 150, get_rgba(0, 0, 0, 0));
 		draw_minimap(data);
 		mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
 		data->refresh = 0;

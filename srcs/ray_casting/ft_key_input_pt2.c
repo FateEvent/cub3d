@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_input_pt2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 10:17:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/29 16:53:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:29:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static double	ft_check_double_overflow(double value)
 	return (value);
 }
 
-static void	ft_key_input_focus(t_ray *ray, mlx_key_data_t keydata)
+static void	ft_key_input_focus(t_data *data, t_ray *ray)
 {
-	if (keydata.key == (keys_t)MLX_KEY_F && keydata.action == MLX_PRESS)
+	if (data->key == (keys_t)MLX_KEY_F)
 	{
 		if (ray->m.focus == 0)
 			ray->m.focus = 1;
@@ -32,13 +32,11 @@ static void	ft_key_input_focus(t_ray *ray, mlx_key_data_t keydata)
 	}
 }
 
-static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var,
-				mlx_key_data_t keydata)
+static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var)
 {
 	double	alpha;
 
-	if (keydata.key == (keys_t)RIGHT
-		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+	if (data->key == (keys_t)MLX_KEY_D)
 	{
 		if (ray->dir.y > 0)
 			alpha = acos(ft_check_double_overflow(ray->dir.x));
@@ -55,16 +53,14 @@ static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var,
 		data->refresh = 1;
 	}
 	else
-		ft_key_input_focus(ray, keydata);
+		ft_key_input_focus(data, ray);
 }
 
-void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var,
-				mlx_key_data_t keydata)
+void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var)
 {
 	double	alpha;
 
-	if (keydata.key == (keys_t)LEFT
-		&& (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+	if (data->key == (keys_t)MLX_KEY_A)
 	{
 		if (ray->dir.y > 0)
 			alpha = acos(ft_check_double_overflow(ray->dir.x));
@@ -81,5 +77,5 @@ void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var,
 		data->refresh = 1;
 	}
 	else
-		ft_key_input_arrows_pt2(data, ray, var, keydata);
+		ft_key_input_arrows_pt2(data, ray, var);
 }

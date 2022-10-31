@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 16:48:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 16:37:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	main(int argc, char *argv[])
 	mlx_set_cursor_mode(program.mlx, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(program.mlx, program.screen.display.img, 0, 0);
 	mlx_loop_hook(program.mlx, ft_update, &program);
-	mlx_key_hook(program.mlx, ft_key_input, &program);
+	mlx_key_hook(program.mlx, ft_key_hook, &program);
 	mlx_cursor_hook(program.mlx, ft_mouse_input, &program);
 	mlx_loop_hook(program.mlx, ft_update, &program);
 	mlx_loop(program.mlx);
