@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/29 13:30:04 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:07:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,31 @@ void	ft_print_map(char **map)
 		ft_printf("%s\n", map[i]);
 		i++;
 	}
+}
+
+void	sort_sprites(int* order, double* dist, int amount)
+{
+	int		i;
+	int		tmp;
+	double	tmp_dist;
+
+	i = 0;
+	tmp = 0;
+	tmp_dist = 0;
+	while (i < amount - 1)
+	{
+		if (dist[i] < dist[i + 1])
+		{
+			tmp_dist = dist[i];
+			tmp = order[i];
+			dist[i] = dist[i + 1];
+			order[i] = order[i + 1];
+			dist[i + 1] = tmp_dist;
+			order[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+	i = 0;
 }

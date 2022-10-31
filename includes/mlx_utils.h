@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 17:19:38 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 17:37:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_sprite
 	int		texture;
 }				t_sprite;
 
-
 typedef struct s_minimap
 {
 	t_vector2	pos;
@@ -106,6 +105,24 @@ typedef struct s_key_hook
 	double		ncos;
 	double		nsin;
 }				t_key;
+
+typedef struct s_sprite_caster
+{
+	t_vector2	sprite;
+	t_vector2	transform;
+	double		inv_det;
+	int 		sprite_screen_x;
+	int			sprite_width;
+	int			sprite_height;
+	t_vector3	draw_start;
+	t_vector3	draw_end;
+	int			stripe;
+	t_vector3	tex;
+	t_sprite	*sprites;
+	int			*sprite_order;
+	double		*sprite_dist;
+	double		*z_buffer;
+}				t_scaster;
 
 typedef struct s_floor_casting
 {
@@ -150,6 +167,7 @@ typedef struct s_ray_data
 	t_mouse		m;
 	int			half_width;
 	t_map		*map;
+	t_scaster	scast;
 	uint32_t	**tex_buf;
 }				t_ray;
 
@@ -331,5 +349,6 @@ t_color		**rgb_buf_creator(uint32_t **buf, size_t width, size_t height);
 t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 				size_t height);
 void		ft_print_map(char **map);
+void		sort_sprites(int* order, double* dist, int amount);
 
 #endif

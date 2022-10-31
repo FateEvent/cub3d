@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 16:00:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:24:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,51 +18,32 @@ t_sprite	sprite[numSprites] =
 			{4, 3, 7},
 			{5, 3, 8}
 			};
-double		z_buffer[WIDTH];
-int			sprite_order[numSprites];
-double		sprite_distance[numSprites];
 
-void	sort_sprites(int* order, double* dist, int amount)
+void	sprite_casting_init(t_ray *ray)
 {
-	int		i;
-	int		tmp;
-	double	tmp_dist;
-
-	i = 0;
-	tmp = 0;
-	tmp_dist = 0;
-	while (i < amount - 1)
-	{
-		if (dist[i] < dist[i + 1])
-		{
-			tmp_dist = dist[i];
-			tmp = order[i];
-			dist[i] = dist[i + 1];
-			order[i] = order[i + 1];
-			dist[i + 1] = tmp_dist;
-			order[i + 1] = tmp;
-			i = 0;
-		}
-		else
-			i++;
-	}
-	i = 0;
+	ray->scast.sprites = malloc(sizeof(t_sprite) * numSprites);
+	ray->scast.sprite_order = malloc(sizeof(int) * numSprites);
+	ray->scast.sprite_dist = malloc(sizeof(double) * numSprites);
+	ray->scast.z_buffer = malloc(sizeof(double) * ray->resolution.x);
+	if (!ray->scast.sprites || !ray->scast.z_buffer || !ray->scast.sprite_order
+		|| !ray->scast.sprite_dist)
+		return ;
 }
 
 void	sprite_caster(t_data *data, t_ray *ray, t_var var)
 {
 	for(int i = 0; i < numSprites; i++)
 	{
-		sprite_order[i] = i;
-		sprite_distance[i] = ((ray->pos.x - sprite[i].x) * (ray->pos.x - sprite[i].x) + (ray->pos.y - sprite[i].y) * (ray->pos.y - sprite[i].y)); //sqrt not taken, unneeded
+		ray->scast.sprite_order[i] = i;
+		ray->scast.sprite_dist[i] = ((ray->pos.x - sprite[i].x) * (ray->pos.x - sprite[i].x) + (ray->pos.y - sprite[i].y) * (ray->pos.y - sprite[i].y)); //sqrt not taken, unneeded
 	}
-	sort_sprites(sprite_order, sprite_distance, numSprites);
+	sort_sprites(ray->scast.sprite_order, ray->scast.sprite_dist, numSprites);
 	//after sorting the sprites, do the projection and draw them
 	for(int i = 0; i < numSprites; i++)
 	{
 		//translate sprite position to relative to camera
-		double spriteX = sprite[sprite_order[i]].x - ray->pos.x;
-		double spriteY = sprite[sprite_order[i]].y - ray->pos.y;
+		double spriteX = sprite[ray->scast.sprite_order[i]].x - ray->pos.x;
+		double spriteY = sprite[ray->scast.sprite_order[i]].y - ray->pos.y;
 
 		double invDet = 1.0 / (ray->plane.x * ray->dir.y - ray->dir.x * ray->plane.y); //required for correct matrix multiplication
 
@@ -90,12 +71,12 @@ void	sprite_caster(t_data *data, t_ray *ray, t_var var)
 		for(int stripe = drawStartX; stripe < drawEndX; stripe++)
 		{
 			int texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * var.width / spriteWidth) / 256;
-			if(transformY > 0 && stripe > 0 && stripe < WIDTH && transformY < z_buffer[stripe])
+			if(transformY > 0 && stripe > 0 && stripe < WIDTH && transformY < ray->scast.z_buffer[stripe])
 			for(int y = drawStartY; y < drawEndY; y++) //for every pixel of the current stripe
 			{
 				int d = (y) * 256 - HEIGHT * 128 + spriteHeight * 128; //256 and 128 factors to avoid floats
 				int texY = ((d * var.height) / spriteHeight) / 256;
-				var.color = ray->tex_buf[sprite[sprite_order[i]].texture][var.width * texY + texX]; //get current color from the texture
+				var.color = ray->tex_buf[sprite[ray->scast.sprite_order[i]].texture][var.width * texY + texX]; //get current color from the texture
 				if((var.color & 0xFFFFFF00) != 0)
 					mlx_put_pixel(data->screen.display.img, stripe, y, var.color);
 			}
@@ -115,6 +96,7 @@ void	ray_casting(t_data *data)
 	ray->map = data->map;
 	var.width = 64;	// sprites
 	var.height = 64;	// sprites
+	sprite_casting_init(ray);
 //	if ()	
 		floor_casting(data, ray);
 	while (x < ray->resolution.x)
@@ -131,7 +113,7 @@ void	ray_casting(t_data *data)
 		draw_walls(data, x);
 //		if ()
 //			draw_floor(data, x);
-		z_buffer[x] = ray->wall_distance;
+		ray->scast.z_buffer[x] = ray->wall_distance;
 		++x;
 	}
 	sprite_caster(data, ray, var);
