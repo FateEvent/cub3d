@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 16:49:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 17:19:38 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # include "libft.h"
 # define WIDTH 640
 # define HEIGHT 480
-# define MAPWIDTH 100
-# define MAPHEIGHT 100
 # define BPP 4
 # define numSprites 3
 
@@ -167,14 +165,13 @@ typedef struct s_player
 	t_vector	player_spawn_pos;
 	int			fov;
 	t_speed		speed;
+	double		yaw;
+	int			start_direction;
 }				t_player;
 
 typedef struct s_screen
 {
-	t_image		window;
 	t_image		display;
-	t_image		map_display;
-	t_vector2	resolution;
 }				t_screen;
 
 typedef struct s_data

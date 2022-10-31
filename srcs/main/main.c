@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 16:37:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 17:21:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	init_direction_child(t_data *data, t_ray *ray)
 {
 	if (data->map->dir == 'E')
 	{
+		data->player.start_direction = 0;
 		ray->dir.x = 1;
 		ray->dir.y = 0;
 		ray->plane.x = 0;
@@ -23,6 +24,7 @@ static void	init_direction_child(t_data *data, t_ray *ray)
 	}
 	if (data->map->dir == 'W')
 	{
+		data->player.start_direction = 2;
 		ray->dir.x = -1;
 		ray->dir.y = 0;
 		ray->plane.x = 0;
@@ -38,6 +40,7 @@ void	init_direction(t_data *data)
 	ray = &data->ray_data;
 	if (data->map->dir == 'N')
 	{
+		data->player.start_direction = 3;
 		ray->dir.x = 0;
 		ray->dir.y = -1;
 		ray->plane.x = (double)data->player.fov / 100;
@@ -45,6 +48,7 @@ void	init_direction(t_data *data)
 	}
 	if (data->map->dir == 'S')
 	{
+		data->player.start_direction = 1;
 		ray->dir.x = 0;
 		ray->dir.y = 1;
 		ray->plane.x = -(double)data->player.fov / 100;
@@ -75,18 +79,15 @@ void	init_struct(t_data *data)
 	data->render_delay = 1;
 	ray->text_select = 0;
 	data->refresh = 1;
-	data->screen.resolution.x = WIDTH;
-	data->screen.resolution.y = HEIGHT;
 	data->screen.display.size.x = WIDTH;
 	data->screen.display.size.y = HEIGHT;
-	data->screen.map_display.size.x = MAPWIDTH;
-	data->screen.map_display.size.y = MAPHEIGHT;
 	ray->resolution.x = data->screen.display.size.x;
 	ray->resolution.y = data->screen.display.size.y;
 	data->player.fov = 70;
 	ray->tex_buf = malloc(sizeof(uint32_t *) * 6);
 	init_direction(data);
 	ray->m.focus = 0;
+	data->player.yaw = M_PI / 2 * data->player.start_direction;
 }
 
 int	main(int argc, char *argv[])
@@ -98,8 +99,8 @@ int	main(int argc, char *argv[])
 	if (!program.map->map)
 		ft_puterror("Error!");
 	init_struct(&program);
-	program.mlx = mlx_init(program.screen.resolution.x,
-			program.screen.resolution.y, "cub3d", true);
+	program.mlx = mlx_init(program.screen.display.size.x,
+			program.screen.display.size.y, "cub3d", true);
 	program.screen.display.img = mlx_new_image(program.mlx,
 			program.screen.display.size.x, program.screen.display.size.y);
 	if (!program.screen.display.img)

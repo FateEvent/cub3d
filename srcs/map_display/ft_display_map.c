@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 16:49:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 17:35:53 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,29 @@ void	draw_tiles(t_vector2 pos, t_vector3 vec, t_shape rect, t_data *data)
 	i = 0;
 	if (map_get(data->map, vec.x + (int)(pos.x), vec.y + (int)(pos.y)))
 	{
-		draw_rect(data->map->minimap->img, rect, get_rgba(3, 144, 252, 255));
+		draw_rect(data->map->minimap->img, rect, 0x64AB82FF);
 	}
+}
+
+
+void	draw_position(t_data *data)
+{
+	t_shape	rec;
+	float	f;
+
+	f = 0;
+	rec.height = 2;
+	rec.width = 2;
+	while (f < 1)
+	{
+		f += 0.1f;
+		rec.x = 105 + (cos(data->player.yaw) * f) * 10;
+		rec.y = 77 + (sin(data->player.yaw) * f) * 10;
+		draw_rect(data->map->minimap->img, rec, 0xD7FFFFFF);
+	}
+	rec.x = 104;
+	rec.y = 77;
+	draw_rect(data->map->minimap->img, rec, 0xFF0000FF);
 }
 
 void	draw_minimap(t_data	*data)
@@ -150,4 +171,5 @@ void	draw_minimap(t_data	*data)
 		rect.x += rect.width + 1;
 		++vec.x;
 	}
+	draw_position(data);
 }

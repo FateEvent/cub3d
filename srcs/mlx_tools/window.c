@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:13:29 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 17:01:31 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:11:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	fill_window(t_data *data, uint32_t color)
 
 	ft_bzero(&var, sizeof(var));
 	frame = data->screen.display.img;
-	var.width = data->screen.resolution.x;
-	var.height = data->screen.resolution.y;
+	var.width = data->screen.display.size.x;
+	var.height = data->screen.display.size.y;
 	mlx_draw_square(frame, var.width, var.height, color);
 }
