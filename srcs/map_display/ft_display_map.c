@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/29 16:47:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 12:24:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	get_map_str(t_data *data)
 	while (data->map->map[i])
 	{
 		j += ft_strlen(data->map->map[i]);
-		ft_printf("%d\n", ft_strlen(data->map->map[i]));
 		++i;
 	}
 	data->map->map_str = malloc(sizeof(char) * j + 1);

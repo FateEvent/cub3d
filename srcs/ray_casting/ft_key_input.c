@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 13:50:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/31 12:22:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	ft_key_input(mlx_key_data_t keydata, void *param)
 	t_ray	*ray;
 	t_var	var;
 
-//	printf("%d\n", keydata.action);
 	ft_bzero(&var, sizeof(var));
 	data = (t_data *)param;
 	ray = &data->ray_data;
