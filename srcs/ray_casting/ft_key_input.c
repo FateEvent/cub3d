@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 17:26:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 17:49:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 	t_data	*data;
 
 	data = param;
+	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
+		data->key = keydata.key;
 	if (keydata.action == MLX_PRESS)
 		data->key = keydata.key;
 	else if (keydata.action == MLX_RELEASE && keydata.key == (keys_t)data->key)

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 10:17:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 16:29:07 by albaur           ###   ########.fr       */
+/*   Updated: 2022/10/31 17:50:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	ft_key_input_focus(t_data *data, t_ray *ray)
 			ray->m.focus = 1;
 		else
 			ray->m.focus = 0;
+		data->key = 0;
 	}
 }
 
