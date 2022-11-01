@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/01 08:40:29 by faventur         ###   ########.fr        #
+#    Updated: 2022/11/01 12:44:29 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,10 @@ C_EXTENSION	=	.c
 MAIN_PATH	=	main/
 MAIN_FILES	=	main
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
+
+INIT_PATH	=	init/
+INIT_FILES	=	init_struct init_direction init_minimap
+SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 PARSE_PATH	=	parsing/
 PARSE_FILES	=	check check_map check_map_utils check_map_utils2 gap_check \
@@ -44,8 +48,8 @@ RC_FILES	=	hooks ft_key_input ft_key_input_pt2 ray_casting_tools wall_casting \
 				wall_casting_vol2 floor_ceiling_textures floor_ceiling_casting
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
-MD_PATH		=	map_display/
-MD_FILES	=	ft_display_map
+MD_PATH		=	minimap/
+MD_FILES	=	draw_minimap minimap_utils
 SRCS_FILES	+=	$(addprefix $(MD_PATH), $(MD_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})

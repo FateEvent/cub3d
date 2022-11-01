@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 11:30:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:47:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,11 @@ typedef struct	s_shape
 	t_image		*img;
 }				t_shape;
 
+
+// init
+void		init_minimap(t_data *data);
+void		init_struct(t_data *data);
+void		init_direction(t_data *data);
 t_vector	ft_get_coordinates(char **map, char prop);
 t_vector	ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
@@ -290,14 +295,11 @@ int			gap_check_reverse(char **map, ssize_t i, ssize_t j);
 int			space_check(char **map, ssize_t i, ssize_t j);
 int			hole_check(char **map);
 int			get_spawn_position(t_map *m);
-void		get_map_size(t_data *data);
-void		get_map_str(t_data *data);
 void		init_direction(t_data *data);
 
 // ray casting tools
 
 void		floor_casting(t_data *data, t_ray *ray);
-
 void		ray_casting(t_data *data);
 void		ray_data_init(t_ray *ray, int x);
 void		ray_delta_calculator(t_ray *ray);
@@ -319,9 +321,12 @@ void		draw_walls(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 void		draw_minimap(t_data	*data);
+void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
-// display map functions
-void		ft_display_map(t_data *data, t_image *tile);
+// minimap
+void		get_map_size(t_data *data);
+void		get_map_str(t_data *data);
+void		get_size_arr(t_data *data, int y);
 
 // vector utils
 t_vector	ft_inttovec(int x, int y);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling_casting.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:13:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 11:50:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:42:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	floor_casting_init(t_ray *ray, t_var *var)
 	ray->fl.p = var->y - ray->resolution.y / 2;
 	ray->fl.pos_z = 0.5 * ray->resolution.y;
 	ray->fl.row_distance = ray->fl.pos_z / ray->fl.p;
-	ray->fl.floor_step.x = ray->fl.row_distance * (ray->fl.ray_dir1.x - ray->fl.ray_dir0.x)
-		/ ray->resolution.x;
-	ray->fl.floor_step.y = ray->fl.row_distance * (ray->fl.ray_dir1.y - ray->fl.ray_dir0.y)
-		/ ray->resolution.x;
+	ray->fl.floor_step.x = ray->fl.row_distance
+		* (ray->fl.ray_dir1.x - ray->fl.ray_dir0.x) / ray->resolution.x;
+	ray->fl.floor_step.y = ray->fl.row_distance
+		* (ray->fl.ray_dir1.y - ray->fl.ray_dir0.y) / ray->resolution.x;
 	ray->fl.floor.x = ray->pos.x + ray->fl.row_distance * ray->fl.ray_dir0.x;
 	ray->fl.floor.y = ray->pos.y + ray->fl.row_distance * ray->fl.ray_dir0.y;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 17:07:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:41:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_uchar_arr_display(unsigned char *arr, size_t size)
 void	ft_print_map(char **map)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (map[i])
 	{
@@ -60,7 +60,7 @@ void	ft_print_map(char **map)
 	}
 }
 
-void	sort_sprites(int* order, double* dist, int amount)
+void	sort_sprites(int *order, double *dist, int amount)
 {
 	int		i;
 	int		tmp;
