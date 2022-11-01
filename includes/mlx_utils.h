@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 08:56:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/01 10:13:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef struct s_sprite_caster
 	int			*sprite_order;
 	double		*sprite_dist;
 	double		*z_buffer;
-}				t_scaster;
+}				t_s_caster;
 
 typedef struct s_floor_casting
 {
@@ -168,7 +168,7 @@ typedef struct s_ray_data
 	t_mouse		m;
 	int			half_width;
 	t_map		*map;
-	t_scaster	scast;
+	t_s_caster	sprite;
 	uint32_t	**tex_buf;
 }				t_ray;
 
