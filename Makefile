@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/01 12:44:29 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/01 15:27:55 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ INIT_FILES	=	init_struct init_direction init_minimap
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 PARSE_PATH	=	parsing/
-PARSE_FILES	=	check check_map check_map_utils check_map_utils2 gap_check \
-				gap_check_reverse get_color get_color2 get_texture hole_check \
+PARSE_FILES	=	check check_map check_map_utils check_map_utils_pt2 gap_check \
+				gap_check_reverse get_color get_color_pt2 get_texture hole_check \
 				invalid_check wall_check get_spawn_position
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES))
 
@@ -45,7 +45,8 @@ SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	ray_casting/
 RC_FILES	=	hooks ft_key_input ft_key_input_pt2 ray_casting_tools wall_casting \
-				wall_casting_vol2 floor_ceiling_textures floor_ceiling_casting
+				wall_casting_vol2 floor_ceiling_textures floor_ceiling_casting \
+				sprite_casting
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 MD_PATH		=	minimap/
