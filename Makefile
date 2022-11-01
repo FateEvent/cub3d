@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/01 14:26:35 by faventur         ###   ########.fr        #
+#    Updated: 2022/11/01 15:23:43 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,12 @@ OBJ_PATH	=	bin/
 C_EXTENSION	=	.c
 
 MAIN_PATH	=	main/
-MAIN_FILES	=	main
+MAIN_FILES	=	main init_struct init_direction init_minimap
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
-INIT_PATH	=	init/
-INIT_FILES	=	init_struct init_direction init_minimap
-SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
-
 PARSE_PATH	=	parsing/
-PARSE_FILES	=	check check_map check_map_utils check_map_utils2 gap_check \
-				gap_check_reverse get_color get_color2 get_texture hole_check \
+PARSE_FILES	=	check check_map check_map_utils check_map_utils_pt2 gap_check \
+				gap_check_reverse get_color get_color_pt2 get_texture hole_check \
 				invalid_check wall_check get_spawn_position
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES))
 

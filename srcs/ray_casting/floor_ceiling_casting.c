@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling_casting.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:13:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 12:42:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/01 14:58:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	floor_casting_init(t_ray *ray, t_var *var)
 	ray->fl.ray_dir1.x = ray->dir.x + ray->plane.x;
 	ray->fl.ray_dir1.y = ray->dir.y + ray->plane.y;
 	ray->fl.p = var->y - ray->resolution.y / 2;
+	if (ray->fl.p == 0)
+		ray->fl.p = 1;
 	ray->fl.pos_z = 0.5 * ray->resolution.y;
 	ray->fl.row_distance = ray->fl.pos_z / ray->fl.p;
 	ray->fl.floor_step.x = ray->fl.row_distance
