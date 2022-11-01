@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 10:13:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:30:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # include "libft.h"
 # define WIDTH 640
 # define HEIGHT 480
+# define TEXWIDTH 256
+# define TEXHEIGHT 256
+# define SPRITEWIDTH 64
+# define SPRITEHEIGHT 64
 # define BPP 4
 # define numSprites 3
 
@@ -217,8 +221,8 @@ typedef struct s_var
 	double		old_plane_x;
 	double		rotation;
 	double		movement;
-	size_t		width;
-	size_t		height;
+	uint32_t	width;
+	uint32_t	height;
 	uint32_t	color;
 	int			x;
 	int			y;

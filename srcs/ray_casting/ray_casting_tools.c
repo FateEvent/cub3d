@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 10:51:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:29:14 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,28 @@ void	sprite_casting_init(t_ray *ray)
 	sort_sprites(sprite->sprite_order, sprite->sprite_dist, numSprites);
 }
 
-void	line_drawer(t_data *data, t_ray *ray, t_var v, int i)
+void	line_drawer(t_data *data, t_ray *ray, t_var *v, int i)
 {
 	t_s_caster	*sprite;
 
 	sprite = &ray->sprite;
 	sprite->stripe = sprite->draw_start.x;
+	v->width = SPRITEHEIGHT;
+	v->height = SPRITEWIDTH;
 	while (sprite->stripe < sprite->draw_end.x)
 	{
 		sprite->tex.x = (int)(256 * (sprite->stripe - (-sprite->sprite_width / 2
-			+ sprite->sprite_screen_x)) * v.width / sprite->sprite_width) / 256;
+			+ sprite->sprite_screen_x)) * v->width / sprite->sprite_width) / 256;
 		if (sprite->transform.y > 0 && sprite->stripe > 0 && sprite->stripe < WIDTH
 			&& sprite->transform.y < sprite->z_buffer[sprite->stripe])
 		for (int y = sprite->draw_start.y; y < sprite->draw_end.y; y++)
 		{
 			sprite->d = (y) * 256 - HEIGHT * 128 + sprite->sprite_height * 128;
-			sprite->tex.y = ((sprite->d * v.height) / sprite->sprite_height) / 256;
-			v.color = ray->tex_buf[sprite->sprites[sprite->sprite_order[i]].texture]
-				[v.width * sprite->tex.y + sprite->tex.x];
-			if((v.color & 0xFFFFFF00) != 0)
-				mlx_put_pixel(data->screen.display.img, sprite->stripe, y, v.color);
+			sprite->tex.y = ((sprite->d * v->height) / sprite->sprite_height) / 256;
+			v->color = ray->tex_buf[sprite->sprites[sprite->sprite_order[i]].texture]
+				[v->width * sprite->tex.y + sprite->tex.x];
+			if ((v->color & 0xFFFFFF00) != 0)
+				mlx_put_pixel(data->screen.display.img, sprite->stripe, y, v->color);
 		}
 		sprite->stripe++;
 	}
@@ -108,7 +110,7 @@ void	doing_some_math(t_ray *ray, int i)
 	sprite->draw_start.y = -sprite->sprite_height / 2 + HEIGHT / 2;
 }
 
-void	sprite_caster(t_data *data, t_ray *ray, t_var v)
+void	sprite_caster(t_data *data, t_ray *ray, t_var *v)
 {
 	int	i;
 
@@ -125,21 +127,18 @@ void	sprite_caster(t_data *data, t_ray *ray, t_var v)
 void	ray_casting(t_data *data)
 {
 	t_ray	*ray;
-	size_t	x;
-	t_var	var;		// sprites
+	t_var	var;
 
-	ft_bzero(&var, sizeof(var));	// sprites
-	x = 0;
+	ft_bzero(&var, sizeof(var));
+	var.x = 0;
 	ray = &data->ray_data;
 	ray->map = data->map;
-	var.width = 64;	// sprites
-	var.height = 64;	// sprites
 	sprite_casting_init(ray);
 //	if ()	
 		floor_casting(data, ray);
-	while (x < ray->resolution.x)
+	while (var.x < ray->resolution.x)
 	{
-		ray_data_init(ray, x);
+		ray_data_init(ray, var.x);
 		rayside_calculator(ray);
 		ray_launcher(ray);
 		wall_distance_calculator(ray);
@@ -148,11 +147,11 @@ void	ray_casting(t_data *data)
 		texture_y_pos_calculator(data, ray);
 //		if ()
 //			draw_ceiling(data, x);
-		draw_walls(data, x);
+		draw_walls(data, var.x);
 //		if ()
 //			draw_floor(data, x);
-		ray->sprite.z_buffer[x] = ray->wall_distance;
-		++x;
+		ray->sprite.z_buffer[var.x] = ray->wall_distance;
+		++var.x;
 	}
-	sprite_caster(data, ray, var);
+	sprite_caster(data, ray, &var);
 }
