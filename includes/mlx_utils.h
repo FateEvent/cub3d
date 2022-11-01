@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 14:26:07 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:59:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,5 +357,6 @@ t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 				size_t height);
 void		ft_print_map(char **map);
 void		sort_sprites(int *order, double *dist, int amount);
+double		get_time(void);
 
 #endif
