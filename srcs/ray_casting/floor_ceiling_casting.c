@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:13:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 12:42:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/01 15:43:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ uint32_t	get_shading_floor(uint32_t color, t_ray ray, double distance)
 {
 	t_color	table;
 	double	multiplier;
-	double	intensity;
 
 	(void)ray;
 	if (distance <= 1.00)
 		return (color);
 	table = hex_to_rgb(color);
-	intensity = 1 - ((distance / 100) * 2);
-	multiplier = 1 + (distance / intensity);
-	table.a = table.a * (intensity / distance * multiplier);
+	multiplier = (1 + ((100 / distance) * 0.00625) * 1.5);
+	table.a = 255 * multiplier;
 	return (rgb_to_hex(table));
 }
 
@@ -59,6 +57,8 @@ void	floor_casting_init(t_ray *ray, t_var *var)
 	ray->fl.ray_dir1.x = ray->dir.x + ray->plane.x;
 	ray->fl.ray_dir1.y = ray->dir.y + ray->plane.y;
 	ray->fl.p = var->y - ray->resolution.y / 2;
+	if (ray->fl.p == 0)
+		ray->fl.p = 1;
 	ray->fl.pos_z = 0.5 * ray->resolution.y;
 	ray->fl.row_distance = ray->fl.pos_z / ray->fl.p;
 	ray->fl.floor_step.x = ray->fl.row_distance

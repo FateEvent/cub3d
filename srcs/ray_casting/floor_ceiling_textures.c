@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 16:26:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/01 15:43:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,13 @@ uint32_t	get_shading(uint32_t color, t_ray ray)
 	t_color	table;
 	double	multiplier;
 	double	distance;
-	double	intensity;
 
 	distance = ray.wall_distance;
 	if (distance <= 1.00)
 		return (color);
 	table = hex_to_rgb(color);
-	intensity = 1 - ((distance / 100) * 2);
-	multiplier = 1 + (distance / intensity);
-	table.a = table.a * (intensity / distance * multiplier);
+	multiplier = (1 + ((100 / distance) * 0.00625) * 1.5);
+	table.a = 255 * multiplier;
 	return (rgb_to_hex(table));
 }
 
