@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 13:01:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/01 14:26:07 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,6 @@ int			get_spawn_position(t_map *m);
 void		init_direction(t_data *data);
 
 // ray casting tools
-
 void		floor_casting(t_data *data, t_ray *ray);
 void		ray_casting(t_data *data);
 void		ray_data_init(t_ray *ray, int x);
@@ -307,6 +306,7 @@ void		wall_line_calculator(t_ray *ray);
 void		texture_x_pos_calculator(t_data *data, t_ray *ray);
 void		texture_y_pos_calculator(t_data *data, t_ray *ray);
 void		choose_wall_texture(t_ray *ray);
+void		sprite_caster(t_data *data, t_ray *ray, t_var *v);
 uint32_t	get_shading(uint32_t color, t_ray ray);
 
 // drawing tools

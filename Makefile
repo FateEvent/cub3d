@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/01 12:44:29 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/01 14:26:35 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	ray_casting/
 RC_FILES	=	hooks ft_key_input ft_key_input_pt2 ray_casting_tools wall_casting \
-				wall_casting_vol2 floor_ceiling_textures floor_ceiling_casting
+				wall_casting_vol2 floor_ceiling_textures floor_ceiling_casting \
+				sprite_casting
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 MD_PATH		=	minimap/
