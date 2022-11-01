@@ -6,21 +6,17 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 17:24:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/01 09:24:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-t_sprite	sprite[numSprites] =
-			{
-			{3, 3, 6},
-			{4, 3, 7},
-			{5, 3, 8}
-			};
-
 void	sprite_casting_init(t_ray *ray)
 {
+	int	i;
+
+	i = 0;
 	ray->scast.sprites = malloc(sizeof(t_sprite) * numSprites);
 	ray->scast.sprite_order = malloc(sizeof(int) * numSprites);
 	ray->scast.sprite_dist = malloc(sizeof(double) * numSprites);
@@ -28,66 +24,89 @@ void	sprite_casting_init(t_ray *ray)
 	if (!ray->scast.sprites || !ray->scast.z_buffer || !ray->scast.sprite_order
 		|| !ray->scast.sprite_dist)
 		return ;
+	ray->scast.sprites[0].x = 3;
+	ray->scast.sprites[0].y = 3;
+	ray->scast.sprites[0].texture = 6;
+	ray->scast.sprites[1].x = 4;
+	ray->scast.sprites[1].y = 3;
+	ray->scast.sprites[1].texture = 7;
+	ray->scast.sprites[2].x = 5;
+	ray->scast.sprites[2].y = 3;
+	ray->scast.sprites[2].texture = 8;
+	while (i < numSprites)
+	{
+		ray->scast.sprite_order[i] = i;
+		ray->scast.sprite_dist[i] = ((ray->pos.x - ray->scast.sprites[i].x) * (ray->pos.x - ray->scast.sprites[i].x) + (ray->pos.y - ray->scast.sprites[i].y) * (ray->pos.y - ray->scast.sprites[i].y));
+		i++;
+	}
+	sort_sprites(ray->scast.sprite_order, ray->scast.sprite_dist, numSprites);
+}
+
+void	line_drawer(t_data *data, t_ray *ray, t_var var, int i)
+{
+	ray->scast.stripe = ray->scast.draw_start.x;
+	while (ray->scast.stripe < ray->scast.draw_end.x)
+	{
+		ray->scast.tex.x = (int)(256 * (ray->scast.stripe - (-ray->scast.sprite_width / 2 + ray->scast.sprite_screen_x)) * var.width / ray->scast.sprite_width) / 256;
+		if(ray->scast.transform.y > 0 && ray->scast.stripe > 0 && ray->scast.stripe < WIDTH && ray->scast.transform.y < ray->scast.z_buffer[ray->scast.stripe])
+		for(int y = ray->scast.draw_start.y; y < ray->scast.draw_end.y; y++)
+		{
+			ray->scast.d = (y) * 256 - HEIGHT * 128 + ray->scast.sprite_height * 128;
+			ray->scast.tex.y = ((ray->scast.d * var.height) / ray->scast.sprite_height) / 256;
+			var.color = ray->tex_buf[ray->scast.sprites[ray->scast.sprite_order[i]].texture][var.width * ray->scast.tex.y + ray->scast.tex.x];
+			if((var.color & 0xFFFFFF00) != 0)
+				mlx_put_pixel(data->screen.display.img, ray->scast.stripe, y, var.color);
+		}
+		ray->scast.stripe++;
+	}
+}
+
+void	point_referencer(t_ray *ray)
+{
+	if (ray->scast.draw_start.y < 0)
+		ray->scast.draw_start.y = 0;
+	ray->scast.draw_end.y = ray->scast.sprite_height / 2 + HEIGHT / 2;
+	if (ray->scast.draw_end.y >= HEIGHT)
+		ray->scast.draw_end.y = HEIGHT - 1;
+	ray->scast.sprite_width = abs((int)(HEIGHT / (ray->scast.transform.y)));
+	ray->scast.draw_start.x = -ray->scast.sprite_width / 2 + ray->scast.sprite_screen_x;
+	if (ray->scast.draw_start.x < 0)
+		ray->scast.draw_start.x = 0;
+	ray->scast.draw_end.x = ray->scast.sprite_width / 2 + ray->scast.sprite_screen_x;
+	if (ray->scast.draw_end.x >= WIDTH)
+		ray->scast.draw_end.x = WIDTH - 1;
+}
+
+void	faut_trouver_un_nom(t_ray *ray, int i)
+{
+	ray->scast.sprite.x = ray->scast.sprites[ray->scast.sprite_order[i]].x - ray->pos.x;
+	ray->scast.sprite.y = ray->scast.sprites[ray->scast.sprite_order[i]].y - ray->pos.y;
+	ray->scast.inv_det = 1.0 / (ray->plane.x * ray->dir.y - ray->dir.x * ray->plane.y);
+	ray->scast.transform.x = ray->scast.inv_det * (ray->dir.y * ray->scast.sprite.x - ray->dir.x * ray->scast.sprite.y);
+	ray->scast.transform.y = ray->scast.inv_det * (-ray->plane.y * ray->scast.sprite.x + ray->plane.x * ray->scast.sprite.y);
+	ray->scast.sprite_screen_x = (int)((WIDTH / 2) * (1 + ray->scast.transform.x / ray->scast.transform.y));
+	ray->scast.sprite_height = abs((int)(HEIGHT / (ray->scast.transform.y)));
+	ray->scast.draw_start.y = -ray->scast.sprite_height / 2 + HEIGHT / 2;
 }
 
 void	sprite_caster(t_data *data, t_ray *ray, t_var var)
 {
-	for(int i = 0; i < numSprites; i++)
+	int	i;
+
+	i = 0;
+	while (i < numSprites)
 	{
-		ray->scast.sprite_order[i] = i;
-		ray->scast.sprite_dist[i] = ((ray->pos.x - sprite[i].x) * (ray->pos.x - sprite[i].x) + (ray->pos.y - sprite[i].y) * (ray->pos.y - sprite[i].y)); //sqrt not taken, unneeded
-	}
-	sort_sprites(ray->scast.sprite_order, ray->scast.sprite_dist, numSprites);
-	//after sorting the sprites, do the projection and draw them
-	for(int i = 0; i < numSprites; i++)
-	{
-		//translate sprite position to relative to camera
-		double spriteX = sprite[ray->scast.sprite_order[i]].x - ray->pos.x;
-		double spriteY = sprite[ray->scast.sprite_order[i]].y - ray->pos.y;
-
-		double invDet = 1.0 / (ray->plane.x * ray->dir.y - ray->dir.x * ray->plane.y); //required for correct matrix multiplication
-
-		double transformX = invDet * (ray->dir.y * spriteX - ray->dir.x * spriteY);
-		double transformY = invDet * (-ray->plane.y * spriteX + ray->plane.x * spriteY); //this is actually the depth inside the screen, that what Z is in 3D
-
-		int spriteScreenX = (int)((WIDTH / 2) * (1 + transformX / transformY));
-
-		//calculate height of the sprite on screen
-		int spriteHeight = abs((int)(HEIGHT / (transformY))); //using 'transformY' instead of the real distance prevents fisheye
-		//calculate lowest and highest pixel to fill in current stripe
-		int drawStartY = -spriteHeight / 2 + HEIGHT / 2;
-		if(drawStartY < 0) drawStartY = 0;
-		int drawEndY = spriteHeight / 2 + HEIGHT / 2;
-		if(drawEndY >= HEIGHT) drawEndY = HEIGHT - 1;
-
-		//calculate width of the sprite
-		int spriteWidth = abs((int)(HEIGHT / (transformY)));
-		int drawStartX = -spriteWidth / 2 + spriteScreenX;
-		if(drawStartX < 0) drawStartX = 0;
-		int drawEndX = spriteWidth / 2 + spriteScreenX;
-		if(drawEndX >= WIDTH) drawEndX = WIDTH - 1;
-
-		//loop through every vertical stripe of the sprite on screen
-		for(int stripe = drawStartX; stripe < drawEndX; stripe++)
-		{
-			int texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * var.width / spriteWidth) / 256;
-			if(transformY > 0 && stripe > 0 && stripe < WIDTH && transformY < ray->scast.z_buffer[stripe])
-			for(int y = drawStartY; y < drawEndY; y++) //for every pixel of the current stripe
-			{
-				int d = (y) * 256 - HEIGHT * 128 + spriteHeight * 128; //256 and 128 factors to avoid floats
-				int texY = ((d * var.height) / spriteHeight) / 256;
-				var.color = ray->tex_buf[sprite[ray->scast.sprite_order[i]].texture][var.width * texY + texX]; //get current color from the texture
-				if((var.color & 0xFFFFFF00) != 0)
-					mlx_put_pixel(data->screen.display.img, stripe, y, var.color);
-			}
-		}
+		faut_trouver_un_nom(ray, i);
+		point_referencer(ray);
+		line_drawer(data, ray, var, i);
+		i++;
 	}
 }
 
 void	ray_casting(t_data *data)
 {
-	t_ray		*ray;
-	size_t		x;
+	t_ray	*ray;
+	size_t	x;
 	t_var	var;		// sprites
 
 	ft_bzero(&var, sizeof(var));	// sprites

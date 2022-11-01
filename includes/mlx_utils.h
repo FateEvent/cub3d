@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 17:37:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/01 08:56:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_sprite_caster
 	t_vector3	draw_start;
 	t_vector3	draw_end;
 	int			stripe;
+	int			d;
 	t_vector3	tex;
 	t_sprite	*sprites;
 	int			*sprite_order;
