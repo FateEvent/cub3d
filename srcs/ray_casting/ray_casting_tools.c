@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 12:52:18 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/01 12:58:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	sprite_casting_init(t_ray *ray)
 
 	sprite = &ray->sprite;
 	i = 0;
-	sprite->sprites = malloc(sizeof(t_sprite) * numSprites);
-	sprite->sprite_order = malloc(sizeof(int) * numSprites);
-	sprite->sprite_dist = malloc(sizeof(double) * numSprites);
+	sprite->sprites = malloc(sizeof(t_sprite) * NUMSPRITES);
+	sprite->sprite_order = malloc(sizeof(int) * NUMSPRITES);
+	sprite->sprite_dist = malloc(sizeof(double) * NUMSPRITES);
 	sprite->z_buffer = malloc(sizeof(double) * ray->resolution.x);
 	if (!sprite->sprites || !sprite->z_buffer || !sprite->sprite_order
 		|| !sprite->sprite_dist)
@@ -35,7 +35,7 @@ void	sprite_casting_init(t_ray *ray)
 	sprite->sprites[2].x = 5;
 	sprite->sprites[2].y = 3;
 	sprite->sprites[2].texture = 8;
-	while (i < numSprites)
+	while (i < NUMSPRITES)
 	{
 		sprite->sprite_order[i] = i;
 		sprite->sprite_dist[i] = ((ray->pos.x - sprite->sprites[i].x)
@@ -44,7 +44,7 @@ void	sprite_casting_init(t_ray *ray)
 			* (ray->pos.y - sprite->sprites[i].y));
 		i++;
 	}
-	sort_sprites(sprite->sprite_order, sprite->sprite_dist, numSprites);
+	sort_sprites(sprite->sprite_order, sprite->sprite_dist, NUMSPRITES);
 }
 
 void	line_drawer(t_data *data, t_ray *ray, t_var *v, int i)
@@ -115,7 +115,7 @@ void	sprite_caster(t_data *data, t_ray *ray, t_var *v)
 	int	i;
 
 	i = 0;
-	while (i < numSprites)
+	while (i < NUMSPRITES)
 	{
 		doing_some_math(ray, i);
 		points_lines_designer(ray);

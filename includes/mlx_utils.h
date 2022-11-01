@@ -6,11 +6,9 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 12:47:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/01 13:01:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef MLX_UTILS_H
 # define MLX_UTILS_H
@@ -28,7 +26,7 @@
 # define SPRITEWIDTH 64
 # define SPRITEHEIGHT 64
 # define BPP 4
-# define numSprites 3
+# define NUMSPRITES 3
 
 typedef struct s_vector
 {
@@ -115,7 +113,7 @@ typedef struct s_sprite_caster
 	t_vector2	sprite;
 	t_vector2	transform;
 	double		inv_det;
-	int 		sprite_screen_x;
+	int			sprite_screen_x;
 	int			sprite_width;
 	int			sprite_height;
 	t_vector3	draw_start;
@@ -246,7 +244,7 @@ typedef struct s_ctexture
 	int		index;
 }			t_ctexture;
 
-typedef struct	s_shape
+typedef struct s_shape
 {
 	int			x;
 	int			y;
@@ -255,7 +253,6 @@ typedef struct	s_shape
 	double		dim;
 	t_image		*img;
 }				t_shape;
-
 
 // init
 void		init_minimap(t_data *data);
@@ -359,6 +356,6 @@ t_color		**rgb_buf_creator(uint32_t **buf, size_t width, size_t height);
 t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 				size_t height);
 void		ft_print_map(char **map);
-void		sort_sprites(int* order, double* dist, int amount);
+void		sort_sprites(int *order, double *dist, int amount);
 
 #endif
