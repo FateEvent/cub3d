@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:48:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/21 10:50:30 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:14:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ static int	check_map_settings(t_map *m, char **map)
 			|| !check_texture(m, map[i], &count, (t_ctexture){"SO", 1})
 			|| !check_texture(m, map[i], &count, (t_ctexture){"WE", 2})
 			|| !check_texture(m, map[i], &count, (t_ctexture){"EA", 3})
+			|| !check_texture(m, map[i], &count, (t_ctexture){"CT", 4})
+			|| !check_texture(m, map[i], &count, (t_ctexture){"FT", 5})
 			|| !check_texture(m, map[i], &count, (t_ctexture){"C\0", 0})
 			|| !check_texture(m, map[i], &count, (t_ctexture){"F\0", 1}))
 			continue ;
 		else
 		{
-			if (count == 6)
+			if (count == 6 && (m->mode == -1 || m->mode == 1))
 				return (0);
 			return (-1);
 		}
@@ -83,6 +85,7 @@ t_map	*check_map_integrity(char *path)
 	mapstruct = malloc(sizeof(t_map));
 	if (!mapstruct)
 		throw_err_ex("Error : Cannot malloc map structure.");
+	mapstruct->mode = -1;
 	map = ft_map_reader(path);
 	if (check_map_settings(mapstruct, map) == -1)
 	{

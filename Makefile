@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/01 16:10:43 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/02 10:40:02 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ ARGS		=	map.cub
 CC			=	gcc
 FLAGS		=	-Wall -Wextra -Werror -g3
 LINKS		=	-lglfw -L /Users/${USER}/goinfre/.brew/opt/glfw/lib/ #-ldl -lm #linuxflags
-LIBLINKS	=	-I./MLX42/include/MLX42 -I./includes -I./libft/includes
+LIBLINKS	=	-I./MLX42/include/MLX42 -I./includes -I./libft/includes -I/Users/${USER}/goinfre/.brew/opt/glfw/include
 SRC_PATH	=	srcs/
 OBJ_PATH	=	bin/
 C_EXTENSION	=	.c

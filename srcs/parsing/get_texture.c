@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:56:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/17 10:12:40 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:07:14 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ static void	get_texture_mode(t_map *mapStruct, int mode, char *path)
 		mapStruct->west_texture = path;
 	else if (mode == 3)
 		mapStruct->east_texture = path;
+	else if (mode == 4)
+	{
+		mapStruct->mode++;
+		mapStruct->ceiling_texture = path;
+	}
+	else if (mode == 5)
+	{
+		mapStruct->mode++;
+		mapStruct->floor_texture = path;
+	}
 }
 
 static int	get_texture_file(char *path)

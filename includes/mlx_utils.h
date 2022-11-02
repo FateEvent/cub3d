@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 16:59:16 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:03:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # define HEIGHT 480
 # define TEXWIDTH 256
 # define TEXHEIGHT 256
-# define SPRITEWIDTH 64
-# define SPRITEHEIGHT 64
+# define SPRITEWIDTH 1024
+# define SPRITEHEIGHT 1024
 # define BPP 4
-# define NUMSPRITES 3
+# define NUMSPRITES 1
 
 typedef struct s_vector
 {
@@ -81,8 +81,11 @@ typedef struct s_map
 	char		*south_texture;
 	char		*west_texture;
 	char		*east_texture;
+	char		*ceiling_texture;
+	char		*floor_texture;
 	t_color		floor_color;
 	t_color		ceiling_color;
+	int			mode;
 	t_vector	spawn_pos;
 	char		dir;
 	t_minimap	*minimap;

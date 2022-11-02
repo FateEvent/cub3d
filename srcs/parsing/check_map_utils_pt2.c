@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_utils2.c                                 :+:      :+:    :+:   */
+/*   check_map_utils_pt2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:13:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/14 17:20:46 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:11:31 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	check_map_batch(char *map, int *count)
 	check_map_char(map, count, "SO ");
 	check_map_char(map, count, "WE ");
 	check_map_char(map, count, "EA ");
+	check_map_char(map, count, "FT ");
+	check_map_char(map, count, "CT ");
 	check_map_char(map, count, "F \0");
 	check_map_char(map, count, "C \0");
 }

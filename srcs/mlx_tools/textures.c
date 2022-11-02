@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 14:38:45 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:25:28 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	sprite_arr_creator(t_data *data, t_image *texture)
 	size_t	i;
 
 	i = 5;
-	texture[6].texture = mlx_load_xpm42("images/barrel.xpm42");
+	texture[6].texture = mlx_load_xpm42("images/smiler.xpm42");
 	texture[7].texture = mlx_load_xpm42("images/greenlight.xpm42");
 	texture[8].texture = mlx_load_xpm42("images/pillar.xpm42");
 	if (!texture[6].texture || !texture[7].texture || !texture[8].texture)
@@ -50,16 +50,23 @@ static void	from_texture_to_image(t_data *data, t_image *texture)
 			&texture[2].texture->texture);
 	texture[3].img = mlx_texture_to_image(data->mlx,
 			&texture[3].texture->texture);
-	texture[4].img = mlx_texture_to_image(data->mlx,
+	if (data->map->mode == 1)
+	{
+		texture[4].img = mlx_texture_to_image(data->mlx,
 			&texture[4].texture->texture);
-	texture[5].img = mlx_texture_to_image(data->mlx,
+		texture[5].img = mlx_texture_to_image(data->mlx,
 			&texture[5].texture->texture);
+	}
 	if (!texture[0].img || !texture[1].img || !texture[2].img
-		|| !texture[3].img || !texture[4].img || !texture[5].img)
+		|| !texture[3].img || (data->map->mode == 1 && (!texture[4].img || !texture[5].img)))
 		return ;
 	while (++i < 6)
+	{
+		if ((i == 4 || i == 5) && data->map->mode != 1)
+			continue ;
 		ray->tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
 				texture[i].img->width, texture[i].img->height);
+	}
 	sprite_arr_creator(data, texture);
 }
 
@@ -75,14 +82,17 @@ t_image	*ft_load_textures(t_data *data)
 	texture[1].texture = mlx_load_xpm42(data->map->south_texture);
 	texture[2].texture = mlx_load_xpm42(data->map->east_texture);
 	texture[3].texture = mlx_load_xpm42(data->map->west_texture);
-	texture[4].texture = mlx_load_xpm42("images/ceiling2.xpm42");
-	texture[5].texture = mlx_load_xpm42("images/dirtycarpet1.xpm42");
+	if (data->map->mode == 1)
+	{
+		texture[4].texture = mlx_load_xpm42(data->map->ceiling_texture);
+		texture[5].texture = mlx_load_xpm42(data->map->floor_texture);
+	}
 	if (!texture[0].texture || !texture[1].texture || !texture[2].texture
-		|| !texture[3].texture || !texture[4].texture || !texture[5].texture)
+		|| !texture[3].texture || (data->map->mode == 1 && (!texture[4].texture || !texture[5].texture)))
 		return (NULL);
 	from_texture_to_image(data, texture);
 	if (!texture[0].img || !texture[1].img || !texture[2].img
-		|| !texture[3].img || !texture[4].img || !texture[5].img
+		|| !texture[3].img || (data->map->mode == 1 && (!texture[4].img || !texture[5].img))
 		|| !texture[6].img || !texture[7].img || !texture[8].img)
 		return (NULL);
 	return (texture);
