@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:13:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/02 11:11:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 12:59:33 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,19 @@ char	**get_map_description(char **map)
 		}
 	}
 	return (NULL);
+}
+
+int	check_texture_batch(t_map *m, char **map, size_t i, int *count)
+{
+	if (!check_texture(m, map[i], count, (t_ctexture){"NO", 0})
+		|| !check_texture(m, map[i], count, (t_ctexture){"SO", 1})
+		|| !check_texture(m, map[i], count, (t_ctexture){"WE", 2})
+		|| !check_texture(m, map[i], count, (t_ctexture){"EA", 3})
+		|| !check_texture(m, map[i], count, (t_ctexture){"CT", 4})
+		|| !check_texture(m, map[i], count, (t_ctexture){"FT", 5})
+		|| !check_texture(m, map[i], count, (t_ctexture){"C\0", 0})
+		|| !check_texture(m, map[i], count, (t_ctexture){"F\0", 1}))
+		return (0);
+	else
+		return (1);
 }

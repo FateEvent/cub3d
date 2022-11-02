@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 11:22:32 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:57:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,18 @@ void	sprite_casting_init(t_ray *ray)
 	sprite->sprites[0].x = 3;
 	sprite->sprites[0].y = 3;
 	sprite->sprites[0].texture = 6;
-	// sprite->sprites[1].x = 4;
-	// sprite->sprites[1].y = 3;
-	// sprite->sprites[1].texture = 7;
-	// sprite->sprites[2].x = 5;
-	// sprite->sprites[2].y = 3;
-	// sprite->sprites[2].texture = 8;
 	sprite_casting_init_pt2(ray, sprite);
+}
+
+void	ray_init(t_data *data, t_ray *ray, t_var var)
+{
+	ray_data_init(ray, var.x);
+	rayside_calculator(ray);
+	ray_launcher(ray);
+	wall_distance_calculator(ray);
+	wall_line_calculator(ray);
+	texture_x_pos_calculator(data, ray);
+	texture_y_pos_calculator(data, ray);
 }
 
 void	ray_casting(t_data *data)
@@ -59,26 +64,20 @@ void	ray_casting(t_data *data)
 	t_var	var;
 
 	ft_bzero(&var, sizeof(var));
-	var.x = 0;
 	ray = &data->ray_data;
 	ray->map = data->map;
 	sprite_casting_init(ray);
-	if (data->map->mode == 1)	
+	if (data->map->mode == 1)
 		floor_casting(data, ray);
 	while (var.x < ray->resolution.x)
 	{
-		ray_data_init(ray, var.x);
-		rayside_calculator(ray);
-		ray_launcher(ray);
-		wall_distance_calculator(ray);
-		wall_line_calculator(ray);
-		texture_x_pos_calculator(data, ray);
-		texture_y_pos_calculator(data, ray);
+		ray_init(data, ray, var);
 		if (data->map->mode == -1)
+		{
 			draw_ceiling(data, var.x);
-		draw_walls(data, var.x);
-		if (data->map->mode == -1)
 			draw_floor(data, var.x);
+		}
+		draw_walls(data, var.x);
 		ray->sprite.z_buffer[var.x] = ray->wall_distance;
 		++var.x;
 	}

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 11:03:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:20:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 # include "libft.h"
 # define WIDTH 640
 # define HEIGHT 480
-# define TEXWIDTH 256
-# define TEXHEIGHT 256
-# define SPRITEWIDTH 1024
-# define SPRITEHEIGHT 1024
 # define BPP 4
 # define NUMSPRITES 1
 
@@ -294,6 +290,8 @@ int			gap_check(char **map);
 int			gap_check_reverse(char **map, ssize_t i, ssize_t j);
 int			space_check(char **map, ssize_t i, ssize_t j);
 int			hole_check(char **map);
+int			check_texture(t_map *m, char *map, int *count, t_ctexture c);
+int			check_texture_batch(t_map *m, char **map, size_t i, int *count);
 int			get_spawn_position(t_map *m);
 void		init_direction(t_data *data);
 
@@ -323,6 +321,9 @@ void		draw_floor(t_data *data, int x);
 void		draw_minimap(t_data	*data);
 void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
+// sprites
+void		load_sprites(t_data *data, t_image *texture);
+
 // minimap
 void		get_map_size(t_data *data);
 void		get_map_str(t_data *data);
@@ -335,7 +336,7 @@ double		ft_vect2_distance_calc(t_vector2 start, t_vector2 finish);
 void		ft_vec_swap(t_vector *start, t_vector *finish);
 void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
 
-// colour tools
+// color tools
 t_color		new_color(int r, int g, int b, int a);
 t_color		hex_to_rgb(uint32_t hex_value);
 t_color		lerp(t_color a, t_color b, double t);
@@ -361,5 +362,6 @@ t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 void		ft_print_map(char **map);
 void		sort_sprites(int *order, double *dist, int amount);
 double		get_time(void);
+void		tex_to_img(t_data *data, t_image *texture, size_t i);
 
 #endif

@@ -6,33 +6,36 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 11:25:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:20:31 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void	sprite_arr_creator(t_data *data, t_image *texture)
+static int	check_texture_integrity(t_data *data, t_image *texture)
 {
-	size_t	i;
+	if (!texture[0].texture || !texture[1].texture || !texture[2].texture
+		|| !texture[3].texture || (data->map->mode == 1
+			&& (!texture[4].texture || !texture[5].texture)))
+		return (1);
+	else
+		return (0);
+}
 
-	i = 5;
-	texture[6].texture = mlx_load_xpm42("images/smiler.xpm42");
-	texture[7].texture = mlx_load_xpm42("images/greenlight.xpm42");
-	texture[8].texture = mlx_load_xpm42("images/pillar.xpm42");
-	if (!texture[6].texture || !texture[7].texture || !texture[8].texture)
-		return ;
-	texture[6].img = mlx_texture_to_image(data->mlx,
-			&texture[6].texture->texture);
-	texture[7].img = mlx_texture_to_image(data->mlx,
-			&texture[7].texture->texture);
-	texture[8].img = mlx_texture_to_image(data->mlx,
-			&texture[8].texture->texture);
-	if (!texture[6].img || !texture[7].img || !texture[8].img)
-		return ;
-	while (++i < 9)
-		data->ray_data.tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
-				texture[i].img->width, texture[i].img->height);
+static int	check_image_integrity(t_data *data, t_image *texture)
+{
+	if (!texture[0].img || !texture[1].img || !texture[2].img
+		|| !texture[3].img || (data->map->mode == 1
+			&& (!texture[4].img || !texture[5].img)))
+		return (1);
+	else
+		return (0);
+}
+
+void	tex_to_img(t_data *data, t_image *texture, size_t i)
+{
+	texture[i].img = mlx_texture_to_image(data->mlx,
+			&texture[i].texture->texture);
 }
 
 static void	from_texture_to_image(t_data *data, t_image *texture)
@@ -42,23 +45,16 @@ static void	from_texture_to_image(t_data *data, t_image *texture)
 
 	ray = &data->ray_data;
 	i = -1;
-	texture[0].img = mlx_texture_to_image(data->mlx,
-			&texture[0].texture->texture);
-	texture[1].img = mlx_texture_to_image(data->mlx,
-			&texture[1].texture->texture);
-	texture[2].img = mlx_texture_to_image(data->mlx,
-			&texture[2].texture->texture);
-	texture[3].img = mlx_texture_to_image(data->mlx,
-			&texture[3].texture->texture);
+	tex_to_img(data, texture, 0);
+	tex_to_img(data, texture, 1);
+	tex_to_img(data, texture, 2);
+	tex_to_img(data, texture, 3);
 	if (data->map->mode == 1)
 	{
-		texture[4].img = mlx_texture_to_image(data->mlx,
-			&texture[4].texture->texture);
-		texture[5].img = mlx_texture_to_image(data->mlx,
-			&texture[5].texture->texture);
+		tex_to_img(data, texture, 4);
+		tex_to_img(data, texture, 5);
 	}
-	if (!texture[0].img || !texture[1].img || !texture[2].img
-		|| !texture[3].img || (data->map->mode == 1 && (!texture[4].img || !texture[5].img)))
+	if (check_image_integrity(data, texture))
 		return ;
 	while (++i < 6)
 	{
@@ -67,14 +63,14 @@ static void	from_texture_to_image(t_data *data, t_image *texture)
 		ray->tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
 				texture[i].img->width, texture[i].img->height);
 	}
-	sprite_arr_creator(data, texture);
+	load_sprites(data, texture);
 }
 
 t_image	*ft_load_textures(t_data *data)
 {
 	t_image	*texture;
 
-	texture = malloc(sizeof(t_image) * 4);
+	texture = malloc(sizeof(t_image) * 9);
 	if (!texture)
 		return (NULL);
 	ft_bzero(texture, sizeof(*texture));
@@ -87,13 +83,10 @@ t_image	*ft_load_textures(t_data *data)
 		texture[4].texture = mlx_load_xpm42(data->map->ceiling_texture);
 		texture[5].texture = mlx_load_xpm42(data->map->floor_texture);
 	}
-	if (!texture[0].texture || !texture[1].texture || !texture[2].texture
-		|| !texture[3].texture || (data->map->mode == 1 && (!texture[4].texture || !texture[5].texture)))
+	if (check_texture_integrity(data, texture))
 		return (NULL);
 	from_texture_to_image(data, texture);
-	if (!texture[0].img || !texture[1].img || !texture[2].img
-		|| !texture[3].img || (data->map->mode == 1 && (!texture[4].img || !texture[5].img))
-		|| !texture[6].img || !texture[7].img || !texture[8].img)
+	if (check_image_integrity(data, texture))
 		return (NULL);
 	return (texture);
 }

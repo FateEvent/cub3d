@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_casting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 15:01:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/02 12:50:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	line_drawer(t_data *data, t_ray *ray, t_var *v, int i)
 
 	sprite = &ray->sprite;
 	sprite->stripe = sprite->draw_start.x;
-	v->width = SPRITEHEIGHT;
-	v->height = SPRITEWIDTH;
+	v->width = data->textures[sprite->sprites[sprite->sprite_order[i]].texture]
+		.img->height;
+	v->height = data->textures[sprite->sprites[sprite->sprite_order[i]].texture]
+		.img->width;
 	while (sprite->stripe < sprite->draw_end.x)
 	{
 		sprite->tex.x = (int)(256 * (sprite->stripe - (-sprite->sprite_width / 2

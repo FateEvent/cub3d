@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/02 10:40:02 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/02 13:17:05 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ PARSE_FILES	=	check check_map check_map_utils check_map_utils_pt2 gap_check \
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES))
 
 MLX_PATH	=	mlx_tools/
-MLX_FILES	=	textures window colours colour_conversions
+MLX_FILES	=	textures window colours colour_conversions sprites
 SRCS_FILES	+=	$(addprefix $(MLX_PATH), $(MLX_FILES))
 
 UTILS_PATH	=	utils/
@@ -49,9 +49,9 @@ RC_FILES	=	hooks ft_key_input ft_key_input_pt2 ray_casting_tools wall_casting \
 				sprite_casting
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
-MD_PATH		=	minimap/
-MD_FILES	=	draw_minimap minimap_utils
-SRCS_FILES	+=	$(addprefix $(MD_PATH), $(MD_FILES))
+MAP_PATH		=	minimap/
+MAP_FILES	=	draw_minimap minimap_utils
+SRCS_FILES	+=	$(addprefix $(MAP_PATH), $(MAP_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 
