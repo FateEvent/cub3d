@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:15:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/02 13:59:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:32:02 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	load_sprites(t_data *data, t_image *texture)
 
 	i = 5;
 	texture[6].texture = mlx_load_xpm42("images/smiler.xpm42");
-	texture[7].texture = mlx_load_xpm42("images/greenlight.xpm42");
-	texture[8].texture = mlx_load_xpm42("images/pillar.xpm42");
+	texture[7].texture = mlx_load_xpm42("images/selena.xpm42");
+	texture[8].texture = mlx_load_xpm42("images/yoshie.xpm42");
 	if (!texture[6].texture || !texture[7].texture || !texture[8].texture)
 		return ;
 	tex_to_img(data, texture, 6);
