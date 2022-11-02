@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 13:20:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:01:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,9 @@ void		texture_x_pos_calculator(t_data *data, t_ray *ray);
 void		texture_y_pos_calculator(t_data *data, t_ray *ray);
 void		choose_wall_texture(t_ray *ray);
 void		sprite_caster(t_data *data, t_ray *ray, t_var *v);
+void		doing_some_math(t_ray *ray, int i);
+void		points_lines_designer(t_ray *ray);
+void		line_drawer(t_data *data, t_ray *ray, t_var *v, int i);
 uint32_t	get_shading(uint32_t color, t_ray ray);
 
 // drawing tools

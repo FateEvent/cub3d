@@ -16,4 +16,6 @@ lerp:
 for the bonus part:
 * <https://lodev.org/cgtutor/raycasting4.html>;
 * <https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents>;
-* <https://medium.com/@Powersaurus/pico-8-raycaster-doors-cd8de9d943b>.
+* <https://medium.com/@Powersaurus/pico-8-raycaster-doors-cd8de9d943b>;
+* <https://www.gamedev.net/tutorials/programming/graphics/advanced-raycasting-techniques-r872/>;
+* <https://www.allegro.cc/forums/thread/604868>.

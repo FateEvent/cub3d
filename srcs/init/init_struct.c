@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/02 11:07:21 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:30:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	init_struct2(t_data *data, t_ray *ray)
 {
 	ray->half_width = WIDTH / 2;
 	data->render_delay = 1;
-	ray->text_select = 0;
 	data->refresh = 1;
 	data->screen.display.size.x = WIDTH;
 	data->screen.display.size.y = HEIGHT;

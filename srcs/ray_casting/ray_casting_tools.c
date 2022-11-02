@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 13:57:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:07:14 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	sprite_casting_init(t_ray *ray)
 	if (!sprite->sprites || !sprite->z_buffer || !sprite->sprite_order
 		|| !sprite->sprite_dist)
 		return ;
-	sprite->sprites[0].x = 3;
-	sprite->sprites[0].y = 3;
-	sprite->sprites[0].texture = 6;
+	sprite->sprites[0].x = 24.5;
+	sprite->sprites[0].y = 9.5;
+	sprite->sprites[0].texture = 4;
 	sprite_casting_init_pt2(ray, sprite);
 }
 

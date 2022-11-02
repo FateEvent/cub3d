@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/02 13:17:05 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/02 15:05:19 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ RC_FILES	=	hooks ft_key_input ft_key_input_pt2 ray_casting_tools wall_casting \
 				sprite_casting
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
-MAP_PATH		=	minimap/
+MAP_PATH	=	minimap/
 MAP_FILES	=	draw_minimap minimap_utils
 SRCS_FILES	+=	$(addprefix $(MAP_PATH), $(MAP_FILES))
 

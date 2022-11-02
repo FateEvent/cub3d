@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting_vol2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 13:13:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:18:44 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	texture_x_pos_calculator(t_data *data, t_ray *ray)
 {
 	size_t	img_width;
 
+	ray->text_select = ray->map->map[ray->map_pos.y][ray->map_pos.x] - 49;
 	img_width = data->textures[ray->text_select].img->width;
 	if (ray->side == 0)
 		ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.y;
