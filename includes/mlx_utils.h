@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 15:07:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:53:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ typedef struct s_vector3
 	int	x;
 	int	y;
 }				t_vector3;
+
+typedef struct s_door
+{
+	double	**door_offsets;
+	double	**door_timers;
+	int		**door_status;
+	double	wall_y_offset; //je l'utilise?
+}				t_door;
 
 typedef struct s_color
 {
@@ -171,6 +179,7 @@ typedef struct s_ray_data
 	t_map		*map;
 	t_s_caster	sprite;
 	uint32_t	**tex_buf;
+	t_door		door;
 }				t_ray;
 
 typedef struct s_speed

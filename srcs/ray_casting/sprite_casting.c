@@ -6,10 +6,9 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 15:08:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:06:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "mlx_utils.h"
 
