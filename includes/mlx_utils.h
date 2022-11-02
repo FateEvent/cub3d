@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 13:20:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:37:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIDTH 640
 # define HEIGHT 480
 # define BPP 4
-# define NUMSPRITES 1
+# define NUMSPRITES 3
 
 typedef struct s_vector
 {

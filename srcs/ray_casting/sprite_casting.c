@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 12:50:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:47:53 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	line_drawer_looper(t_data *data, t_ray *ray, t_var *v, int i)
 		v->color = ray->tex_buf[sprite->sprites
 		[sprite->sprite_order[i]].texture]
 		[v->width * sprite->tex.y + sprite->tex.x];
-		if ((v->color & 0xFFFFFF00) != 0)
+		if ((v->color & 0xFFFFFFFF) != 0)
 			mlx_put_pixel(data->screen.display.img, sprite->stripe,
 				v->y, v->color);
 		v->y++;

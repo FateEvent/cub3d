@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 13:57:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:41:32 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,14 @@ void	sprite_casting_init(t_ray *ray)
 		|| !sprite->sprite_dist)
 		return ;
 	sprite->sprites[0].x = 3;
-	sprite->sprites[0].y = 3;
+	sprite->sprites[0].y = 2;
 	sprite->sprites[0].texture = 6;
+	sprite->sprites[1].x = 3;
+	sprite->sprites[1].y = 3;
+	sprite->sprites[1].texture = 7;
+	sprite->sprites[2].x = 3;
+	sprite->sprites[2].y = 4;
+	sprite->sprites[2].texture = 8;
 	sprite_casting_init_pt2(ray, sprite);
 }
 
