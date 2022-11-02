@@ -4,6 +4,7 @@ good tutorials are the following ones:
 * <https://github.com/vinibiavatti1/RayCastingTutorial/wiki/Utilities>;
 * <https://lodev.org/cgtutor/raycasting.html>;
 * <https://www.youtube.com/watch?v=NbSee-XM7WA>;
+* <https://www.youtube.com/playlist?list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW>;
 
 draw a line:
 * <https://www.youtube.com/watch?v=l-u6uxnOmH0>;
@@ -14,4 +15,5 @@ lerp:
 
 for the bonus part:
 * <https://lodev.org/cgtutor/raycasting4.html>;
-* <https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents>.
+* <https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents>;
+* <https://medium.com/@Powersaurus/pico-8-raycaster-doors-cd8de9d943b>.

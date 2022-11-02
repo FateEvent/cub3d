@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 11:25:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:46:20 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_image	*ft_load_textures(t_data *data)
 {
 	t_image	*texture;
 
-	texture = malloc(sizeof(t_image) * 4);
+	texture = malloc(sizeof(t_image) * 9);
 	if (!texture)
 		return (NULL);
 	ft_bzero(texture, sizeof(*texture));
