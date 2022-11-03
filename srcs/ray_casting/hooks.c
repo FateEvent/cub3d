@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/01 12:55:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/03 11:58:14 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	ft_mouse_input_child(t_var var, t_ray *ray, t_data *data, double x)
 		ray->plane.y = var.old_plane_x * ray->m.psin + ray->plane.y
 			* ray->m.pcos;
 		data->player.yaw += data->player.speed.rotation / 2;
-		data->refresh = 1;
 	}
 	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
 }
@@ -53,9 +52,22 @@ void	ft_mouse_input(double x, double y, void *param)
 		ray->plane.y = var.old_plane_x * ray->m.nsin + ray->plane.y
 			* ray->m.ncos;
 		data->player.yaw -= data->player.speed.rotation / 2;
-		data->refresh = 1;
 	}
 	ft_mouse_input_child(var, ray, data, x);
+}
+
+void	update_pathfinding(t_data *data)
+{
+	t_vector3	pos;
+	t_vector3	end;
+
+	if (data->time % 60 != 0)
+		return ;
+	pos.x = floor(data->ray_data.pos.x);
+	pos.y = floor(data->ray_data.pos.y);
+	end.x = (int)data->player.player_spawn_pos.x;
+	end.y = (int)data->player.player_spawn_pos.y;
+	data->player.path = pathfinding(data, pos, end);
 }
 
 void	ft_update(void *param)
@@ -63,12 +75,19 @@ void	ft_update(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	ft_key_input(data);
-	if (data->refresh == 1)
+	get_delay(1, 16666);
+	while (data->delay > 16666)
 	{
-		ray_casting(data);
-		draw_minimap(data);
-		mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
-		data->refresh = 0;
+		ft_key_input(data);
+		++data->time;
+		data->delay -= 16666;
+		update_pathfinding(data);
 	}
+	ft_key_input(data);
+	update_pathfinding(data);
+	ray_casting(data);
+	draw_minimap(data);
+	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
+	data->delay += get_delay(0, 16666);
+	++data->time;
 }

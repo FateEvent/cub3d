@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/02 13:30:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/03 11:58:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_struct2(t_data *data, t_ray *ray)
 {
 	ray->half_width = WIDTH / 2;
 	data->render_delay = 1;
-	data->refresh = 1;
+	ray->text_select = 0;
 	data->screen.display.size.x = WIDTH;
 	data->screen.display.size.y = HEIGHT;
 	ray->resolution.x = data->screen.display.size.x;
@@ -26,6 +26,8 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	init_direction(data);
 	ray->m.focus = 0;
 	data->player.yaw = M_PI / 2 * data->player.start_direction;
+	data->time = 0;
+	data->delay = 0;
 }
 
 void	init_struct(t_data *data)

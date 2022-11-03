@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 10:17:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 17:50:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/03 11:58:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var)
 			* var->movement) + ray->pos.x)] != '1')
 			ray->pos.x = (cos(alpha + M_PI / 2) * var->movement)
 				+ ray->pos.x;
-		data->refresh = 1;
 	}
 	else
 		ft_key_input_focus(data, ray);
@@ -75,7 +74,6 @@ void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var)
 			* var->movement) + ray->pos.x)] != '1')
 			ray->pos.x = (-cos(alpha + M_PI / 2) * var->movement)
 				+ ray->pos.x;
-		data->refresh = 1;
 	}
 	else
 		ft_key_input_arrows_pt2(data, ray, var);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 18:30:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:44:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	ray_launcher(t_ray *ray)
 			ray->side = 1;
 		}
 		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1')
-			ray->hit = 1;
-		else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
 			ray->hit = 1;
 	}
 }
@@ -91,5 +89,6 @@ void	ray_data_init(t_ray *ray, int x)
 	ray->ray_dir.y = ray->dir.y + ray->plane.y * ray->camera_x;
 	ray->map_pos.x = (int)ray->pos.x;
 	ray->map_pos.y = (int)ray->pos.y;
+	ray->text_select = 0;
 	ray_delta_calculator(ray);
 }
