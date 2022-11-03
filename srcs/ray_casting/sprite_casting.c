@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_casting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 18:06:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:35:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,23 @@ void	doing_some_math(t_ray *ray, int i)
 	sprite->draw_start.y = -sprite->sprite_height / 2 + HEIGHT / 2;
 }
 
+void	update_enemy(t_data *data, t_ray *ray, size_t i)
+{
+	t_s_caster	*sprite;
+
+	sprite = &ray->sprite;
+	if (!data->player.path)
+		return ;
+	sprite->sprites[sprite->sprite_order[i]].x += data->player.path->x;
+	sprite->sprites[sprite->sprite_order[i]].y += data->player.path->y;
+}
+
 void	sprite_caster(t_data *data, t_ray *ray, t_var *v)
 {
 	int	i;
 
 	i = 0;
+	update_enemy(data, ray, 0);
 	while (i < NUMSPRITES)
 	{
 		doing_some_math(ray, i);
@@ -108,4 +120,3 @@ void	sprite_caster(t_data *data, t_ray *ray, t_var *v)
 		i++;
 	}
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 18:08:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/03 11:42:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	sprite_casting_init_pt2(t_ray *ray, t_s_caster *sprite)
 	sort_sprites(sprite->sprite_order, sprite->sprite_dist, NUMSPRITES);
 }
 
-void	sprite_casting_init(t_ray *ray)
+void	sprite_casting_init(t_data *data, t_ray *ray)
 {
 	t_s_caster	*sprite;
 
@@ -41,8 +41,8 @@ void	sprite_casting_init(t_ray *ray)
 	if (!sprite->sprites || !sprite->z_buffer || !sprite->sprite_order
 		|| !sprite->sprite_dist)
 		return ;
-	sprite->sprites[0].x = 3;
-	sprite->sprites[0].y = 2;
+	sprite->sprites[0].x = data->enemy.startpos.x;
+	sprite->sprites[0].y = data->enemy.startpos.y;
 	sprite->sprites[0].texture = 6;
 	sprite->sprites[1].x = 3;
 	sprite->sprites[1].y = 3;
@@ -72,7 +72,7 @@ void	ray_casting(t_data *data)
 	ft_bzero(&var, sizeof(var));
 	ray = &data->ray_data;
 	ray->map = data->map;
-	sprite_casting_init(ray);
+	sprite_casting_init(data, ray);
 	if (data->map->mode == 1)
 		floor_casting(data, ray);
 	while (var.x < ray->resolution.x)

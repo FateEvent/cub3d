@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/02 15:05:19 by faventur         ###   ########.fr        #
+#    Updated: 2022/11/02 17:56:58 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,10 @@ MLX_PATH	=	mlx_tools/
 MLX_FILES	=	textures window colours colour_conversions sprites
 SRCS_FILES	+=	$(addprefix $(MLX_PATH), $(MLX_FILES))
 
+PF_PATH	=	pathfinding/
+PF_FILES	=	pathfinding
+SRCS_FILES	+=	$(addprefix $(PF_PATH), $(PF_FILES))
+
 UTILS_PATH	=	utils/
 UTILS_FILES	=	ft_map_reader drawing_tools utils ft_from_uchar_to_rgb_buf \
 				vec_utils time
@@ -49,7 +53,7 @@ RC_FILES	=	hooks ft_key_input ft_key_input_pt2 ray_casting_tools wall_casting \
 				sprite_casting
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
-MAP_PATH	=	minimap/
+MAP_PATH		=	minimap/
 MAP_FILES	=	draw_minimap minimap_utils
 SRCS_FILES	+=	$(addprefix $(MAP_PATH), $(MAP_FILES))
 

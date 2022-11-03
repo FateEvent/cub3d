@@ -3,8 +3,8 @@ SO ./images/wall2.xpm42
 WE ./images/wall1.xpm42
 EA ./images/wall2.xpm42
 
-F 220,100,0
-C 225,30,0
+FT ./images/dirtycarpet2.xpm42
+CT ./images/ceiling2.xpm42
           111111111
 11111     100000011
 100011111110000001

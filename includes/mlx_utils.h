@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 17:53:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:11:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/types.h>
 # include <math.h>
 # include <MLX42.h>
+# include <sys/time.h>
 # include "libft.h"
 # define WIDTH 640
 # define HEIGHT 480
@@ -41,14 +42,6 @@ typedef struct s_vector3
 	int	x;
 	int	y;
 }				t_vector3;
-
-typedef struct s_door
-{
-	double	**door_offsets;
-	double	**door_timers;
-	int		**door_status;
-	double	wall_y_offset; //je l'utilise?
-}				t_door;
 
 typedef struct s_color
 {
@@ -179,7 +172,6 @@ typedef struct s_ray_data
 	t_map		*map;
 	t_s_caster	sprite;
 	uint32_t	**tex_buf;
-	t_door		door;
 }				t_ray;
 
 typedef struct s_speed
@@ -196,7 +188,14 @@ typedef struct s_player
 	t_speed		speed;
 	double		yaw;
 	int			start_direction;
+	t_vector3	*path;
 }				t_player;
+
+typedef struct s_enemy
+{
+	t_vector3	startpos;
+	t_vector2	pos;
+}				t_enemy;
 
 typedef struct s_screen
 {
@@ -219,6 +218,9 @@ typedef struct s_data
 	int			fd;
 	int			refresh;
 	int			key;
+	int			delay;
+	int			time;
+	t_enemy		enemy;
 }				t_data;
 
 typedef struct s_var
@@ -261,6 +263,24 @@ typedef struct s_shape
 	double		dim;
 	t_image		*img;
 }				t_shape;
+
+typedef struct	s_anode
+{
+	struct s_anode		*parent;
+	int					dist;
+	t_vector3			pos;
+	struct s_anode		*next;
+}				t_anode;
+
+typedef struct s_pathfinding
+{
+	t_anode		*list_open;
+	t_anode		*list_closed;
+	t_vector3	start;
+	t_vector3	end;
+	t_anode		*goal;
+	char		*map;
+}				t_pathfinding;
 
 // init
 void		init_minimap(t_data *data);
@@ -317,9 +337,6 @@ void		texture_x_pos_calculator(t_data *data, t_ray *ray);
 void		texture_y_pos_calculator(t_data *data, t_ray *ray);
 void		choose_wall_texture(t_ray *ray);
 void		sprite_caster(t_data *data, t_ray *ray, t_var *v);
-void		doing_some_math(t_ray *ray, int i);
-void		points_lines_designer(t_ray *ray);
-void		line_drawer(t_data *data, t_ray *ray, t_var *v, int i);
 uint32_t	get_shading(uint32_t color, t_ray ray);
 
 // drawing tools
@@ -336,10 +353,14 @@ void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 // sprites
 void		load_sprites(t_data *data, t_image *texture);
 
+// pathfinding
+t_vector3	*pathfinding(t_data *data, t_vector3 start, t_vector3 end);
+
 // minimap
 void		get_map_size(t_data *data);
 void		get_map_str(t_data *data);
 void		get_size_arr(t_data *data, int y);
+int			minimap_get(t_map *map, int x, int y);
 
 // vector utils
 t_vector	ft_inttovec(int x, int y);
@@ -374,6 +395,7 @@ t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 void		ft_print_map(char **map);
 void		sort_sprites(int *order, double *dist, int amount);
 double		get_time(void);
+int			get_delay(int startnow, int min);
 void		tex_to_img(t_data *data, t_image *texture, size_t i);
 
 #endif
