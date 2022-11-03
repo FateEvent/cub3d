@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 17:53:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/03 10:26:14 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ typedef struct s_ray_data
 	t_vector	map_pos;
 	t_vector2	ray_side;
 	t_vector2	ray_delta;
-	t_vector	step_coord;
+	t_vector3	step_coord;
 	int			hit;
 	int			side;
 	double		wall_distance;
