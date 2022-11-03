@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 16:44:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/03 14:40:31 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,30 @@ void	ray_launcher(t_ray *ray)
 			ray->map_pos.y += ray->step_coord.y;
 			ray->side = 1;
 		}
-		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1')
+		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1'
+			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
 			ray->hit = 1;
+		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
+		{
+			if (ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x] == '2'
+				|| ray->map->map[(int)ray->pos.y - 1][(int)ray->pos.x] == '2'
+				|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 1] == '2'
+				|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 1] == '2')
+			{
+				ray->map->map[ray->map_pos.y][ray->map_pos.x] = '3';
+			}
+		}
+		else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
+		{
+			if (ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x] == '3'
+				|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x] == '3'
+				|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 2] == '3'
+				|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 2] == '3')
+			{
+				ray->map->map[ray->map_pos.y][ray->map_pos.x] = '2';
+			}
+		}
+
 	}
 }
 
@@ -91,4 +113,6 @@ void	ray_data_init(t_ray *ray, int x)
 	ray->map_pos.y = (int)ray->pos.y;
 	ray->text_select = 0;
 	ray_delta_calculator(ray);
+	printf("%d, %d %c %c\n", (int)ray->pos.x, (int)ray->pos.y, ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x],
+		ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 1]);
 }
