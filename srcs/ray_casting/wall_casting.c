@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/03 14:40:31 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:00:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,34 @@ void	wall_distance_calculator(t_ray *ray)
 		ray->wall_distance = (ray->ray_side.x - ray->ray_delta.x);
 	else
 		ray->wall_distance = (ray->ray_side.y - ray->ray_delta.y);
+}
+
+static void	ray_launcher_door_complement(t_ray *ray)
+{
+	if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
+	{
+		if (ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x] == '2'
+			|| ray->map->map[(int)ray->pos.y - 1][(int)ray->pos.x] == '2'
+			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 1] == '2'
+			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 1] == '2'
+			|| ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x + 1] == '2'
+			|| ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x - 1] == '2'
+			|| ray->map->map[(int)ray->pos.y - 1][(int)ray->pos.x + 1] == '2'
+			|| ray->map->map[(int)ray->pos.y - 1][(int)ray->pos.x - 1] == '2')
+			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '3';
+	}
+	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
+	{
+		if (ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x] == '3'
+			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x] == '3'
+			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 2] == '3'
+			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 2] == '3'
+			|| ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x + 2] == '3'
+			|| ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x - 2] == '3'
+			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x + 2] == '3'
+			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x - 2] == '3')
+			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '2';
+	}
 }
 
 void	ray_launcher(t_ray *ray)
@@ -40,27 +68,7 @@ void	ray_launcher(t_ray *ray)
 		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1'
 			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
 			ray->hit = 1;
-		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
-		{
-			if (ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x] == '2'
-				|| ray->map->map[(int)ray->pos.y - 1][(int)ray->pos.x] == '2'
-				|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 1] == '2'
-				|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 1] == '2')
-			{
-				ray->map->map[ray->map_pos.y][ray->map_pos.x] = '3';
-			}
-		}
-		else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
-		{
-			if (ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x] == '3'
-				|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x] == '3'
-				|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 2] == '3'
-				|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 2] == '3')
-			{
-				ray->map->map[ray->map_pos.y][ray->map_pos.x] = '2';
-			}
-		}
-
+		ray_launcher_door_complement(ray);
 	}
 }
 
