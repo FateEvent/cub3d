@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:09:08 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/03 11:25:53 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/03 12:02:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	get_time(void)
 	return (glfwGetTime());
 }
 
-int		get_delay(int startnow, int min)
+int	get_delay(int startnow, int min)
 {
 	static struct timeval	start;
 	static struct timeval	stop;
