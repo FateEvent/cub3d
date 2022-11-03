@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting_vol2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/25 13:13:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/03 17:36:21 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	choose_wall_texture(t_ray *ray)
 		ray->text_select = 3;
 	if (ray->side == 0 && ray->ray_dir.x < 0)
 		ray->text_select = 2;
+	if (ray->side == 0 && ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
+		ray->text_select = 4;
+	if (ray->side == 1 && ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
+		ray->text_select = 4;
+	if (ray->side == 1 && ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
+		ray->text_select = 5;
+	if (ray->side == 0 && ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
+		ray->text_select = 5;
 }
 
 void	texture_y_pos_calculator(t_data *data, t_ray *ray)
