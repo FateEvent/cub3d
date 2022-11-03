@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 17:49:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/03 11:57:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var)
 		ray->plane.y = var->old_plane_x * ray->k.nsin + ray->plane.y
 			* ray->k.ncos;
 		data->player.yaw -= data->player.speed.rotation;
-		data->refresh = 1;
 	}
 	if (data->key == (keys_t)MLX_KEY_ESCAPE)
 		exit(0);
@@ -50,7 +49,6 @@ static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var)
 		ray->plane.y = var->old_plane_x * ray->k.psin + ray->plane.y
 			* ray->k.pcos;
 		data->player.yaw += data->player.speed.rotation;
-		data->refresh = 1;
 	}
 	else
 		ft_key_input_other(data, ray, var);
@@ -66,7 +64,6 @@ static void	ft_key_input_child(t_data *data, t_ray *ray, t_var *var)
 		if (data->map->map[(int)(ray->pos.y)]
 			[(int)(ray->pos.x - ray->dir.x * var->movement)] != '1')
 			ray->pos.x -= ray->dir.x * var->movement;
-		data->refresh = 1;
 	}
 	else
 		ft_key_input_rest(data, ray, var);
@@ -102,7 +99,6 @@ void	ft_key_input(t_data *data)
 		if (data->map->map[(int)(ray->pos.y + ray->dir.y * var.movement)]
 			[(int)(ray->pos.x)] != '1')
 			ray->pos.y += ray->dir.y * var.movement;
-		data->refresh = 1;
 	}
 	else
 		ft_key_input_child(data, ray, &var);

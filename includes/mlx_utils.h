@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 18:11:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/03 11:59:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,6 @@ typedef struct s_data
 	t_ray		ray_data;
 	int			keycode;
 	int			fd;
-	int			refresh;
 	int			key;
 	int			delay;
 	int			time;

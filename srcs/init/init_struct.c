@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/02 17:04:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/03 11:58:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	ray->half_width = WIDTH / 2;
 	data->render_delay = 1;
 	ray->text_select = 0;
-	data->refresh = 1;
 	data->screen.display.size.x = WIDTH;
 	data->screen.display.size.y = HEIGHT;
 	ray->resolution.x = data->screen.display.size.x;
