@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/03 11:42:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/04 16:00:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	sprite_casting_init(t_data *data, t_ray *ray)
 	if (!sprite->sprites || !sprite->z_buffer || !sprite->sprite_order
 		|| !sprite->sprite_dist)
 		return ;
-	sprite->sprites[0].x = data->enemy.startpos.x;
-	sprite->sprites[0].y = data->enemy.startpos.y;
+	sprite->sprites[0].x = data->enemy.pos.x;
+	sprite->sprites[0].y = data->enemy.pos.y;
 	sprite->sprites[0].texture = 6;
 	sprite->sprites[1].x = 3;
 	sprite->sprites[1].y = 3;

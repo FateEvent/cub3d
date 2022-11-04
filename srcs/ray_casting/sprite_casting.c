@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 18:35:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/04 14:43:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ void	update_enemy(t_data *data, t_ray *ray, size_t i)
 	t_s_caster	*sprite;
 
 	sprite = &ray->sprite;
-	if (!data->player.path)
+	if (!data->enemy.path)
 		return ;
-	sprite->sprites[sprite->sprite_order[i]].x += data->player.path->x;
-	sprite->sprites[sprite->sprite_order[i]].y += data->player.path->y;
+	printf("path = %i %i\n", data->enemy.path->x, data->enemy.path->x);
+	sprite->sprites[sprite->sprite_order[i]].x += data->enemy.path->x;
+	sprite->sprites[sprite->sprite_order[i]].y += data->enemy.path->y;
 }
 
 void	sprite_caster(t_data *data, t_ray *ray, t_var *v)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 13:28:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:14:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,10 @@ typedef struct s_map
 	t_vector	spawn_pos;
 	char		dir;
 	t_minimap	*minimap;
-	t_vector2	size;
+	t_vector3	size;
 	char		*map_str;
 	int			*size_arr;
+	int			buf_size;
 }				t_map;
 
 typedef struct s_mouse
@@ -188,13 +189,14 @@ typedef struct s_player
 	t_speed		speed;
 	double		yaw;
 	int			start_direction;
-	t_vector3	*path;
 }				t_player;
 
 typedef struct s_enemy
 {
-	t_vector3	startpos;
 	t_vector2	pos;
+	t_vector3	*path;
+	t_vector3	*valid_pos;
+	size_t		valid_pos_n;
 }				t_enemy;
 
 typedef struct s_screen
@@ -271,16 +273,6 @@ typedef struct	s_anode
 	struct s_anode		*next;
 }				t_anode;
 
-typedef struct s_pathfinding
-{
-	t_anode		*list_open;
-	t_anode		*list_closed;
-	t_vector3	start;
-	t_vector3	end;
-	t_anode		*goal;
-	char		*map;
-}				t_pathfinding;
-
 // init
 void		init_minimap(t_data *data);
 void		init_struct(t_data *data);
@@ -354,7 +346,8 @@ void		load_sprites(t_data *data, t_image *texture);
 void		ft_load_fireset_textures(t_data *data, t_image *texture);
 
 // pathfinding
-t_vector3	*pathfinding(t_data *data, t_vector3 start, t_vector3 end);
+void		pathfinding_list_pos(t_data *data);
+t_vector3	pathfinding_get_pos(t_data *data);
 
 // minimap
 void		get_map_size(t_data *data);

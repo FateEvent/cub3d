@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/04 14:03:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:14:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	init_struct2(t_data *data, t_ray *ray)
 {
+	t_vector3	pos;
+
 	ray->half_width = WIDTH / 2;
 	data->render_delay = 1;
 	ray->text_select = 0;
@@ -28,6 +30,10 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	data->player.yaw = M_PI / 2 * data->player.start_direction;
 	data->time = 0;
 	data->delay = 0;
+	srand(time(NULL));
+	pathfinding_list_pos(data);
+	pos = pathfinding_get_pos(data);
+	data->enemy.pos = (t_vector2){pos.x + 0.5, pos.y + 0.5};
 }
 
 void	init_struct(t_data *data)
