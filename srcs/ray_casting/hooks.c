@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/03 11:58:14 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/04 17:04:01 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,6 @@ void	ft_mouse_input(double x, double y, void *param)
 	ft_mouse_input_child(var, ray, data, x);
 }
 
-void	update_pathfinding(t_data *data)
-{
-	t_vector3	pos;
-	t_vector3	end;
-
-	if (data->time % 60 != 0)
-		return ;
-	pos.x = floor(data->ray_data.pos.x);
-	pos.y = floor(data->ray_data.pos.y);
-	end.x = (int)data->player.player_spawn_pos.x;
-	end.y = (int)data->player.player_spawn_pos.y;
-	data->player.path = pathfinding(data, pos, end);
-}
-
 void	ft_update(void *param)
 {
 	t_data	*data;
@@ -81,10 +67,8 @@ void	ft_update(void *param)
 		ft_key_input(data);
 		++data->time;
 		data->delay -= 16666;
-		update_pathfinding(data);
 	}
 	ft_key_input(data);
-	update_pathfinding(data);
 	ray_casting(data);
 	draw_minimap(data);
 	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);

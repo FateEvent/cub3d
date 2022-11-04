@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/03 17:38:23 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/04 09:51:23 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,4 @@ void	ray_data_init(t_ray *ray, int x)
 	ray->map_pos.y = (int)ray->pos.y;
 	ray->text_select = 0;
 	ray_delta_calculator(ray);
-	printf("%d, %d %c %c\n", (int)ray->pos.x, (int)ray->pos.y, ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x],
-		ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 1]);
 }
