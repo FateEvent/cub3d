@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/02 17:56:58 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/04 13:45:21 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,8 +80,14 @@ $(NAME): $(OBJS)
 	@mv ./libft/libft.a .
 	@mv ./MLX42/libmlx42.a .
 	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) -fsanitize=address
-	@echo "$(CURSIVE)$(HIBLUE)Parce qu'ouvrir une fenêtre,$(NONE)"
-	@echo "$(CURSIVE)$(HIGREEN)c'est surfait.$(NONE)"
+	@echo "$(CURSIVE)$(HIBLUE)If you're not careful and you noclip out of reality in the wrong areas,$(NONE)"
+	@echo "$(CURSIVE)$(HIBLUE)you'll end up in the Backrooms, where it's nothing but the stink of old$(NONE)"
+	@echo "$(CURSIVE)$(HIBLUE)moist carpet, the madness of mono-yellow, the endless background noise$(NONE)"
+	@echo "$(CURSIVE)$(HIBLUE)of fluorescent lights at maximum hum-buzz, and approximately six hundred$(NONE)"
+	@echo "$(CURSIVE)$(HIBLUE)million square miles of randomly segmented empty rooms to be trapped in.$(NONE)"
+	@echo "$(CURSIVE)$(HIBLUE)God save you if you hear something wandering around nearby, because it's$(NONE)"
+	@echo "$(CURSIVE)$(HIBLUE)sure as hell has heard you.$(NONE)"
+	@echo "$(CURSIVE)$(NONE)Anonymous user, 4chan$(NONE)"
 
 .c.o:
 	@$(CC) $(FLAGS) -c $(LIBLINKS) $< -o ${<:.c=.o}

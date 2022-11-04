@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/03 12:04:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/04 13:28:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,6 +351,7 @@ void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
 // sprites
 void		load_sprites(t_data *data, t_image *texture);
+void		ft_load_fireset_textures(t_data *data, t_image *texture);
 
 // pathfinding
 t_vector3	*pathfinding(t_data *data, t_vector3 start, t_vector3 end);

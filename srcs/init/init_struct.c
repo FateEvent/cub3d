@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/03 11:58:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/04 14:03:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	ray->resolution.x = data->screen.display.size.x;
 	ray->resolution.y = data->screen.display.size.y;
 	data->player.fov = 70;
-	ray->tex_buf = malloc(sizeof(uint32_t *) * 6);
+	ray->tex_buf = malloc(sizeof(uint32_t *) * 19);
 	init_direction(data);
 	ray->m.focus = 0;
 	data->player.yaw = M_PI / 2 * data->player.start_direction;
