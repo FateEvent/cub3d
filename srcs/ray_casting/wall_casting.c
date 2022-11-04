@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 09:51:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/04 17:14:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ static void	ray_launcher_door_complement(t_ray *ray)
 	}	// pourrais-je implémenter un timer qui referme la porte après que je me suis éloigné ?
 	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
 	{
-		if (ray->map->map[(int)ray->pos.y][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x] == '3')
-			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '4';
+		if (ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x] == '3'
+			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x] == '3'
+			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 2] == '3'
+			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 2] == '3'
+			|| ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x + 2] == '3'
+			|| ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x - 2] == '3'
+			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x + 2] == '3'
+			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x - 2] == '3')
+			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '2';
 	}
-	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '4')
+/*	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '4')
 	{
 		if (ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x] == '4'
 			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x] == '4'
@@ -57,7 +57,7 @@ static void	ray_launcher_door_complement(t_ray *ray)
 			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x + 2] == '4'
 			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x - 2] == '4')
 			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '2';
-	}
+	}*/
 }
 
 void	ray_launcher(t_ray *ray)
@@ -134,4 +134,6 @@ void	ray_data_init(t_ray *ray, int x)
 	ray->map_pos.y = (int)ray->pos.y;
 	ray->text_select = 0;
 	ray_delta_calculator(ray);
+//	printf("%d, %d %c %c\n", (int)ray->pos.x, (int)ray->pos.y, ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x],
+//		ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 1]);
 }

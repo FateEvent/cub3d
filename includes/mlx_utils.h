@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 16:55:15 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/04 17:14:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,6 +343,7 @@ void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
 // sprites
 void		load_sprites(t_data *data, t_image *texture);
+void		ft_load_fireset_textures(t_data *data, t_image *texture);
 
 // pathfinding
 void		pathfinding_list_pos(t_data *data);
