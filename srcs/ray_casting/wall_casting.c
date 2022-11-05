@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/05 17:48:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/05 17:51:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,4 @@ void	ray_data_init(t_ray *ray, int x)
 	ray->map_pos.y = (int)ray->pos.y;
 	ray->text_select = 0;
 	ray_delta_calculator(ray);
-//	printf("%d, %d %c %c\n", (int)ray->pos.x, (int)ray->pos.y, ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x],
-//		ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 1]);
 }
