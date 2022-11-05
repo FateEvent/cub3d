@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/04 17:14:27 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/05 14:36:24 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MAIN_FILES	=	main
 SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 INIT_PATH	=	init/
-INIT_FILES	=	init_struct init_direction init_minimap
+INIT_FILES	=	init_struct init_direction init_minimap init_sprites
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 PARSE_PATH	=	parsing/
@@ -38,7 +38,7 @@ MLX_PATH	=	mlx_tools/
 MLX_FILES	=	textures window colours colour_conversions sprites
 SRCS_FILES	+=	$(addprefix $(MLX_PATH), $(MLX_FILES))
 
-PF_PATH	=	pathfinding/
+PF_PATH		=	pathfinding/
 PF_FILES	=	pathfinding_random_pos
 SRCS_FILES	+=	$(addprefix $(PF_PATH), $(PF_FILES))
 

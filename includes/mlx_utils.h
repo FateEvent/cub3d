@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 17:14:27 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/05 14:35:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct s_ray_data
 	t_vector	tex;
 	int			text_select;
 	double		wall_x;
+	double		wall_y_offset;
 	double		step;
 	double		tex_pos;
 	t_floor		fl;
@@ -274,6 +275,7 @@ typedef struct	s_anode
 }				t_anode;
 
 // init
+void		sprite_casting_init(t_data *data, t_ray *ray);
 void		init_minimap(t_data *data);
 void		init_struct(t_data *data);
 void		init_direction(t_data *data);

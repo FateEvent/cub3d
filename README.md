@@ -20,6 +20,7 @@ lerp:
 
 for the bonus part:
 * <https://lodev.org/cgtutor/raycasting4.html>;
+* <http://andrewmushel.com/raycast-demo>;
 * <https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents>;
 * <https://medium.com/@Powersaurus/pico-8-raycaster-doors-cd8de9d943b>.
 
