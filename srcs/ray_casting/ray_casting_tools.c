@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/05 14:33:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:31:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ray_casting(t_data *data)
 	ft_bzero(&var, sizeof(var));
 	ray = &data->ray_data;
 	ray->map = data->map;
-//	sprite_casting_init(data, ray);
 	if (data->map->mode == 1)
 		floor_casting(data, ray);
 	while (var.x < ray->resolution.x)

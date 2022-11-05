@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/05 14:36:24 by faventur         ###   ########.fr        #
+#    Updated: 2022/11/05 15:33:59 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ $(NAME): $(OBJS)
 	@echo "$(CURSIVE)$(HIBLUE)of fluorescent lights at maximum hum-buzz, and approximately six hundred$(NONE)"
 	@echo "$(CURSIVE)$(HIBLUE)million square miles of randomly segmented empty rooms to be trapped in.$(NONE)"
 	@echo "$(CURSIVE)$(HIBLUE)God save you if you hear something wandering around nearby, because it's$(NONE)"
-	@echo "$(CURSIVE)$(HIBLUE)sure as hell has heard you.$(NONE)"
+	@echo "$(CURSIVE)$(HIBLUE)sure as hell it has heard you.$(NONE)"
 	@echo "$(CURSIVE)$(NONE)Anonymous user, 4chan$(NONE)"
 
 .c.o:

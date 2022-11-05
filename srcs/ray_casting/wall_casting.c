@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 17:14:27 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/05 17:48:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	ray_launcher(t_ray *ray)
 			ray->side = 1;
 		}
 		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1'
-			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2'
-			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
+			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
+//			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
 			ray->hit = 1;
 		ray_launcher_door_complement(ray);
 	}
