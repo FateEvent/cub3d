@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling_textures.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/02 11:25:54 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/05 15:15:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	draw_floor(t_data *data, int x)
 	ray = data->ray_data;
 	height = HEIGHT;
 	half_height = height / 2;
-	draw_line(data->screen.display.img, (t_vector2){x,
+	draw_line(data->screen.display.img, (t_vec2){x,
 		half_height + ray.line_height / 2},
-		(t_vector2){x, height}, rgb_to_hex(data->map->floor_color));
+		(t_vec2){x, height}, rgb_to_hex(data->map->floor_color));
 }
 
 void	draw_ceiling(t_data *data, int x)
@@ -35,8 +35,8 @@ void	draw_ceiling(t_data *data, int x)
 	ray = data->ray_data;
 	height = HEIGHT;
 	half_height = height / 2;
-	draw_line(data->screen.display.img, (t_vector2){x, 0},
-		(t_vector2){x, half_height - ray.line_height / 2},
+	draw_line(data->screen.display.img, (t_vec2){x, 0},
+		(t_vec2){x, half_height - ray.line_height / 2},
 		rgb_to_hex(data->map->ceiling_color));
 }
 

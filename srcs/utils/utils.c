@@ -6,15 +6,15 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 17:05:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:16:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-t_vector	ft_get_x_and_y(char **map, char prop)
+t_vec	ft_get_x_and_y(char **map, char prop)
 {
-	t_vector	coord;
+	t_vec	coord;
 
 	coord.x = 0;
 	coord.y = 0;

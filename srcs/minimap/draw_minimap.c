@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 16:23:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/05 15:15:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	minimap_get(t_map *map, int x, int y)
 		return (0);
 }
 
-void	draw_tiles(t_vector2 pos, t_vector3 vec, t_shape rect, t_data *data)
+void	draw_tiles(t_vec2 pos, t_vec vec, t_shape rect, t_data *data)
 {
 	size_t	i;
 
@@ -66,7 +66,7 @@ void	draw_position(t_data *data)
 
 void	draw_minimap(t_data	*data)
 {
-	t_vector3	vec;
+	t_vec	vec;
 	t_shape		rect;
 	t_minimap	*map;
 

@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:36:35 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/19 14:10:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:16:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-double	ft_vect2_distance_calc(t_vector2 start, t_vector2 finish)
+double	ft_vect2_distance_calc(t_vec2 start, t_vec2 finish)
 {
 	double	distance;
 
@@ -20,27 +20,27 @@ double	ft_vect2_distance_calc(t_vector2 start, t_vector2 finish)
 	return (distance);
 }
 
-t_vector	ft_inttovec(int x, int y)
+t_vec	ft_inttovec(int x, int y)
 {
-	t_vector	vec;
+	t_vec	vec;
 
 	vec.x = x;
 	vec.y = y;
 	return (vec);
 }
 
-t_vector2	ft_doubletovec2(double x, double y)
+t_vec2	ft_doubletovec2(double x, double y)
 {
-	t_vector2	vec;
+	t_vec2	vec;
 
 	vec.x = x;
 	vec.y = y;
 	return (vec);
 }
 
-void	ft_vec_swap(t_vector *start, t_vector *finish)
+void	ft_vec_swap(t_vec *start, t_vec *finish)
 {
-	t_vector	tmp;
+	t_vec	tmp;
 
 	tmp.x = start->x;
 	tmp.y = start->y;
@@ -50,9 +50,9 @@ void	ft_vec_swap(t_vector *start, t_vector *finish)
 	finish->y = tmp.y;
 }
 
-void	ft_vec2_swap(t_vector2 *start, t_vector2 *finish)
+void	ft_vec2_swap(t_vec2 *start, t_vec2 *finish)
 {
-	t_vector2	tmp;
+	t_vec2	tmp;
 
 	tmp.x = start->x;
 	tmp.y = start->y;

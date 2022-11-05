@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/05 14:35:52 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:28:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,37 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <math.h>
-# include <MLX42.h>
 # include <sys/time.h>
+# include <MLX42.h>
 # include "libft.h"
 # define WIDTH 640
 # define HEIGHT 480
 # define BPP 4
 # define NUMSPRITES 3
 
+typedef struct s_door
+{
+	double	**door_timers;
+	double	**door_offsets;
+}				t_door;
+
 typedef struct s_vector
 {
-	uint32_t	x;
-	uint32_t	y;
-}				t_vector;
+	int	x;
+	int	y;
+}				t_vec;
 
 typedef struct s_vector2
 {
 	double	x;
 	double	y;
-}				t_vector2;
+}				t_vec2;
 
 typedef struct s_vector3
 {
-	int	x;
-	int	y;
-}				t_vector3;
+	uint32_t	x;
+	uint32_t	y;
+}				t_vec3;
 
 typedef struct s_color
 {
@@ -55,7 +61,7 @@ typedef struct s_image
 {
 	xpm_t		*texture;
 	mlx_image_t	*img;
-	t_vector2	size;
+	t_vec2		size;
 }				t_image;
 
 typedef struct s_sprite
@@ -67,7 +73,7 @@ typedef struct s_sprite
 
 typedef struct s_minimap
 {
-	t_vector2	pos;
+	t_vec2		pos;
 	mlx_image_t	*img;
 }			t_minimap;
 
@@ -83,10 +89,10 @@ typedef struct s_map
 	t_color		floor_color;
 	t_color		ceiling_color;
 	int			mode;
-	t_vector	spawn_pos;
+	t_vec		spawn_pos;
 	char		dir;
 	t_minimap	*minimap;
-	t_vector3	size;
+	t_vec		size;
 	char		*map_str;
 	int			*size_arr;
 	int			buf_size;
@@ -111,17 +117,17 @@ typedef struct s_key_hook
 
 typedef struct s_sprite_caster
 {
-	t_vector2	sprite;
-	t_vector2	transform;
+	t_vec2		sprite;
+	t_vec2		transform;
 	double		inv_det;
 	int			sprite_screen_x;
 	int			sprite_width;
 	int			sprite_height;
-	t_vector3	draw_start;
-	t_vector3	draw_end;
+	t_vec		draw_start;
+	t_vec		draw_end;
 	int			stripe;
 	int			d;
-	t_vector3	tex;
+	t_vec		tex;
 	t_sprite	*sprites;
 	int			*sprite_order;
 	double		*sprite_dist;
@@ -130,38 +136,38 @@ typedef struct s_sprite_caster
 
 typedef struct s_floor_casting
 {
-	t_vector2	ray_dir0;
-	t_vector2	ray_dir1;
-	int			p;
-	double		pos_z;
-	double		row_distance;
-	t_vector2	floor_step;
-	t_vector2	floor;
-	t_vector	cell;
-	t_vector	t;
-	int			floor_tex;
-	int			ceiling_tex;
+	t_vec2	ray_dir0;
+	t_vec2	ray_dir1;
+	int		p;
+	double	pos_z;
+	double	row_distance;
+	t_vec2	floor_step;
+	t_vec2	floor;
+	t_vec	cell;
+	t_vec	t;
+	int		floor_tex;
+	int		ceiling_tex;
 }				t_floor;
 
 typedef struct s_ray_data
 {
-	t_vector2	resolution;
+	t_vec2		resolution;
 	double		camera_x;
-	t_vector2	plane;
-	t_vector2	dir;
-	t_vector2	ray_dir;
-	t_vector2	pos;
-	t_vector	map_pos;
-	t_vector2	ray_side;
-	t_vector2	ray_delta;
-	t_vector3	step_coord;
+	t_vec2		plane;
+	t_vec2		dir;
+	t_vec2		ray_dir;
+	t_vec2		pos;
+	t_vec		map_pos;
+	t_vec2		ray_side;
+	t_vec2		ray_delta;
+	t_vec		step_coord;
 	int			hit;
 	int			side;
 	double		wall_distance;
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
-	t_vector	tex;
+	t_vec		tex;
 	int			text_select;
 	double		wall_x;
 	double		wall_y_offset;
@@ -174,6 +180,7 @@ typedef struct s_ray_data
 	t_map		*map;
 	t_s_caster	sprite;
 	uint32_t	**tex_buf;
+	t_door		door;
 }				t_ray;
 
 typedef struct s_speed
@@ -184,20 +191,20 @@ typedef struct s_speed
 
 typedef struct s_player
 {
-	char		player_spawn_dir;
-	t_vector	player_spawn_pos;
-	int			fov;
-	t_speed		speed;
-	double		yaw;
-	int			start_direction;
+	char	player_spawn_dir;
+	t_vec	player_spawn_pos;
+	int		fov;
+	t_speed	speed;
+	double	yaw;
+	int		start_direction;
 }				t_player;
 
 typedef struct s_enemy
 {
-	t_vector2	pos;
-	t_vector3	*path;
-	t_vector3	*valid_pos;
-	size_t		valid_pos_n;
+	t_vec2	pos;
+	t_vec	*path;
+	t_vec	*valid_pos;
+	size_t	valid_pos_n;
 }				t_enemy;
 
 typedef struct s_screen
@@ -258,20 +265,20 @@ typedef struct s_ctexture
 
 typedef struct s_shape
 {
-	int			x;
-	int			y;
-	int			width;
-	int			height;
-	double		dim;
-	t_image		*img;
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+	double	dim;
+	t_image	*img;
 }				t_shape;
 
 typedef struct	s_anode
 {
-	struct s_anode		*parent;
-	int					dist;
-	t_vector3			pos;
-	struct s_anode		*next;
+	struct s_anode	*parent;
+	int				dist;
+	t_vec			pos;
+	struct s_anode	*next;
 }				t_anode;
 
 // init
@@ -279,8 +286,8 @@ void		sprite_casting_init(t_data *data, t_ray *ray);
 void		init_minimap(t_data *data);
 void		init_struct(t_data *data);
 void		init_direction(t_data *data);
-t_vector	ft_get_coordinates(char **map, char prop);
-t_vector	ft_get_x_and_y(char **map, char prop);
+t_vec		ft_get_coordinates(char **map, char prop);
+t_vec		ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
 
 // window functions
@@ -333,9 +340,9 @@ void		sprite_caster(t_data *data, t_ray *ray, t_var *v);
 uint32_t	get_shading(uint32_t color, t_ray ray);
 
 // drawing tools
-void		draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
+void		draw_line(mlx_image_t *img, t_vec2 start, t_vec2 finish,
 				uint32_t color);
-void		draw_vertical_line(mlx_image_t *img, t_vector draw_start,
+void		draw_vertical_line(mlx_image_t *img, t_vec3 draw_start,
 				uint32_t draw_end, uint32_t color);
 void		draw_walls(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
@@ -349,7 +356,7 @@ void		ft_load_fireset_textures(t_data *data, t_image *texture);
 
 // pathfinding
 void		pathfinding_list_pos(t_data *data);
-t_vector3	pathfinding_get_pos(t_data *data);
+t_vec	pathfinding_get_pos(t_data *data);
 
 // minimap
 void		get_map_size(t_data *data);
@@ -358,11 +365,11 @@ void		get_size_arr(t_data *data, int y);
 int			minimap_get(t_map *map, int x, int y);
 
 // vector utils
-t_vector	ft_inttovec(int x, int y);
-t_vector2	ft_doubletovec2(double x, double y);
-double		ft_vect2_distance_calc(t_vector2 start, t_vector2 finish);
-void		ft_vec_swap(t_vector *start, t_vector *finish);
-void		ft_vec2_swap(t_vector2 *start, t_vector2 *finish);
+t_vec		ft_inttovec(int x, int y);
+t_vec2		ft_doubletovec2(double x, double y);
+double		ft_vect2_distance_calc(t_vec2 start, t_vec2 finish);
+void		ft_vec_swap(t_vec *start, t_vec *finish);
+void		ft_vec2_swap(t_vec2 *start, t_vec2 *finish);
 
 // color tools
 t_color		new_color(int r, int g, int b, int a);

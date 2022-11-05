@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding_random_pos.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:46:59 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/04 17:10:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/05 15:15:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	pathfinding_list_pos(t_data *data)
 		++i;
 	}
 	data->enemy.valid_pos_n = k;
-	data->enemy.valid_pos = malloc(sizeof(t_vector3) * k);
+	data->enemy.valid_pos = malloc(sizeof(t_vec) * k);
 	i = 0;
 	k = 0;
 	while (data->map->map[i])
@@ -42,7 +42,7 @@ void	pathfinding_list_pos(t_data *data)
 		{
 			if (data->map->map[i][j] == '0')
 			{
-				data->enemy.valid_pos[k] = (t_vector3){j, i};
+				data->enemy.valid_pos[k] = (t_vec){j, i};
 				++k;
 			}
 			++j;
@@ -51,7 +51,7 @@ void	pathfinding_list_pos(t_data *data)
 	}
 }
 
-t_vector3	pathfinding_get_pos(t_data *data)
+t_vec	pathfinding_get_pos(t_data *data)
 {
 	size_t	i;
 	size_t	random;

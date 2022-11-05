@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:39:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/28 16:24:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:17:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
+static void	draw_line_pt2(mlx_image_t *img, t_vec2 start, t_vec2 finish,
 		uint32_t color)
 {
 	float	w;
@@ -33,7 +33,7 @@ static void	draw_line_pt2(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 	}
 }
 
-void	draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
+void	draw_line(mlx_image_t *img, t_vec2 start, t_vec2 finish,
 		uint32_t color)
 {
 	float	m;
@@ -62,7 +62,7 @@ void	draw_line(mlx_image_t *img, t_vector2 start, t_vector2 finish,
 		draw_line_pt2(img, start, finish, color);
 }
 
-void	draw_vertical_line(mlx_image_t *img, t_vector draw_start,
+void	draw_vertical_line(mlx_image_t *img, t_vec3 draw_start,
 			uint32_t draw_end, uint32_t color)
 {
 	while (draw_start.y < draw_end)
