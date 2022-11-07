@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 13:55:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:30:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	texture_x_pos_calculator(t_data *data, t_ray *ray)
 	else
 		ray->wall_x = ray->pos.x + ray->wall_distance * ray->ray_dir.x;
 	ray->wall_x -= floor(ray->wall_x);
+	if (ray->ray_tex == 2) ray->wall_x += ray->door.door_offsets[ray->map_pos.y][ray->map_pos.y];//Offset door textures
 	ray->tex.x = (int)(ray->wall_x * (double)img_width);
 }
 
