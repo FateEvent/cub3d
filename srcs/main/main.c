@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 10:55:19 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:44:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 	var->i = 0;
 	while (var->i < var->height)
 	{
-		ray->door.door_timers[var->i] = ft_calloc(var->width, sizeof(double *));
-		ray->door.door_offsets[var->i] = ft_calloc(var->width, sizeof(double *));
+		ray->door.door_timers[var->i] = ft_calloc(var->width, sizeof(double));
+		ray->door.door_offsets[var->i] = ft_calloc(var->width, sizeof(double));
+		ray->door.door_states[var->i] = ft_calloc(var->width, sizeof(int));
 		var->j = 0;
 		while (var->j < var->width)
 		{
@@ -26,6 +27,7 @@ void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 			{
 				ray->door.door_timers[var->i][var->j] = 1;
 				ray->door.door_offsets[var->i][var->j] = 1;
+				ray->door.door_states[var->i][var->j] = 2;
 			}
 			var->j++;
 		}
@@ -44,6 +46,7 @@ void	create_door_arrays(t_data *data)
 	var.height = data->map->size.y;
 	ray->door.door_timers = ft_calloc(var.height, sizeof(double *));
 	ray->door.door_offsets = ft_calloc(var.height, sizeof(double *));
+	ray->door.door_states = ft_calloc(var.width, sizeof(int *));
 	if (!ray->door.door_timers || !ray->door.door_offsets)
 		return ;
 	into_the_loop(data, ray, &var);

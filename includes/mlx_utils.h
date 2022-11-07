@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 11:08:59 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 11:52:02 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_door
 {
 	double	**door_timers;
 	double	**door_offsets;
+	int		**door_states;
 }				t_door;
 
 typedef struct s_vector
@@ -172,9 +173,11 @@ typedef struct s_ray_data
 	t_vec		tex;
 	int			text_select;
 	double		wall_x;
+	double		wall_x_offset;
 	double		wall_y_offset;
 	double		step;
 	double		tex_pos;
+	int			ray_tex;
 	t_floor		fl;
 	t_key		k;
 	t_mouse		m;
