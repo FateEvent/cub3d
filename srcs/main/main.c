@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 12:02:49 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:27:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 		ray->door.door_timers[var->i] = ft_calloc(var->width, sizeof(double));
 		ray->door.door_offsets[var->i] = ft_calloc(var->width, sizeof(double));
 		ray->door.door_states[var->i] = ft_calloc(var->width, sizeof(int));
+		if (!ray->door.door_timers[var->i] || !ray->door.door_offsets[var->i]
+			|| !ray->door.door_states[var->i])
+			return ;
 		var->j = 0;
 		while (var->j < var->width)
 		{
@@ -44,10 +47,12 @@ void	create_door_arrays(t_data *data)
 	ray = &data->ray_data;
 	var.width = data->map->size.x;
 	var.height = data->map->size.y;
+	printf("%d %d\n", var.width, var.width);
 	ray->door.door_timers = ft_calloc(var.height, sizeof(double *));
 	ray->door.door_offsets = ft_calloc(var.height, sizeof(double *));
 	ray->door.door_states = ft_calloc(var.width, sizeof(int *));
-	if (!ray->door.door_timers || !ray->door.door_offsets)
+	if (!ray->door.door_timers || !ray->door.door_offsets
+		|| !ray->door.door_states)
 		return ;
 	into_the_loop(data, ray, &var);
 }
@@ -73,6 +78,10 @@ int	main(int argc, char *argv[])
 		throw_err_ex("Error : Loading texture failed.");
 	init_minimap(&data);
 	init_enemy(&data);
+	create_door_arrays(&data);
+	if (!data.ray_data.door.door_timers || !data.ray_data.door.door_offsets
+		|| !data.ray_data.door.door_states)
+		throw_err_ex("Error : Malloc failed.");
 	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(data.mlx, data.screen.display.img, 0, 0);
 	mlx_loop_hook(data.mlx, ft_update, &data);

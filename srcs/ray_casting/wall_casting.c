@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 14:19:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:01:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void	wall_distance_calculator(t_ray *ray)
 void	ft_check_doors(t_ray *ray)
 {
 	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x];
-	if (ray->ray_tex != 0)
+	if (ray->ray_tex != 48)
 	{
-		if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y][ray->map_pos.x] != 2) { //Closed, opening, or closing doors
+		printf("%d %d\n", ray->ray_tex, ray->door.door_states[ray->map_pos.y][ray->map_pos.x]);
+		if (ray->ray_tex == 50 && ray->door.door_states[ray->map_pos.y][ray->map_pos.x] != 2) { //Closed, opening, or closing doors
 			ray->hit = 1;
 			if (ray->side == 1) {
 				ray->wall_y_offset = 0.5 * ray->step_coord.y;
@@ -48,7 +49,7 @@ void	ft_check_doors(t_ray *ray)
 				} else {
 					ray->map_pos.x += ray->step_coord.x;
 					ray->side = 0;
-					ray->ray_tex = 4; //Draw door frame instead
+					ray->ray_tex = 52; //Draw door frame instead
 					ray->wall_y_offset = 0;
 				}
 			} else { //ray->side == 0
@@ -64,16 +65,16 @@ void	ft_check_doors(t_ray *ray)
 				} else {
 					ray->map_pos.y += ray->step_coord.y;
 					ray->side = 1;
-					ray->ray_tex = 4;
+					ray->ray_tex = 52;
 					ray->wall_x_offset = 0;
 				}
 			}
-/*
-		} else if (ray->ray_tex != 2) {
-			if (ray->side == 1 && ray->map->map[ray->map_pos.x][ray->map_pos.y - ray->step_coord.y] == 3) ray->text_select = 10;//Draw doorframes on X sides of Y-ray->side walls	
-			else if (ray->side == 0 && ray->map->map[ray->map_pos.x - ray->step_coord.x][ray->map_pos.y] == 3) ray->text_select = 10;//Draw doorframes on Y sides of X-ray->side walls
+
+		} else if (ray->ray_tex != 50) {
+			if (ray->side == 1 && ray->map->map[ray->map_pos.x][ray->map_pos.y - ray->step_coord.y] == 51) ray->text_select = 10;//Draw doorframes on X sides of Y-ray->side walls	
+			else if (ray->side == 0 && ray->map->map[ray->map_pos.x - ray->step_coord.x][ray->map_pos.y] == 51) ray->text_select = 12;//Draw doorframes on Y sides of X-ray->side walls
 			ray->hit = 1;
-*/
+
 		}
 	}
 }
@@ -139,10 +140,6 @@ void	ray_launcher(t_ray *ray)
 			ray->hit = 1;
 		else
 			ft_check_doors(ray);
-//		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1'
-//			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
-//			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
-//			ray->hit = 1;
 	}
 }
 
