@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 12:02:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:02:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BPP 4
 # define NUMSPRITES 3
 # define KILLCOUNTDOWN 3
-# define MOVECOUNTDOWN 3
+# define MOVECOUNTDOWN 15
 
 typedef struct s_door
 {
@@ -206,12 +206,14 @@ typedef struct s_player
 
 typedef struct s_enemy
 {
-	t_vec2	pos;
-	t_vec	*valid_pos;
-	size_t	valid_pos_n;
-	int		kill_countdown;
-	int		move_countdown;
-	int		disable_ai;
+	t_vec2		pos;
+	t_vec		*valid_pos;
+	size_t		valid_pos_n;
+	int			kill_countdown;
+	int			move_countdown;
+	int			disable_ai;
+	t_image		*warning_image;
+	int			escaped;
 }				t_enemy;
 
 typedef struct s_screen
@@ -347,6 +349,7 @@ void		texture_y_pos_calculator(t_data *data, t_ray *ray);
 void		choose_wall_texture(t_ray *ray);
 void		sprite_caster(t_data *data, t_ray *ray, t_var *v);
 uint32_t	get_shading(uint32_t color, t_ray ray);
+void		update_enemy(t_data *data, t_ray *ray);
 
 // drawing tools
 void		draw_line(mlx_image_t *img, t_vec2 start, t_vec2 finish,

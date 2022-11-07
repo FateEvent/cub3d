@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/05 15:15:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:18:35 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	draw_minimap(t_data	*data)
 	t_minimap	*map;
 
 	map = data->map->minimap;
-	mlx_draw_square(map->img, 210, 150, get_rgba(0, 0, 0, 0));
+	mlx_draw_square(map->img, 210, 150, 0x00000000);
 	map->pos.x -= (map->pos.x - data->ray_data.pos.x) * 0.17;
 	map->pos.y -= (map->pos.y - data->ray_data.pos.y) * 0.17;
 	rect.width = 12;

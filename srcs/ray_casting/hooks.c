@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 11:55:02 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 14:04:57 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ft_update(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
+	fill_window(data, 0x00000000);
 	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0)
 		printf("DEAD\n");
 	get_delay(1, 16666);

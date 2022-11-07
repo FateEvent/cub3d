@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 11:54:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:01:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 void	init_enemy(t_data *data)
 {
-	t_vec	pos;
+	t_vec	tmp;
 
 	data->enemy.disable_ai = 0;
+	data->enemy.escaped = 0;
 	pathfinding_dist_check(data, 10);
-	if (data->enemy.disable_ai == 0)
-	{
-		pathfinding_list_pos(data);
-		pos = pathfinding_get_pos(data);
-		data->enemy.pos = (t_vec2){pos.x + 0.5, pos.y + 0.5};
-		data->enemy.kill_countdown = KILLCOUNTDOWN;
-		data->enemy.move_countdown = MOVECOUNTDOWN;
-	}
-	else
+	pathfinding_list_pos(data);
+	tmp = pathfinding_get_pos(data);
+	data->enemy.pos = pathfinding_pos_dist(data, (t_vec2){tmp.x + 0.5, tmp.y + 0.5},
+		data->ray_data.pos, 10);
+	if (data->enemy.pos.x == 0 && data->enemy.pos.y == 0)
+		data->enemy.disable_ai = 1;
+	data->enemy.kill_countdown = KILLCOUNTDOWN;
+	data->enemy.move_countdown = MOVECOUNTDOWN;
+	if (data->enemy.disable_ai == 1)
 		printf("Map too small ! Disabling AI...\n");
+	data->enemy.warning_image = malloc(sizeof(t_image));
 }
 
 void	init_sprites_pos(t_data *data, t_ray *ray)
@@ -64,11 +66,11 @@ void	init_sprites(t_data *data, t_ray *ray)
 	sprite->sprites[0].x = data->enemy.pos.x;
 	sprite->sprites[0].y = data->enemy.pos.y;
 	sprite->sprites[0].texture = 6;
-	sprite->sprites[1].x = 3;
-	sprite->sprites[1].y = 3;
+	sprite->sprites[1].x = 0;
+	sprite->sprites[1].y = 0;
 	sprite->sprites[1].texture = 7;
-	sprite->sprites[2].x = 3;
-	sprite->sprites[2].y = 4;
+	sprite->sprites[2].x = 0;
+	sprite->sprites[2].y = 0;
 	sprite->sprites[2].texture = 8;
 	init_sprites_pos(data, ray);
 }
