@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 11:44:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:02:49 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,30 @@ void	create_door_arrays(t_data *data)
 
 int	main(int argc, char *argv[])
 {
-	t_data	program;
+	t_data	data;
 
-	ft_bzero(&program, sizeof(program));
-	program.map = check(argc, argv);
-	if (!program.map->map)
+	ft_bzero(&data, sizeof(data));
+	data.map = check(argc, argv);
+	if (!data.map->map)
 		ft_puterror("Error!");
-	init_struct(&program);
-	program.mlx = mlx_init(program.screen.display.size.x,
-			program.screen.display.size.y, "cub3d", true);
-	program.screen.display.img = mlx_new_image(program.mlx,
-			program.screen.display.size.x, program.screen.display.size.y);
-	if (!program.screen.display.img)
+	init_struct(&data);
+	data.mlx = mlx_init(data.screen.display.size.x,
+			data.screen.display.size.y, "cub3d", true);
+	data.screen.display.img = mlx_new_image(data.mlx,
+			data.screen.display.size.x, data.screen.display.size.y);
+	if (!data.screen.display.img)
 		throw_err_ex("Error : Creating new MLX image failed.");
-	program.textures = NULL;
-	program.textures = ft_load_textures(&program);
-	if (!program.textures)
+	data.textures = NULL;
+	data.textures = ft_load_textures(&data);
+	if (!data.textures)
 		throw_err_ex("Error : Loading texture failed.");
-	init_minimap(&program);
-	
-	ft_print_map(program.map->map);
-	mlx_set_cursor_mode(program.mlx, MLX_MOUSE_HIDDEN);
-	mlx_image_to_window(program.mlx, program.screen.display.img, 0, 0);
-	mlx_loop_hook(program.mlx, ft_update, &program);
-	mlx_key_hook(program.mlx, ft_key_hook, &program);
-	mlx_cursor_hook(program.mlx, ft_mouse_input, &program);
-	mlx_loop_hook(program.mlx, ft_update, &program);
-	mlx_loop(program.mlx);
+	init_minimap(&data);
+	init_enemy(&data);
+	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
+	mlx_image_to_window(data.mlx, data.screen.display.img, 0, 0);
+	mlx_loop_hook(data.mlx, ft_update, &data);
+	mlx_key_hook(data.mlx, ft_key_hook, &data);
+	mlx_cursor_hook(data.mlx, ft_mouse_input, &data);
+	mlx_loop_hook(data.mlx, ft_update, &data);
+	mlx_loop(data.mlx);
 }

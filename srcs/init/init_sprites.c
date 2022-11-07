@@ -1,22 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_sprites                                       :+:      :+:    :+:   */
+/*   init_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/05 14:34:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:54:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void	sprite_casting_init_pt2(t_ray *ray, t_s_caster *sprite)
+void	init_enemy(t_data *data)
 {
-	size_t	i;
+	t_vec	pos;
+
+	data->enemy.disable_ai = 0;
+	pathfinding_dist_check(data, 10);
+	if (data->enemy.disable_ai == 0)
+	{
+		pathfinding_list_pos(data);
+		pos = pathfinding_get_pos(data);
+		data->enemy.pos = (t_vec2){pos.x + 0.5, pos.y + 0.5};
+		data->enemy.kill_countdown = KILLCOUNTDOWN;
+		data->enemy.move_countdown = MOVECOUNTDOWN;
+	}
+	else
+		printf("Map too small ! Disabling AI...\n");
+}
+
+void	init_sprites_pos(t_data *data, t_ray *ray)
+{
+	size_t		i;
+	t_s_caster	*sprite;
 
 	i = 0;
+	sprite = &data->ray_data.sprite;
 	while (i < NUMSPRITES)
 	{
 		sprite->sprite_order[i] = i;
@@ -29,7 +49,7 @@ static void	sprite_casting_init_pt2(t_ray *ray, t_s_caster *sprite)
 	sort_sprites(sprite->sprite_order, sprite->sprite_dist, NUMSPRITES);
 }
 
-void	sprite_casting_init(t_data *data, t_ray *ray)
+void	init_sprites(t_data *data, t_ray *ray)
 {
 	t_s_caster	*sprite;
 
@@ -50,5 +70,5 @@ void	sprite_casting_init(t_data *data, t_ray *ray)
 	sprite->sprites[2].x = 3;
 	sprite->sprites[2].y = 4;
 	sprite->sprites[2].texture = 8;
-	sprite_casting_init_pt2(ray, sprite);
+	init_sprites_pos(data, ray);
 }
