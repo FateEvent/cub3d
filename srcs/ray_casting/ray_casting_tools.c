@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 10:55:07 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:48:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ray_casting(t_data *data)
 	ft_bzero(&var, sizeof(var));
 	ray = &data->ray_data;
 	ray->map = data->map;
-	sprite_casting_init(data, ray);
+	init_sprites_pos(data, ray);
 	if (data->map->mode == 1)
 		floor_casting(data, ray);
 	while (var.x < ray->resolution.x)

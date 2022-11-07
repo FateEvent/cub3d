@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 11:08:59 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 11:51:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ typedef struct s_enemy
 	size_t	valid_pos_n;
 	int		kill_countdown;
 	int		move_countdown;
+	int		disable_ai;
 }				t_enemy;
 
 typedef struct s_screen
@@ -285,10 +286,12 @@ typedef struct	s_anode
 }				t_anode;
 
 // init
-void		sprite_casting_init(t_data *data, t_ray *ray);
+void		init_sprites(t_data *data, t_ray *ray);
+void		init_sprites_pos(t_data *data, t_ray *ray);
 void		init_minimap(t_data *data);
 void		init_struct(t_data *data);
 void		init_direction(t_data *data);
+void		init_enemy(t_data *data);
 t_vec		ft_get_coordinates(char **map, char prop);
 t_vec		ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
@@ -361,6 +364,7 @@ void		ft_load_fireset_textures(t_data *data, t_image *texture);
 void		pathfinding_list_pos(t_data *data);
 t_vec		pathfinding_get_pos(t_data *data);
 t_vec2		pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end, size_t min);
+void		pathfinding_dist_check(t_data *data, size_t min);
 
 // minimap
 void		get_map_size(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 11:12:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 11:58:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void	update_enemy(t_data *data, t_ray *ray)
 	t_vec2		pos;
 
 	sprite = &ray->sprite;
+	if (data->enemy.disable_ai == 1)
+		return ;
 	start = (t_vec2){sprite->sprites[0].x, sprite->sprites[0].y};
 	if (ft_vect2_distance_calc(start, data->ray_data.pos) <= 5)
 	{
