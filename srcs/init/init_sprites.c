@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:56:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:36:28 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ void	init_enemy(t_data *data)
 {
 	t_vec	tmp;
 
+	srand(time(NULL));
 	data->enemy.disable_ai = 0;
 	data->enemy.alive = 1;
-	pathfinding_dist_check(data, 10);
+	pathfinding_dist_check(data, MINDISTANCE);
 	pathfinding_list_pos(data);
-	tmp = pathfinding_get_pos(data);
-	data->enemy.pos = pathfinding_pos_dist(data, (t_vec2){tmp.x + 0.5, tmp.y + 0.5},
-		data->ray_data.pos, 10);
-	if (data->enemy.pos.x == 0 && data->enemy.pos.y == 0)
+	data->enemy.pos = pathfinding_pos_dist(data, (t_vec2){0, 0},
+		data->ray_data.pos, MINDISTANCE);
+	if (data->enemy.pos.x == -1 && data->enemy.pos.y == -1)
+	{
+		tmp = pathfinding_get_pos(data);
+		data->enemy.pos = (t_vec2){tmp.x + 0.5, tmp.y + 0.5};
 		data->enemy.disable_ai = 1;
+	}
 	data->enemy.kill_countdown = KILLCOUNTDOWN;
 	data->enemy.move_countdown = MOVECOUNTDOWN;
 	if (data->enemy.disable_ai == 1)

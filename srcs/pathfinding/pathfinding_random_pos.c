@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:46:59 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 14:43:35 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:36:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_vec	pathfinding_get_pos(t_data *data)
 	size_t	random;
 
 	i = 0;
-	srand(time(NULL));
 	random = rand() % (data->enemy.valid_pos_n - 1);
 	while (i < random && i < data->enemy.valid_pos_n - 1)
 		++i;
@@ -93,7 +92,7 @@ t_vec2	pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end, size_t min)
 	t_vec	tmp;
 	t_vec2	new;
 
-	tries = 500;
+	tries = 1500;
 	dist = -1;
 	while (dist == -1 || dist < min)
 	{
@@ -105,7 +104,7 @@ t_vec2	pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end, size_t min)
 		tries--;
 		if (tries <= 0)
 		{
-			return (start);
+			return ((t_vec2){-1, -1});
 		}
 	}
 	return (new);

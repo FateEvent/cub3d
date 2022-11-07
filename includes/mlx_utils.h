@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 16:32:47 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:51:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define NUMSPRITES 3
 # define KILLCOUNTDOWN 3
 # define MOVECOUNTDOWN 15
+# define MINDISTANCE 6
 
 typedef struct s_door
 {
@@ -216,6 +217,8 @@ typedef struct s_enemy
 	t_image		*death_bg;
 	t_image		*death_text;
 	int			alive;
+	double		death_timer;
+	double		move_timer;
 }				t_enemy;
 
 typedef struct s_screen
