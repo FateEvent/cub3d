@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:02:47 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:33:35 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,5 @@ int	main(int argc, char *argv[])
 	mlx_loop_hook(data.mlx, ft_update, &data);
 	mlx_key_hook(data.mlx, ft_key_hook, &data);
 	mlx_cursor_hook(data.mlx, ft_mouse_input, &data);
-	mlx_loop_hook(data.mlx, ft_update, &data);
 	mlx_loop(data.mlx);
 }
