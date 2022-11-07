@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/05 18:35:24 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 10:55:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int argc, char *argv[])
 	if (!program.textures)
 		throw_err_ex("Error : Loading texture failed.");
 	init_minimap(&program);
-	sprite_casting_init(&program, &program.ray_data);
 	
 	ft_print_map(program.map->map);
 	mlx_set_cursor_mode(program.mlx, MLX_MOUSE_HIDDEN);
