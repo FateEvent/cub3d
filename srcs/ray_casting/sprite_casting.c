@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 14:43:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 11:12:43 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,30 @@ void	doing_some_math(t_ray *ray, int i)
 	sprite->draw_start.y = -sprite->sprite_height / 2 + HEIGHT / 2;
 }
 
-void	update_enemy(t_data *data, t_ray *ray, size_t i)
+void	update_enemy(t_data *data, t_ray *ray)
 {
 	t_s_caster	*sprite;
+	t_vec2		start;
+	t_vec2		pos;
 
 	sprite = &ray->sprite;
-	if (!data->enemy.path)
-		return ;
-	printf("path = %i %i\n", data->enemy.path->x, data->enemy.path->x);
-	sprite->sprites[sprite->sprite_order[i]].x += data->enemy.path->x;
-	sprite->sprites[sprite->sprite_order[i]].y += data->enemy.path->y;
+	start = (t_vec2){sprite->sprites[0].x, sprite->sprites[0].y};
+	if (ft_vect2_distance_calc(start, data->ray_data.pos) <= 5)
+	{
+		if (data->time % 60 == 0)
+			data->enemy.kill_countdown--;
+	}
+	else
+		data->enemy.kill_countdown = KILLCOUNTDOWN;
+	if (data->time % 60 == 0)
+		data->enemy.move_countdown--;
+	if (data->enemy.move_countdown <= 0)
+	{
+		pos = pathfinding_pos_dist(data, start, ray->pos, 10);
+		sprite->sprites[0].x = pos.x;
+		sprite->sprites[0].y = pos.y;
+		data->enemy.move_countdown = MOVECOUNTDOWN;
+	}
 }
 
 void	sprite_caster(t_data *data, t_ray *ray, t_var *v)
@@ -112,7 +126,7 @@ void	sprite_caster(t_data *data, t_ray *ray, t_var *v)
 	int	i;
 
 	i = 0;
-	update_enemy(data, ray, 0);
+	update_enemy(data, ray);
 	while (i < NUMSPRITES)
 	{
 		doing_some_math(ray, i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/05 18:06:45 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:08:59 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define HEIGHT 480
 # define BPP 4
 # define NUMSPRITES 3
+# define KILLCOUNTDOWN 3
+# define MOVECOUNTDOWN 3
 
 typedef struct s_door
 {
@@ -202,9 +204,10 @@ typedef struct s_player
 typedef struct s_enemy
 {
 	t_vec2	pos;
-	t_vec	*path;
 	t_vec	*valid_pos;
 	size_t	valid_pos_n;
+	int		kill_countdown;
+	int		move_countdown;
 }				t_enemy;
 
 typedef struct s_screen
@@ -356,7 +359,8 @@ void		ft_load_fireset_textures(t_data *data, t_image *texture);
 
 // pathfinding
 void		pathfinding_list_pos(t_data *data);
-t_vec	pathfinding_get_pos(t_data *data);
+t_vec		pathfinding_get_pos(t_data *data);
+t_vec2		pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end, size_t min);
 
 // minimap
 void		get_map_size(t_data *data);

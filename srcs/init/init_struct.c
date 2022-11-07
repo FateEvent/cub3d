@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/05 15:15:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 10:03:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	pathfinding_list_pos(data);
 	pos = pathfinding_get_pos(data);
 	data->enemy.pos = (t_vec2){pos.x + 0.5, pos.y + 0.5};
+	data->enemy.kill_countdown = KILLCOUNTDOWN;
+	data->enemy.move_countdown = MOVECOUNTDOWN;
 }
 
 void	init_struct(t_data *data)
