@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/07 13:15:27 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/07 15:27:22 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 RC_PATH		=	ray_casting/
 RC_FILES	=	hooks ft_key_input ft_key_input_pt2 ray_casting_tools wall_casting \
 				wall_casting_vol2 floor_ceiling_textures floor_ceiling_casting \
-				sprite_casting enemy
+				sprite_casting enemy death
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 MAP_PATH		=	minimap/

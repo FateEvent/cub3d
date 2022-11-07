@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:01:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:31:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_enemy(t_data *data)
 	t_vec	tmp;
 
 	data->enemy.disable_ai = 0;
-	data->enemy.escaped = 0;
+	data->enemy.alive = 1;
 	pathfinding_dist_check(data, 10);
 	pathfinding_list_pos(data);
 	tmp = pathfinding_get_pos(data);

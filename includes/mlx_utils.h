@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:02:47 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:32:46 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,8 @@ typedef struct s_enemy
 	int			move_countdown;
 	int			disable_ai;
 	t_image		*warning_image;
-	int			escaped;
+	t_image		*death_image;
+	int			alive;
 }				t_enemy;
 
 typedef struct s_screen
@@ -360,6 +361,7 @@ void		draw_walls(t_data *data, int x);
 void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 void		draw_minimap(t_data	*data);
+void		draw_death(t_data *data);
 void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
 // sprites
