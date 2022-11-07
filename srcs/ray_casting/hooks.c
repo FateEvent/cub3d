@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 15:39:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 16:32:28 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ void	ft_update(void *param)
 
 	data = (t_data *)param;
 	if (!data->enemy.alive)
+	{
+		ft_key_input(data);
 		return ;
-	// 	mlx_close_hook(data->mlx, ft_update, NULL);
-	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0)
+	}
+	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0 && data->enemy.alive == 1)
 		draw_death(data);
 	get_delay(1, 16666);
 	while (data->delay > 16666)
@@ -79,4 +81,6 @@ void	ft_update(void *param)
 	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
 	data->delay += get_delay(0, 16666);
 	++data->time;
+	if (data->enemy.alive == 0)
+		show_death(data);
 }

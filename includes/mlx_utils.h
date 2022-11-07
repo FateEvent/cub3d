@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:32:46 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 16:32:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,9 @@ typedef struct s_enemy
 	int			kill_countdown;
 	int			move_countdown;
 	int			disable_ai;
-	t_image		*warning_image;
-	t_image		*death_image;
+	t_image		*warning_text;
+	t_image		*death_bg;
+	t_image		*death_text;
 	int			alive;
 }				t_enemy;
 
@@ -362,6 +363,7 @@ void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 void		draw_minimap(t_data	*data);
 void		draw_death(t_data *data);
+void		show_death(t_data *data);
 void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
 // sprites
