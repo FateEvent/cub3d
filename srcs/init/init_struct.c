@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 12:00:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 13:11:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	ray->tex_buf = malloc(sizeof(uint32_t *) * 19);
 	init_direction(data);
 	data->player.yaw = M_PI / 2 * data->player.start_direction;
+	data->time = 0;
+	data->delay = 0;
+	get_map_size(data);
+	get_map_str(data);
+	init_enemy(data);
 	init_sprites(data, ray);
 }
 

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 11:51:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 13:52:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int argc, char *argv[])
 	if (!data.textures)
 		throw_err_ex("Error : Loading texture failed.");
 	init_minimap(&data);
-	init_enemy(&data);
 	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(data.mlx, data.screen.display.img, 0, 0);
 	mlx_loop_hook(data.mlx, ft_update, &data);

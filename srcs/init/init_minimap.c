@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:29:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 11:55:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 13:09:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,4 @@ void	init_minimap(t_data *data)
 		throw_err_ex("Error : Creating new MLX image failed.");
 	data->map->minimap->pos.x = data->ray_data.pos.x;
 	data->map->minimap->pos.y = data->ray_data.pos.y;
-	get_map_size(data);
-	get_map_str(data);
 }
