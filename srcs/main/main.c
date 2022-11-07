@@ -6,10 +6,9 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:28:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:48:44 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "mlx_utils.h"
 
@@ -48,7 +47,6 @@ void	create_door_arrays(t_data *data)
 	ray = &data->ray_data;
 	var.width = data->map->size.x;
 	var.height = data->map->size.y;
-	printf("%d %d\n", var.width, var.width);
 	ray->door.door_timers = ft_calloc(var.height, sizeof(double *));
 	ray->door.door_offsets = ft_calloc(var.height, sizeof(double *));
 	ray->door.door_states = ft_calloc(var.width, sizeof(int *));
@@ -78,7 +76,6 @@ int	main(int argc, char *argv[])
 	if (!data.textures)
 		throw_err_ex("Error : Loading texture failed.");
 	init_minimap(&data);
-	init_enemy(&data);
 	create_door_arrays(&data);
 	if (!data.ray_data.door.door_timers || !data.ray_data.door.door_offsets
 		|| !data.ray_data.door.door_states)
@@ -88,6 +85,5 @@ int	main(int argc, char *argv[])
 	mlx_loop_hook(data.mlx, ft_update, &data);
 	mlx_key_hook(data.mlx, ft_key_hook, &data);
 	mlx_cursor_hook(data.mlx, ft_mouse_input, &data);
-	mlx_loop_hook(data.mlx, ft_update, &data);
 	mlx_loop(data.mlx);
 }
