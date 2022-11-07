@@ -6,12 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 11:13:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:19:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
+/*
 void	wall_distance_calculator(t_ray *ray)
 {
 	if (ray->side == 0)
@@ -19,56 +19,66 @@ void	wall_distance_calculator(t_ray *ray)
 	else
 		ray->wall_distance = (ray->ray_side.y - ray->ray_delta.y);
 }
-/*
+*/
+void	wall_distance_calculator(t_ray *ray)
+{
+	if (ray->side == 0)
+		ray->wall_distance = (ray->map_pos.x - ray->pos.x + ray->wall_x_offset + (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
+	else
+		ray->wall_distance = (ray->map_pos.y - ray->pos.y + ray->wall_y_offset + (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
+}
+
 void	ft_check_doors(t_ray *ray)
 {
-	ray->text_select = ray->map->map[ray->map_pos.y][ray->map_pos.x];
-	if (ray->text_select != 0)
+	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x];
+	if (ray->ray_tex != 0)
 	{
-		if (ray->text_select == 3 && whichDoorStates[ray->map_pos.y][ray->map_pos.x] != 2) { //Closed, opening, or closing doors
+		if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y][ray->map_pos.x] != 2) { //Closed, opening, or closing doors
 			ray->hit = 1;
 			if (ray->side == 1) {
-				wallYOffset = 0.5 * stepY;
-				perpWallDist = (ray->map_pos.y - whichCamera.posY + wallYOffset + (1 - stepY) / 2) / rayDirY;
-				wallX = whichCamera.posX + perpWallDist * rayDirX;
-				wallX -= Math.floor(wallX);
-				if (sideDistY - (deltaDistY/2) < sideDistX) { //If ray hits offset wall
-					if (1.0 - wallX <= whichDoorOffsets[ray->map_pos.y][ray->map_pos.x]){
+				ray->wall_y_offset = 0.5 * ray->step_coord.y;
+				ray->wall_distance = (ray->map_pos.y - ray->pos.y + ray->wall_y_offset + (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
+				ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.x;
+				ray->wall_x -= floor(ray->wall_x);
+				if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x) { //If ray hits offset wall
+					if (1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x]){
 						ray->hit = 0; //Continue raycast for open/opening doors
-						wallYOffset = 0;
+						ray->wall_y_offset = 0;
 					}
 				} else {
-					ray->map_pos.x += stepX;
+					ray->map_pos.x += ray->step_coord.x;
 					ray->side = 0;
-					ray->text_select = 4; //Draw door frame instead
-					wallYOffset = 0;
+					ray->ray_tex = 4; //Draw door frame instead
+					ray->wall_y_offset = 0;
 				}
 			} else { //ray->side == 0
-				wallXOffset = 0.5 * stepX;
-				perpWallDist  = (ray->map_pos.x - whichCamera.posX + wallXOffset + (1 - stepX) / 2) / rayDirX;
-				wallX = whichCamera.posY + perpWallDist * rayDirY;
-				wallX -= Math.floor(wallX);
-				if (sideDistX - (deltaDistX/2) < sideDistY) {
-					if (1.0 - wallX < whichDoorOffsets[ray->map_pos.y][ray->map_pos.x]) {
+				ray->wall_x_offset = 0.5 * ray->step_coord.x;
+				ray->wall_distance  = (ray->map_pos.x - ray->pos.y + ray->wall_x_offset + (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
+				ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.y;
+				ray->wall_x -= floor(ray->wall_x);
+				if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y) {
+					if (1.0 - ray->wall_x < ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x]) {
 						ray->hit = 0;
-						wallXOffset = 0;
+						ray->wall_x_offset = 0;
 					}
 				} else {
-					ray->map_pos.y += stepY;
+					ray->map_pos.y += ray->step_coord.y;
 					ray->side = 1;
-					ray->text_select = 4;
-					wallXOffset = 0;
+					ray->ray_tex = 4;
+					ray->wall_x_offset = 0;
 				}
 			}
-		} else if (ray->text_select != 3 && ray->text_select != 5) {
-			if (ray->side == 1 && whichMap[ray->map_pos.x][ray->map_pos.y - stepY] == 3) ray->text_select = 4;//Draw doorframes on X sides of Y-ray->side walls	
-			else if (ray->side == 0 && whichMap[ray->map_pos.x - stepX][ray->map_pos.y] == 3) ray->text_select = 4;//Draw doorframes on Y sides of X-ray->side walls
+/*
+		} else if (ray->ray_tex != 2) {
+			if (ray->side == 1 && ray->map->map[ray->map_pos.x][ray->map_pos.y - ray->step_coord.y] == 3) ray->text_select = 10;//Draw doorframes on X sides of Y-ray->side walls	
+			else if (ray->side == 0 && ray->map->map[ray->map_pos.x - ray->step_coord.x][ray->map_pos.y] == 3) ray->text_select = 10;//Draw doorframes on Y sides of X-ray->side walls
 			ray->hit = 1;
+*/
 		}
 	}
 }
-*/
-static void	ray_launcher_door_complement(t_ray *ray)
+
+void	ray_launcher_door_complement(t_ray *ray)
 {
 	if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
 	{
@@ -125,12 +135,14 @@ void	ray_launcher(t_ray *ray)
 			ray->map_pos.y += ray->step_coord.y;
 			ray->side = 1;
 		}
-//		ft_check_doors(ray);
-		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1'
-			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
-//			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
+		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1')
 			ray->hit = 1;
-		ray_launcher_door_complement(ray);
+		else
+			ft_check_doors(ray);
+//		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1'
+//			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
+//			|| ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
+//			ray->hit = 1;
 	}
 }
 
