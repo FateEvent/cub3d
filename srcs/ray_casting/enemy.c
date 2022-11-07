@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:15:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 15:41:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:56:01 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	update_enemy(t_data *data, t_ray *ray)
 	dist = ft_vect2_distance_calc(start, data->ray_data.pos);
 	if (dist <= 5)
 	{
-		mlx_image_to_window(data->mlx, data->enemy.warning_image->img, (WIDTH / 2) - 100,
+		mlx_image_to_window(data->mlx, data->enemy.warning_text->img, (WIDTH / 2) - 100,
 			(HEIGHT / 2) - 200);
-		data->enemy.warning_image->img->enabled = 1;
+		data->enemy.warning_text->img->enabled = 1;
 		if (data->time % 60 == 0)
 			data->enemy.kill_countdown--;
 	}
 	else
 	{
-		data->enemy.warning_image->img->enabled = 0;
+		data->enemy.warning_text->img->enabled = 0;
 		data->enemy.kill_countdown = KILLCOUNTDOWN;
 		if (data->time % 60 == 0)
 			data->enemy.move_countdown--;

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:31:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:56:01 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_enemy(t_data *data)
 	data->enemy.move_countdown = MOVECOUNTDOWN;
 	if (data->enemy.disable_ai == 1)
 		printf("Map too small ! Disabling AI...\n");
-	data->enemy.warning_image = malloc(sizeof(t_image));
+	data->enemy.warning_text = malloc(sizeof(t_image));
 }
 
 void	init_sprites_pos(t_data *data, t_ray *ray)

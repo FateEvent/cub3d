@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:15:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 14:24:59 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 16:07:18 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_load_fireset_textures(t_data *data, t_image *texture)
 	texture[16].texture = mlx_load_xpm42("images/fs/fire_door8.xpm42");
 	texture[17].texture = mlx_load_xpm42("images/fs/fire_door9.xpm42");
 	texture[18].texture = mlx_load_xpm42("images/fs/fire_door10.xpm42");
-	data->enemy.warning_image->texture = mlx_load_xpm42("images/run.xpm42");
+	data->enemy.warning_text->texture = mlx_load_xpm42("images/run.xpm42");
 	if (!texture[9].texture || !texture[10].texture || !texture[11].texture
 		|| !texture[12].texture || !texture[13].texture || !texture[14].texture
 		|| !texture[15].texture || !texture[16].texture || !texture[17].texture
@@ -63,8 +63,8 @@ void	ft_load_fireset_textures(t_data *data, t_image *texture)
 	tex_to_img(data, texture, 16);
 	tex_to_img(data, texture, 17);
 	tex_to_img(data, texture, 18);
-	data->enemy.warning_image->img = mlx_texture_to_image(data->mlx,
-		&data->enemy.warning_image->texture->texture);
+	data->enemy.warning_text->img = mlx_texture_to_image(data->mlx,
+		&data->enemy.warning_text->texture->texture);
 	if (!texture[9].img || !texture[10].img || !texture[11].img
 		|| !texture[12].img || !texture[13].img || !texture[14].img
 		|| !texture[15].img || !texture[16].img || !texture[17].img
