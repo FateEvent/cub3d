@@ -6,10 +6,9 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:47:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:50:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "mlx_utils.h"
 
@@ -48,7 +47,6 @@ void	create_door_arrays(t_data *data)
 	ray = &data->ray_data;
 	var.width = data->map->size.x;
 	var.height = data->map->size.y;
-	printf("%d %d\n", var.width, var.width);
 	ray->door.door_timers = ft_calloc(var.height, sizeof(double *));
 	ray->door.door_offsets = ft_calloc(var.height, sizeof(double *));
 	ray->door.door_states = ft_calloc(var.width, sizeof(int *));

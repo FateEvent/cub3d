@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 15:01:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:49:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ void	ray_launcher(t_ray *ray)
 		}
 		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1')
 			ray->hit = 1;
-		else
-			ft_check_doors(ray);
+//		else
+//			ft_check_doors(ray);
 	}
 }
 
