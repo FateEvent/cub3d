@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/08 10:04:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 15:06:26 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	ft_update(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
+	if (data->time == 0)
+		init_hud_draw(data);
 	if (!data->enemy.alive)
 	{
 		ft_key_input(data);
@@ -79,6 +81,8 @@ void	ft_update(void *param)
 	ray_casting(data);
 	draw_minimap(data);
 	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
+	if (data->key != 0)
+		draw_hud(data);
 	data->delay += get_delay(0, 16666);
 	++data->time;
 	data->timer = get_time();

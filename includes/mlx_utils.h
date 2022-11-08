@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 10:09:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 15:06:15 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,12 @@ typedef struct s_screen
 	t_image		display;
 }				t_screen;
 
+typedef struct s_hud
+{
+	t_image	*sprites;
+	size_t	pos;
+}				t_hud;
+
 typedef struct s_data
 {
 	mlx_t		*mlx;
@@ -243,6 +249,7 @@ typedef struct s_data
 	int			time;
 	int			timer;
 	t_enemy		enemy;
+	t_hud		hud;
 }				t_data;
 
 typedef struct s_var
@@ -301,6 +308,8 @@ void		init_minimap(t_data *data);
 void		init_struct(t_data *data);
 void		init_direction(t_data *data);
 void		init_enemy(t_data *data);
+void		init_hud(t_data *data);
+void		init_hud_draw(t_data *data);
 t_vec		ft_get_coordinates(char **map, char prop);
 t_vec		ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
@@ -366,6 +375,7 @@ void		draw_floor(t_data *data, int x);
 void		draw_minimap(t_data	*data);
 void		draw_death(t_data *data);
 void		show_death(t_data *data);
+void		draw_hud(t_data *data);
 void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
 // sprites

@@ -6,11 +6,59 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 17:36:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 15:06:04 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+void	init_hud_draw(t_data *data)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < 20)
+	{
+		mlx_image_to_window(data->mlx, data->hud.sprites[i].img, 0, 0);
+		data->hud.sprites[i].img->enabled = 0;
+		++i;
+	}
+	data->hud.sprites[0].img->enabled = 1;
+}
+
+void	init_hud(t_data *data)
+{
+	ssize_t	i;
+
+	i = -1;
+	data->hud.pos = 0;
+	data->hud.sprites = malloc(sizeof(t_image) * 20);
+	data->hud.sprites[0].texture = mlx_load_xpm42("images/hands/hands_01.xpm42");
+	data->hud.sprites[1].texture = mlx_load_xpm42("images/hands/hands_02.xpm42");
+	data->hud.sprites[2].texture = mlx_load_xpm42("images/hands/hands_03.xpm42");
+	data->hud.sprites[3].texture = mlx_load_xpm42("images/hands/hands_04.xpm42");
+	data->hud.sprites[4].texture = mlx_load_xpm42("images/hands/hands_05.xpm42");
+	data->hud.sprites[5].texture = mlx_load_xpm42("images/hands/hands_06.xpm42");
+	data->hud.sprites[6].texture = mlx_load_xpm42("images/hands/hands_07.xpm42");
+	data->hud.sprites[7].texture = mlx_load_xpm42("images/hands/hands_08.xpm42");
+	data->hud.sprites[8].texture = mlx_load_xpm42("images/hands/hands_09.xpm42");
+	data->hud.sprites[9].texture = mlx_load_xpm42("images/hands/hands_10.xpm42");
+	data->hud.sprites[10].texture = mlx_load_xpm42("images/hands/hands_11.xpm42");
+	data->hud.sprites[11].texture = mlx_load_xpm42("images/hands/hands_12.xpm42");
+	data->hud.sprites[12].texture = mlx_load_xpm42("images/hands/hands_13.xpm42");
+	data->hud.sprites[13].texture = mlx_load_xpm42("images/hands/hands_14.xpm42");
+	data->hud.sprites[14].texture = mlx_load_xpm42("images/hands/hands_15.xpm42");
+	data->hud.sprites[15].texture = mlx_load_xpm42("images/hands/hands_16.xpm42");
+	data->hud.sprites[16].texture = mlx_load_xpm42("images/hands/hands_17.xpm42");
+	data->hud.sprites[17].texture = mlx_load_xpm42("images/hands/hands_18.xpm42");
+	data->hud.sprites[18].texture = mlx_load_xpm42("images/hands/hands_19.xpm42");
+	data->hud.sprites[19].texture = mlx_load_xpm42("images/hands/hands_20.xpm42");
+	while (++i < 20)
+	{
+		data->hud.sprites[i].img = mlx_texture_to_image(data->mlx, &data->hud.sprites[i].texture->texture);
+		data->hud.sprites[i].img->enabled = 0;
+	}
+}
 
 void	init_enemy(t_data *data)
 {
