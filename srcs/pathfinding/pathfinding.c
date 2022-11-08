@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pathfinding_random_pos.c                           :+:      :+:    :+:   */
+/*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:46:59 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 17:36:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 17:40:10 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,7 @@ t_vec2	pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end, size_t min)
 			dist = -1;
 		tries--;
 		if (tries <= 0)
-		{
 			return ((t_vec2){-1, -1});
-		}
 	}
 	return (new);
 }

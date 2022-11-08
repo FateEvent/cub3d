@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/08 17:26:29 by faventur         ###   ########.fr        #
+#    Updated: 2022/11/08 17:31:27 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ MLX_FILES	=	textures window colours colour_conversions
 SRCS_FILES	+=	$(addprefix $(MLX_PATH), $(MLX_FILES))
 
 PF_PATH		=	pathfinding/
-PF_FILES	=	pathfinding_random_pos
+PF_FILES	=	pathfinding pathfinding_except
 SRCS_FILES	+=	$(addprefix $(PF_PATH), $(PF_FILES))
 
 UTILS_PATH	=	utils/

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 17:11:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 17:54:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	init_sprites_pos(t_data *data, t_ray *ray)
 void	init_sprites(t_data *data, t_ray *ray)
 {
 	t_s_caster	*sprite;
-	t_vec		pos;
+	t_vec2		pos;
+	t_vec2		pos2;
 
 	sprite = &ray->sprite;
 	sprite->sprites = malloc(sizeof(t_sprite) * NUMSPRITES);
@@ -70,13 +71,14 @@ void	init_sprites(t_data *data, t_ray *ray)
 	sprite->sprites[0].x = data->enemy.pos.x;
 	sprite->sprites[0].y = data->enemy.pos.y;
 	sprite->sprites[0].texture = 6;
-	pos = pathfinding_get_pos(data);
-	sprite->sprites[1].x = pos.x + 0.5;
-	sprite->sprites[1].y = pos.y + 0.5;
+	pos = pathfinding_pos_except(data, data->enemy.pos);
+	sprite->sprites[1].x = pos.x;
+	sprite->sprites[1].y = pos.y;
 	sprite->sprites[1].texture = 7;
-	pos = pathfinding_get_pos(data);
-	sprite->sprites[2].x = pos.x + 0.5;
-	sprite->sprites[2].y = pos.y + 0.5;
+	pos2 = (t_vec2){sprite->sprites[1].x, sprite->sprites[1].y};
+	pos = pathfinding_pos_except(data, pos2);
+	sprite->sprites[2].x = pos.x;
+	sprite->sprites[2].y = pos.y;
 	sprite->sprites[2].texture = 8;
 	init_sprites_pos(data, ray);
 }
