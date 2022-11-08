@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/04 13:52:02 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:56:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static void	from_texture_to_image(t_data *data, t_image *texture)
 		ray->tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
 				texture[i].img->width, texture[i].img->height);
 	}
-	load_sprites(data, texture);
-	ft_load_fireset_textures(data, texture);
+	init_enemy_texture(data, texture);
+	init_door_texture(data, texture);
 }
 
 t_image	*ft_load_textures(t_data *data)
