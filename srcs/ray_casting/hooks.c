@@ -6,11 +6,49 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/08 17:21:57 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 17:25:23 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+void	move_doors(t_data *data, t_ray *ray) {
+	t_var	var;
+
+	ft_bzero(&var, sizeof(var));
+	var.width = data->map->size.x;
+	var.height = data->map->size.y;
+	while (var.i < var.height && ray->map->map[var.i])
+	{
+		var.j = 0;
+		while (var.j < var.width && ray->map->map[var.i][var.j])
+		{
+			//0: Closed, 1: Opening, 2: Open, 3: Closing
+			if (ray->map->map[var.i][var.j] == 3) { //Standard door
+				if (ray->door.door_states[var.i][var.j] == 1){//Open doors
+//					ray->door.door_offsets[var.i][var.j] += deltaTime / 100;
+
+//				if (ray->door.door_offsets[var.i][var.j] > 1) {
+//					ray->door.door_offsets[var.i][var.j] = 1;
+						ray->door.door_states[var.i][var.j] = 2;//Set state to open
+//						setTimeout(function(stateX, stateY){ray->door.door_states[stateX][stateY] = 3;}, 5000, x, y);//TO DO: Don't close when player is in tile
+					}
+//				}
+				else if (ray->door.door_states[var.i][var.j] == 3)
+				{//Close doors
+//					ray->door.door_offsets[var.i][var.j] -= deltaTime / 100;
+					
+//					if (ray->door.door_offsets[var.i][var.j] < 0) {
+//						ray->door.door_offsets[var.i][var.j] = 0;
+						ray->door.door_states[var.i][var.j] = 0;//Set state to closed
+//					}
+				}
+			}
+			var.j++;
+		}
+		var.i++;
+	}
+}
 
 static void	ft_mouse_input_child(t_var var, t_ray *ray, t_data *data, double x)
 {
@@ -79,6 +117,7 @@ void	ft_update(void *param)
 	}
 	ft_key_input(data);
 	ray_casting(data);
+	move_doors(data, &data->ray_data);
 	draw_minimap(data);
 	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
 	if (data->key != 0)

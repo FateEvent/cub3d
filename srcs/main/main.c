@@ -3,14 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 14:17:12 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 16:54:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+void	ft_print_double_arr(double **map, size_t height, size_t width)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			printf("%f ", map[i][j]);
+			j++;
+		}
+		i++;
+		printf("\n");
+	}
+}
+
+void	ft_print_int_arr(double **map, size_t height, size_t width)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			ft_printf("%i ", map[i][j]);
+			j++;
+		}
+		i++;
+		ft_printf("\n");
+	}
+}
 
 void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 {
@@ -30,7 +68,7 @@ void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 			{
 				ray->door.door_timers[var->i][var->j] = 1;
 				ray->door.door_offsets[var->i][var->j] = 1;
-				ray->door.door_states[var->i][var->j] = 2;
+				ray->door.door_states[var->i][var->j] = 1;
 			}
 			var->j++;
 		}
