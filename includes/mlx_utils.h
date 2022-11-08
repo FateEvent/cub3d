@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 17:24:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:26:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,8 @@ void		init_direction(t_data *data);
 void		init_enemy(t_data *data);
 void		init_hud(t_data *data);
 void		init_hud_draw(t_data *data);
+void		init_door_texture(t_data *data, t_image *texture);
+void		init_enemy_texture(t_data *data, t_image *texture);
 t_vec		ft_get_coordinates(char **map, char prop);
 t_vec		ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);

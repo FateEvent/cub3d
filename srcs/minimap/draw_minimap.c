@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 13:18:35 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 16:06:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_tiles(t_vec2 pos, t_vec vec, t_shape rect, t_data *data)
 	i = 0;
 	if (minimap_get(data->map, vec.x + (int)(pos.x), vec.y + (int)(pos.y)))
 	{
-		draw_rect(data->map->minimap->img, rect, 0x64AB82FF);
+		draw_rect(data->map->minimap->img, rect, 0xB8922CFF);
 	}
 }
 
