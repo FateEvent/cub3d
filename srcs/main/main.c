@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 16:53:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:54:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int	main(int argc, char *argv[])
 	if (!data.textures)
 		throw_err_ex("Error : Loading texture failed.");
 	init_minimap(&data);
+	init_hud(&data);
 	create_door_arrays(&data);
 	if (!data.ray_data.door.door_timers || !data.ray_data.door.door_offsets
 		|| !data.ray_data.door.door_states)

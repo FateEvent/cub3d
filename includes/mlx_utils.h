@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 14:53:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:54:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BPP 4
 # define NUMSPRITES 3
 # define KILLCOUNTDOWN 3
-# define MOVECOUNTDOWN 15
+# define MOVECOUNTDOWN 7
 # define MINDISTANCE 6
 
 typedef struct s_door
@@ -217,14 +217,18 @@ typedef struct s_enemy
 	t_image		*death_bg;
 	t_image		*death_text;
 	int			alive;
-	double		death_timer;
-	double		move_timer;
 }				t_enemy;
 
 typedef struct s_screen
 {
 	t_image		display;
 }				t_screen;
+
+typedef struct s_hud
+{
+	t_image	*sprites;
+	size_t	pos;
+}				t_hud;
 
 typedef struct s_data
 {
@@ -243,7 +247,9 @@ typedef struct s_data
 	int			key;
 	int			delay;
 	int			time;
+	int			timer;
 	t_enemy		enemy;
+	t_hud		hud;
 }				t_data;
 
 typedef struct s_var
@@ -302,6 +308,8 @@ void		init_minimap(t_data *data);
 void		init_struct(t_data *data);
 void		init_direction(t_data *data);
 void		init_enemy(t_data *data);
+void		init_hud(t_data *data);
+void		init_hud_draw(t_data *data);
 t_vec		ft_get_coordinates(char **map, char prop);
 t_vec		ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
@@ -367,6 +375,7 @@ void		draw_floor(t_data *data, int x);
 void		draw_minimap(t_data	*data);
 void		draw_death(t_data *data);
 void		show_death(t_data *data);
+void		draw_hud(t_data *data);
 void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
 // sprites
