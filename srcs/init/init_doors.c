@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 17:28:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:22:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 			|| !ray->door.door_states[var->i])
 			return ;
 		ft_memset(ray->door.door_offsets[var->i], 1, sizeof(double) * var->width);
+		ft_memset(ray->door.door_states[var->i], 1, sizeof(int) * var->width);
 		var->j = 0;
 		while (var->j < var->width)
 		{
@@ -69,7 +70,7 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 			{
 				ray->door.door_timers[var->i][var->j] = 1;
 				ray->door.door_offsets[var->i][var->j] = 0;
-				ray->door.door_states[var->i][var->j] = 1;
+//				ray->door.door_states[var->i][var->j] = 1;
 			}
 			var->j++;
 		}
