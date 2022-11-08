@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 16:54:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:24:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,6 +313,7 @@ void		init_hud_draw(t_data *data);
 t_vec		ft_get_coordinates(char **map, char prop);
 t_vec		ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);
+void		create_door_arrays(t_data *data);
 
 // window functions
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
@@ -429,5 +430,7 @@ void		sort_sprites(int *order, double *dist, int amount);
 double		get_time(void);
 int			get_delay(int startnow, int min);
 void		tex_to_img(t_data *data, t_image *texture, size_t i);
+void		ft_print_double_arr(double **map, size_t height, size_t width);
+void		ft_print_int_arr(double **map, size_t height, size_t width);
 
 #endif
