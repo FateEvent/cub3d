@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 18:03:12 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 10:04:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_update(void *param)
 	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
 	data->delay += get_delay(0, 16666);
 	++data->time;
+	data->timer = get_time();
 	if (data->enemy.alive == 0)
 		show_death(data);
 }

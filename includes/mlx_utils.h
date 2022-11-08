@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 17:51:47 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 10:09:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BPP 4
 # define NUMSPRITES 3
 # define KILLCOUNTDOWN 3
-# define MOVECOUNTDOWN 15
+# define MOVECOUNTDOWN 7
 # define MINDISTANCE 6
 
 typedef struct s_door
@@ -217,8 +217,6 @@ typedef struct s_enemy
 	t_image		*death_bg;
 	t_image		*death_text;
 	int			alive;
-	double		death_timer;
-	double		move_timer;
 }				t_enemy;
 
 typedef struct s_screen
@@ -243,6 +241,7 @@ typedef struct s_data
 	int			key;
 	int			delay;
 	int			time;
+	int			timer;
 	t_enemy		enemy;
 }				t_data;
 
