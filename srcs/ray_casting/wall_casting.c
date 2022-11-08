@@ -3,37 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 17:49:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 16:51:44 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-/*
-void	wall_distance_calculator(t_ray *ray)
-{
-	if (ray->side == 0)
-		ray->wall_distance = (ray->ray_side.x - ray->ray_delta.x);
-	else
-		ray->wall_distance = (ray->ray_side.y - ray->ray_delta.y);
-}
-*/
+
 void	wall_distance_calculator(t_ray *ray)
 {
 	if (ray->side == 0)
 		ray->wall_distance = (ray->map_pos.x - ray->pos.x + ray->wall_x_offset + (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
 	else
 		ray->wall_distance = (ray->map_pos.y - ray->pos.y + ray->wall_y_offset + (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
+//	printf("%f %f\n", ray->wall_x_offset, ray->wall_y_offset);
 }
 
 void	ft_check_doors(t_ray *ray)
 {
 	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x] - 48;
+//	printf("%d %d %d\n", ray->map->map[ray->map_pos.y][ray->map_pos.x], ray->map_pos.y, ray->map_pos.x);
 	if (ray->ray_tex != 0)
 	{
-		//printf("%d %d\n", ray->ray_tex, ray->door.door_states[ray->map_pos.y][ray->map_pos.x]);
 		if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y][ray->map_pos.x] != 2) { //Closed, opening, or closing doors
 			ray->hit = 1;
 			if (ray->side == 1) {
@@ -45,13 +38,16 @@ void	ft_check_doors(t_ray *ray)
 					if (1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x]){
 						ray->hit = 0; //Continue raycast for open/opening doors
 						ray->wall_y_offset = 0;
+//						printf("king of the bongo side 1 < \n");
 					}
 				} else {
 					ray->map_pos.x += ray->step_coord.x;
 					ray->side = 0;
 					ray->ray_tex = 4; //Draw door frame instead
 					ray->wall_y_offset = 0;
+//					printf("king of the bongo side 1 >= \n");
 				}
+//				printf("king of the bongo side 1\n");
 			} else { //ray->side == 0
 				ray->wall_x_offset = 0.5 * ray->step_coord.x;
 				ray->wall_distance  = (ray->map_pos.x - ray->pos.y + ray->wall_x_offset + (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
@@ -62,59 +58,27 @@ void	ft_check_doors(t_ray *ray)
 						ray->hit = 0;
 						ray->wall_x_offset = 0;
 					}
+//					else
+//					{
+//						ray->hit = 1;
+//						ray->wall_x_offset = 0;
+						printf("%d %d %d\n", ray->map->map[ray->map_pos.y][ray->map_pos.x], ray->map_pos.y, ray->map_pos.x);
+//					}
 				} else {
 					ray->map_pos.y += ray->step_coord.y;
 					ray->side = 1;
 					ray->ray_tex = 4;
 					ray->wall_x_offset = 0;
 				}
+//				printf("king of the bongo side 0\n");
 			}
 		} else if (ray->ray_tex != 2 && (ray->ray_tex >= 0 && ray->ray_tex <= 9)) {
 			if (ray->side == 1 && ray->map->map[ray->map_pos.y - ray->step_coord.y][ray->map_pos.x] == '3') ray->ray_tex = 4;//Draw doorframes on X sides of Y-ray->side walls	
 			else if (ray->side == 0 && ray->map->map[ray->map_pos.y][ray->map_pos.x - ray->step_coord.x] == '3') ray->ray_tex = 4;//Draw doorframes on Y sides of X-ray->side walls
 			ray->hit = 1;
+//			printf("king of the Congo\n");
 		}
 	}
-}
-
-void	ray_launcher_door_complement(t_ray *ray)
-{
-	if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
-	{
-		if (ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x] == '2'
-			|| ray->map->map[(int)ray->pos.y - 1][(int)ray->pos.x] == '2'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 1] == '2'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 1] == '2'
-			|| ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x + 1] == '2'
-			|| ray->map->map[(int)ray->pos.y + 1][(int)ray->pos.x - 1] == '2'
-			|| ray->map->map[(int)ray->pos.y - 1][(int)ray->pos.x + 1] == '2'
-			|| ray->map->map[(int)ray->pos.y - 1][(int)ray->pos.x - 1] == '2')
-			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '3';
-	}	// pourrais-je implémenter un timer qui referme la porte après que je me suis éloigné ?
-	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
-	{
-		if (ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 2] == '3'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 2] == '3'
-			|| ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x + 2] == '3'
-			|| ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x - 2] == '3'
-			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x + 2] == '3'
-			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x - 2] == '3')
-			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '2';
-	}
-/*	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '4')
-	{
-		if (ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x] == '4'
-			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x] == '4'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x + 2] == '4'
-			|| ray->map->map[(int)ray->pos.y][(int)ray->pos.x - 2] == '4'
-			|| ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x + 2] == '4'
-			|| ray->map->map[(int)ray->pos.y + 2][(int)ray->pos.x - 2] == '4'
-			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x + 2] == '4'
-			|| ray->map->map[(int)ray->pos.y - 2][(int)ray->pos.x - 2] == '4')
-			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '2';
-	}*/
 }
 
 void	ray_launcher(t_ray *ray)
@@ -134,10 +98,7 @@ void	ray_launcher(t_ray *ray)
 			ray->map_pos.y += ray->step_coord.y;
 			ray->side = 1;
 		}
-		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1')
-			ray->hit = 1;
-		else
-			ft_check_doors(ray);
+		ft_check_doors(ray);
 	}
 }
 

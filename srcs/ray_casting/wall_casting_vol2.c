@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 16:30:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:23:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	choose_wall_texture(t_ray *ray)
 		ray->text_select = 3;
 	if (ray->side == 0 && ray->ray_dir.x < 0)
 		ray->text_select = 2;
-	if (ray->side == 0 && ray->ray_tex == '2')
+	if (ray->side == 0 && ray->ray_tex == 2)
 		ray->text_select = 10;
-	if (ray->side == 1 && ray->ray_tex == '2')
-		ray->text_select = 10;
-	if (ray->side == 1 && ray->ray_tex == '3')
+//	if (ray->side == 1 && ray->ray_tex == 2)
+//		ray->text_select = 10;
+	if (ray->side == 1 && ray->ray_tex == 3)
 		ray->text_select = 15;
-	if (ray->side == 0 && ray->ray_tex == '3')
+	if (ray->side == 0 && ray->ray_tex == 3)
 		ray->text_select = 15;
 }
 
