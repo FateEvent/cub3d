@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/08 17:25:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 00:28:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,16 @@ void	ft_update(void *param)
 	if (data->time == 0)
 		init_hud_draw(data);
 	if (!data->enemy.alive)
-	{
-		ft_key_input(data);
-		return ;
-	}
+		return (ft_key_input(data));
 	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0 && data->enemy.alive == 1)
 		draw_death(data);
+	if (data->timer % 60 == 0 && data->audio.lock == 0)
+	{
+		data->audio.lock = 1;
+		ma_sound_start(&data->audio.suspense[rand() % 13]);
+	}
+	if (data->timer % 60 != 0 && data->audio.lock == 1)
+		data->audio.lock = 0;
 	get_delay(1, 16666);
 	while (data->delay > 16666)
 	{

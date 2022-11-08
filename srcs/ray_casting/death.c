@@ -6,14 +6,16 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:05:15 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/08 17:23:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/08 23:14:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
+
 void	show_death(t_data *data)
 {
+	ma_sound_start(&data->audio.dead);
 	data->enemy.warning_text->img->enabled = 0;
 	mlx_image_to_window(data->mlx, data->enemy.death_bg->img, 0, 0);
 	mlx_image_to_window(data->mlx, data->enemy.death_text->img, WIDTH / 2 - 100, HEIGHT / 2 - 50);

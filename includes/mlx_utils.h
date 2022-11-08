@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 17:43:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 00:28:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 # include <sys/time.h>
 # include <MLX42.h>
 # include "libft.h"
+# include "miniaudio.h"
 # define WIDTH 640
 # define HEIGHT 480
 # define BPP 4
 # define NUMSPRITES 3
-# define KILLCOUNTDOWN 3
-# define MOVECOUNTDOWN 7
+# define KILLCOUNTDOWN 5
+# define MOVECOUNTDOWN 10
 # define MINDISTANCE 6
 
 typedef struct s_door
@@ -230,6 +231,17 @@ typedef struct s_hud
 	size_t	pos;
 }				t_hud;
 
+typedef struct s_audio
+{
+	ma_engine	*audio_engine;
+	ma_sound	ambiance;
+	ma_sound	scare;
+	ma_sound	dead;
+	ma_sound	*suspense;
+	ma_sound	*smiler;
+	int			lock;
+}				t_audio;
+
 typedef struct s_data
 {
 	mlx_t		*mlx;
@@ -250,6 +262,7 @@ typedef struct s_data
 	int			timer;
 	t_enemy		enemy;
 	t_hud		hud;
+	t_audio		audio;
 }				t_data;
 
 typedef struct s_var
@@ -312,6 +325,7 @@ void		init_hud(t_data *data);
 void		init_hud_draw(t_data *data);
 void		init_door_texture(t_data *data, t_image *texture);
 void		init_enemy_texture(t_data *data, t_image *texture);
+void		init_audio(t_data *data);
 t_vec		ft_get_coordinates(char **map, char prop);
 t_vec		ft_get_x_and_y(char **map, char prop);
 t_image		*ft_load_textures(t_data *data);

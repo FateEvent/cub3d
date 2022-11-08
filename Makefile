@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/08 17:31:27 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/08 22:37:40 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 INIT_PATH	=	init/
 INIT_FILES	=	init_struct init_direction init_minimap init_sprites init_hud \
-				init_textures init_doors
+				init_textures init_doors init_audio
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 PARSE_PATH	=	parsing/

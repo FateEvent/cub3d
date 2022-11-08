@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 17:27:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 23:04:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+# define MINIAUDIO_IMPLEMENTATION
+# include "miniaudio.h"
 
 int	main(int argc, char *argv[])
 {
@@ -33,10 +35,12 @@ int	main(int argc, char *argv[])
 		throw_err_ex("Error : Loading texture failed.");
 	init_minimap(&data);
 	init_hud(&data);
+	init_audio(&data);
 	create_door_arrays(&data);
 	if (!data.ray_data.door.door_timers || !data.ray_data.door.door_offsets
 		|| !data.ray_data.door.door_states)
 		throw_err_ex("Error : Malloc failed.");
+	ma_sound_start(&data.audio.ambiance);
 	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(data.mlx, data.screen.display.img, 0, 0);
 	mlx_loop_hook(data.mlx, ft_update, &data);
