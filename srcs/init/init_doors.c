@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 17:22:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:28:06 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_print_int_arr(double **map, size_t height, size_t width)
 	}
 }
 
-void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
+static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 {
 	var->i = 0;
 	while (var->i < var->height)
