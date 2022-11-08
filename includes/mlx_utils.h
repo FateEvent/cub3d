@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 17:26:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:43:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -389,6 +389,7 @@ void		ft_load_fireset_textures(t_data *data, t_image *texture);
 void		pathfinding_list_pos(t_data *data);
 t_vec		pathfinding_get_pos(t_data *data);
 t_vec2		pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end, size_t min);
+t_vec2		pathfinding_pos_except(t_data *data, t_vec2 pos);
 void		pathfinding_dist_check(t_data *data, size_t min);
 
 // minimap

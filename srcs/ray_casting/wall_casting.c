@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 17:17:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:52:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	wall_distance_calculator(t_ray *ray)
 void	ft_check_doors(t_ray *ray)
 {
 	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x] - 48;
-	printf("%d %d %d\n", ray->map->map[ray->map_pos.y][ray->map_pos.x], ray->map_pos.y, ray->map_pos.x);
+	//printf("%d %d %d\n", ray->map->map[ray->map_pos.y][ray->map_pos.x], ray->map_pos.y, ray->map_pos.x);
 	if (ray->ray_tex != 0)
 	{
 		if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y][ray->map_pos.x] != 2) { //Closed, opening, or closing doors
