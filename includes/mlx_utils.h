@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 00:28:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 11:43:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,12 @@ typedef struct s_audio
 	int			lock;
 }				t_audio;
 
+typedef struct s_shading
+{
+	double	multiplier;
+	double	distance;
+}				t_shading;
+
 typedef struct s_data
 {
 	mlx_t		*mlx;
@@ -250,8 +256,7 @@ typedef struct s_data
 	uint32_t	render_delay;
 	uint32_t	img_index;
 	t_image		*textures;
-	int			edge_size;
-	int			shading;
+	int			edge_size;	
 	t_player	player;
 	t_ray		ray_data;
 	int			keycode;
@@ -263,6 +268,7 @@ typedef struct s_data
 	t_enemy		enemy;
 	t_hud		hud;
 	t_audio		audio;
+	t_shading	shading;
 }				t_data;
 
 typedef struct s_var
@@ -378,7 +384,7 @@ void		texture_x_pos_calculator(t_data *data, t_ray *ray);
 void		texture_y_pos_calculator(t_data *data, t_ray *ray);
 void		choose_wall_texture(t_ray *ray);
 void		sprite_caster(t_data *data, t_ray *ray, t_var *v);
-uint32_t	get_shading(uint32_t color, t_ray ray);
+uint32_t	get_shading(t_data *data, uint32_t color, double distance);
 void		update_enemy(t_data *data, t_ray *ray);
 
 // drawing tools
