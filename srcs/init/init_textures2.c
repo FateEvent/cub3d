@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   init_textures2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 16:56:58 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 18:29:49 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ static void	from_texture_to_image(t_data *data, t_image *texture)
 	init_door_texture(data, texture);
 }
 
-t_image	*ft_load_textures(t_data *data)
+void	*init_textures(t_data *data)
 {
 	t_image	*texture;
 
-	texture = malloc(sizeof(t_image) * 19);
-	if (!texture)
-		return (NULL);
+	data->textures = malloc(sizeof(t_image) * 19);
+	texture = data->textures;
+	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 19);
+	if (!data->textures || !data->ray_data.tex_buf)
+		throw_err_ex("Malloc error");
 	ft_bzero(texture, sizeof(*texture));
 	texture[0].texture = mlx_load_xpm42(data->map->north_texture);
 	texture[1].texture = mlx_load_xpm42(data->map->south_texture);
@@ -85,9 +87,9 @@ t_image	*ft_load_textures(t_data *data)
 		texture[5].texture = mlx_load_xpm42(data->map->floor_texture);
 	}
 	if (check_texture_integrity(data, texture))
-		return (NULL);
+		throw_err_ex("Malloc error");
 	from_texture_to_image(data, texture);
 	if (check_image_integrity(data, texture))
-		return (NULL);
+		throw_err_ex("Malloc error");
 	return (texture);
 }

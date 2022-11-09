@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 17:11:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 18:00:43 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	update_events(t_data *data)
 		init_hud_draw(data);
 	if (!is_wasd(data))
 		update_hud(data);
-	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0 && data->enemy.alive == 1)
+	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0
+		&& data->enemy.alive == 1)
 		draw_death(data);
 	update_enemy(data, &data->ray_data);
 	update_jumpscare(data);

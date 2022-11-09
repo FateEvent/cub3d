@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 17:27:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 18:27:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	ray->resolution.x = data->screen.display.size.x;
 	ray->resolution.y = data->screen.display.size.y;
 	data->player.fov = 70;
-	ray->tex_buf = malloc(sizeof(uint32_t *) * 19);
 	init_direction(data);
 	data->player.yaw = M_PI / 2 * data->player.start_direction;
 	data->delay = 0;
@@ -30,6 +29,7 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	init_enemy(data);
 	init_sprites(data, ray);
 	data->enemy.lock = 0;
+	init_doors(data);
 }
 
 void	init_struct(t_data *data)

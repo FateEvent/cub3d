@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_doors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 16:24:04 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:30:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 	}
 }
 
-void	create_door_arrays(t_data *data)
+void	init_doors(t_data *data)
 {
 	t_ray	*ray;
 	t_var	var;
@@ -59,17 +59,9 @@ void	create_door_arrays(t_data *data)
 	ray->door.door_states = ft_calloc(var.width, sizeof(int *));
 	if (!ray->door.door_timers || !ray->door.door_offsets
 		|| !ray->door.door_states)
-	{
-		if (ray->door.door_timers)
-			free(ray->door.door_timers);
-		if (ray->door.door_offsets)
-			free(ray->door.door_offsets);
-		if (ray->door.door_states)
-			free(ray->door.door_states);
-		ray->door.door_timers = NULL;
-		ray->door.door_offsets = NULL;
-		ray->door.door_states = NULL;
-		return ;
-	}
+		throw_err_ex("Malloc error");
 	into_the_loop(data, ray, &var);
+	if (!data->ray_data.door.door_timers || !data->ray_data.door.door_offsets
+		|| !data->ray_data.door.door_states)
+		throw_err_ex("Error : Malloc failed.");
 }

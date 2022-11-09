@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:42:39 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/08 17:07:21 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 18:11:44 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	init_enemy_texture(t_data *data, t_image *texture)
 	size_t	i;
 
 	i = 5;
+	if (!data->ray_data.tex_buf)
+		throw_err_ex("Malloc error");
 	texture[6].texture = mlx_load_xpm42("images/smiler.xpm42");
 	texture[7].texture = mlx_load_xpm42("images/selena.xpm42");
 	texture[8].texture = mlx_load_xpm42("images/yoshie.xpm42");

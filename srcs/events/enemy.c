@@ -6,13 +6,14 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:15:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 17:24:53 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:56:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void	update_enemy_distant(t_data *data, t_vec2 start, t_s_caster	*sprite, t_vec2 *pos)
+static void	update_enemy_distant(t_data *data, t_vec2 start,
+	t_s_caster	*sprite, t_vec2 *pos)
 {
 	size_t		i;
 	t_ray		*ray;

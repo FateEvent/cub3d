@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 13:26:53 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:32:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_enemy(t_data *data)
 	pathfinding_dist_check(data, MINDISTANCE);
 	pathfinding_list_pos(data);
 	data->enemy.pos = pathfinding_pos_dist(data, (t_vec2){0, 0},
-		data->ray_data.pos, MINDISTANCE);
+			data->ray_data.pos, MINDISTANCE);
 	if (data->enemy.pos.x == -1 && data->enemy.pos.y == -1)
 	{
 		tmp = pathfinding_get_pos(data);

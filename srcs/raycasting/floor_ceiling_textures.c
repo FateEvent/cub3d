@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 15:50:36 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:53:30 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ void	draw_ceiling(t_data *data, int x)
 		rgb_to_hex(data->map->ceiling_color));
 }
 
+void	get_shading_blend(t_data *data, t_color *table, uint32_t color)
+{
+	*table = hex_to_rgb(color);
+	table->r = table->r * data->shading.multiplier;
+	table->g = table->g * data->shading.multiplier;
+	table->b = table->b * data->shading.multiplier;
+}
+
 uint32_t	get_shading(t_data *data, uint32_t color, double distance)
 {
 	t_color	table;
@@ -50,22 +58,16 @@ uint32_t	get_shading(t_data *data, uint32_t color, double distance)
 		return (0x000000FF);
 	else if (distance == data->shading.distance)
 	{
-		table = hex_to_rgb(color);
-		table.r = table.r * data->shading.multiplier;
-		table.g = table.g * data->shading.multiplier;
-		table.b = table.b * data->shading.multiplier;
+		get_shading_blend(data, &table, color);
 		return (rgb_to_hex(table));
 	}		
 	else
 	{
 		data->shading.multiplier = 0.7 / distance * 1.5;
 		if (data->shading.multiplier > 1.0)
-			data->shading.multiplier = 1.0,
+			data->shading.multiplier = 1.0;
 		data->shading.distance = distance;
-		table = hex_to_rgb(color);
-		table.r = table.r * data->shading.multiplier;
-		table.g = table.g * data->shading.multiplier;
-		table.b = table.b * data->shading.multiplier;
+		get_shading_blend(data, &table, color);
 		return (rgb_to_hex(table));
 	}
 }

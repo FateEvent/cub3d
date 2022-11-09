@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/09 17:27:13 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/09 18:11:04 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 INIT_PATH	=	init/
 INIT_FILES	=	init_struct init_direction init_minimap init_sprites init_hud \
-				init_textures init_doors init_audio
+				init_textures init_textures2 init_doors init_audio
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 PARSE_PATH	=	parsing/
@@ -36,7 +36,7 @@ PARSE_FILES	=	check check_map check_map_utils check_map_utils2 gap_check \
 SRCS_FILES	+=	$(addprefix $(PARSE_PATH), $(PARSE_FILES))
 
 MLX_PATH	=	mlx_tools/
-MLX_FILES	=	textures window colours colour_conversions
+MLX_FILES	=	window colours colour_conversions
 SRCS_FILES	+=	$(addprefix $(MLX_PATH), $(MLX_FILES))
 
 PF_PATH		=	pathfinding/

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 17:27:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 18:27:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define KILLCOUNTDOWN 5
 # define MOVECOUNTDOWN 10
 # define MINDISTANCE 6
+# define MINIAUDIO_IMPLEMENTATION
 
 typedef struct s_door
 {
@@ -238,7 +239,7 @@ typedef struct s_audio
 	ma_sound	ambiance;
 	ma_sound	scare;
 	ma_sound	*dead;
-	ma_sound	*dead_ambiance;
+	ma_sound	*death;
 	ma_sound	*suspense;
 	ma_sound	*smiler;
 	ma_sound	*behind_you;
@@ -333,15 +334,13 @@ void		init_minimap(t_data *data);
 void		init_struct(t_data *data);
 void		init_direction(t_data *data);
 void		init_enemy(t_data *data);
+void		init_enemy_texture(t_data *data, t_image *texture);
 void		init_hud(t_data *data);
 void		init_hud_draw(t_data *data);
+void		init_doors(t_data *data);
 void		init_door_texture(t_data *data, t_image *texture);
-void		init_enemy_texture(t_data *data, t_image *texture);
 void		init_audio(t_data *data);
-t_vec		ft_get_coordinates(char **map, char prop);
-t_vec		ft_get_x_and_y(char **map, char prop);
-t_image		*ft_load_textures(t_data *data);
-void		create_door_arrays(t_data *data);
+void		*init_textures(t_data *data);
 
 // window functions
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
@@ -414,6 +413,7 @@ void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 // sprites
 void		load_sprites(t_data *data, t_image *texture);
 void		ft_load_fireset_textures(t_data *data, t_image *texture);
+void		sort_sprites(int *order, double *dist, int amount);
 
 // pathfinding
 void		pathfinding_list_pos(t_data *data);
@@ -460,7 +460,6 @@ t_color		**rgb_buf_creator(uint32_t **buf, size_t width, size_t height);
 t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 				size_t height);
 void		ft_print_map(char **map);
-void		sort_sprites(int *order, double *dist, int amount);
 double		get_time(void);
 int			get_delay(int startnow, int min);
 void		tex_to_img(t_data *data, t_image *texture, size_t i);
@@ -468,5 +467,7 @@ void		ft_print_double_arr(double **map, size_t height, size_t width);
 void		ft_print_int_arr(double **map, size_t height, size_t width);
 void		free_door_arrays(t_ray *ray, size_t size);
 void		free_door_arrays_index(t_ray *ray, size_t index, size_t size);
+t_vec		ft_get_coordinates(char **map, char prop);
+t_vec		ft_get_x_and_y(char **map, char prop);
 
 #endif

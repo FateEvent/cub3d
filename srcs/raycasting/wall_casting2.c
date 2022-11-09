@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 17:27:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:43:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	texture_x_pos_calculator(t_data *data, t_ray *ray)
 	else
 		ray->wall_x = ray->pos.x + ray->wall_distance * ray->ray_dir.x;
 	ray->wall_x -= floor(ray->wall_x);
-	if (ray->ray_tex == 2) ray->wall_x += ray->door.door_offsets[ray->map_pos.y][ray->map_pos.y];//Offset door textures
+	if (ray->ray_tex == 2)
+		ray->wall_x += ray->door.door_offsets[ray->map_pos.y][ray->map_pos.y]; //Offset door textures
 	ray->tex.x = (int)(ray->wall_x * (double)img_width);
 //	if	(ray->side == 0 && ray->ray_dir.x > 0) ray->tex.x = img_width - ray->tex.x - 1;
 //	else if(ray->side == 1 && ray->ray_dir.y < 0) ray->tex.x = img_width - ray->tex.x - 1;

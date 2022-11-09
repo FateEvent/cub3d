@@ -6,13 +6,13 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:46:59 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 12:42:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:51:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	pathfinding_list_pos(t_data *data)
+static size_t	pathfinding_list_pos_get(t_data *data)
 {
 	size_t		i;
 	size_t		j;
@@ -31,10 +31,19 @@ void	pathfinding_list_pos(t_data *data)
 		}
 		++i;
 	}
-	data->enemy.valid_pos_n = k;
-	data->enemy.valid_pos = malloc(sizeof(t_vec) * k);
+	return (k);
+}
+
+void	pathfinding_list_pos(t_data *data)
+{
+	size_t		i;
+	size_t		j;
+	size_t		k;
+
 	i = 0;
 	k = 0;
+	data->enemy.valid_pos_n = pathfinding_list_pos_get(data);
+	data->enemy.valid_pos = malloc(sizeof(t_vec) * k);
 	while (data->map->map[i])
 	{
 		j = 0;
