@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 12:05:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:15:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,12 @@ void	ft_check_doors(t_ray *ray)
 //	printf("%d %d %d\n", ray->map->map[ray->map_pos.y][ray->map_pos.x], ray->map_pos.y, ray->map_pos.x);
 	if (ray->ray_tex != 0)
 	{
-		
-		if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y][ray->map_pos.x] != 2)
+		if (ray->ray_tex == 1)
+		{
+			ray->hit = 1;
+			ray->wall_x_offset = 0;
+		}
+		else if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y][ray->map_pos.x] != 2)
 		{ //Closed, opening, or closing doors
 			ray->hit = 1;
 			door_complement(ray);
@@ -106,13 +110,7 @@ void	ray_launcher(t_ray *ray)
 			ray->map_pos.y += ray->step_coord.y;
 			ray->side = 1;
 		}
-		if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '1')
-		{
-			ray->hit = 1;
-			ray->wall_x_offset = 0;
-		}
-		else
-			ft_check_doors(ray);
+		ft_check_doors(ray);
 	}
 }
 
