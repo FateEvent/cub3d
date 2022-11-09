@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:00:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/10/31 12:22:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:46:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ t_color	**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 	hex_buf = hex_buf_creator(hex_arr, width, height);
 	rgb_buf = rgb_buf_creator(hex_buf, width, height);
 	free(hex_arr);
-	free_uint_arr(hex_buf);
+	free_uint_arr(hex_buf, height);
 	return (rgb_buf);
 }

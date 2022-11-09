@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   freearr.c                                          :+:      :+:    :+:   */
+/*   ft_arr_freer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-void	freearr(char **str)
+void	ft_arr_freer(char **str)
 {
-	int	i;
+	size_t	i;
 
 	if (!str)
 		return ;
@@ -24,14 +24,14 @@ void	freearr(char **str)
 	free(str);
 }
 
-void	free_uint_arr(uint32_t **arr)
+void	free_uint_arr(uint32_t **arr, size_t size)
 {
-	int	i;
+	size_t	i;
 
 	if (!arr)
 		return ;
 	i = 0;
-	while (arr[i])
+	while (i < size)
 		free(arr[i++]);
 	free(arr);
 }

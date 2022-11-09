@@ -6,11 +6,27 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 11:42:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:16:48 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+static void	free_door_arrays_index(t_ray *ray, size_t index, size_t size)
+{
+	if (!ray->door.door_timers[index])
+		free_double_arr_index(ray->door.door_timers, index);
+	else
+		free_double_arr_index(ray->door.door_timers, size);
+	if (!ray->door.door_offsets[index])
+		free_double_arr_index(ray->door.door_offsets, index);
+	else
+		free_double_arr_index(ray->door.door_offsets, size);
+	if (!ray->door.door_states[index])
+		free_int_arr_index(ray->door.door_states, index);
+	else
+		free_int_arr_index(ray->door.door_states, size);
+}
 
 void	ft_print_double_arr(double **map, size_t height, size_t width)
 {
@@ -60,7 +76,7 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 		ray->door.door_states[var->i] = ft_memsalloc(var->width, sizeof(int), 1);
 		if (!ray->door.door_timers[var->i] || !ray->door.door_offsets[var->i]
 			|| !ray->door.door_states[var->i])
-			return ;
+			return (free_door_arrays_index(ray, var->i, var->height));
 		var->j = 0;
 		while (var->j < var->width)
 		{

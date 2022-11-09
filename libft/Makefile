@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 21:47:06 by albaur            #+#    #+#              #
-#    Updated: 2022/11/09 11:41:05 by faventur         ###   ########.fr        #
+#    Updated: 2022/11/09 13:41:46 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ C_EXTENSION = .c
 
 ARR_PATH	=	arr/
 ARR_FILES	=	ft_arrdup_after ft_arrdup_before ft_arrdup ft_arrjoin \
-				ft_arrlen ft_arrndup ft_arr_display freearr
+				ft_arrlen ft_arrndup ft_arr_display ft_arr_freer ft_arr_freer_index
 SRCS_FILES	+=	$(addprefix $(ARR_PATH), $(ARR_FILES))
 
 ERROR_PATH	=	error/
