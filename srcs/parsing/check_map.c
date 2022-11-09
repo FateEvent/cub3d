@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:48:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/02 13:05:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 13:41:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ static void	check_map_integrity_vol2(t_map *m, char **map)
 {
 	if (check_map_components(m->map) == -1)
 	{
-		freearr(map);
+		ft_arr_freer(map);
 		throw_err_ex("Error : Invalid map file.");
 	}
-	freearr(map);
+	ft_arr_freer(map);
 }
 
 t_map	*check_map_integrity(char *path)
@@ -82,13 +82,13 @@ t_map	*check_map_integrity(char *path)
 	map = ft_map_reader(path);
 	if (check_map_settings(mapstruct, map) == -1)
 	{
-		freearr(map);
+		ft_arr_freer(map);
 		throw_err_ex("Error : Invalid map file.");
 	}
 	mapstruct->map = get_map_description(map);
 	if (mapstruct->map == NULL)
 	{
-		freearr(map);
+		ft_arr_freer(map);
 		throw_err_ex("Error : Invalid map file.");
 	}
 	check_map_integrity_vol2(mapstruct, map);

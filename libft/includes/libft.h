@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:15:57 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/17 11:23:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:12:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ char	**ft_arrndup(char **str, int i);
 char	**ft_arrstrndup(char **str, int i);
 char	**ft_arrdup_before(char **str, char *name);
 char	**ft_arrdup_after(char **str, char *name);
-void	freearr(char **str);
-void	free_uint_arr(uint32_t **arr);
+void	ft_arr_freer(char **str);
+void	free_uint_arr(uint32_t **arr, size_t size);
+char	**ft_arr_freer_index(char **arr, size_t index);
+int		**free_int_arr_index(int **arr, size_t index);
+double	**free_double_arr_index(double **arr, size_t index);
 void	ft_arr_display(char **arr);
 
 // gnl
@@ -88,6 +91,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_calloc(size_t count, size_t size);
+void	*ft_memsalloc(size_t count, size_t size, int c);
 
 // put
 int		ft_putstr(char *str);

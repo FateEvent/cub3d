@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:43:20 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/18 11:28:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 13:41:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	get_color_ret(char **colors, int ret)
 {
-	freearr(colors);
+	ft_arr_freer(colors);
 	return (ret);
 }
 
