@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/09 18:11:04 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/09 19:32:04 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,10 @@ SRCS_FILES	+=	$(addprefix $(INPUT_PATH), $(INPUT_FILES))
 MAP_PATH	=	minimap/
 MAP_FILES	=	draw_minimap minimap_utils
 SRCS_FILES	+=	$(addprefix $(MAP_PATH), $(MAP_FILES))
+
+FREE_PATH	=	free/
+FREE_FILES	=	free
+SRCS_FILES	+=	$(addprefix $(FREE_PATH), $(FREE_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 

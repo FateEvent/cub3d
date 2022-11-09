@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 18:27:40 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 19:38:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,7 @@ typedef struct s_data
 	int			delay;
 	int			time;
 	int			timer;
+	int			exit;
 	t_enemy		enemy;
 	t_hud		hud;
 	t_audio		audio;
@@ -319,7 +320,7 @@ typedef struct s_shape
 	t_image	*img;
 }				t_shape;
 
-typedef struct	s_anode
+typedef struct s_anode
 {
 	struct s_anode	*parent;
 	int				dist;
@@ -349,7 +350,7 @@ void		fill_window(t_data *data, uint32_t color);
 
 // hooks
 void		key_input(t_data *data);
-void		ft_key_hook(mlx_key_data_t keydata, void *param);
+void		update_key(mlx_key_data_t keydata, void *param);
 void		key_input_arrows(t_data *data, t_ray *ray, t_var *var);
 void		mouse_input(double x, double y, void *param);
 void		update_render(void *param);
@@ -418,7 +419,8 @@ void		sort_sprites(int *order, double *dist, int amount);
 // pathfinding
 void		pathfinding_list_pos(t_data *data);
 t_vec		pathfinding_get_pos(t_data *data);
-t_vec2		pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end, size_t min);
+t_vec2		pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end,
+				size_t min);
 t_vec2		pathfinding_pos_except(t_data *data, t_vec2 pos);
 t_vec2		pathfinding_pos_close(t_data *data, t_vec2 pos, int distance);
 void		pathfinding_dist_check(t_data *data, size_t min);
@@ -448,6 +450,9 @@ int			add_shade(double distance, int color);
 int			get_opposite(int color);
 void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
+
+// free
+void		free_n_exit(void *data);
 
 // utils
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:13:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 16:13:10 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 19:02:15 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	key_input_other(t_data *data, t_ray *ray, t_var *var)
 		data->player.yaw -= data->player.speed.rotation;
 	}
 	if (data->key == (keys_t)MLX_KEY_ESCAPE)
-		exit(0);
+		data->exit = 1;
 	else
 		key_input_arrows(data, ray, var);
 }
@@ -69,7 +69,7 @@ static void	key_input_child(t_data *data, t_ray *ray, t_var *var)
 		key_input_rest(data, ray, var);
 }
 
-void	ft_key_hook(mlx_key_data_t keydata, void *param)
+void	update_key(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
 
