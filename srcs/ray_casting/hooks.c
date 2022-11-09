@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 15:48:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 16:23:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	move_doors(t_data *data, t_ray *ray) {
 		while (var.j < var.width && ray->map->map[var.i][var.j])
 		{
 			//0: Closed, 1: Opening, 2: Open, 3: Closing
-			if (ray->map->map[var.i][var.j] == 2) { //Standard door
+			if (ray->map->map[var.i][var.j] == 2)
+			{ //Standard door
 				if (ray->door.door_states[var.i][var.j] == 1){//Open doors
 //					ray->door.door_offsets[var.i][var.j] += deltaTime / 100;
 

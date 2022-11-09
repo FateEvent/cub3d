@@ -6,9 +6,14 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 15:27:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:24:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** As concerning the state of the doors, 0 means closed, 1 that's opening, 2
+** open and 3 closing.
+*/
 
 #include "mlx_utils.h"
 
@@ -20,8 +25,8 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 		ray->door.door_timers[var->i] = ft_calloc(var->width, sizeof(double));
 		ray->door.door_offsets[var->i] = ft_memsalloc(var->width,
 				sizeof(double), 1);
-		ray->door.door_states[var->i] = ft_memsalloc(var->width,
-				sizeof(int), 1);
+		ray->door.door_states[var->i] = ft_calloc(var->width,
+				sizeof(int));
 		if (!ray->door.door_timers[var->i] || !ray->door.door_offsets[var->i]
 			|| !ray->door.door_states[var->i])
 			return (free_door_arrays_index(ray, var->i, var->height));
