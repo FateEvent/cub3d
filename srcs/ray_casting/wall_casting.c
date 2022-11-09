@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 13:15:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:52:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,26 @@
 void	wall_distance_calculator(t_ray *ray)
 {
 	if (ray->side == 0)
-		ray->wall_distance = (ray->map_pos.x - ray->pos.x + ray->wall_x_offset + (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
+		ray->wall_distance = (ray->map_pos.x - ray->pos.x
+				+ ray->wall_x_offset + (1 - ray->step_coord.x) / 2)
+			/ ray->ray_dir.x;
 	else
-		ray->wall_distance = (ray->map_pos.y - ray->pos.y + ray->wall_y_offset + (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
-//	printf("%f %f\n", ray->wall_x_offset, ray->wall_y_offset);
+		ray->wall_distance = (ray->map_pos.y - ray->pos.y
+				+ ray->wall_y_offset + (1 - ray->step_coord.y) / 2)
+			/ ray->ray_dir.y;
 }
 
 void	door_complement_pt2(t_ray *ray)
 {
 	ray->wall_x_offset = 0.5 * ray->step_coord.x;
-	ray->wall_distance  = (ray->map_pos.x - ray->pos.y + ray->wall_x_offset + (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
+	ray->wall_distance = (ray->map_pos.x - ray->pos.y + ray->wall_x_offset
+			+ (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
 	ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.y;
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y)
 	{
-		printf("1: %f %f\n", 1.0 - ray->wall_x, ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x]);
-		if (1.0 - ray->wall_x < ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x])
+		if (1.0 - ray->wall_x < ray->door.door_offsets[ray->map_pos.y]
+			[ray->map_pos.x])
 		{
 			ray->hit = 0;
 			ray->wall_x_offset = 0;
@@ -48,28 +52,31 @@ void	door_complement_pt2(t_ray *ray)
 void	door_complement(t_ray *ray)
 {
 	if (ray->side == 1)
+	{
+		ray->wall_y_offset = 0.5 * ray->step_coord.y;
+		ray->wall_distance = (ray->map_pos.y - ray->pos.y + ray->wall_y_offset
+				+ (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
+		ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.x;
+		ray->wall_x -= floor(ray->wall_x);
+		if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x)
 		{
-			ray->wall_y_offset = 0.5 * ray->step_coord.y;
-			ray->wall_distance = (ray->map_pos.y - ray->pos.y + ray->wall_y_offset + (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
-			ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.x;
-			ray->wall_x -= floor(ray->wall_x);
-			if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x)
-			{ //If ray hits offset wall
-				printf("0: %f %f\n", 1.0 - ray->wall_x, ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x]);
-				if (1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x])
-				{
-					ray->hit = 0; //Continue raycast for open/opening doors
-					ray->wall_y_offset = 0;
-				}
-			}
-			else
+			printf("1.0 - %d\n", 1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y]
+				[ray->map_pos.x]);
+			if (1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y]
+				[ray->map_pos.x])
 			{
-				ray->map_pos.x += ray->step_coord.x;
-				ray->side = 0;
-				ray->ray_tex = 0; //Draw door frame instead
+				ray->hit = 0;
 				ray->wall_y_offset = 0;
 			}
 		}
+		else
+		{
+			ray->map_pos.x += ray->step_coord.x;
+			ray->side = 0;
+			ray->ray_tex = 0; //Draw door frame instead
+			ray->wall_y_offset = 0;
+		}
+	}
 	else
 		door_complement_pt2(ray);
 }
@@ -77,7 +84,6 @@ void	door_complement(t_ray *ray)
 void	ft_check_doors(t_ray *ray)
 {
 	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x] - '0';
-//	printf("%d %d %d\n", ray->map->map[ray->map_pos.y][ray->map_pos.x], ray->map_pos.y, ray->map_pos.x);
 	if (ray->ray_tex != 0)
 	{
 		if (ray->ray_tex == 1)
@@ -85,8 +91,10 @@ void	ft_check_doors(t_ray *ray)
 			ray->hit = 1;
 			ray->wall_x_offset = 0;
 		}
-		else if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y][ray->map_pos.x] != 2)
+		else if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y]
+			[ray->map_pos.x] != 2)
 		{ //Closed, opening, or closing doors
+			printf("%d\n", ray->door.door_states[ray->map_pos.y][ray->map_pos.x]);
 			ray->hit = 1;
 			door_complement(ray);
 		}

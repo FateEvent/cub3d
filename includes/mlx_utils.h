@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 14:25:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:28:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -455,6 +455,7 @@ int			get_delay(int startnow, int min);
 void		tex_to_img(t_data *data, t_image *texture, size_t i);
 void		ft_print_double_arr(double **map, size_t height, size_t width);
 void		ft_print_int_arr(double **map, size_t height, size_t width);
+void		free_door_arrays(t_ray *ray, size_t size);
 void		free_door_arrays_index(t_ray *ray, size_t index, size_t size);
 
 #endif

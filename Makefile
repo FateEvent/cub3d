@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/08 22:37:40 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/09 15:26:58 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS_FILES	+=	$(addprefix $(PF_PATH), $(PF_FILES))
 
 UTILS_PATH	=	utils/
 UTILS_FILES	=	ft_map_reader drawing_tools utils ft_from_uchar_to_rgb_buf \
-				vec_utils time
+				vec_utils time door_utils
 SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	ray_casting/
