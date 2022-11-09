@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/07 18:03:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:10:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	sprite_caster(t_data *data, t_ray *ray, t_var *v)
 	int	i;
 
 	i = 0;
-	update_enemy(data, ray);
 	while (i < NUMSPRITES)
 	{
 		doing_some_math(ray, i);

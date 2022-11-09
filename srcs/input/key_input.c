@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_key_input.c                                     :+:      :+:    :+:   */
+/*   key_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 13:52:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/03 11:57:50 by albaur           ###   ########.fr       */
+/*   Created: 2022/11/09 16:13:07 by albaur            #+#    #+#             */
+/*   Updated: 2022/11/09 16:13:10 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var)
+static void	key_input_other(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_LEFT)
 	{
@@ -31,10 +31,10 @@ static void	ft_key_input_other(t_data *data, t_ray *ray, t_var *var)
 	if (data->key == (keys_t)MLX_KEY_ESCAPE)
 		exit(0);
 	else
-		ft_key_input_arrows(data, ray, var);
+		key_input_arrows(data, ray, var);
 }
 
-static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var)
+static void	key_input_rest(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_RIGHT)
 	{
@@ -51,10 +51,10 @@ static void	ft_key_input_rest(t_data *data, t_ray *ray, t_var *var)
 		data->player.yaw += data->player.speed.rotation;
 	}
 	else
-		ft_key_input_other(data, ray, var);
+		key_input_other(data, ray, var);
 }
 
-static void	ft_key_input_child(t_data *data, t_ray *ray, t_var *var)
+static void	key_input_child(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_S)
 	{
@@ -66,7 +66,7 @@ static void	ft_key_input_child(t_data *data, t_ray *ray, t_var *var)
 			ray->pos.x -= ray->dir.x * var->movement;
 	}
 	else
-		ft_key_input_rest(data, ray, var);
+		key_input_rest(data, ray, var);
 }
 
 void	ft_key_hook(mlx_key_data_t keydata, void *param)
@@ -82,7 +82,7 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 		data->key = 0;
 }
 
-void	ft_key_input(t_data *data)
+void	key_input(t_data *data)
 {
 	t_ray	*ray;
 	t_var	var;
@@ -101,5 +101,5 @@ void	ft_key_input(t_data *data)
 			ray->pos.y += ray->dir.y * var.movement;
 	}
 	else
-		ft_key_input_child(data, ray, &var);
+		key_input_child(data, ray, &var);
 }

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 15:48:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:05:21 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,9 @@ typedef struct s_audio
 	ma_sound	*smiler;
 	ma_sound	*behind_you;
 	ma_sound	*footstep;
+	ma_sound	geiger;
 	int			lock;
+	int			lock2;
 }				t_audio;
 
 typedef struct s_shading
@@ -347,11 +349,11 @@ void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
 void		fill_window(t_data *data, uint32_t color);
 
 // hooks
-void		ft_key_input(t_data *data);
+void		key_input(t_data *data);
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
-void		ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var);
-void		ft_mouse_input(double x, double y, void *param);
-void		ft_update(void *param);
+void		key_input_arrows(t_data *data, t_ray *ray, t_var *var);
+void		mouse_input(double x, double y, void *param);
+void		update_render(void *param);
 
 // parsing functions
 char		**ft_map_reader(char *filename);
@@ -389,7 +391,12 @@ void		texture_y_pos_calculator(t_data *data, t_ray *ray);
 void		choose_wall_texture(t_ray *ray);
 void		sprite_caster(t_data *data, t_ray *ray, t_var *v);
 uint32_t	get_shading(t_data *data, uint32_t color, double distance);
+
+// events
+int			update_events(t_data *data);
 void		update_enemy(t_data *data, t_ray *ray);
+void		update_doors(t_data *data, t_ray *ray);
+void		show_death(t_data *data);
 
 // drawing tools
 void		draw_line(mlx_image_t *img, t_vec2 start, t_vec2 finish,
@@ -401,8 +408,7 @@ void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 void		draw_minimap(t_data	*data);
 void		draw_death(t_data *data);
-void		show_death(t_data *data);
-void		draw_hud(t_data *data);
+void		update_hud(t_data *data);
 void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
 // sprites

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:05:15 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 15:44:17 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 16:48:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	show_death(t_data *data)
 {
+	ma_sound_stop(&data->audio.geiger);
 	ma_sound_start(&data->audio.dead_ambiance[rand() % 2]);
 	ma_sound_start(&data->audio.dead[rand() % 2]);
 	data->enemy.warning_text->img->enabled = 0;

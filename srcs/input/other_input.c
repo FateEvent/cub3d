@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_key_input_pt2.c                                 :+:      :+:    :+:   */
+/*   other_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 10:17:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/03 11:58:52 by albaur           ###   ########.fr       */
+/*   Created: 2022/11/09 16:12:47 by albaur            #+#    #+#             */
+/*   Updated: 2022/11/09 16:13:12 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static double	ft_check_double_overflow(double value)
+static double	check_double_overflow(double value)
 {
 	if (value > 1)
 		return (1);
@@ -21,7 +21,7 @@ static double	ft_check_double_overflow(double value)
 	return (value);
 }
 
-static void	ft_key_input_focus(t_data *data, t_ray *ray)
+static void	key_input_focus(t_data *data, t_ray *ray)
 {
 	if (data->key == (keys_t)MLX_KEY_F)
 	{
@@ -33,16 +33,16 @@ static void	ft_key_input_focus(t_data *data, t_ray *ray)
 	}
 }
 
-static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var)
+static void	key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var)
 {
 	double	alpha;
 
 	if (data->key == (keys_t)MLX_KEY_D)
 	{
 		if (ray->dir.y > 0)
-			alpha = acos(ft_check_double_overflow(ray->dir.x));
+			alpha = acos(check_double_overflow(ray->dir.x));
 		else
-			alpha = -acos(ft_check_double_overflow(ray->dir.x));
+			alpha = -acos(check_double_overflow(ray->dir.x));
 		if (data->map->map[(int)((sin(alpha + M_PI / 2) * var->movement)
 				+ ray->pos.y)][(int)(ray->pos.x)] != '1')
 			ray->pos.y = (sin(alpha + M_PI / 2) * var->movement)
@@ -53,19 +53,19 @@ static void	ft_key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var)
 				+ ray->pos.x;
 	}
 	else
-		ft_key_input_focus(data, ray);
+		key_input_focus(data, ray);
 }
 
-void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var)
+void	key_input_arrows(t_data *data, t_ray *ray, t_var *var)
 {
 	double	alpha;
 
 	if (data->key == (keys_t)MLX_KEY_A)
 	{
 		if (ray->dir.y > 0)
-			alpha = acos(ft_check_double_overflow(ray->dir.x));
+			alpha = acos(check_double_overflow(ray->dir.x));
 		else
-			alpha = -acos(ft_check_double_overflow(ray->dir.x));
+			alpha = -acos(check_double_overflow(ray->dir.x));
 		if (data->map->map[(int)((-sin(alpha + M_PI / 2) * var->movement)
 				+ ray->pos.y)][(int)(ray->pos.x)] != '1')
 			ray->pos.y = (-sin(alpha + M_PI / 2) * var->movement)
@@ -76,5 +76,5 @@ void	ft_key_input_arrows(t_data *data, t_ray *ray, t_var *var)
 				+ ray->pos.x;
 	}
 	else
-		ft_key_input_arrows_pt2(data, ray, var);
+		key_input_arrows_pt2(data, ray, var);
 }

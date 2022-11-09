@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:25:05 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 15:31:32 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:08:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	init_audio(t_data *data)
 		"audio/behindyou3.flac", 0, NULL, NULL, &data->audio.behind_you[2]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
 		"audio/behindyou4.flac", 0, NULL, NULL, &data->audio.behind_you[3]);
+	result += ma_sound_init_from_file(data->audio.audio_engine,
+		"audio/geiger.flac", 0, NULL, NULL, &data->audio.geiger);
 	while (++i < 14)
 	{
 		str = ft_strjoin(base, ft_itoa(i + 1));
@@ -78,6 +80,6 @@ void	init_audio(t_data *data)
 	if (result != MA_SUCCESS)
 		throw_err_ex("Audio file initialization error");
 	ma_sound_set_looping(&data->audio.ambiance, 1);
-	ma_sound_set_looping(&data->audio.scare, 0);
 	data->audio.lock = 0;
+	data->audio.lock2 = 0;
 }
