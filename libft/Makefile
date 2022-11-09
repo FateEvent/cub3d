@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 21:47:06 by albaur            #+#    #+#              #
-#    Updated: 2022/10/12 14:38:15 by faventur         ###   ########.fr        #
+#    Updated: 2022/11/09 11:41:05 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SRCS_FILES	+=	$(addprefix $(LST_PATH), $(LST_FILES))
 
 MEM_PATH	=	mem/
 MEM_FILES	=	ft_bzero ft_calloc ft_memchr ft_memcmp ft_memcpy ft_memmove \
-				ft_memset
+				ft_memset ft_memsalloc
 SRCS_FILES	+=	$(addprefix $(MEM_PATH), $(MEM_FILES))
 
 PUT_PATH	=	put/
