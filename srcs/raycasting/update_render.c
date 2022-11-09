@@ -32,7 +32,6 @@ void	update_render(void *param)
 	ray_casting(data);
 	update_doors(data, &data->ray_data);
 	draw_minimap(data);
-	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
 	data->delay += get_delay(0, 16666);
 	++data->time;
 	data->timer = get_time();

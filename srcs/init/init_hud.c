@@ -26,6 +26,7 @@ static void	init_hud_draw2(t_data *data)
 	data->enemy.warning_text->img->enabled = 0;
 	if (!data->enemy.warning_text->img)
 		throw_err_ex("Malloc error");
+	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
 }
 
 void	init_hud_draw(t_data *data)
