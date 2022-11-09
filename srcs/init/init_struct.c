@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 16:55:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:27:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_struct(t_data *data)
 	ft_bzero(ray, sizeof(*ray));
 	ray->pos.x = 0.5 + data->map->spawn_pos.x;
 	ray->pos.y = 0.5 + data->map->spawn_pos.y;
-	data->player.speed.movement = 0.2;
+	data->player.speed.movement = 0.1;
 	data->player.speed.rotation = 0.3;
 	ray->k.pcos = cos(data->player.speed.rotation);
 	ray->k.psin = sin(data->player.speed.rotation);

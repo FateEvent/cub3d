@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/09 16:29:49 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/09 17:27:13 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS_FILES	+=	$(addprefix $(PF_PATH), $(PF_FILES))
 
 UTILS_PATH	=	utils/
 UTILS_FILES	=	ft_map_reader drawing_tools utils ft_from_uchar_to_rgb_buf \
-				vec_utils time
+				vec_utils time door_utils
 SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	raycasting/
