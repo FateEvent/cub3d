@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 14:16:48 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:39:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void	free_door_arrays_index(t_ray *ray, size_t index, size_t size)
+void	free_door_arrays_index(t_ray *ray, size_t index, size_t size)
 {
 	if (!ray->door.door_timers[index])
 		free_double_arr_index(ray->door.door_timers, index);
@@ -72,8 +72,10 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 	while (var->i < var->height)
 	{
 		ray->door.door_timers[var->i] = ft_calloc(var->width, sizeof(double));
-		ray->door.door_offsets[var->i] = ft_memsalloc(var->width, sizeof(double), 1);
-		ray->door.door_states[var->i] = ft_memsalloc(var->width, sizeof(int), 1);
+		ray->door.door_offsets[var->i] = ft_memsalloc(var->width,
+				sizeof(double), 1);
+		ray->door.door_states[var->i] = ft_memsalloc(var->width,
+				sizeof(int), 1);
 		if (!ray->door.door_timers[var->i] || !ray->door.door_offsets[var->i]
 			|| !ray->door.door_states[var->i])
 			return (free_door_arrays_index(ray, var->i, var->height));
@@ -106,6 +108,17 @@ void	create_door_arrays(t_data *data)
 	ray->door.door_states = ft_calloc(var.width, sizeof(int *));
 	if (!ray->door.door_timers || !ray->door.door_offsets
 		|| !ray->door.door_states)
+	{
+		if (ray->door.door_timers)
+			free(ray->door.door_timers);
+		if (ray->door.door_offsets)
+			free(ray->door.door_offsets);
+		if (ray->door.door_states)
+			free(ray->door.door_states);
+		ray->door.door_timers = NULL;
+		ray->door.door_offsets = NULL;
+		ray->door.door_states = NULL;
 		return ;
+	}
 	into_the_loop(data, ray, &var);
 }
