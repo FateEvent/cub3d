@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 11:50:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 15:50:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ uint32_t	get_shading(t_data *data, uint32_t color, double distance)
 	else
 	{
 		data->shading.multiplier = 0.7 / distance * 1.5;
+		if (data->shading.multiplier > 1.0)
+			data->shading.multiplier = 1.0,
 		data->shading.distance = distance;
 		table = hex_to_rgb(color);
 		table.r = table.r * data->shading.multiplier;

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:30:57 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/08 17:51:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 15:38:00 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,24 @@ t_vec2	pathfinding_pos_except(t_data *data, t_vec2 pos)
 		--tries;
 	}
 	return (pos2);
+}
+
+t_vec2	pathfinding_pos_close(t_data *data, t_vec2 pos, int distance)
+{
+	int		tries;
+	t_vec	pos2;
+	t_vec2	tmp;
+	double	dist;
+
+	tries = 1500;
+	while (tries > 0)
+	{
+		pos2 = pathfinding_get_pos(data);
+		tmp = (t_vec2){pos2.x, pos2.y};
+		dist = ft_vect2_distance_calc(pos, tmp);
+		if (dist <= distance && !(pos.x - 0.5 == tmp.x && pos.y - 0.5 == tmp.y))
+			return ((t_vec2){tmp.x + 0.5, tmp.y + 0.5});
+		--tries;
+	}
+	return ((t_vec2){-1, -1});
 }

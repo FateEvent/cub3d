@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:05:15 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/08 23:14:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 15:44:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	show_death(t_data *data)
 {
-	ma_sound_start(&data->audio.dead);
+	ma_sound_start(&data->audio.dead_ambiance[rand() % 2]);
+	ma_sound_start(&data->audio.dead[rand() % 2]);
 	data->enemy.warning_text->img->enabled = 0;
 	mlx_image_to_window(data->mlx, data->enemy.death_bg->img, 0, 0);
 	mlx_image_to_window(data->mlx, data->enemy.death_text->img, WIDTH / 2 - 100, HEIGHT / 2 - 50);

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 15:28:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:53:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,7 @@ typedef struct s_enemy
 	t_image		*death_bg;
 	t_image		*death_text;
 	int			alive;
+	int			lock;
 }				t_enemy;
 
 typedef struct s_screen
@@ -236,9 +237,12 @@ typedef struct s_audio
 	ma_engine	*audio_engine;
 	ma_sound	ambiance;
 	ma_sound	scare;
-	ma_sound	dead;
+	ma_sound	*dead;
+	ma_sound	*dead_ambiance;
 	ma_sound	*suspense;
 	ma_sound	*smiler;
+	ma_sound	*behind_you;
+	ma_sound	*footstep;
 	int			lock;
 }				t_audio;
 
@@ -410,6 +414,7 @@ void		pathfinding_list_pos(t_data *data);
 t_vec		pathfinding_get_pos(t_data *data);
 t_vec2		pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end, size_t min);
 t_vec2		pathfinding_pos_except(t_data *data, t_vec2 pos);
+t_vec2		pathfinding_pos_close(t_data *data, t_vec2 pos, int distance);
 void		pathfinding_dist_check(t_data *data, size_t min);
 
 // minimap
