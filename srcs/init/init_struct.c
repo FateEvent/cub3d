@@ -29,6 +29,10 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	init_enemy(data);
 	init_sprites(data, ray);
 	data->enemy.lock = 0;
+	data->enemy.kill_timer = 0.0;
+	data->enemy.move_timer = 0.0;
+	data->enemy.kill_countdown = KILLCOUNTDOWN;
+	data->enemy.move_timer = MOVECOUNTDOWN;
 	init_doors(data);
 }
 

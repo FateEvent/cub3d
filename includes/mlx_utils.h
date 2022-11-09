@@ -211,6 +211,8 @@ typedef struct s_enemy
 	t_vec2		pos;
 	t_vec		*valid_pos;
 	size_t		valid_pos_n;
+	double		kill_timer;
+	double		move_timer;
 	int			kill_countdown;
 	int			move_countdown;
 	int			disable_ai;
