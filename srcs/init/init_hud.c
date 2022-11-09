@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_hud.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:10:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 17:31:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 12:21:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_hud(t_data *data)
 	ssize_t	i;
 	char	base[20];
 	char	*str;
+	char	*itoa;
 
 	ft_strcpy(base, "images/hands/hands_");
 	i = -1;
@@ -68,11 +69,13 @@ void	init_hud(t_data *data)
 			str = ft_strjoin(base, "0");
 		else
 			str = ft_strdup("images/hands/hands_");
-		str = ft_concat(str, ft_itoa(i + 1));
+		itoa = ft_itoa(i + 1);
+		str = ft_concat(str, itoa);
 		str = ft_concat(str, ".xpm42");
 		data->hud.sprites[i].texture = mlx_load_xpm42(str);
 		if (!data->hud.sprites[i].texture)
 			throw_err_ex("Malloc error");
 		free(str);
+		free(itoa);
 	}
 }

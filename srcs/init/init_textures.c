@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:42:39 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 18:11:44 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 11:59:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,21 @@ void	init_door_texture(t_data *data, t_image *texture)
 	ssize_t	i;
 	char	base[20];
 	char	*str;
+	char	*itoa;
 
 	i = -1;
 	ft_strcpy(base, "images/fs/fire_door");
 	while (++i < 10)
 	{
 		str = ft_strdup("images/fs/fire_door");
-		str = ft_concat(str, ft_itoa(i + 1));
+		itoa = ft_itoa(i + 1);
+		str = ft_concat(str, itoa);
 		str = ft_concat(str, ".xpm42");
 		texture[i + 9].texture = mlx_load_xpm42(str);
 		if (!texture[i + 9].texture)
 			throw_err_ex("Malloc error");
 		free(str);
+		free(itoa);
 	}
 	i = 8;
 	while (++i < 19)

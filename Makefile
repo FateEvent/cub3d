@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/09 19:32:04 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/09 13:24:02 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	cub3d
 ARGS		=	map.cub
 CC			=	gcc
 FLAGS		=	-Wall -Wextra -Werror -g3
-LINKS		=	-lglfw -L /Users/${USER}/goinfre/.brew/opt/glfw/lib/ #-ldl -lm #linuxflags
+LINKS		=	-lglfw -L /Users/${USER}/goinfre/.brew/opt/glfw/lib/ -ldl -lm -pthread #linuxflags
 LIBLINKS	=	-I./MLX42/include/MLX42 -I./includes -I./libft/includes -I/Users/${USER}/goinfre/.brew/opt/glfw/include
 SRC_PATH	=	srcs/
 OBJ_PATH	=	bin/
@@ -26,7 +26,7 @@ SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 INIT_PATH	=	init/
 INIT_FILES	=	init_struct init_direction init_minimap init_sprites init_hud \
-				init_textures init_textures2 init_doors init_audio
+				init_textures init_textures2 init_doors init_audio init_audio_batch
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 PARSE_PATH	=	parsing/
@@ -67,7 +67,7 @@ MAP_FILES	=	draw_minimap minimap_utils
 SRCS_FILES	+=	$(addprefix $(MAP_PATH), $(MAP_FILES))
 
 FREE_PATH	=	free/
-FREE_FILES	=	free
+FREE_FILES	=	free free_audio free_audio_batch free_textures
 SRCS_FILES	+=	$(addprefix $(FREE_PATH), $(FREE_FILES))
 
 OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
@@ -92,7 +92,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) -sC ./MLX42
 	@mv ./libft/libft.a .
 	@mv ./MLX42/libmlx42.a .
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) -fsanitize=address
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) #-fsanitize=address
 	@echo "$(CURSIVE)$(HIBLUE)If you're not careful and you noclip out of reality in the wrong areas,$(NONE)"
 	@echo "$(CURSIVE)$(HIBLUE)you'll end up in the Backrooms, where it's nothing but the stink of old$(NONE)"
 	@echo "$(CURSIVE)$(HIBLUE)moist carpet, the madness of mono-yellow, the endless background noise$(NONE)"

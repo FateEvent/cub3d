@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_casting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:25:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 17:10:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 12:44:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	sprite_caster(t_data *data, t_ray *ray, t_var *v)
 	int	i;
 
 	i = 0;
-	while (i < NUMSPRITES)
+	while (i < 3)
 	{
 		doing_some_math(ray, i);
 		points_lines_designer(ray);

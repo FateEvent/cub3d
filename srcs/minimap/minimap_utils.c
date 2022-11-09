@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:44:45 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/01 12:45:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 11:32:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ void	get_map_str(t_data *data)
 void	get_map_size(t_data *data)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	j = 0;
+	data->map->size.x = 0;
 	while (data->map->map[i])
 	{
 		data->map->size.x = fmax(data->map->size.x,
 				ft_strlen(data->map->map[i]));
 		++i;
 	}
+	data->map->buf_size = i;
 	data->map->size.y = i;
 }
 

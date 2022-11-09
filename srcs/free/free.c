@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:16 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 19:37:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 13:07:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	free_n_exit(void *ptr)
 	data = ptr;
 	mlx_close_window(data->mlx);
 	mlx_terminate(data->mlx);
-	ma_engine_uninit(data->audio.audio_engine);
+	free_audio(data);
+	free_textures(data);
 	printf("exit\n");
 	exit(0);
 }

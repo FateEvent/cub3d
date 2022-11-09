@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 19:27:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 12:44:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_sprites_pos(t_data *data, t_ray *ray)
 
 	i = 0;
 	sprite = &data->ray_data.sprite;
-	while (i < NUMSPRITES)
+	while (i < 3)
 	{
 		sprite->sprite_order[i] = i;
 		sprite->sprite_dist[i] = ((ray->pos.x - sprite->sprites[i].x)
@@ -51,7 +51,7 @@ void	init_sprites_pos(t_data *data, t_ray *ray)
 				* (ray->pos.y - sprite->sprites[i].y));
 		i++;
 	}
-	sort_sprites(sprite->sprite_order, sprite->sprite_dist, NUMSPRITES);
+	sort_sprites(sprite->sprite_order, sprite->sprite_dist, 3);
 }
 
 void	init_sprites(t_data *data, t_ray *ray)
@@ -59,9 +59,9 @@ void	init_sprites(t_data *data, t_ray *ray)
 	t_s_caster	*sprite;
 
 	sprite = &ray->sprite;
-	sprite->sprites = malloc(sizeof(t_sprite) * NUMSPRITES);
-	sprite->sprite_order = malloc(sizeof(int) * NUMSPRITES);
-	sprite->sprite_dist = malloc(sizeof(double) * NUMSPRITES);
+	sprite->sprites = malloc(sizeof(t_sprite) * 3);
+	sprite->sprite_order = malloc(sizeof(int) * 3);
+	sprite->sprite_dist = malloc(sizeof(double) * 3);
 	sprite->z_buffer = malloc(sizeof(double) * ray->resolution.x);
 	if (!sprite->sprites || !sprite->z_buffer || !sprite->sprite_order
 		|| !sprite->sprite_dist)

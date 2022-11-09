@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_doors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 18:30:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 11:01:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 			|| !ray->door.door_states[var->i])
 			return (free_door_arrays_index(ray, var->i, var->height));
 		var->j = 0;
-		while (var->j < var->width)
+		while (var->j < (size_t)data->map->size_arr[var->i])
 		{
 			if (data->map->map[var->i][var->j] == '2')
 			{

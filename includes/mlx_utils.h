@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 19:38:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 12:55:18 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define WIDTH 640
 # define HEIGHT 480
 # define BPP 4
-# define NUMSPRITES 3
 # define KILLCOUNTDOWN 5
 # define MOVECOUNTDOWN 10
 # define MINDISTANCE 6
@@ -341,6 +340,10 @@ void		init_hud_draw(t_data *data);
 void		init_doors(t_data *data);
 void		init_door_texture(t_data *data, t_image *texture);
 void		init_audio(t_data *data);
+void		init_audio_behind_you(t_data *data, ma_result *result);
+void		init_audio_footstep(t_data *data, ma_result *result);
+void		init_audio_ambiance(t_data *data, ma_result *result);
+void		init_audio_suspense(t_data *data, ma_result *result);
 void		*init_textures(t_data *data);
 
 // window functions
@@ -453,6 +456,12 @@ void		turn_img_to_color(t_image *image, t_color color);
 
 // free
 void		free_n_exit(void *data);
+void		free_audio(t_data *data);
+void		free_audio_behind_you(t_data *data);
+void		free_audio_footstep(t_data *data);
+void		free_audio_ambiance(t_data *data);
+void		free_audio_suspense(t_data *data);
+void		free_textures(t_data *data);
 
 // utils
 void		ft_uchar_arr_display(unsigned char *arr, size_t size);

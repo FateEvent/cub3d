@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 17:48:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 10:57:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_check_doors(t_ray *ray)
 		else if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y]
 			[ray->map_pos.x] != 2)
 		{ //Closed, opening, or closing doors
-			printf("%d\n", ray->door.door_states[ray->map_pos.y][ray->map_pos.x]);
+			//printf("%d\n", ray->door.door_states[ray->map_pos.y][ray->map_pos.x]);
 			ray->hit = 1;
 			door_complement(ray);
 		}
