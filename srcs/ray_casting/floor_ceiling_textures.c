@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling_textures.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/05 17:52:49 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:50:43 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,32 @@ void	draw_ceiling(t_data *data, int x)
 		rgb_to_hex(data->map->ceiling_color));
 }
 
-uint32_t	get_shading(uint32_t color, t_ray ray)
+uint32_t	get_shading(t_data *data, uint32_t color, double distance)
 {
 	t_color	table;
-	double	multiplier;
-	double	distance;
 
-	distance = ray.wall_distance;
 	if (distance <= 1.00)
 		return (color);
-	table = hex_to_rgb(color);
-	multiplier = (1 + ((100 / distance) * 0.00625) * 1.5);
-	table.a = 255 * multiplier;
-	return (rgb_to_hex(table));
+	if (distance > 25.00)
+		return (0x000000FF);
+	else if (distance == data->shading.distance)
+	{
+		table = hex_to_rgb(color);
+		table.r = table.r * data->shading.multiplier;
+		table.g = table.g * data->shading.multiplier;
+		table.b = table.b * data->shading.multiplier;
+		return (rgb_to_hex(table));
+	}		
+	else
+	{
+		data->shading.multiplier = 0.7 / distance * 1.5;
+		data->shading.distance = distance;
+		table = hex_to_rgb(color);
+		table.r = table.r * data->shading.multiplier;
+		table.g = table.g * data->shading.multiplier;
+		table.b = table.b * data->shading.multiplier;
+		return (rgb_to_hex(table));
+	}
 }
 
 void	draw_walls(t_data *data, int x)
@@ -77,7 +90,7 @@ void	draw_walls(t_data *data, int x)
 		ray->tex_pos += ray->step;
 		var.color = ray->tex_buf[ray->text_select][((ray->tex.y * var.width)
 				+ ray->tex.x)];
-		var.color = get_shading(var.color, *ray);
+		var.color = get_shading(data, var.color, ray->wall_distance);
 		mlx_put_pixel(data->screen.display.img, x, var.y, var.color);
 		++var.y;
 	}

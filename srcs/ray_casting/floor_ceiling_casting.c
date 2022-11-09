@@ -6,25 +6,11 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:13:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/01 15:44:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 11:45:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
-uint32_t	get_shading_floor(uint32_t color, t_ray ray, double distance)
-{
-	t_color	table;
-	double	multiplier;
-
-	(void)ray;
-	if (distance <= 1.00)
-		return (color);
-	table = hex_to_rgb(color);
-	multiplier = (1 + ((100 / distance) * 0.00625) * 1.5);
-	table.a = 255 * multiplier;
-	return (rgb_to_hex(table));
-}
 
 void	floor_casting_calculator(t_data *data, t_ray *ray, t_var *var)
 {
@@ -40,11 +26,11 @@ void	floor_casting_calculator(t_data *data, t_ray *ray, t_var *var)
 	ray->fl.ceiling_tex = 4;
 	var->color = ray->tex_buf[ray->fl.floor_tex][var->width * ray->fl.t.y
 		+ ray->fl.t.x];
-	var->color = get_shading_floor(var->color, *ray, ray->fl.row_distance);
+	var->color = get_shading(data, var->color, ray->fl.row_distance);
 	mlx_put_pixel(data->screen.display.img, var->x, var->y, var->color);
 	var->color = ray->tex_buf[ray->fl.ceiling_tex][var->width * ray->fl.t.y
 		+ ray->fl.t.x];
-	var->color = get_shading_floor(var->color, *ray, ray->fl.row_distance);
+	var->color = get_shading(data, var->color, ray->fl.row_distance);
 	mlx_put_pixel(data->screen.display.img, var->x, ray->resolution.y
 		- var->y - 1, var->color);
 	++var->x;
