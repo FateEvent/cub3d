@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/07 13:11:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 13:25:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	get_map_str(data);
 	init_enemy(data);
 	init_sprites(data, ray);
+	data->enemy.lock = 0;
 }
 
 void	init_struct(t_data *data)

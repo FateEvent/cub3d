@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 00:28:40 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/09 15:45:57 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	ft_mouse_input(double x, double y, void *param)
 void	ft_update(void *param)
 {
 	t_data	*data;
+	t_vec2	pos;
 
 	data = (t_data *)param;
 	if (data->time == 0)
@@ -105,10 +106,47 @@ void	ft_update(void *param)
 		return (ft_key_input(data));
 	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0 && data->enemy.alive == 1)
 		draw_death(data);
-	if (data->timer % 60 == 0 && data->audio.lock == 0)
+	if (data->timer > 2 && data->timer % 90 == 0 && data->enemy.lock == 0)
+	{
+		if (rand() % 2)
+		{
+			if (data->ray_data.sprite.sprites[1].x == -1 && data->ray_data.sprite.sprites[1].y == -1)
+			{
+				pos = pathfinding_pos_close(data, data->ray_data.pos, 2);
+				data->ray_data.sprite.sprites[1].x = pos.x;
+				data->ray_data.sprite.sprites[1].y = pos.y;
+				ma_sound_start(&data->audio.behind_you[3]);
+			}
+			else
+			{
+				data->ray_data.sprite.sprites[1].x = -1;
+				data->ray_data.sprite.sprites[1].y = -1;
+			}
+			data->enemy.lock = 1;
+		}
+		else
+		{
+			if (data->ray_data.sprite.sprites[2].x == -1 && data->ray_data.sprite.sprites[2].y == -1)
+			{
+				pos = pathfinding_pos_close(data, data->ray_data.pos, 2);
+				data->ray_data.sprite.sprites[2].x = pos.x;
+				data->ray_data.sprite.sprites[2].y = pos.y;
+				ma_sound_start(&data->audio.behind_you[rand() % 3]);
+			}
+			else
+			{
+				data->ray_data.sprite.sprites[2].x = -1;
+				data->ray_data.sprite.sprites[2].y = -1;
+			}
+			data->enemy.lock = 1;
+		}
+	}
+	if (data->timer % 90 != 0 && data->enemy.lock == 1)
+		data->enemy.lock = 0;
+	if (data->timer > 2 && data->timer % 60 == 0 && data->audio.lock == 0)
 	{
 		data->audio.lock = 1;
-		ma_sound_start(&data->audio.suspense[rand() % 13]);
+		ma_sound_start(&data->audio.suspense[rand() % 14]);
 	}
 	if (data->timer % 60 != 0 && data->audio.lock == 1)
 		data->audio.lock = 0;
