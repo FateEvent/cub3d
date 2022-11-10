@@ -6,18 +6,22 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:16 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 13:07:16 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:51:34 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	free_n_exit(void *ptr)
+void	close_hook(void *ptr)
 {
 	t_data	*data;
 
 	data = ptr;
 	mlx_close_window(data->mlx);
+}
+
+void	free_data(t_data *data)
+{
 	mlx_terminate(data->mlx);
 	free_audio(data);
 	free_textures(data);
@@ -35,8 +39,8 @@ void	free_n_exit(void *ptr)
 	free(data->map->south_texture);
 	free(data->map->east_texture);
 	free(data->map->west_texture);
+	free_door_arrays(&data->ray_data, data->map->size.y);
 	ft_arr_freer(data->map->map);
 	free(data->map);
 	printf("exit\n");
-	exit(0);
 }

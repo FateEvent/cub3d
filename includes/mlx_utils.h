@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 15:53:20 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:33:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -474,7 +474,8 @@ void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
 
 // free
-void		free_n_exit(void *data);
+void		close_hook(void *data);
+void		free_data(t_data *data);
 void		free_audio(t_data *data);
 void		free_audio_behind_you(t_data *data);
 void		free_audio_footstep(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 19:04:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:33:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int argc, char *argv[])
 	mlx_loop_hook(data.mlx, update_render, &data);
 	mlx_key_hook(data.mlx, update_key, &data);
 	mlx_cursor_hook(data.mlx, mouse_input, &data);
-	mlx_close_hook(data.mlx, free_n_exit, &data);
+	mlx_close_hook(data.mlx, close_hook, &data);
 	mlx_loop(data.mlx);
+	free_data(&data);
 }

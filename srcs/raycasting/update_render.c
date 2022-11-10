@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:21:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 19:07:36 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:33:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	update_render(void *param)
 	}
 	key_input(data);
 	if (data->exit == 1)
-		return (free_n_exit(data));
+		return (close_hook(data));
 	if (update_events(data))
 		return ;
 	ray_casting(data);
