@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 13:51:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 10:55:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ray_init(t_data *data, t_ray *ray, t_var var)
 {
 	ray_data_init(ray, var.x);
 	rayside_calculator(ray);
-	ray_launcher(ray);
+	ray_launcher(ray, var.x);
 	wall_distance_calculator(ray);
 	wall_line_calculator(ray);
 	texture_x_pos_calculator(data, ray);

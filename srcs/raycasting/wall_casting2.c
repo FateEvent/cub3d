@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 17:43:42 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:21:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	texture_x_pos_calculator(t_data *data, t_ray *ray)
 
 	img_width = data->textures[ray->text_select].img->width;
 	if (ray->side == 0)
-		ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.y;
+		ray->wall_x = ray->camera.pos.y + ray->wall_distance * ray->ray_dir.y;
 	else
-		ray->wall_x = ray->pos.x + ray->wall_distance * ray->ray_dir.x;
+		ray->wall_x = ray->camera.pos.x + ray->wall_distance * ray->ray_dir.x;
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->ray_tex == 2)
 		ray->wall_x += ray->door.door_offsets[ray->map_pos.y][ray->map_pos.y]; //Offset door textures

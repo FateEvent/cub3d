@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 12:55:18 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:24:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@
 # define MINDISTANCE 6
 # define JUMPSCARE_FREQ 90
 # define MINIAUDIO_IMPLEMENTATION
-
-typedef struct s_door
-{
-	double	**door_timers;
-	double	**door_offsets;
-	int		**door_states;
-}				t_door;
 
 typedef struct s_vector
 {
@@ -62,6 +55,29 @@ typedef struct s_color
 	int	b;
 	int	a;
 }				t_color;
+
+typedef struct s_camera
+{
+	double		camera_x;
+	t_vec2		plane;
+	t_vec2		dir;
+	t_vec2		pos;
+}				t_camera;
+
+typedef struct s_transparent_wall
+{
+	t_vec		map_pos;
+	int			view_side;
+	int			screen_x;
+	t_camera	camera;
+}				t_tw;
+
+typedef struct s_door
+{
+	double	**door_timers;
+	double	**door_offsets;
+	int		**door_states;
+}				t_door;
 
 typedef struct s_image
 {
@@ -158,11 +174,8 @@ typedef struct s_floor_casting
 typedef struct s_ray_data
 {
 	t_vec2		resolution;
-	double		camera_x;
-	t_vec2		plane;
-	t_vec2		dir;
+	t_camera	camera;
 	t_vec2		ray_dir;
-	t_vec2		pos;
 	t_vec		map_pos;
 	t_vec2		ray_side;
 	t_vec2		ray_delta;
@@ -391,7 +404,7 @@ void		ray_casting(t_data *data);
 void		ray_data_init(t_ray *ray, int x);
 void		ray_delta_calculator(t_ray *ray);
 void		rayside_calculator(t_ray *ray);
-void		ray_launcher(t_ray *ray);
+void		ray_launcher(t_ray *ray, int x);
 void		wall_distance_calculator(t_ray *ray);
 void		wall_line_calculator(t_ray *ray);
 void		texture_x_pos_calculator(t_data *data, t_ray *ray);

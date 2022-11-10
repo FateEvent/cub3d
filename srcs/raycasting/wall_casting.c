@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 10:57:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:21:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,62 @@
 void	wall_distance_calculator(t_ray *ray)
 {
 	if (ray->side == 0)
-		ray->wall_distance = (ray->map_pos.x - ray->pos.x
+		ray->wall_distance = (ray->map_pos.x - ray->camera.pos.x
 				+ ray->wall_x_offset + (1 - ray->step_coord.x) / 2)
 			/ ray->ray_dir.x;
 	else
-		ray->wall_distance = (ray->map_pos.y - ray->pos.y
+		ray->wall_distance = (ray->map_pos.y - ray->camera.pos.y
 				+ ray->wall_y_offset + (1 - ray->step_coord.y) / 2)
 			/ ray->ray_dir.y;
 }
+/*
+void	transparent_wall_complement(t_ray *ray, int x)
+{
+	t_var	var;
+
+	ft_bzero(&var, sizeof(var));
+	if (ray->side == 1) {
+		if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x) { //If ray hits offset wall
+			wallDefined = false;
+			while (var.i < tpWalls.length) {
+				if (tpWalls[var.i].mapX == ray->map_pos.x && tpWalls[var.i].mapY == ray->map_pos.y) {
+					tpWalls[var.i].screenX.push(x);
+					wallDefined = true;
+					break;
+				}
+				var.i++;
+			}
+			if (!wallDefined) {
+				tpWall = new TransparentWall(whichCamera, ray->map_pos.x, ray->map_pos.y, ray->side, x);
+				tpWalls.push(tpWall);
+			}
+		}
+	} else { //side == 0
+		if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y) {
+			wallDefined = false;
+			while (var.i < tpWalls.length) {
+				if (tpWalls[var.i].mapX == ray->map_pos.x && tpWalls[var.i].mapY == ray->map_pos.y) {
+					tpWalls[var.i].screenX.push(x);
+					wallDefined = true;
+					break;
+				}
+				var.i++;
+			}
+			if (!wallDefined) {
+				tpWall = new TransparentWall(whichCamera, ray->map_pos.x, ray->map_pos.y, side, x);
+				tpWalls.push(tpWall);
+			}
+		}
+	}
+}
+*/
 
 void	door_complement_pt2(t_ray *ray)
 {
 	ray->wall_x_offset = 0.5 * ray->step_coord.x;
-	ray->wall_distance = (ray->map_pos.x - ray->pos.y + ray->wall_x_offset
+	ray->wall_distance = (ray->map_pos.x - ray->camera.pos.y + ray->wall_x_offset
 			+ (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
-	ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.y;
+	ray->wall_x = ray->camera.pos.y + ray->wall_distance * ray->ray_dir.y;
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y)
 	{
@@ -54,9 +95,9 @@ void	door_complement(t_ray *ray)
 	if (ray->side == 1)
 	{
 		ray->wall_y_offset = 0.5 * ray->step_coord.y;
-		ray->wall_distance = (ray->map_pos.y - ray->pos.y + ray->wall_y_offset
+		ray->wall_distance = (ray->map_pos.y - ray->camera.pos.y + ray->wall_y_offset
 				+ (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
-		ray->wall_x = ray->pos.y + ray->wall_distance * ray->ray_dir.x;
+		ray->wall_x = ray->camera.pos.y + ray->wall_distance * ray->ray_dir.x;
 		ray->wall_x -= floor(ray->wall_x);
 		if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x)
 		{
@@ -79,8 +120,9 @@ void	door_complement(t_ray *ray)
 		door_complement_pt2(ray);
 }
 
-void	ft_check_doors(t_ray *ray)
+void	ft_check_doors(t_ray *ray, int x)
 {
+	(void) x;
 	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x] - '0';
 	if (ray->ray_tex != 0)
 	{
@@ -89,6 +131,8 @@ void	ft_check_doors(t_ray *ray)
 			ray->hit = 1;
 			ray->wall_x_offset = 0;
 		}
+//		else if (rayTex == 9)//Transparent walls)
+//			transparent_wall_complement(ray, x);
 		else if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y]
 			[ray->map_pos.x] != 2)
 		{ //Closed, opening, or closing doors
@@ -99,7 +143,7 @@ void	ft_check_doors(t_ray *ray)
 	}
 }
 
-void	ray_launcher(t_ray *ray)
+void	ray_launcher(t_ray *ray, int x)
 {
 	ray->hit = 0;
 	while (ray->hit == 0)
@@ -116,7 +160,7 @@ void	ray_launcher(t_ray *ray)
 			ray->map_pos.y += ray->step_coord.y;
 			ray->side = 1;
 		}
-		ft_check_doors(ray);
+		ft_check_doors(ray, x);
 	}
 }
 
@@ -125,25 +169,25 @@ void	rayside_calculator(t_ray *ray)
 	if (ray->ray_dir.x < 0)
 	{
 		ray->step_coord.x = -1;
-		ray->ray_side.x = (ray->pos.x - ray->map_pos.x)
+		ray->ray_side.x = (ray->camera.pos.x - ray->map_pos.x)
 			* ray->ray_delta.x;
 	}
 	else
 	{
 		ray->step_coord.x = 1;
-		ray->ray_side.x = (ray->map_pos.x + 1.0 - ray->pos.x)
+		ray->ray_side.x = (ray->map_pos.x + 1.0 - ray->camera.pos.x)
 			* ray->ray_delta.x;
 	}
 	if (ray->ray_dir.y < 0)
 	{
 		ray->step_coord.y = -1;
-		ray->ray_side.y = (ray->pos.y - ray->map_pos.y)
+		ray->ray_side.y = (ray->camera.pos.y - ray->map_pos.y)
 			* ray->ray_delta.y;
 	}
 	else
 	{
 		ray->step_coord.y = 1;
-		ray->ray_side.y = (ray->map_pos.y + 1.0 - ray->pos.y)
+		ray->ray_side.y = (ray->map_pos.y + 1.0 - ray->camera.pos.y)
 			* ray->ray_delta.y;
 	}
 }
@@ -162,11 +206,11 @@ void	ray_delta_calculator(t_ray *ray)
 
 void	ray_data_init(t_ray *ray, int x)
 {
-	ray->camera_x = 2 * x / (double)ray->resolution.x - 1;
-	ray->ray_dir.x = ray->dir.x + ray->plane.x * ray->camera_x;
-	ray->ray_dir.y = ray->dir.y + ray->plane.y * ray->camera_x;
-	ray->map_pos.x = (int)ray->pos.x;
-	ray->map_pos.y = (int)ray->pos.y;
+	ray->camera.camera_x = 2 * x / (double)ray->resolution.x - 1;
+	ray->ray_dir.x = ray->camera.dir.x + ray->camera.plane.x * ray->camera.camera_x;
+	ray->ray_dir.y = ray->camera.dir.y + ray->camera.plane.y * ray->camera.camera_x;
+	ray->map_pos.x = (int)ray->camera.pos.x;
+	ray->map_pos.y = (int)ray->camera.pos.y;
 	ray->text_select = 0;
 	ray_delta_calculator(ray);
 }
