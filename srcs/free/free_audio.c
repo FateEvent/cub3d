@@ -14,10 +14,9 @@
 
 void	free_audio(t_data *data)
 {
-	ma_engine_uninit(data->audio.audio_engine);
-	free(data->audio.audio_engine);
 	free_audio_behind_you(data);
 	free_audio_footstep(data);
 	free_audio_ambiance(data);
 	free_audio_suspense(data);
+	ma_engine_uninit(data->audio.audio_engine);
 }

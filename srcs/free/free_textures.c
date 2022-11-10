@@ -16,25 +16,22 @@ void	free_textures(t_data *data)
 {
 	ssize_t	i;
 
-	i = 0;
+	i = -1;
 	while (++i < 20)
 	{
 		if (i < 19)
 		{
-			mlx_delete_texture(&data->textures->texture[i].texture);
-			mlx_delete_image(data->mlx, &data->textures->img[i]);
-			mlx_delete_xpm42(&data->textures->texture[i]);
-			free(data->ray_data.tex_buf[i]);
+			if (i > 8)
+				free(data->ray_data.tex_buf[i]);
 		}
-		mlx_delete_texture(&data->hud.sprites->texture[i].texture);
-		mlx_delete_xpm42(data->hud.sprites[i].texture);
-		free(&data->hud.sprites[i]);
-		
+		if (&data->hud.sprites[i])
+		{
+			free(&data->hud.sprites[i]);
+		}
 	}
 	free(data->ray_data.tex_buf);
 	free(data->textures);
-	free(data->hud.sprites);
-	mlx_delete_image(data->mlx, data->enemy.warning_text->img);
-	mlx_delete_xpm42(data->enemy.warning_text->texture);
 	free(data->enemy.warning_text);
+	free(data->enemy.death_bg);
+	free(data->enemy.death_text);
 }

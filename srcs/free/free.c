@@ -17,7 +17,6 @@ void	free_n_exit(void *ptr)
 	t_data	*data;
 
 	data = ptr;
-	mlx_close_window(data->mlx);
 	mlx_terminate(data->mlx);
 	free_audio(data);
 	free_textures(data);
