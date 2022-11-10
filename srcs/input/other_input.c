@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:12:47 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 11:21:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:52:04 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ static void	key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var)
 				+ ray->camera.pos.y)][(int)(ray->camera.pos.x)] != '1')
 			ray->camera.pos.y = (sin(alpha + M_PI / 2) * var->movement)
 				+ ray->camera.pos.y;
-		if (data->map->map[(int)(ray->camera.pos.y)][(int)((cos(alpha + M_PI / 2)
-			* var->movement) + ray->camera.pos.x)] != '1')
+		if (data->map->map[(int)(ray->camera.pos.y)]
+			[(int)((cos(alpha + M_PI / 2) * var->movement)
+			+ ray->camera.pos.x)] != '1')
 			ray->camera.pos.x = (cos(alpha + M_PI / 2) * var->movement)
 				+ ray->camera.pos.x;
 	}
@@ -70,7 +71,8 @@ void	key_input_arrows(t_data *data, t_ray *ray, t_var *var)
 				+ ray->camera.pos.y)][(int)(ray->camera.pos.x)] != '1')
 			ray->camera.pos.y = (-sin(alpha + M_PI / 2) * var->movement)
 				+ ray->camera.pos.y;
-		if (data->map->map[(int)(ray->camera.pos.y)][(int)((-cos(alpha + M_PI / 2)
+		if (data->map->map[(int)(ray->camera.pos.y)]
+			[(int)((-cos(alpha + M_PI / 2)
 			* var->movement) + ray->camera.pos.x)] != '1')
 			ray->camera.pos.x = (-cos(alpha + M_PI / 2) * var->movement)
 				+ ray->camera.pos.x;

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 11:33:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 12:23:44 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ typedef struct s_sprite_caster
 	int			d;
 	t_vec		tex;
 	t_sprite	*sprites;
-	int			*sprite_order;
+	int			*order;
 	double		*sprite_dist;
 	double		*z_buffer;
 }				t_s_caster;

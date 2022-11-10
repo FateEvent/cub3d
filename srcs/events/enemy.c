@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:15:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 11:25:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:38:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ static void	update_enemy_distant(t_data *data, t_vec2 start,
 	}
 }
 
+void	update_enemy_close(t_data *data, double dist)
+{
+	if (data->enemy.kill_timer == 0.0)
+		data->enemy.kill_timer = data->timer;
+	if (data->audio.lock2 == 0)
+		ma_sound_start(&data->audio.scare);
+	data->audio.lock2 = 1;
+	data->enemy.warning_text->img->enabled = 1;
+	if (data->timer >= data->enemy.kill_timer + KILLCOUNTDOWN
+		|| dist <= 1.5)
+	data->enemy.kill_countdown = 0.0;
+}
+
 void	update_enemy(t_data *data, t_ray *ray)
 {
 	t_s_caster	*sprite;
@@ -54,16 +67,7 @@ void	update_enemy(t_data *data, t_ray *ray)
 	if (dist <= 8.0 && !ma_sound_is_playing(&data->audio.geiger))
 		ma_sound_start(&data->audio.geiger);
 	if (dist <= 5.0)
-	{
-		if (data->enemy.kill_timer == 0.0)
-			data->enemy.kill_timer = data->timer;
-		if (data->audio.lock2 == 0)
-			ma_sound_start(&data->audio.scare);
-		data->audio.lock2 = 1;
-		data->enemy.warning_text->img->enabled = 1;
-		if (data->timer >= data->enemy.kill_timer + KILLCOUNTDOWN || dist <= 1.5)
-			data->enemy.kill_countdown = 0.0;
-	}		
+		update_enemy_close(data, dist);
 	if (dist > 8.0 && ma_sound_is_playing(&data->audio.geiger))
 		ma_sound_stop(&data->audio.geiger);
 	else if (dist > 5.0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 11:25:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:23:44 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	init_sprites_pos(t_data *data, t_ray *ray)
 	sprite = &data->ray_data.sprite;
 	while (i < 3)
 	{
-		sprite->sprite_order[i] = i;
+		sprite->order[i] = i;
 		sprite->sprite_dist[i] = ((ray->camera.pos.x - sprite->sprites[i].x)
 				* (ray->camera.pos.x - sprite->sprites[i].x)
 				+ (ray->camera.pos.y - sprite->sprites[i].y)
 				* (ray->camera.pos.y - sprite->sprites[i].y));
 		i++;
 	}
-	sort_sprites(sprite->sprite_order, sprite->sprite_dist, 3);
+	sort_sprites(sprite->order, sprite->sprite_dist, 3);
 }
 
 void	init_sprites(t_data *data, t_ray *ray)
@@ -60,10 +60,10 @@ void	init_sprites(t_data *data, t_ray *ray)
 
 	sprite = &ray->sprite;
 	sprite->sprites = malloc(sizeof(t_sprite) * 3);
-	sprite->sprite_order = malloc(sizeof(int) * 3);
+	sprite->order = malloc(sizeof(int) * 3);
 	sprite->sprite_dist = malloc(sizeof(double) * 3);
 	sprite->z_buffer = malloc(sizeof(double) * ray->resolution.x);
-	if (!sprite->sprites || !sprite->z_buffer || !sprite->sprite_order
+	if (!sprite->sprites || !sprite->z_buffer || !sprite->order
 		|| !sprite->sprite_dist)
 		throw_err_ex("Malloc error");
 	sprite->sprites[0].x = data->enemy.pos.x;

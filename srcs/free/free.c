@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:16 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 11:51:34 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 12:23:44 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_data(t_data *data)
 	free_textures(data);
 	free(data->map->minimap);
 	free(data->ray_data.sprite.sprites);
-	free(data->ray_data.sprite.sprite_order);
+	free(data->ray_data.sprite.order);
 	free(data->ray_data.sprite.sprite_dist);
 	free(data->ray_data.sprite.z_buffer);
 	free(data->map->size_arr);
@@ -42,5 +42,4 @@ void	free_data(t_data *data)
 	free_door_arrays(&data->ray_data, data->map->size.y);
 	ft_arr_freer(data->map->map);
 	free(data->map);
-	printf("exit\n");
 }

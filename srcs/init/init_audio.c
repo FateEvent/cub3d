@@ -6,18 +6,14 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:19:41 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 12:21:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 12:22:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	init_audio(t_data *data)
+static void	init_audio_allocate(t_data *data)
 {
-	ma_result			result;
-	ma_engine_config	config;
-
-	config = ma_engine_config_init();
 	data->audio.audio_engine = malloc(sizeof(ma_engine));
 	data->audio.suspense = malloc(sizeof(ma_sound) * 14);
 	data->audio.footstep = malloc(sizeof(ma_sound) * 5);
@@ -25,6 +21,15 @@ void	init_audio(t_data *data)
 	data->audio.dead = malloc(sizeof(ma_sound) * 2);
 	data->audio.smiler = malloc(sizeof(ma_sound) * 2);
 	data->audio.behind_you = malloc(sizeof(ma_sound) * 4);
+}
+
+void	init_audio(t_data *data)
+{
+	ma_result			result;
+	ma_engine_config	config;
+
+	config = ma_engine_config_init();
+	init_audio_allocate(data);
 	if (!data->audio.audio_engine)
 		throw_err_ex("Malloc error");
 	result = ma_engine_init(&config, data->audio.audio_engine);

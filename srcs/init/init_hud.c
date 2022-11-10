@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:10:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 12:21:36 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 12:32:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ void	init_hud_draw(t_data *data)
 	init_hud_draw2(data);
 }
 
+static void	init_hud_var(t_data *data, char *base, ssize_t *i)
+{
+	ft_strcpy(base, "images/hands/hands_");
+	*i = -1;
+	data->hud.pos = 0;
+	data->hud.sprites = malloc(sizeof(t_image) * 20);
+	if (!data->hud.sprites)
+		throw_err_ex("Malloc error");
+}
+
 void	init_hud(t_data *data)
 {
 	ssize_t	i;
@@ -58,12 +68,7 @@ void	init_hud(t_data *data)
 	char	*str;
 	char	*itoa;
 
-	ft_strcpy(base, "images/hands/hands_");
-	i = -1;
-	data->hud.pos = 0;
-	data->hud.sprites = malloc(sizeof(t_image) * 20);
-	if (!data->hud.sprites)
-		throw_err_ex("Malloc error");
+	init_hud_var(data, base, &i);
 	while (++i < 20)
 	{
 		if (i < 9)
