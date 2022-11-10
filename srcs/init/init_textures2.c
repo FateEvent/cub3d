@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_textures.c                                    :+:      :+:    :+:   */
+/*   init_textures2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:42:39 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 11:59:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:51:38 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_door_texture(t_data *data, t_image *texture)
 
 	i = -1;
 	ft_strcpy(base, "images/fs/fire_door");
-	while (++i < 10)
+	while (++i < 6)
 	{
 		str = ft_strdup("images/fs/fire_door");
 		itoa = ft_itoa(i + 1);
@@ -56,11 +56,11 @@ void	init_door_texture(t_data *data, t_image *texture)
 		free(itoa);
 	}
 	i = 8;
-	while (++i < 19)
+	while (++i < 15)
 	{
 		tex_to_img(data, texture, i);
 		if (!texture[i].img)
-			throw_err_ex("Malloc error");
+			throw_err_ex("Malloc error2");
 		data->ray_data.tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
 				texture[i].img->width, texture[i].img->height);
 	}

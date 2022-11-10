@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 15:07:24 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:48:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,47 +23,6 @@ void	wall_distance_calculator(t_ray *ray)
 				+ ray->wall_y_offset + (1 - ray->step_coord.y) / 2)
 			/ ray->ray_dir.y;
 }
-/*
-void	transparent_wall_complement(t_ray *ray, int x)
-{
-	t_var	var;
-
-	ft_bzero(&var, sizeof(var));
-	if (ray->side == 1) {
-		if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x) { //If ray hits offset wall
-			var.is_wall_defined = false;
-			while (var.i < tpWalls.length) {
-				if (tpWalls[var.i].mapX == ray->map_pos.x && tpWalls[var.i].mapY == ray->map_pos.y) {
-					tpWalls[var.i].screenX.push(x);
-					var.is_wall_defined = true;
-					break;
-				}
-				var.i++;
-			}
-			if (!var.is_wall_defined) {
-				tpWall = new TransparentWall(whichCamera, ray->map_pos.x, ray->map_pos.y, ray->side, x);
-				tpWalls.push(tpWall);
-			}
-		}
-	} else { //side == 0
-		if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y) {
-			var.is_wall_defined = false;
-			while (var.i < tpWalls.length) {
-				if (tpWalls[var.i].mapX == ray->map_pos.x && tpWalls[var.i].mapY == ray->map_pos.y) {
-					tpWalls[var.i].screenX.push(x);
-					var.is_wall_defined = true;
-					break;
-				}
-				var.i++;
-			}
-			if (!var.is_wall_defined) {
-				tpWall = new TransparentWall(whichCamera, ray->map_pos.x, ray->map_pos.y, side, x);
-				tpWalls.push(tpWall);
-			}
-		}
-	}
-}
-*/
 
 void	door_complement_pt2(t_ray *ray)
 {
@@ -74,7 +33,7 @@ void	door_complement_pt2(t_ray *ray)
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y)
 	{
-		if (1.0 - ray->wall_x < ray->door.door_offsets[ray->map_pos.y]
+		if (1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y]
 			[ray->map_pos.x])
 		{
 			ray->hit = 0;
@@ -97,7 +56,7 @@ void	door_complement(t_ray *ray)
 		ray->wall_y_offset = 0.5 * ray->step_coord.y;
 		ray->wall_distance = (ray->map_pos.y - ray->camera.pos.y + ray->wall_y_offset
 				+ (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
-		ray->wall_x = ray->camera.pos.y + ray->wall_distance * ray->ray_dir.x;
+		ray->wall_x = ray->camera.pos.x + ray->wall_distance * ray->ray_dir.x;
 		ray->wall_x -= floor(ray->wall_x);
 		if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x)
 		{
@@ -120,9 +79,8 @@ void	door_complement(t_ray *ray)
 		door_complement_pt2(ray);
 }
 
-void	ft_check_doors(t_ray *ray, int x)
+void	ft_check_doors(t_ray *ray)
 {
-	(void) x;
 	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x] - '0';
 	if (ray->ray_tex != 0)
 	{
@@ -131,8 +89,6 @@ void	ft_check_doors(t_ray *ray, int x)
 			ray->hit = 1;
 			ray->wall_x_offset = 0;
 		}
-//		else if (rayTex == 9)//Transparent walls)
-//			transparent_wall_complement(ray, x);
 		else if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y]
 			[ray->map_pos.x] != 2)
 		{ //Closed, opening, or closing doors
@@ -142,7 +98,7 @@ void	ft_check_doors(t_ray *ray, int x)
 	}
 }
 
-void	ray_launcher(t_ray *ray, int x)
+void	ray_launcher(t_ray *ray)
 {
 	ray->hit = 0;
 	while (ray->hit == 0)
@@ -159,7 +115,7 @@ void	ray_launcher(t_ray *ray, int x)
 			ray->map_pos.y += ray->step_coord.y;
 			ray->side = 1;
 		}
-		ft_check_doors(ray, x);
+		ft_check_doors(ray);
 	}
 }
 

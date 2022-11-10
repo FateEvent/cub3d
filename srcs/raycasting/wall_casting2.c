@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 15:02:45 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:37:06 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	choose_wall_texture(t_ray *ray)
 		ray->text_select = 9;
 	if (ray->side == 1 && ray->door.door_states[ray->map_pos.y]
 		[ray->map_pos.x] == 3)
-		ray->text_select = 12;
+		ray->text_select = 10;
 	if (ray->side == 0 && ray->door.door_states[ray->map_pos.y]
 		[ray->map_pos.x] == 3)
-		ray->text_select = 12;
+		ray->text_select = 10;
 }
 
 void	texture_y_pos_calculator(t_data *data, t_ray *ray)

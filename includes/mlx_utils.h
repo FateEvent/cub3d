@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 15:19:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:53:20 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -405,7 +405,7 @@ void		ray_casting(t_data *data);
 void		ray_data_init(t_ray *ray, int x);
 void		ray_delta_calculator(t_ray *ray);
 void		rayside_calculator(t_ray *ray);
-void		ray_launcher(t_ray *ray, int x);
+void		ray_launcher(t_ray *ray);
 void		wall_distance_calculator(t_ray *ray);
 void		wall_line_calculator(t_ray *ray);
 void		texture_x_pos_calculator(t_data *data, t_ray *ray);
