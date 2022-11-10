@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 11:24:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:48:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,7 @@ typedef struct s_var
 	uint8_t		*pixels;
 	uint32_t	i;
 	uint32_t	j;
+	int			is_wall_defined;
 }				t_var;
 
 typedef struct s_getcolor

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 11:21:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:17:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,32 @@ void	transparent_wall_complement(t_ray *ray, int x)
 	ft_bzero(&var, sizeof(var));
 	if (ray->side == 1) {
 		if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x) { //If ray hits offset wall
-			wallDefined = false;
+			var.is_wall_defined = false;
 			while (var.i < tpWalls.length) {
 				if (tpWalls[var.i].mapX == ray->map_pos.x && tpWalls[var.i].mapY == ray->map_pos.y) {
 					tpWalls[var.i].screenX.push(x);
-					wallDefined = true;
+					var.is_wall_defined = true;
 					break;
 				}
 				var.i++;
 			}
-			if (!wallDefined) {
+			if (!var.is_wall_defined) {
 				tpWall = new TransparentWall(whichCamera, ray->map_pos.x, ray->map_pos.y, ray->side, x);
 				tpWalls.push(tpWall);
 			}
 		}
 	} else { //side == 0
 		if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y) {
-			wallDefined = false;
+			var.is_wall_defined = false;
 			while (var.i < tpWalls.length) {
 				if (tpWalls[var.i].mapX == ray->map_pos.x && tpWalls[var.i].mapY == ray->map_pos.y) {
 					tpWalls[var.i].screenX.push(x);
-					wallDefined = true;
+					var.is_wall_defined = true;
 					break;
 				}
 				var.i++;
 			}
-			if (!wallDefined) {
+			if (!var.is_wall_defined) {
 				tpWall = new TransparentWall(whichCamera, ray->map_pos.x, ray->map_pos.y, side, x);
 				tpWalls.push(tpWall);
 			}
