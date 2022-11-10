@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 15:52:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:06:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	door_complement(t_ray *ray)
 		ray->wall_y_offset = 0.5 * ray->step_coord.y;
 		ray->wall_distance = (ray->map_pos.y - ray->camera.pos.y + ray->wall_y_offset
 				+ (1 - ray->step_coord.y) / 2) / ray->ray_dir.y;
-		ray->wall_x = ray->camera.pos.y + ray->wall_distance * ray->ray_dir.x;
+		ray->wall_x = ray->camera.pos.x + ray->wall_distance * ray->ray_dir.x;
 		ray->wall_x -= floor(ray->wall_x);
 		if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x)
 		{
