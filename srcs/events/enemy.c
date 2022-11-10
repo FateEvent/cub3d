@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:15:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 17:56:16 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:25:43 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	update_enemy_distant(t_data *data, t_vec2 start,
 		i = rand() % 3;
 		if (i < 2)
 			ma_sound_start(&data->audio.smiler[i]);
-		*pos = pathfinding_pos_dist(data, start, ray->pos, MINDISTANCE);
+		*pos = pathfinding_pos_dist(data, start, ray->camera.pos, MINDISTANCE);
 		sprite->sprites[0].x = pos->x;
 		sprite->sprites[0].y = pos->y;
 		data->enemy.move_countdown = MOVECOUNTDOWN;
@@ -50,7 +50,7 @@ void	update_enemy(t_data *data, t_ray *ray)
 	if (data->enemy.disable_ai == 1)
 		return ;
 	start = (t_vec2){sprite->sprites[0].x, sprite->sprites[0].y};
-	dist = ft_vect2_distance_calc(start, data->ray_data.pos);
+	dist = ft_vect2_distance_calc(start, data->ray_data.camera.pos);
 	if (dist <= 8.0 && !ma_sound_is_playing(&data->audio.geiger))
 		ma_sound_start(&data->audio.geiger);
 	if (dist <= 5.0)

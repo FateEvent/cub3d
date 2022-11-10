@@ -1,67 +1,95 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_textures.c                                    :+:      :+:    :+:   */
+/*   init_textures2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:42:39 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 11:59:20 by albaur           ###   ########.fr       */
+/*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
+/*   Updated: 2022/11/09 18:29:49 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	init_enemy_texture(t_data *data, t_image *texture)
+static int	check_texture_integrity(t_data *data, t_image *texture)
 {
-	size_t	i;
-
-	i = 5;
-	if (!data->ray_data.tex_buf)
-		throw_err_ex("Malloc error");
-	texture[6].texture = mlx_load_xpm42("images/smiler.xpm42");
-	texture[7].texture = mlx_load_xpm42("images/selena.xpm42");
-	texture[8].texture = mlx_load_xpm42("images/yoshie.xpm42");
-	if (!texture[6].texture || !texture[7].texture || !texture[8].texture)
-		throw_err_ex("Malloc error");
-	while (++i < 9)
-	{
-		tex_to_img(data, texture, i);
-		if (!texture[i].img)
-			throw_err_ex("Malloc error");
-		data->ray_data.tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
-				texture[i].img->width, texture[i].img->height);
-	}
+	if (!texture[0].texture || !texture[1].texture || !texture[2].texture
+		|| !texture[3].texture || (data->map->mode == 1
+			&& (!texture[4].texture || !texture[5].texture)))
+		return (1);
+	else
+		return (0);
 }
 
-void	init_door_texture(t_data *data, t_image *texture)
+static int	check_image_integrity(t_data *data, t_image *texture)
 {
-	ssize_t	i;
-	char	base[20];
-	char	*str;
-	char	*itoa;
+	if (!texture[0].img || !texture[1].img || !texture[2].img
+		|| !texture[3].img || (data->map->mode == 1
+			&& (!texture[4].img || !texture[5].img)))
+		return (1);
+	else
+		return (0);
+}
 
+void	tex_to_img(t_data *data, t_image *texture, size_t i)
+{
+	texture[i].img = mlx_texture_to_image(data->mlx,
+			&texture[i].texture->texture);
+}
+
+static void	from_texture_to_image(t_data *data, t_image *texture)
+{
+	t_ray	*ray;
+	size_t	i;
+
+	ray = &data->ray_data;
 	i = -1;
-	ft_strcpy(base, "images/fs/fire_door");
-	while (++i < 10)
+	tex_to_img(data, texture, 0);
+	tex_to_img(data, texture, 1);
+	tex_to_img(data, texture, 2);
+	tex_to_img(data, texture, 3);
+	if (data->map->mode == 1)
 	{
-		str = ft_strdup("images/fs/fire_door");
-		itoa = ft_itoa(i + 1);
-		str = ft_concat(str, itoa);
-		str = ft_concat(str, ".xpm42");
-		texture[i + 9].texture = mlx_load_xpm42(str);
-		if (!texture[i + 9].texture)
-			throw_err_ex("Malloc error");
-		free(str);
-		free(itoa);
+		tex_to_img(data, texture, 4);
+		tex_to_img(data, texture, 5);
 	}
-	i = 8;
-	while (++i < 19)
+	if (check_image_integrity(data, texture))
+		return ;
+	while (++i < 6)
 	{
-		tex_to_img(data, texture, i);
-		if (!texture[i].img)
-			throw_err_ex("Malloc error");
-		data->ray_data.tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
+		if ((i == 4 || i == 5) && data->map->mode != 1)
+			continue ;
+		ray->tex_buf[i] = uchar_to_arr(texture[i].img->pixels,
 				texture[i].img->width, texture[i].img->height);
 	}
+	init_enemy_texture(data, texture);
+	init_door_texture(data, texture);
+}
+
+void	*init_textures(t_data *data)
+{
+	t_image	*texture;
+
+	data->textures = malloc(sizeof(t_image) * 19);
+	texture = data->textures;
+	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 19);
+	if (!data->textures || !data->ray_data.tex_buf)
+		throw_err_ex("Malloc error");
+	ft_bzero(texture, sizeof(*texture));
+	texture[0].texture = mlx_load_xpm42(data->map->north_texture);
+	texture[1].texture = mlx_load_xpm42(data->map->south_texture);
+	texture[2].texture = mlx_load_xpm42(data->map->east_texture);
+	texture[3].texture = mlx_load_xpm42(data->map->west_texture);
+	if (data->map->mode == 1)
+	{
+		texture[4].texture = mlx_load_xpm42(data->map->ceiling_texture);
+		texture[5].texture = mlx_load_xpm42(data->map->floor_texture);
+	}
+	if (check_texture_integrity(data, texture))
+		throw_err_ex("Malloc error");
+	from_texture_to_image(data, texture);
+	if (check_image_integrity(data, texture))
+		throw_err_ex("Malloc error");
+	return (texture);
 }

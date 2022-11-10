@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 12:44:16 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:25:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_enemy(t_data *data)
 	pathfinding_dist_check(data, MINDISTANCE);
 	pathfinding_list_pos(data);
 	data->enemy.pos = pathfinding_pos_dist(data, (t_vec2){0, 0},
-			data->ray_data.pos, MINDISTANCE);
+			data->ray_data.camera.pos, MINDISTANCE);
 	if (data->enemy.pos.x == -1 && data->enemy.pos.y == -1)
 	{
 		tmp = pathfinding_get_pos(data);
@@ -45,10 +45,10 @@ void	init_sprites_pos(t_data *data, t_ray *ray)
 	while (i < 3)
 	{
 		sprite->sprite_order[i] = i;
-		sprite->sprite_dist[i] = ((ray->pos.x - sprite->sprites[i].x)
-				* (ray->pos.x - sprite->sprites[i].x)
-				+ (ray->pos.y - sprite->sprites[i].y)
-				* (ray->pos.y - sprite->sprites[i].y));
+		sprite->sprite_dist[i] = ((ray->camera.pos.x - sprite->sprites[i].x)
+				* (ray->camera.pos.x - sprite->sprites[i].x)
+				+ (ray->camera.pos.y - sprite->sprites[i].y)
+				* (ray->camera.pos.y - sprite->sprites[i].y));
 		i++;
 	}
 	sort_sprites(sprite->sprite_order, sprite->sprite_dist, 3);

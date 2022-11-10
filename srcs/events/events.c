@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 18:00:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:25:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	update_jumpscare_pos(t_data *data, ssize_t i)
 {
 	t_vec2	pos;
 
-	pos = pathfinding_pos_close(data, data->ray_data.pos, 2);
+	pos = pathfinding_pos_close(data, data->ray_data.camera.pos, 2);
 	data->ray_data.sprite.sprites[i].x = pos.x;
 	data->ray_data.sprite.sprites[i].y = pos.y;
 	if (i == 1)

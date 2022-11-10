@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_doors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 11:01:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 14:46:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 			if (data->map->map[var->i][var->j] == '2')
 			{
 				ray->door.door_timers[var->i][var->j] = 1;
-				ray->door.door_offsets[var->i][var->j] = 0;
-				ray->door.door_states[var->i][var->j] = 1;
+				ray->door.door_offsets[var->i][var->j] = 0.5;
+				ray->door.door_states[var->i][var->j] = 3;
 			}
 			var->j++;
 		}

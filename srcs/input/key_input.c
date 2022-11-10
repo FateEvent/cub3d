@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:13:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 19:02:15 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 11:21:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ static void	key_input_other(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_LEFT)
 	{
-		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * ray->k.ncos - ray->dir.y
+		var->old_dir_x = ray->camera.dir.x;
+		ray->camera.dir.x = ray->camera.dir.x * ray->k.ncos - ray->camera.dir.y
 			* ray->k.nsin;
-		ray->dir.y = var->old_dir_x * ray->k.nsin + ray->dir.y
+		ray->camera.dir.y = var->old_dir_x * ray->k.nsin + ray->camera.dir.y
 			* ray->k.ncos;
-		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * ray->k.ncos - ray->plane.y
+		var->old_plane_x = ray->camera.plane.x;
+		ray->camera.plane.x = ray->camera.plane.x * ray->k.ncos - ray->camera.plane.y
 			* ray->k.nsin;
-		ray->plane.y = var->old_plane_x * ray->k.nsin + ray->plane.y
+		ray->camera.plane.y = var->old_plane_x * ray->k.nsin + ray->camera.plane.y
 			* ray->k.ncos;
 		data->player.yaw -= data->player.speed.rotation;
 	}
@@ -38,15 +38,15 @@ static void	key_input_rest(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_RIGHT)
 	{
-		var->old_dir_x = ray->dir.x;
-		ray->dir.x = ray->dir.x * ray->k.pcos - ray->dir.y
+		var->old_dir_x = ray->camera.dir.x;
+		ray->camera.dir.x = ray->camera.dir.x * ray->k.pcos - ray->camera.dir.y
 			* ray->k.psin;
-		ray->dir.y = var->old_dir_x * ray->k.psin + ray->dir.y
+		ray->camera.dir.y = var->old_dir_x * ray->k.psin + ray->camera.dir.y
 			* ray->k.pcos;
-		var->old_plane_x = ray->plane.x;
-		ray->plane.x = ray->plane.x * ray->k.pcos - ray->plane.y
+		var->old_plane_x = ray->camera.plane.x;
+		ray->camera.plane.x = ray->camera.plane.x * ray->k.pcos - ray->camera.plane.y
 			* ray->k.psin;
-		ray->plane.y = var->old_plane_x * ray->k.psin + ray->plane.y
+		ray->camera.plane.y = var->old_plane_x * ray->k.psin + ray->camera.plane.y
 			* ray->k.pcos;
 		data->player.yaw += data->player.speed.rotation;
 	}
@@ -58,12 +58,12 @@ static void	key_input_child(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_S)
 	{
-		if (data->map->map[(int)(ray->pos.y - ray->dir.y * var->movement)]
-			[(int)(ray->pos.x)] != '1')
-			ray->pos.y -= ray->dir.y * var->movement;
-		if (data->map->map[(int)(ray->pos.y)]
-			[(int)(ray->pos.x - ray->dir.x * var->movement)] != '1')
-			ray->pos.x -= ray->dir.x * var->movement;
+		if (data->map->map[(int)(ray->camera.pos.y - ray->camera.dir.y * var->movement)]
+			[(int)(ray->camera.pos.x)] != '1')
+			ray->camera.pos.y -= ray->camera.dir.y * var->movement;
+		if (data->map->map[(int)(ray->camera.pos.y)]
+			[(int)(ray->camera.pos.x - ray->camera.dir.x * var->movement)] != '1')
+			ray->camera.pos.x -= ray->camera.dir.x * var->movement;
 	}
 	else
 		key_input_rest(data, ray, var);
@@ -93,12 +93,12 @@ void	key_input(t_data *data)
 	var.movement = data->player.speed.movement;
 	if (data->key == (keys_t)MLX_KEY_W)
 	{
-		if (data->map->map[(int)(ray->pos.y)]
-			[(int)(ray->pos.x + ray->dir.x * var.movement)] != '1')
-			ray->pos.x += ray->dir.x * var.movement;
-		if (data->map->map[(int)(ray->pos.y + ray->dir.y * var.movement)]
-			[(int)(ray->pos.x)] != '1')
-			ray->pos.y += ray->dir.y * var.movement;
+		if (data->map->map[(int)(ray->camera.pos.y)]
+			[(int)(ray->camera.pos.x + ray->camera.dir.x * var.movement)] != '1')
+			ray->camera.pos.x += ray->camera.dir.x * var.movement;
+		if (data->map->map[(int)(ray->camera.pos.y + ray->camera.dir.y * var.movement)]
+			[(int)(ray->camera.pos.x)] != '1')
+			ray->camera.pos.y += ray->camera.dir.y * var.movement;
 	}
 	else
 		key_input_child(data, ray, &var);
