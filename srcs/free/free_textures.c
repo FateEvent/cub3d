@@ -17,18 +17,8 @@ void	free_textures(t_data *data)
 	ssize_t	i;
 
 	i = -1;
-	while (++i < 20)
-	{
-		if (i < 19)
-		{
-			if (i > 8)
-				free(data->ray_data.tex_buf[i]);
-		}
-		if (&data->hud.sprites[i])
-		{
-			free(&data->hud.sprites[i]);
-		}
-	}
+	while (++i < 19)
+		free(data->ray_data.tex_buf[i]);
 	free(data->ray_data.tex_buf);
 	free(data->textures);
 	free(data->enemy.warning_text);

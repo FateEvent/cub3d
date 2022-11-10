@@ -14,8 +14,10 @@
 
 void	init_audio(t_data *data)
 {
-	ma_result	result;
+	ma_result			result;
+	ma_engine_config	config;
 
+	config = ma_engine_config_init();
 	data->audio.audio_engine = malloc(sizeof(ma_engine));
 	data->audio.suspense = malloc(sizeof(ma_sound) * 14);
 	data->audio.footstep = malloc(sizeof(ma_sound) * 5);
@@ -25,7 +27,7 @@ void	init_audio(t_data *data)
 	data->audio.behind_you = malloc(sizeof(ma_sound) * 4);
 	if (!data->audio.audio_engine)
 		throw_err_ex("Malloc error");
-	result = ma_engine_init(NULL, data->audio.audio_engine);
+	result = ma_engine_init(&config, data->audio.audio_engine);
 	if (result != MA_SUCCESS)
 		throw_err_ex("Audio initialization error");
 	init_audio_ambiance(data, &result);
