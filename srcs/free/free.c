@@ -28,7 +28,7 @@ void	free_n_exit(void *ptr)
 	free(data->ray_data.sprite.z_buffer);
 	free(data->map->size_arr);
 	free(data->map->map_str);
-	free(data->enemy->valid_pos);
+	free(data->enemy.valid_pos);
 	free(data->map->floor_texture);
 	free(data->map->ceiling_texture);
 	free(data->map->north_texture);
