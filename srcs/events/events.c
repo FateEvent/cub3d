@@ -20,9 +20,29 @@ static void	update_jumpscare_pos(t_data *data, ssize_t i)
 	data->ray_data.sprite.sprites[i].x = pos.x;
 	data->ray_data.sprite.sprites[i].y = pos.y;
 	if (i == 1)
+	{
+		data->enemy.selena_timer = data->timer;
 		ma_sound_start(&data->audio.behind_you[3]);
+	}
 	else
+	{
+		data->enemy.yoshie_timer = data->timer;
 		ma_sound_start(&data->audio.behind_you[rand() % 3]);
+	}
+}
+
+static void	update_jumpscare_hide(t_data *data)
+{
+	if (data->timer >= data->enemy.selena_timer + 10)
+	{
+		data->ray_data.sprite.sprites[1].x = -1;
+		data->ray_data.sprite.sprites[1].y = -1;
+	}
+	if (data->timer >= data->enemy.yoshie_timer + 10)
+	{
+		data->ray_data.sprite.sprites[2].x = -1;
+		data->ray_data.sprite.sprites[2].y = -1;
+	}
 }
 
 static void	update_jumpscare(t_data *data)
@@ -32,7 +52,9 @@ static void	update_jumpscare(t_data *data)
 	i = rand() % 2;
 	if (i == 0)
 		i = 2;
-	if (data->timer > 2 && data->timer % 90 == 0 && data->enemy.lock == 0)
+	update_jumpscare_hide(data);
+	if (data->timer > JUMPSCARE_FREQ - 1 && data->timer % JUMPSCARE_FREQ == 0
+		&& data->enemy.lock == 0)
 	{
 		if (rand() % 2)
 		{
@@ -68,7 +90,7 @@ int	update_events(t_data *data)
 		draw_death(data);
 	update_enemy(data, &data->ray_data);
 	update_jumpscare(data);
-	if (data->timer % 90 != 0 && data->enemy.lock == 1)
+	if (data->timer % JUMPSCARE_FREQ != 0 && data->enemy.lock == 1)
 		data->enemy.lock = 0;
 	if (data->timer > 2 && data->timer % 60 == 0 && data->audio.lock == 0)
 	{

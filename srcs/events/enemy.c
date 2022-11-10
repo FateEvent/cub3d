@@ -23,6 +23,7 @@ static void	update_enemy_distant(t_data *data, t_vec2 start,
 	data->enemy.warning_text->img->enabled = 0;
 	data->audio.lock2 = 0;
 	data->enemy.kill_countdown = KILLCOUNTDOWN;
+	data->enemy.kill_timer = 0.0;
 	if (data->timer >= data->enemy.move_timer + MOVECOUNTDOWN)
 		data->enemy.move_countdown--;
 	if (data->enemy.move_countdown <= 0)
@@ -54,15 +55,15 @@ void	update_enemy(t_data *data, t_ray *ray)
 		ma_sound_start(&data->audio.geiger);
 	if (dist <= 5.0)
 	{
-		if (data->enemy.kill_timer != 0.0)
+		if (data->enemy.kill_timer == 0.0)
 			data->enemy.kill_timer = data->timer;
 		if (data->audio.lock2 == 0)
 			ma_sound_start(&data->audio.scare);
 		data->audio.lock2 = 1;
 		data->enemy.warning_text->img->enabled = 1;
-		if (data->timer >= data->enemy.kill_timer + KILLCOUNTDOWN)
-			data->enemy.kill_countdown--;
-	}
+		if (data->timer >= data->enemy.kill_timer + KILLCOUNTDOWN || dist <= 1.5)
+			data->enemy.kill_countdown = 0.0;
+	}		
 	if (dist > 8.0 && ma_sound_is_playing(&data->audio.geiger))
 		ma_sound_stop(&data->audio.geiger);
 	else if (dist > 5.0)

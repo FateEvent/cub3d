@@ -27,6 +27,7 @@
 # define KILLCOUNTDOWN 5
 # define MOVECOUNTDOWN 10
 # define MINDISTANCE 6
+# define JUMPSCARE_FREQ 90
 # define MINIAUDIO_IMPLEMENTATION
 
 typedef struct s_door
@@ -213,6 +214,8 @@ typedef struct s_enemy
 	size_t		valid_pos_n;
 	double		kill_timer;
 	double		move_timer;
+	double		selena_timer;
+	double		yoshie_timer;
 	int			kill_countdown;
 	int			move_countdown;
 	int			disable_ai;

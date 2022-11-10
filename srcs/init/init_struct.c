@@ -31,8 +31,10 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	data->enemy.lock = 0;
 	data->enemy.kill_timer = 0.0;
 	data->enemy.move_timer = 0.0;
+	data->enemy.yoshie_timer = 0.0;
+	data->enemy.selena_timer = 0.0;
 	data->enemy.kill_countdown = KILLCOUNTDOWN;
-	data->enemy.move_timer = MOVECOUNTDOWN;
+	data->enemy.move_countdown = MOVECOUNTDOWN;
 	init_doors(data);
 }
 
