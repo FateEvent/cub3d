@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_textures2.c                                   :+:      :+:    :+:   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 18:29:49 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:16:41 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	*init_textures(t_data *data)
 {
 	t_image	*texture;
 
-	data->textures = malloc(sizeof(t_image) * 19);
+	data->textures = malloc(sizeof(t_image) * 15);
 	texture = data->textures;
-	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 19);
+	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 15);
 	if (!data->textures || !data->ray_data.tex_buf)
 		throw_err_ex("Malloc error");
 	ft_bzero(texture, sizeof(*texture));

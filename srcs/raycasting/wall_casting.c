@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 16:06:03 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:48:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	door_complement_pt2(t_ray *ray)
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y)
 	{
-		if (1.0 - ray->wall_x < ray->door.door_offsets[ray->map_pos.y]
+		if (1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y]
 			[ray->map_pos.x])
 		{
 			ray->hit = 0;
