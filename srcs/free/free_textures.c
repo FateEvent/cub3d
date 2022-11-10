@@ -18,10 +18,13 @@ void	free_textures(t_data *data)
 
 	i = -1;
 	while (++i < 19)
+	{
 		free(data->ray_data.tex_buf[i]);
+		mlx_delete_xpm42(data->textures[i].texture);
+	}
 	free(data->ray_data.tex_buf);
 	free(data->textures);
-	free(data->enemy.warning_text);
-	free(data->enemy.death_bg);
-	free(data->enemy.death_text);
+	free(data->enemy->warning_text);
+	free(data->enemy->death_bg);
+	free(data->enemy->death_text);
 }

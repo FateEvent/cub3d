@@ -17,6 +17,8 @@ void	free_n_exit(void *ptr)
 	t_data	*data;
 
 	data = ptr;
+	mlx_close_window(data->mlx);
+	mlx_terminate(data->mlx);
 	free_audio(data);
 	free_textures(data);
 	free(data->map->minimap);
@@ -26,7 +28,7 @@ void	free_n_exit(void *ptr)
 	free(data->ray_data.sprite.z_buffer);
 	free(data->map->size_arr);
 	free(data->map->map_str);
-	free(data->enemy.valid_pos);
+	free(data->enemy->valid_pos);
 	free(data->map->floor_texture);
 	free(data->map->ceiling_texture);
 	free(data->map->north_texture);
@@ -35,7 +37,6 @@ void	free_n_exit(void *ptr)
 	free(data->map->west_texture);
 	ft_arr_freer(data->map->map);
 	free(data->map);
-	mlx_terminate(data->mlx);
 	printf("exit\n");
 	exit(0);
 }
