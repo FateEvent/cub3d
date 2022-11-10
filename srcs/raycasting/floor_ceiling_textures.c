@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling_textures.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 17:53:30 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 14:27:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,6 @@ void	draw_walls(t_data *data, int x)
 	var.width = data->textures[ray->text_select].img->width;
 	var.height = data->textures[ray->text_select].img->height;
 	var.pixels = data->textures[ray->text_select].img->pixels;
-	if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
-	{
-		ray->text_select = 10;
-	}
 	while (var.y <= ray->draw_end)
 	{
 		ray->tex.y = (int)ray->tex_pos & (var.height - 1);
@@ -95,7 +91,8 @@ void	draw_walls(t_data *data, int x)
 		var.color = ray->tex_buf[ray->text_select][((ray->tex.y * var.width)
 				+ ray->tex.x)];
 		var.color = get_shading(data, var.color, ray->wall_distance);
-		mlx_put_pixel(data->screen.display.img, x, var.y, var.color);
+		if ((var.color & 0xFFFFFFFF) != 0)
+			mlx_put_pixel(data->screen.display.img, x, var.y, var.color);
 		++var.y;
 	}
 }

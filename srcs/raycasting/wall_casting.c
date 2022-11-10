@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 12:17:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:07:24 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	transparent_wall_complement(t_ray *ray, int x)
 void	door_complement_pt2(t_ray *ray)
 {
 	ray->wall_x_offset = 0.5 * ray->step_coord.x;
-	ray->wall_distance = (ray->map_pos.x - ray->camera.pos.y + ray->wall_x_offset
+	ray->wall_distance = (ray->map_pos.x - ray->camera.pos.x + ray->wall_x_offset
 			+ (1 - ray->step_coord.x) / 2) / ray->ray_dir.x;
 	ray->wall_x = ray->camera.pos.y + ray->wall_distance * ray->ray_dir.y;
 	ray->wall_x -= floor(ray->wall_x);
@@ -136,7 +136,6 @@ void	ft_check_doors(t_ray *ray, int x)
 		else if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y]
 			[ray->map_pos.x] != 2)
 		{ //Closed, opening, or closing doors
-			//printf("%d\n", ray->door.door_states[ray->map_pos.y][ray->map_pos.x]);
 			ray->hit = 1;
 			door_complement(ray);
 		}

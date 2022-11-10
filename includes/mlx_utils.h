@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 11:48:19 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:19:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define KILLCOUNTDOWN 5
 # define MOVECOUNTDOWN 10
 # define MINDISTANCE 6
-# define JUMPSCARE_FREQ 90
+# define JUMPSCARE_FREQ 30
 # define MINIAUDIO_IMPLEMENTATION
 
 typedef struct s_vector
