@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 16:30:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 11:53:30 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	update_doors(t_data *data, t_ray *ray)
 	ft_bzero(&var, sizeof(var));
 	var.width = data->map->size.x;
 	var.height = data->map->size.y;
-	while (var.i < var.height && ray->map->map[var.i])
+	while (var.i < var.height)
 	{
 		var.j = 0;
 		while (var.j < var.width && ray->map->map[var.i][var.j])

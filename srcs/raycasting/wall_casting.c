@@ -3,14 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 12:27:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 12:21:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+void	open_door(t_data *data, t_ray *ray)
+{	
+	int	checkMapX = ray->camera.pos.x + ray->camera.dir.x;
+	int	checkMapY = ray->camera.pos.y + ray->camera.dir.x;
+	int	checkMapX2 = ray->camera.pos.x + ray->camera.dir.x * 2;
+	int	checkMapY2 = ray->camera.pos.y + ray->camera.dir.x * 2;
+	
+	if (data->map->map[checkMapY][checkMapX] == 2) //Open door in front of camera
+//		ray->door.door_states[checkMapY][checkMapX] = 1;
+		printf("bong!\n");
+	if (data->map->map[checkMapY2][checkMapX2] == 3)
+		ray->door.door_states[checkMapY2][checkMapY2] = 1;
+	if (data->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == 3) //Avoid getting stuck in doors
+		ray->door.door_states[(int)ray->camera.pos.y][(int)ray->camera.pos.x] = 1;
+}
+
+void	movement_check(t_data *data, t_ray *ray)
+{
+	(void) data;
+	if (ray->door.door_states[ray->map_pos.y][ray->map_pos.x] == 2
+		&& (ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x] == '2'
+		|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x] == '2'
+		|| ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x + 1] == '2'
+		|| ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x - 1] == '2'
+		|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x + 1] == '2'
+		|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x - 1] == '2'
+		|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x + 1] == '2'
+		|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x - 1] == '2'))
+			printf("bim!\n");
+}
 
 void	wall_distance_calculator(t_ray *ray)
 {
