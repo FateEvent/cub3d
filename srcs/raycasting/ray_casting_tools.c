@@ -6,11 +6,22 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 15:54:23 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 19:14:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+void	ray_data_init(t_ray *ray, int x)
+{
+	ray->camera.camera_x = 2 * x / (double)ray->resolution.x - 1;
+	ray->ray_dir.x = ray->camera.dir.x + ray->camera.plane.x * ray->camera.camera_x;
+	ray->ray_dir.y = ray->camera.dir.y + ray->camera.plane.y * ray->camera.camera_x;
+	ray->map_pos.x = (int)ray->camera.pos.x;
+	ray->map_pos.y = (int)ray->camera.pos.y;
+	ray->text_select = 0;
+	ray_delta_calculator(ray);
+}
 
 void	ray_init(t_data *data, t_ray *ray, t_var var)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/11 07:20:23 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/11 19:13:16 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,8 @@ SRCS_FILES	+=	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 
 RC_PATH		=	raycasting/
 RC_FILES	=	update_render ray_casting_tools wall_casting \
-				wall_casting2 floor_ceiling_textures floor_ceiling_casting \
-				sprite_casting
+				wall_casting2 door_complement floor_ceiling_textures \
+				floor_ceiling_casting sprite_casting
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 EVENTS_PATH		=	events/
