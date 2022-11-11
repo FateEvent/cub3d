@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 16:46:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:23:29 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 		{
 			if (data->map->map[var->i][var->j] == '2')
 			{
-				ray->door.door_offsets[var->i][var->j] = 0.7;
+				ray->door.door_offsets[var->i][var->j] = 0;
 				ray->door.door_states[var->i][var->j] = 3;
 			}
 			var->j++;
@@ -58,4 +58,6 @@ void	init_doors(t_data *data)
 	into_the_loop(data, ray, &var);
 	if (!data->ray_data.door.door_offsets || !data->ray_data.door.door_states)
 		throw_err_ex("Error : Malloc failed.");
+	ray->door.index = 50;
+	ray->door.opening_timer = 0;
 }
