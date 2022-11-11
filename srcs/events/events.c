@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 11:25:33 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:01:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,6 @@ static void	update_jumpscare(t_data *data)
 	}
 }
 
-static int	is_wasd(t_data *data)
-{
-	if (data->key == (keys_t)MLX_KEY_W || data->key == (keys_t)MLX_KEY_A
-		|| data->key == (keys_t)MLX_KEY_S || data->key == (keys_t)MLX_KEY_D)
-		return (0);
-	return (1);
-}
-
 int	update_events(t_data *data)
 {
 	if (!data->enemy.alive)
@@ -84,7 +76,7 @@ int	update_events(t_data *data)
 	if (data->time == 0)
 		init_hud_draw(data);
 	if (!is_wasd(data))
-		update_hud(data);
+		update_move(data);
 	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0
 		&& data->enemy.alive == 1)
 		draw_death(data);

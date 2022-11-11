@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:15:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 12:38:09 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 16:37:53 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	update_enemy_close(t_data *data, double dist)
 	data->enemy.warning_text->img->enabled = 1;
 	if (data->timer >= data->enemy.kill_timer + KILLCOUNTDOWN
 		|| dist <= 1.5)
-	data->enemy.kill_countdown = 0.0;
+		data->enemy.kill_countdown = 0.0;
 }
 
 void	update_enemy(t_data *data, t_ray *ray)

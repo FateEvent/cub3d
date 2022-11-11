@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 12:23:44 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:10:46 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,12 +212,13 @@ typedef struct s_speed
 
 typedef struct s_player
 {
-	char	player_spawn_dir;
-	t_vec	player_spawn_pos;
-	int		fov;
-	t_speed	speed;
-	double	yaw;
-	int		start_direction;
+	char		player_spawn_dir;
+	t_vec		player_spawn_pos;
+	int			fov;
+	t_speed		speed;
+	double		yaw;
+	int			start_direction;
+	double		footstep_timestamp;
 }				t_player;
 
 typedef struct s_enemy
@@ -274,26 +275,28 @@ typedef struct s_shading
 
 typedef struct s_data
 {
-	mlx_t		*mlx;
-	t_map		*map;
-	t_screen	screen;
-	uint32_t	render_delay;
-	uint32_t	img_index;
-	t_image		*textures;
-	int			edge_size;	
-	t_player	player;
-	t_ray		ray_data;
-	int			keycode;
-	int			fd;
-	int			key;
-	int			delay;
-	int			time;
-	int			timer;
-	int			exit;
-	t_enemy		enemy;
-	t_hud		hud;
-	t_audio		audio;
-	t_shading	shading;
+	mlx_t			*mlx;
+	t_map			*map;
+	t_screen		screen;
+	uint32_t		render_delay;
+	uint32_t		img_index;
+	t_image			*textures;
+	int				edge_size;	
+	t_player		player;
+	t_ray			ray_data;
+	int				keycode;
+	int				fd;
+	int				key;
+	int				delay;
+	int				time;
+	int				timer;
+	long long		timestamp;
+	struct timeval	timeval;
+	int				exit;
+	t_enemy			enemy;
+	t_hud			hud;
+	t_audio			audio;
+	t_shading		shading;
 }				t_data;
 
 typedef struct s_var
@@ -430,7 +433,7 @@ void		draw_ceiling(t_data *data, int x);
 void		draw_floor(t_data *data, int x);
 void		draw_minimap(t_data	*data);
 void		draw_death(t_data *data);
-void		update_hud(t_data *data);
+void		update_move(t_data *data);
 void		draw_rect(mlx_image_t *img, t_shape rect, int color);
 
 // sprites
@@ -495,6 +498,7 @@ t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 				size_t height);
 void		ft_print_map(char **map);
 double		get_time(void);
+void		update_time(t_data *data);
 int			get_delay(int startnow, int min);
 void		tex_to_img(t_data *data, t_image *texture, size_t i);
 void		ft_print_double_arr(double **map, size_t height, size_t width);
@@ -503,5 +507,6 @@ void		free_door_arrays(t_ray *ray, size_t size);
 void		free_door_arrays_index(t_ray *ray, size_t index, size_t size);
 t_vec		ft_get_coordinates(char **map, char prop);
 t_vec		ft_get_x_and_y(char **map, char prop);
+int			is_wasd(t_data *data);
 
 #endif

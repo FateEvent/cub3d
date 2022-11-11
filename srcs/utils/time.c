@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:09:08 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/03 12:02:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/10 16:30:21 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,11 @@ int	get_delay(int startnow, int min)
 	if (delta < (unsigned long)min)
 		usleep((min - delta) % 1000000);
 	return (delta - min);
+}
+
+void	update_time(t_data *data)
+{
+	gettimeofday(&data->timeval, NULL);
+	data->timestamp = data->timeval.tv_sec * (uint64_t)1000
+		+ (data->timeval.tv_usec / 1000);
 }
