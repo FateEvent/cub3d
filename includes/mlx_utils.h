@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 17:20:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 19:10:16 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ typedef struct s_transparent_wall
 typedef struct s_door
 {
 	double	**door_offsets;
-	int		**door_states;
 	int		sliding;
 	int		index;
 	double	offset;

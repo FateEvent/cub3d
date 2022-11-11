@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 18:59:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 19:02:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-void	update_doors_pt2(t_data *data, t_ray *ray)
+static void	update_doors_pt2(t_data *data, t_ray *ray)
 {
 	printf("%d\n", ray->door.sliding);
 	if (ray->door.sliding == 2)

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 17:23:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 19:04:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,13 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 	{
 		ray->door.door_offsets[var->i] = ft_memsalloc(var->width,
 				sizeof(double), 1);
-		ray->door.door_states[var->i] = ft_calloc(var->width,
-				sizeof(int));
-		if (!ray->door.door_offsets[var->i] || !ray->door.door_states[var->i])
+		if (!ray->door.door_offsets[var->i])
 			return (free_door_arrays_index(ray, var->i, var->height));
 		var->j = 0;
 		while (var->j < var->width && data->map->map[var->i][var->j])
 		{
 			if (data->map->map[var->i][var->j] == '2')
-			{
 				ray->door.door_offsets[var->i][var->j] = 0;
-				ray->door.door_states[var->i][var->j] = 3;
-			}
 			var->j++;
 		}
 		var->i++;
@@ -52,11 +47,10 @@ void	init_doors(t_data *data)
 	var.width = data->map->size.x;
 	var.height = data->map->size.y;
 	ray->door.door_offsets = ft_calloc(var.height, sizeof(double *));
-	ray->door.door_states = ft_calloc(var.width, sizeof(int *));
-	if (!ray->door.door_offsets || !ray->door.door_states)
+	if (!ray->door.door_offsets)
 		throw_err_ex("Malloc error");
 	into_the_loop(data, ray, &var);
-	if (!data->ray_data.door.door_offsets || !data->ray_data.door.door_states)
+	if (!data->ray_data.door.door_offsets)
 		throw_err_ex("Error : Malloc failed.");
 	ray->door.index = 50;
 	ray->door.opening_timer = 0;
