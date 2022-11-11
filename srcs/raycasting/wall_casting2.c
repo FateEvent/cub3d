@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 12:22:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:54:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,22 @@ void	choose_wall_texture(t_ray *ray)
 		ray->text_select = 0;
 	if (ray->side == 1 && ray->ray_dir.y > 0)
 		ray->text_select = 1;
-	if (ray->side == 0 && ray->ray_dir.x > 0)
-		ray->text_select = 3;
 	if (ray->side == 0 && ray->ray_dir.x < 0)
 		ray->text_select = 2;
-	if (ray->side == 0 && ray->ray_tex == 2)
+	if (ray->side == 0 && ray->ray_dir.x > 0)
+		ray->text_select = 3;
+	if (ray->ray_tex == 2)
 		ray->text_select = 9;
-	if (ray->side == 1 && ray->ray_tex == 2)
-		ray->text_select = 9;
-	if (ray->side == 1 && ray->door.door_states[ray->map_pos.y]
-		[ray->map_pos.x] == 3)
+	if (ray->ray_tex == 3)
 		ray->text_select = 10;
-	if (ray->side == 0 && ray->door.door_states[ray->map_pos.y]
-		[ray->map_pos.x] == 3)
-		ray->text_select = 10;
+	if (ray->ray_tex == 4)
+		ray->text_select = 11;
+	if (ray->ray_tex == 5)
+		ray->text_select = 12;
+	if (ray->ray_tex == 6)
+		ray->text_select = 13;
+	if (ray->ray_tex == 7)
+		ray->text_select = 14;
 }
 
 void	texture_y_pos_calculator(t_data *data, t_ray *ray)
