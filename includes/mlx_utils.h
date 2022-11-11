@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 19:16:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:45:59 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <MLX42.h>
 # include "libft.h"
 # include "miniaudio.h"
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 960
+# define HEIGHT 600
 # define BPP 4
 # define KILLCOUNTDOWN 5
 # define MOVECOUNTDOWN 10
@@ -224,6 +224,7 @@ typedef struct s_player
 	int			start_direction;
 	double		footstep_timer;
 	int			footstep_lock;
+	size_t		collected;
 }				t_player;
 
 typedef struct s_enemy
@@ -260,6 +261,8 @@ typedef struct s_audio
 {
 	ma_engine	*audio_engine;
 	ma_sound	ambiance;
+	ma_sound	creeping_down;
+	ma_sound	unraveled;
 	ma_sound	scare;
 	ma_sound	*dead;
 	ma_sound	*death;
@@ -452,7 +455,7 @@ void		pathfinding_list_pos(t_data *data);
 t_vec		pathfinding_get_pos(t_data *data);
 t_vec2		pathfinding_pos_dist(t_data *data, t_vec2 start, t_vec2 end,
 				size_t min);
-t_vec2		pathfinding_pos_except(t_data *data, t_vec2 pos);
+t_vec2		pathfinding_pos_except(t_data *data, t_vec2 pos, size_t	distance);
 t_vec2		pathfinding_pos_close(t_data *data, t_vec2 pos, int distance);
 void		pathfinding_dist_check(t_data *data, size_t min);
 

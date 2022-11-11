@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:25:05 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 07:21:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 11:33:26 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void	init_audio_ambiance(t_data *data, ma_result *result)
 			"audio/smiler2.flac", 64, NULL, NULL, &data->audio.smiler[1]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
 			"audio/geiger.flac", 64, NULL, NULL, &data->audio.geiger);
+	result += ma_sound_init_from_file(data->audio.audio_engine,
+			"audio/unraveled.flac", 64, NULL, NULL, &data->audio.unraveled);
+	result += ma_sound_init_from_file(data->audio.audio_engine,
+			"audio/creeping_down.flac", 64, NULL, NULL,
+			&data->audio.creeping_down);
 }
 
 void	init_audio_suspense(t_data *data, ma_result *result)
