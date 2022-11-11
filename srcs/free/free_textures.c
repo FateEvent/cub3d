@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:40:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 17:24:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 01:03:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,14 @@ void	free_textures(t_data *data)
 	while (++i < 15)
 	{
 		free(data->ray_data.tex_buf[i]);
-		free(data->textures[i].texture->texture.pixels);
-		free(data->textures[i].texture);
+		mlx_delete_xpm42(data->textures[i].texture);
 	}
 	i = -1;
 	while (++i < 20)
-	{
-		free(data->hud.sprites[i].texture->texture.pixels);
-		free(data->hud.sprites[i].texture);
-	}
-	free(data->enemy.warning_text->texture->texture.pixels);
-	free(data->enemy.warning_text->texture);
+		mlx_delete_xpm42(data->hud.sprites[i].texture);
+	mlx_delete_xpm42(data->enemy.warning_text->texture);
 	if (data->enemy.death_text)
-	{
-		free(data->enemy.death_text->texture->texture.pixels);
-		free(data->enemy.death_text->texture);
-	}
+		mlx_delete_xpm42(data->enemy.death_text->texture);
 	free(data->ray_data.tex_buf);
 	free(data->textures);
 	free(data->enemy.warning_text);
