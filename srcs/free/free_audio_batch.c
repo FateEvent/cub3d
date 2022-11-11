@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:09:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 12:31:27 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 12:50:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	free_audio_ambiance(t_data *data)
 	ma_sound_uninit(&data->audio.smiler[0]);
 	ma_sound_uninit(&data->audio.smiler[1]);
 	ma_sound_uninit(&data->audio.geiger);
+	ma_sound_uninit(&data->audio.creeping_down);
+	ma_sound_uninit(&data->audio.unraveled);
 }
 
 void	free_audio_suspense(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:21:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 17:42:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 10:39:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void	sliding_doors(t_ray *ray)
 void	update_render(void *param)
 {
 	t_data	*data;
-	t_ray	*ray;
 
 	data = (t_data *)param;
-	ray = &data->ray_data;
 	get_delay(1, 16666);
 	while (data->delay > 16666)
 	{
