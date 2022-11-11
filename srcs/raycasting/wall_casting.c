@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 17:21:31 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:00:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,7 @@ void	ft_check_doors(t_ray *ray)
 			ray->hit = 1;
 			ray->wall_x_offset = 0;
 		}
-		else if (ray->ray_tex == 2 && ray->door.door_states[ray->map_pos.y]
-			[ray->map_pos.x] != 2)
+		else if (ray->ray_tex >= 2 && ray->ray_tex <= 7)
 		{ //Closed, opening, or closing doors
 			ray->hit = 1;
 			door_complement(ray);
