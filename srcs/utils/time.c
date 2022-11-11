@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:09:08 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 16:30:21 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 01:54:00 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ int	get_delay(int startnow, int min)
 	return (delta - min);
 }
 
-void	update_time(t_data *data)
+void	update_time(struct timeval *tv, long long *timestamp)
 {
-	gettimeofday(&data->timeval, NULL);
-	data->timestamp = data->timeval.tv_sec * (uint64_t)1000
-		+ (data->timeval.tv_usec / 1000);
+	gettimeofday(tv, NULL);
+	*timestamp = tv->tv_sec * (uint64_t)1000 + (tv->tv_usec / 1000);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 11:21:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 02:04:38 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	init_struct2(t_data *data, t_ray *ray)
 	data->enemy.selena_timer = 0.0;
 	data->enemy.kill_countdown = KILLCOUNTDOWN;
 	data->enemy.move_countdown = MOVECOUNTDOWN;
+	data->player.footstep_timer = 0;
+	data->player.footstep_lock = 0;
 	init_doors(data);
 }
 

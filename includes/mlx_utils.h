@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 17:10:46 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 07:21:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,8 @@ typedef struct s_player
 	t_speed		speed;
 	double		yaw;
 	int			start_direction;
-	double		footstep_timestamp;
+	double		footstep_timer;
+	int			footstep_lock;
 }				t_player;
 
 typedef struct s_enemy
@@ -289,9 +290,7 @@ typedef struct s_data
 	int				key;
 	int				delay;
 	int				time;
-	int				timer;
-	long long		timestamp;
-	struct timeval	timeval;
+	double			timer;
 	int				exit;
 	t_enemy			enemy;
 	t_hud			hud;
@@ -498,7 +497,7 @@ t_color		**ft_from_uchar_to_rgb_buf(unsigned char *arr, size_t width,
 				size_t height);
 void		ft_print_map(char **map);
 double		get_time(void);
-void		update_time(t_data *data);
+void		update_time(struct timeval *tv, long long *timestamp);
 int			get_delay(int startnow, int min);
 void		tex_to_img(t_data *data, t_image *texture, size_t i);
 void		ft_print_double_arr(double **map, size_t height, size_t width);

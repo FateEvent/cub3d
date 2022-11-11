@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 17:01:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 07:18:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	update_jumpscare(t_data *data)
 	if (i == 0)
 		i = 2;
 	update_jumpscare_hide(data);
-	if (data->timer > JUMPSCARE_FREQ - 1 && data->timer % JUMPSCARE_FREQ == 0
+	if (data->timer > JUMPSCARE_FREQ - 1 && (int)data->timer % JUMPSCARE_FREQ == 0
 		&& data->enemy.lock == 0)
 	{
 		if (rand() % 2)
@@ -82,14 +82,14 @@ int	update_events(t_data *data)
 		draw_death(data);
 	update_enemy(data, &data->ray_data);
 	update_jumpscare(data);
-	if (data->timer % JUMPSCARE_FREQ != 0 && data->enemy.lock == 1)
+	if ((int)data->timer % JUMPSCARE_FREQ != 0 && data->enemy.lock == 1)
 		data->enemy.lock = 0;
-	if (data->timer > 2 && data->timer % 60 == 0 && data->audio.lock == 0)
+	if (data->timer > 2 && (int)data->timer % 60 == 0 && data->audio.lock == 0)
 	{
 		data->audio.lock = 1;
 		ma_sound_start(&data->audio.suspense[rand() % 14]);
 	}
-	if (data->timer % 60 != 0 && data->audio.lock == 1)
+	if ((int)data->timer % 60 != 0 && data->audio.lock == 1)
 		data->audio.lock = 0;
 	return (0);
 }

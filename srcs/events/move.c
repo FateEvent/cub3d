@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:11:35 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 17:12:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 03:15:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ void	update_move(t_data *data)
 		data->hud.sprites[19].img->enabled = 0;
 	data->hud.sprites[data->hud.pos].img->enabled = 1;
 	++data->hud.pos;
-	if (data->timestamp >= data->player.footstep_timestamp)
+	if (data->timer >= data->player.footstep_timer + 0.4 && data->player.footstep_lock == 0)
 	{
-		data->player.footstep_timestamp = data->timestamp + 0.8;
+		data->player.footstep_timer = data->timer;
+		data->player.footstep_lock = 1;
+		if (ma_sound_is_playing(&data->audio.footstep[i]))
+			ma_sound_seek_to_pcm_frame(&data->audio.footstep[i], 0);
 		ma_sound_start(&data->audio.footstep[i]);
 	}
-	else
-		data->player.footstep_timestamp -= 0.4;
+	else if (data->timer >= data->player.footstep_timer + 0.)
+		data->player.footstep_lock = 0;
 }

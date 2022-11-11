@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:25:05 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 12:23:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 07:21:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,49 +15,49 @@
 void	init_audio_behind_you(t_data *data, ma_result *result)
 {
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/behindyou1.flac", 0, NULL, NULL, &data->audio.behind_you[0]);
+			"audio/behindyou1.flac", 64, NULL, NULL, &data->audio.behind_you[0]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/behindyou2.flac", 0, NULL, NULL, &data->audio.behind_you[1]);
+			"audio/behindyou2.flac", 64, NULL, NULL, &data->audio.behind_you[1]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/behindyou3.flac", 0, NULL, NULL, &data->audio.behind_you[2]);
+			"audio/behindyou3.flac", 64, NULL, NULL, &data->audio.behind_you[2]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/behindyou4.flac", 0, NULL, NULL, &data->audio.behind_you[3]);
+			"audio/behindyou4.flac", 64, NULL, NULL, &data->audio.behind_you[3]);
 }
 
 void	init_audio_footstep(t_data *data, ma_result *result)
 {
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/footstep1.flac", 0, NULL, NULL, &data->audio.footstep[0]);
+			"audio/footstep1.flac", 64, NULL, NULL, &data->audio.footstep[0]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/footstep2.flac", 0, NULL, NULL, &data->audio.footstep[1]);
+			"audio/footstep2.flac", 64, NULL, NULL, &data->audio.footstep[1]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/footstep3.flac", 0, NULL, NULL, &data->audio.footstep[2]);
+			"audio/footstep3.flac", 64, NULL, NULL, &data->audio.footstep[2]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/footstep4.flac", 0, NULL, NULL, &data->audio.footstep[3]);
+			"audio/footstep4.flac", 64, NULL, NULL, &data->audio.footstep[3]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/footstep5.flac", 0, NULL, NULL, &data->audio.footstep[4]);
+			"audio/footstep5.flac", 64, NULL, NULL, &data->audio.footstep[4]);
 }
 
 void	init_audio_ambiance(t_data *data, ma_result *result)
 {
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/ambiance.flac", 0, NULL, NULL, &data->audio.ambiance);
+			"audio/ambiance.flac", 64, NULL, NULL, &data->audio.ambiance);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/dead1.flac", 0, NULL, NULL, &data->audio.dead[0]);
+			"audio/dead1.flac", 64, NULL, NULL, &data->audio.dead[0]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/dead2.flac", 0, NULL, NULL, &data->audio.dead[1]);
+			"audio/dead2.flac", 64, NULL, NULL, &data->audio.dead[1]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/scare.flac", 0, NULL, NULL, &data->audio.scare);
+			"audio/scare.flac", 64, NULL, NULL, &data->audio.scare);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/death1.flac", 0, NULL, NULL, &data->audio.death[0]);
+			"audio/death1.flac", 64, NULL, NULL, &data->audio.death[0]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/death2.flac", 0, NULL, NULL, &data->audio.death[1]);
+			"audio/death2.flac", 64, NULL, NULL, &data->audio.death[1]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/smiler1.flac", 0, NULL, NULL, &data->audio.smiler[0]);
+			"audio/smiler1.flac", 64, NULL, NULL, &data->audio.smiler[0]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/smiler2.flac", 0, NULL, NULL, &data->audio.smiler[1]);
+			"audio/smiler2.flac", 64, NULL, NULL, &data->audio.smiler[1]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/geiger.flac", 0, NULL, NULL, &data->audio.geiger);
+			"audio/geiger.flac", 64, NULL, NULL, &data->audio.geiger);
 }
 
 void	init_audio_suspense(t_data *data, ma_result *result)
@@ -75,7 +75,7 @@ void	init_audio_suspense(t_data *data, ma_result *result)
 		str = ft_strjoin(base, itoa);
 		str = ft_concat(str, ".flac");
 		result += ma_sound_init_from_file(data->audio.audio_engine,
-				str, 0, NULL, NULL, &data->audio.suspense[i]);
+				str, 64, NULL, NULL, &data->audio.suspense[i]);
 		free(str);
 		free(itoa);
 	}
