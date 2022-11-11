@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:11:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 19:26:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 19:28:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	door_complement_pt2(t_ray *ray)
 	{
 		ray->map_pos.y += ray->step_coord.y;
 		ray->side = 1;
-//		ray->ray_tex = 0;	any doorframes?
+		ray->ray_tex = 0;	//any doorframes?
 		ray->wall_x_offset = 0;
 	}
 }
