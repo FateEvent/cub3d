@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:11:35 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 03:15:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 07:24:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	update_move(t_data *data)
 			ma_sound_seek_to_pcm_frame(&data->audio.footstep[i], 0);
 		ma_sound_start(&data->audio.footstep[i]);
 	}
-	else if (data->timer >= data->player.footstep_timer + 0.)
+	else if (data->timer >= data->player.footstep_timer + 0.4)
 		data->player.footstep_lock = 0;
 }
