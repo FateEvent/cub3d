@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 18:00:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:35:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ray_launcher_door_complement(t_ray *ray)
 			ray->door.map_pos.x = ray->map_pos.x;
 			ray->door.map_pos.y = ray->map_pos.y;
 		}
-	}	// pourrais-je implémenter un timer qui referme la porte après que je me suis éloigné ?
+	}
 }
 
 void	wall_distance_calculator(t_ray *ray)
@@ -104,14 +104,13 @@ void	ft_check_doors(t_ray *ray)
 	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x] - '0';
 	if (ray->ray_tex != 0)
 	{
-//		ray_launcher_door_complement(ray);
 		if (ray->ray_tex == 1)
 		{
 			ray->hit = 1;
 			ray->wall_x_offset = 0;
 		}
 		else if (ray->ray_tex >= 2 && ray->ray_tex <= 7)
-		{ //Closed, opening, or closing doors
+		{
 			ray->hit = 1;
 			door_complement(ray);
 			ray_launcher_door_complement(ray);
