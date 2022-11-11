@@ -6,12 +6,57 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 12:21:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:14:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
+void	ray_launcher_door_complement(t_ray *ray)
+{
+	if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
+	{
+		if (ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x] == '2'
+			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x] == '2'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x + 1] == '2'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x - 1] == '2'
+			|| ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x + 1] == '2'
+			|| ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x - 1] == '2'
+			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x + 1] == '2'
+			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x - 1] == '2')
+		{
+//			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '3';
+			ray->door.sliding = 1;
+//			ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x] += 0.20;
+		}
+	}	// pourrais-je implémenter un timer qui referme la porte après que je me suis éloigné ?
+	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '3')
+	{
+		if (ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '3'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '3'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '3'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '3'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '3'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '3'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '3'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '3')
+//			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '4';
+			printf("miao\n");
+	}
+	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '4')
+	{
+		if (ray->map->map[(int)ray->camera.pos.y + 2][(int)ray->camera.pos.x] == '4'
+			|| ray->map->map[(int)ray->camera.pos.y - 2][(int)ray->camera.pos.x] == '4'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x + 2] == '4'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x - 2] == '4'
+			|| ray->map->map[(int)ray->camera.pos.y + 2][(int)ray->camera.pos.x + 2] == '4'
+			|| ray->map->map[(int)ray->camera.pos.y + 2][(int)ray->camera.pos.x - 2] == '4'
+			|| ray->map->map[(int)ray->camera.pos.y - 2][(int)ray->camera.pos.x + 2] == '4'
+			|| ray->map->map[(int)ray->camera.pos.y - 2][(int)ray->camera.pos.x - 2] == '4')
+			ray->map->map[ray->map_pos.y][ray->map_pos.x] = '2';
+	}
+}
+/*
 void	open_door(t_data *data, t_ray *ray)
 {	
 	int	checkMapX = ray->camera.pos.x + ray->camera.dir.x;
@@ -42,7 +87,7 @@ void	movement_check(t_data *data, t_ray *ray)
 		|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x - 1] == '2'))
 			printf("bim!\n");
 }
-
+*/
 void	wall_distance_calculator(t_ray *ray)
 {
 	if (ray->side == 0)
@@ -115,6 +160,7 @@ void	ft_check_doors(t_ray *ray)
 	ray->ray_tex = ray->map->map[ray->map_pos.y][ray->map_pos.x] - '0';
 	if (ray->ray_tex != 0)
 	{
+//		ray_launcher_door_complement(ray);
 		if (ray->ray_tex == 1)
 		{
 			ray->hit = 1;
@@ -125,6 +171,7 @@ void	ft_check_doors(t_ray *ray)
 		{ //Closed, opening, or closing doors
 			ray->hit = 1;
 			door_complement(ray);
+			ray_launcher_door_complement(ray);
 		}
 	}
 }

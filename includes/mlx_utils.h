@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 11:03:01 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:02:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_door
 	double	**door_timers;
 	double	**door_offsets;
 	int		**door_states;
+	int		sliding;
 }				t_door;
 
 typedef struct s_image
