@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 16:03:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:10:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 			|| !ray->door.door_states[var->i])
 			return (free_door_arrays_index(ray, var->i, var->height));
 		var->j = 0;
-		while (var->j < (size_t)data->map->size_arr[var->i])
+		while (var->j < var->width && data->map->map[var->i][var->j])
 		{
 			if (data->map->map[var->i][var->j] == '2')
 			{

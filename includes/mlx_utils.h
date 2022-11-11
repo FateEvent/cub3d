@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 07:21:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/11 07:22:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_door
 	double	**door_timers;
 	double	**door_offsets;
 	int		**door_states;
+	int		sliding;
 }				t_door;
 
 typedef struct s_image
@@ -500,8 +501,6 @@ double		get_time(void);
 void		update_time(struct timeval *tv, long long *timestamp);
 int			get_delay(int startnow, int min);
 void		tex_to_img(t_data *data, t_image *texture, size_t i);
-void		ft_print_double_arr(double **map, size_t height, size_t width);
-void		ft_print_int_arr(double **map, size_t height, size_t width);
 void		free_door_arrays(t_ray *ray, size_t size);
 void		free_door_arrays_index(t_ray *ray, size_t index, size_t size);
 t_vec		ft_get_coordinates(char **map, char prop);
