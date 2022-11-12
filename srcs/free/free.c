@@ -33,8 +33,11 @@ void	free_data(t_data *data)
 	free(data->map->size_arr);
 	free(data->map->map_str);
 	free(data->enemy.valid_pos);
-	free(data->map->floor_texture);
-	free(data->map->ceiling_texture);
+	if (data->map->mode == 1)
+	{
+		free(data->map->floor_texture);
+		free(data->map->ceiling_texture);
+	}
 	free(data->map->north_texture);
 	free(data->map->south_texture);
 	free(data->map->east_texture);

@@ -19,6 +19,8 @@ void	free_textures(t_data *data)
 	i = -1;
 	while (++i < 15)
 	{
+		if (data->map->mode == -1 && (i == 4 || i == 5))
+			continue ;
 		free(data->ray_data.tex_buf[i]);
 		mlx_delete_xpm42(data->textures[i].texture);
 	}

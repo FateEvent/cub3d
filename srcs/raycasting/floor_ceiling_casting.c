@@ -24,10 +24,14 @@ void	floor_casting_calculator(t_data *data, t_ray *ray, t_var *var)
 	ray->fl.floor.y += ray->fl.floor_step.y;
 	ray->fl.floor_tex = 5;
 	ray->fl.ceiling_tex = 4;
+	var->width = data->textures[4].img->width;
+	var->height = data->textures[4].img->height;
 	var->color = ray->tex_buf[ray->fl.floor_tex][var->width * ray->fl.t.y
 		+ ray->fl.t.x];
 	var->color = get_shading(data, var->color, ray->fl.row_distance);
 	mlx_put_pixel(data->screen.display.img, var->x, var->y, var->color);
+	var->width = data->textures[5].img->width;
+	var->height = data->textures[5].img->height;
 	var->color = ray->tex_buf[ray->fl.ceiling_tex][var->width * ray->fl.t.y
 		+ ray->fl.t.x];
 	var->color = get_shading(data, var->color, ray->fl.row_distance);
@@ -62,8 +66,6 @@ void	floor_casting(t_data *data, t_ray *ray)
 	t_var	var;
 
 	ft_bzero(&var, sizeof(var));
-	var.width = data->textures[1].img->width;
-	var.height = data->textures[1].img->height;
 	while (var.y < ray->resolution.y)
 	{
 		floor_casting_init(ray, &var);
