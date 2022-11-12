@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 22:34:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/12 19:38:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	update_doors_pt2(t_data *data, t_ray *ray)
 			ray->door.index = 50;
 		if (ray->door.offset == -0.2)
 			ray->door.offset = 0;
-		ray->map->map[ray->door.map_pos.y][ray->door.map_pos.x] = ray->door.index;
+		ray->map->map[ray->door.map_pos.y][ray->door.map_pos.x] = 50;
 		ray->door.door_offsets[ray->door.map_pos.y][ray->door.map_pos.x] = ray->door.offset;
-		if (data->timer >= ray->door.opening_timer + 1)
+		if (data->timer >= ray->door.opening_timer + 0.05)
 		{
 			--ray->door.index;
 			ray->door.offset -= 0.20;
@@ -43,7 +43,7 @@ void	update_doors(t_data *data, t_ray *ray)
 			ray->door.offset = 0;
 		ray->map->map[ray->door.map_pos.y][ray->door.map_pos.x] = ray->door.index;
 		ray->door.door_offsets[ray->door.map_pos.y][ray->door.map_pos.x] = ray->door.offset;
-		if (data->timer >= ray->door.opening_timer + 1)
+		if (data->timer >= ray->door.opening_timer + 0.05)
 		{
 			++ray->door.index;
 			ray->door.offset += 0.20;
