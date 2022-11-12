@@ -25,10 +25,11 @@ static void	init_audio_allocate(t_data *data)
 
 static void	init_audio_volume(t_data *data)
 {
-	ma_sound_set_volume(&data->audio.ambiance, 0.55);
+	ma_sound_set_volume(&data->audio.ambiance, 0.25);
 	ma_sound_set_volume(&data->audio.creeping_down, 1.5);
 	ma_sound_set_volume(&data->audio.geiger, 0.45);
 	ma_sound_set_volume(&data->audio.scare, 0.75);
+	ma_sound_set_volume(&data->audio.behind_you[3], 0.75);
 	ma_sound_set_volume(&data->audio.footstep[0], 0.40);
 	ma_sound_set_volume(&data->audio.footstep[1], 0.40);
 	ma_sound_set_volume(&data->audio.footstep[2], 0.40);
@@ -56,6 +57,8 @@ void	init_audio(t_data *data)
 	if (result != MA_SUCCESS)
 		throw_err_ex("Audio file initialization error");
 	ma_sound_set_looping(&data->audio.ambiance, 1);
+	ma_sound_set_looping(&data->audio.creeping_down, 1);
+	ma_sound_set_looping(&data->audio.unraveled, 1);
 	data->audio.lock = 0;
 	data->audio.lock2 = 0;
 	ma_sound_start(&data->audio.ambiance);

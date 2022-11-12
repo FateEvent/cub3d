@@ -21,8 +21,8 @@
 # include <MLX42.h>
 # include "libft.h"
 # include "miniaudio.h"
-# define WIDTH 960
-# define HEIGHT 600
+# define WIDTH 640
+# define HEIGHT 480
 # define BPP 4
 # define KILLCOUNTDOWN 5
 # define MOVECOUNTDOWN 10
