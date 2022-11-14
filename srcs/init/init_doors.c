@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_doors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 17:10:53 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 11:12:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "mlx_utils.h"
 
-static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
+static void	init_door_map(t_data *data, t_ray *ray, t_var *var)
 {
 	var->i = 0;
 	while (var->i < var->height)
@@ -30,6 +30,7 @@ static void	into_the_loop(t_data *data, t_ray *ray, t_var *var)
 			{
 				ray->door.door_map[var->i][var->j].map_pos = (t_vec){var->i, var->j};
 				ray->door.door_map[var->i][var->j].is_door = 1;
+				ray->door.door_map[var->i][var->j].index = 50;
 				++ray->door.nb_doors;
 			}
 			var->j++;
@@ -49,5 +50,5 @@ void	init_doors(t_data *data)
 	ray->door.nb_doors = 0;
 	var.width = data->map->size.x;
 	var.height = data->map->size.y;
-	into_the_loop(data, ray, &var);
+	init_door_map(data, ray, &var);
 }

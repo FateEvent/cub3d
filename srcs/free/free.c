@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:16 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 17:12:07 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 11:12:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+static void	free_doors_map(t_data *data)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < (size_t)data->map->size.y)
+		free(data->ray_data.door.door_map[i]);
+	free(data->ray_data.door.door_map);
+}
 
 void	close_hook(void *ptr)
 {
@@ -25,6 +35,7 @@ void	free_data(t_data *data)
 	mlx_terminate(data->mlx);
 	free_audio(data);
 	free_textures(data);
+	free_doors_map(data);
 	free(data->map->minimap);
 	free(data->ray_data.sprite.sprites);
 	free(data->ray_data.sprite.order);

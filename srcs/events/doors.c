@@ -3,42 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 17:17:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 11:07:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static t_vec	*get_doors(t_data *data, size_t *count)
+static t_vec	*get_doors(t_data *data)
 {
 	size_t	i;
 	size_t	j;
 	t_vec	*pos;
 
 	i = -1;
-	*count = 0;
+	data->ray_data.door.count = 0;
 	while (++i < (size_t)data->map->size.y)
 	{
 		j = -1;
 		while ((int)++j < data->map->size_arr[i])
 		{
 			if (data->ray_data.door.door_map[i][j].is_door == 1 && data->ray_data.door.door_map[i][j].sliding != 0)
-				++*count;
+				++data->ray_data.door.count;
 		}
 	}
-	pos = malloc(sizeof(t_vec) * *count);
+	pos = malloc(sizeof(t_vec) * data->ray_data.door.count);
 	i = -1;
-	*count = 0;
+	data->ray_data.door.count = 0;
 	while ((int)++i < data->map->size.y)
 	{
 		j = -1;
 		while ((int)++j < data->map->size_arr[i])
 		{
 			if (data->ray_data.door.door_map[i][j].is_door == 1 && data->ray_data.door.door_map[i][j].sliding != 0)
-				pos[*count++] = (t_vec){j, i};
+				pos[data->ray_data.door.count++] = (t_vec){j, i};
 		}
 	}
 	return (pos);
@@ -52,7 +52,7 @@ static void	update_doors_pt2(t_data *data, t_ray *ray, size_t x, size_t y)
 			ray->door.door_map[y][x].index = 50;
 		if (ray->door.door_map[y][x].offset == -0.2)
 			ray->door.door_map[y][x].offset = 0;
-		ray->map->map[ray->door.door_map[y][x].map_pos.y][ray->door.door_map[y][x].map_pos.x] = ray->door.door_map[y][x].index;
+		ray->map->map[y][x] = ray->door.door_map[y][x].index;
 		if (data->timer >= ray->door.door_map[y][x].opening_timer + 0.05)
 		{
 			--ray->door.door_map[y][x].index;
@@ -68,13 +68,12 @@ void	update_doors(t_data *data, t_ray *ray)
 {
 	t_vec	*pos;
 	size_t	i;
-	size_t	count;
 	size_t	x;
 	size_t	y;
 
 	i = -1;
-	pos = get_doors(data, &count);
-	while (++i < count)
+	pos = get_doors(data);
+	while (++i < ray->door.count)
 	{
 		x = pos[i].x;
 		y = pos[i].y;
@@ -84,7 +83,7 @@ void	update_doors(t_data *data, t_ray *ray)
 				ray->door.door_map[y][x].index = 50;
 			if (ray->door.door_map[y][x].offset == 1.2)
 				ray->door.door_map[y][x].offset = 0;
-			ray->map->map[ray->door.door_map[y][x].map_pos.y][ray->door.door_map[y][x].map_pos.x] = ray->door.door_map[y][x].index;
+			ray->map->map[y][x] = ray->door.door_map[y][x].index;
 			if (data->timer >= ray->door.door_map[y][x].opening_timer + 0.05)
 			{
 				++ray->door.door_map[y][x].index;
@@ -100,4 +99,5 @@ void	update_doors(t_data *data, t_ray *ray)
 		else if (ray->door.door_map[y][x].sliding == 2)
 			update_doors_pt2(data, ray, x, y);
 	}
+	free(pos);
 }
