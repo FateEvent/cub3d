@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_audio.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:19:41 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 11:44:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 12:53:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	init_audio(t_data *data)
 	ma_sound_set_looping(&data->audio.unraveled, 1);
 	data->audio.lock = 0;
 	data->audio.lock2 = 0;
+	data->audio.volume = 1.0;
 	ma_sound_start(&data->audio.ambiance);
 	ma_sound_start(&data->audio.creeping_down);
 }

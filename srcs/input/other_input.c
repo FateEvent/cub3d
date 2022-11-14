@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:12:47 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 12:52:04 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 12:53:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ static void	key_input_focus(t_data *data, t_ray *ray)
 			ray->m.focus = 1;
 		else
 			ray->m.focus = 0;
+		data->key = 0;
+	}
+	if (data->key == (keys_t)MLX_KEY_M)
+	{
+		if (data->audio.volume == 0.0)
+		{
+			data->audio.volume = 1.0;
+			ma_engine_set_volume(data->audio.audio_engine, 1.0);
+		}
+		else
+		{
+			data->audio.volume = 0.0;
+			ma_engine_set_volume(data->audio.audio_engine, 0.0);
+		}
 		data->key = 0;
 	}
 }
