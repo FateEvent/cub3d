@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/11 19:13:16 by faventur         ###   ########.fr        #
+#    Updated: 2022/11/14 17:05:58 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) -sC ./MLX42
 	@mv ./libft/libft.a .
 	@mv ./MLX42/libmlx42.a .
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) #-fsanitize=address
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft.a libmlx42.a $(LINKS) -fsanitize=address
 	@echo "$(CURSIVE)$(HIBLUE)If you're not careful and you noclip out of reality in the wrong areas,$(NONE)"
 	@echo "$(CURSIVE)$(HIBLUE)you'll end up in the Backrooms, where it's nothing but the stink of old$(NONE)"
 	@echo "$(CURSIVE)$(HIBLUE)moist carpet, the madness of mono-yellow, the endless background noise$(NONE)"

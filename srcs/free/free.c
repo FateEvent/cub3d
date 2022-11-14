@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:16 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 12:23:44 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 17:12:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	free_data(t_data *data)
 	free(data->map->south_texture);
 	free(data->map->east_texture);
 	free(data->map->west_texture);
-	free_door_arrays(&data->ray_data, data->map->size.y);
 	ft_arr_freer(data->map->map);
 	free(data->map);
 }

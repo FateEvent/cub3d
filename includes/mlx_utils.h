@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 16:16:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:09:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ typedef struct s_camera
 	t_vec2		pos;
 }				t_camera;
 
-typeedef struct s_door_data
+typedef struct s_door_data
 {
+	int		is_door;
 	int		sliding;
 	int		index;
 	double	offset;
@@ -75,8 +76,8 @@ typeedef struct s_door_data
 
 typedef struct s_door
 {
-	double		**door_offsets;
 	t_door_data	**door_map;
+	size_t		nb_doors;
 }				t_door;
 
 typedef struct s_image

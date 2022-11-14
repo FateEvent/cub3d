@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:11:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 16:17:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 17:18:53 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,15 @@ void	check_door(t_ray *ray)
 {
 	if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
 	{
-		if (ft_vect2_distance_calc(ray->camera.pos, (t_vec2){ray->map_pos.x, ray->map_pos.y}) <= 2.5)
-		{
-			ray->door.sliding = 1;
-			ray->door.map_pos.x = ray->map_pos.x;
-			ray->door.map_pos.y = ray->map_pos.y;
-		}
+		if (ft_vect2_distance_calc(ray->camera.pos,
+				(t_vec2){ray->map_pos.x, ray->map_pos.y}) <= 2.5)
+			ray->door.door_map[ray->map_pos.y][ray->map_pos.x].sliding = 1;
 	}
 	else if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '7')
 	{
-		if (ft_vect2_distance_calc(ray->camera.pos, (t_vec2){ray->map_pos.x, ray->map_pos.y}) > 2.5)
-		{
-			ray->door.sliding = 2;
-			ray->door.map_pos.x = ray->map_pos.x;
-			ray->door.map_pos.y = ray->map_pos.y;
-		}
+		if (ft_vect2_distance_calc(ray->camera.pos,
+				(t_vec2){ray->map_pos.x, ray->map_pos.y}) > 2.5)
+		ray->door.door_map[ray->map_pos.y][ray->map_pos.x].sliding = 2;
 	}
 }
 
@@ -44,8 +38,8 @@ void	door_complement_pt2(t_ray *ray)
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->ray_side.x - (ray->ray_delta.x / 2) < ray->ray_side.y)
 	{
-		if (1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y]
-			[ray->map_pos.x])
+		if (1.0 - ray->wall_x <= ray->door.door_map[ray->map_pos.y]
+			[ray->map_pos.x].offset)
 		{
 			ray->hit = 0;
 			ray->wall_x_offset = 0;
@@ -70,8 +64,8 @@ void	door_complement(t_ray *ray)
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->ray_side.y - (ray->ray_delta.y / 2) < ray->ray_side.x)
 	{
-		if (1.0 - ray->wall_x <= ray->door.door_offsets[ray->map_pos.y]
-			[ray->map_pos.x])
+		if (1.0 - ray->wall_x <= ray->door.door_map[ray->map_pos.y]
+			[ray->map_pos.x].offset)
 		{
 			ray->hit = 0;
 			ray->wall_y_offset = 0;
