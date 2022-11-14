@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:11:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 19:28:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:46:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	check_door(t_ray *ray)
 			|| ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x + 1] == '2'
 			|| ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x - 1] == '2'
 			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x + 1] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x - 1] == '2')
+			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x - 1] == '2'
+			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '2')
 		{
 			ray->door.sliding = 1;
 			ray->door.map_pos.x = ray->map_pos.x;
