@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/12 19:38:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 13:24:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	update_doors_pt2(t_data *data, t_ray *ray)
 			ray->door.index = 50;
 		if (ray->door.offset == -0.2)
 			ray->door.offset = 0;
-		ray->map->map[ray->door.map_pos.y][ray->door.map_pos.x] = 50;
+		ray->map->map[ray->door.map_pos.y][ray->door.map_pos.x] = ray->door.index;
 		ray->door.door_offsets[ray->door.map_pos.y][ray->door.map_pos.x] = ray->door.offset;
 		if (data->timer >= ray->door.opening_timer + 0.05)
 		{
