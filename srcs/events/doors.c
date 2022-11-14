@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 14:57:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:05:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	update_doors(t_data *data, t_ray *ray)
 		{
 			--ray->door.index;
 			ray->door.offset -= 0.20;
-			ray->door.sliding = 2;
 		}
 	}
 	else if (ray->door.sliding == 2)
