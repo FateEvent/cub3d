@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:11:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 15:05:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:07:20 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	check_door(t_ray *ray)
 {
 	if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
 	{
-		if (ft_vect2_distance_calc(ray->camera.pos, (t_vec2){ray->map_pos.x, ray->map_pos.y}) < 2.5)
+		if (ft_vect2_distance_calc(ray->camera.pos,
+				(t_vec2){ray->map_pos.x, ray->map_pos.y}) < 2.5)
 		{
 			ray->door.sliding = 1;
 			ray->door.map_pos.x = ray->map_pos.x;
