@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:11:35 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 07:24:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 14:57:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	update_move(t_data *data)
 		data->hud.sprites[19].img->enabled = 0;
 	data->hud.sprites[data->hud.pos].img->enabled = 1;
 	++data->hud.pos;
-	if (data->timer >= data->player.footstep_timer + 0.4 && data->player.footstep_lock == 0)
+	if (data->timer >= data->player.footstep_timer + 0.4
+		&& data->player.footstep_lock == 0)
 	{
 		data->player.footstep_timer = data->timer;
 		data->player.footstep_lock = 1;

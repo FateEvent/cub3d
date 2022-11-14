@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 11:56:48 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:50:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	ft_check_walls(t_ray *ray)
 		else if (ray->ray_tex >= 2 && ray->ray_tex <= 7)
 		{
 			ray->hit = 1;
-			door_complement(ray);
+			if (ray->side == 1)
+				door_complement(ray);
+			else
+				door_complement_pt2(ray);
 			check_door(ray);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 07:18:40 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 14:56:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static void	update_jumpscare(t_data *data)
 	if (i == 0)
 		i = 2;
 	update_jumpscare_hide(data);
-	if (data->timer > JUMPSCARE_FREQ - 1 && (int)data->timer % JUMPSCARE_FREQ == 0
+	if (data->timer > JUMPSCARE_FREQ - 1 && (int)data->timer
+		% JUMPSCARE_FREQ == 0
 		&& data->enemy.lock == 0)
 	{
 		if (rand() % 2)

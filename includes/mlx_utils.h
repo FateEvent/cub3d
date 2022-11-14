@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 12:52:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 14:51:51 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -418,6 +418,7 @@ void		rayside_calculator(t_ray *ray);
 void		ray_launcher(t_ray *ray);
 void		ft_check_walls(t_ray *ray);
 void		door_complement(t_ray *ray);
+void		door_complement_pt2(t_ray *ray);
 void		check_door(t_ray *ray);
 void		wall_distance_calculator(t_ray *ray);
 void		wall_line_calculator(t_ray *ray);

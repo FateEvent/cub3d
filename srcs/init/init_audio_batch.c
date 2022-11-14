@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_audio_batch.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:25:05 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 11:33:26 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 14:58:35 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	init_audio_behind_you(t_data *data, ma_result *result)
 {
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/behindyou1.flac", 64, NULL, NULL, &data->audio.behind_you[0]);
+			"audio/behindyou1.flac", 64, NULL, NULL,
+			&data->audio.behind_you[0]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/behindyou2.flac", 64, NULL, NULL, &data->audio.behind_you[1]);
+			"audio/behindyou2.flac", 64, NULL, NULL,
+			&data->audio.behind_you[1]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/behindyou3.flac", 64, NULL, NULL, &data->audio.behind_you[2]);
+			"audio/behindyou3.flac", 64, NULL, NULL,
+			&data->audio.behind_you[2]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
-			"audio/behindyou4.flac", 64, NULL, NULL, &data->audio.behind_you[3]);
+			"audio/behindyou4.flac", 64, NULL, NULL,
+			&data->audio.behind_you[3]);
 }
 
 void	init_audio_footstep(t_data *data, ma_result *result)

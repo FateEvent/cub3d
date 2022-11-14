@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:24:46 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 19:14:03 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:45:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	ray_data_init(t_ray *ray, int x)
 {
 	ray->camera.camera_x = 2 * x / (double)ray->resolution.x - 1;
-	ray->ray_dir.x = ray->camera.dir.x + ray->camera.plane.x * ray->camera.camera_x;
-	ray->ray_dir.y = ray->camera.dir.y + ray->camera.plane.y * ray->camera.camera_x;
+	ray->ray_dir.x = ray->camera.dir.x + ray->camera.plane.x
+		* ray->camera.camera_x;
+	ray->ray_dir.y = ray->camera.dir.y + ray->camera.plane.y
+		* ray->camera.camera_x;
 	ray->map_pos.x = (int)ray->camera.pos.x;
 	ray->map_pos.y = (int)ray->camera.pos.y;
 	ray->text_select = 0;
