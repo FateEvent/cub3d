@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   update_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:21:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 10:39:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/14 11:01:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
-
-void	sliding_doors(t_ray *ray)
-{
-	ray->door.door_offsets[ray->map_pos.y][ray->map_pos.x] += 0.20;
-	ray->door.sliding = 0;
-}
 
 void	update_render(void *param)
 {

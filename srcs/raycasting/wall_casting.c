@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/11 19:15:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:56:48 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_check_walls(t_ray *ray)
 void	ray_launcher(t_ray *ray)
 {
 	ray->hit = 0;
+	ray->wall_x_offset = 0;
+	ray->wall_y_offset = 0;
 	while (ray->hit == 0)
 	{
 		if (ray->ray_side.x < ray->ray_side.y)
