@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 14:51:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:16:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,19 @@ typedef struct s_camera
 	t_vec2		pos;
 }				t_camera;
 
-typedef struct s_transparent_wall
+typeedef struct s_door_data
 {
-	t_vec		map_pos;
-	int			view_side;
-	int			screen_x;
-	t_camera	camera;
-}				t_tw;
-
-typedef struct s_door
-{
-	double	**door_offsets;
 	int		sliding;
 	int		index;
 	double	offset;
 	t_vec	map_pos;
 	double	opening_timer;
-	
+}				t_door_data;
+
+typedef struct s_door
+{
+	double		**door_offsets;
+	t_door_data	**door_map;
 }				t_door;
 
 typedef struct s_image
