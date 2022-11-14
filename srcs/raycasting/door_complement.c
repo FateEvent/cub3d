@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_complement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:11:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 12:46:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:02:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,7 @@ void	check_door(t_ray *ray)
 {
 	if (ray->map->map[ray->map_pos.y][ray->map_pos.x] == '2')
 	{
-		if (ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x + 1] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x - 1] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x + 1] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y + 1][(int)ray->camera.pos.x - 1] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x + 1] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y - 1][(int)ray->camera.pos.x - 1] == '2'
-			|| ray->map->map[(int)ray->camera.pos.y][(int)ray->camera.pos.x] == '2')
+		if (ft_vect2_distance_calc(ray->camera.pos, (t_vec2){ray->map_pos.x, ray->map_pos.y}) < 2.5)
 		{
 			ray->door.sliding = 1;
 			ray->door.map_pos.x = ray->map_pos.x;
