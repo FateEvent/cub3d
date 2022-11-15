@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_audio.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:26:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 11:52:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 12:08:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void	free_audio(t_data *data)
 	free(data->audio.dead);
 	free(data->audio.smiler);
 	free(data->audio.behind_you);
+	free(data->audio.door);
 	free(data->audio.audio_engine);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 10:44:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 11:56:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,6 +269,7 @@ typedef struct s_audio
 	ma_sound	*behind_you;
 	ma_sound	*footstep;
 	ma_sound	geiger;
+	ma_sound	*door;
 	int			lock;
 	int			lock2;
 	double		volume;
@@ -371,6 +372,7 @@ void		init_audio_behind_you(t_data *data, ma_result *result);
 void		init_audio_footstep(t_data *data, ma_result *result);
 void		init_audio_ambiance(t_data *data, ma_result *result);
 void		init_audio_suspense(t_data *data, ma_result *result);
+void		init_audio_doors(t_data *data, ma_result *result);
 void		*init_textures(t_data *data);
 
 // window functions

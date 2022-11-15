@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 11:42:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 12:07:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ static void	update_doors_pt2(t_data *data, t_ray *ray, size_t x, size_t y)
 			ray->door.door_map[y][x].opening_timer = data->timer;
 		}
 		if (ray->door.door_map[y][x].index == 49)
+		{
+			if (!ma_sound_is_playing(&data->audio.door[0]))
+				ma_sound_start(&data->audio.door[0]);
 			ray->door.door_map[y][x].sliding = 0;
+		}
 	}
 }
 
@@ -88,6 +92,8 @@ void	update_doors(t_data *data, t_ray *ray)
 			ray->map->map[y][x] = ray->door.door_map[y][x].index;
 			if (data->timer >= ray->door.door_map[y][x].opening_timer + 0.05)
 			{
+				if (!ma_sound_is_playing(&data->audio.door[1]))
+					ma_sound_start(&data->audio.door[1]);
 				++ray->door.door_map[y][x].index;
 				ray->door.door_map[y][x].offset += 0.20;
 				ray->door.door_map[y][x].opening_timer = data->timer;
@@ -96,6 +102,7 @@ void	update_doors(t_data *data, t_ray *ray)
 			{
 				--ray->door.door_map[y][x].index;
 				ray->door.door_map[y][x].offset -= 0.20;
+				ray->door.door_map[y][x].sliding = 0;
 			}
 		}
 		else if (ray->door.door_map[y][x].sliding == 2)

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:19:41 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 12:53:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 12:05:32 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,23 @@ static void	init_audio_allocate(t_data *data)
 	data->audio.dead = malloc(sizeof(ma_sound) * 2);
 	data->audio.smiler = malloc(sizeof(ma_sound) * 2);
 	data->audio.behind_you = malloc(sizeof(ma_sound) * 4);
+	data->audio.door = malloc(sizeof(ma_sound) * 2);
 }
 
 static void	init_audio_volume(t_data *data)
 {
 	ma_sound_set_volume(&data->audio.ambiance, 0.25);
-	ma_sound_set_volume(&data->audio.creeping_down, 1.5);
+	ma_sound_set_volume(&data->audio.creeping_down, 0.85);
 	ma_sound_set_volume(&data->audio.geiger, 0.45);
-	ma_sound_set_volume(&data->audio.scare, 0.75);
+	ma_sound_set_volume(&data->audio.scare, 0.95);
 	ma_sound_set_volume(&data->audio.behind_you[3], 0.75);
 	ma_sound_set_volume(&data->audio.footstep[0], 0.40);
 	ma_sound_set_volume(&data->audio.footstep[1], 0.40);
 	ma_sound_set_volume(&data->audio.footstep[2], 0.40);
 	ma_sound_set_volume(&data->audio.footstep[3], 0.40);
 	ma_sound_set_volume(&data->audio.footstep[4], 0.40);
+	ma_sound_set_volume(&data->audio.door[0], 0.60);
+	ma_sound_set_volume(&data->audio.door[1], 0.60);
 }
 
 void	init_audio(t_data *data)
@@ -53,6 +56,7 @@ void	init_audio(t_data *data)
 	init_audio_footstep(data, &result);
 	init_audio_behind_you(data, &result);
 	init_audio_suspense(data, &result);
+	init_audio_doors(data, &result);
 	init_audio_volume(data);
 	if (result != MA_SUCCESS)
 		throw_err_ex("Audio file initialization error");

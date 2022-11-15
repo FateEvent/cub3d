@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_audio_batch.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:09:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 12:50:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 12:08:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	free_audio_ambiance(t_data *data)
 	ma_sound_uninit(&data->audio.geiger);
 	ma_sound_uninit(&data->audio.creeping_down);
 	ma_sound_uninit(&data->audio.unraveled);
+	ma_sound_uninit(&data->audio.door[0]);
+	ma_sound_uninit(&data->audio.door[1]);
 }
 
 void	free_audio_suspense(t_data *data)

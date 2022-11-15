@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   init_audio_batch.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:25:05 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 14:58:35 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 11:56:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+void	init_audio_doors(t_data *data, ma_result *result)
+{
+	result += ma_sound_init_from_file(data->audio.audio_engine,
+			"audio/door_close.flac", 64, NULL, NULL, &data->audio.door[0]);
+	result += ma_sound_init_from_file(data->audio.audio_engine,
+			"audio/door_move.flac", 64, NULL, NULL, &data->audio.door[1]);
+}
 
 void	init_audio_behind_you(t_data *data, ma_result *result)
 {
