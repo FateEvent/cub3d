@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:08:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 14:50:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:35:00 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_check_walls(t_ray *ray)
 				door_complement_pt2(ray);
 			check_door(ray);
 		}
+		else
+			ray->ray_tex = 0;
 	}
 }
 
