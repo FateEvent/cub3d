@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 13:09:24 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/06 17:08:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 18:19:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char *ft_rest(char *reading_buf)
+static char	*ft_rest(char *reading_buf)
 {
-	int i;
-	int j;
-	char *s;
+	int		i;
+	int		j;
+	char	*s;
 
 	i = ft_strlen(reading_buf);
 	j = 0;
@@ -41,10 +41,10 @@ static char *ft_rest(char *reading_buf)
 	return (s);
 }
 
-static char *ft_last_line(char *reading_buf)
+static char	*ft_last_line(char *reading_buf)
 {
-	char *s;
-	int i;
+	char	*s;
+	int		i;
 
 	i = 0;
 	if (!reading_buf)
@@ -68,9 +68,9 @@ static char *ft_last_line(char *reading_buf)
 	return (s);
 }
 
-static char *ft_reader(int fd, char *buffer, char *reading_buf, char *tmp)
+static char	*ft_reader(int fd, char *buffer, char *reading_buf, char *tmp)
 {
-	int bytes_read;
+	int	bytes_read;
 
 	bytes_read = 1;
 	while (bytes_read)
@@ -91,18 +91,18 @@ static char *ft_reader(int fd, char *buffer, char *reading_buf, char *tmp)
 		reading_buf = ft_strjoin(tmp, buffer);
 		free(tmp);
 		if (ft_strchr(reading_buf, '\n') != NULL)
-			break;
+			break ;
 	}
 	free(buffer);
 	return (reading_buf);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	char *buffer;
-	static char *reading_buf;
-	char *ret;
-	char *tmp;
+	char		*buffer;
+	static char	*reading_buf;
+	char		*ret;
+	char		*tmp;
 
 	tmp = NULL;
 	if (fd < 0 || BUFFER_SIZE < 1)

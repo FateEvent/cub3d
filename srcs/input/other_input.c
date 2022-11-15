@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:12:47 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 12:53:17 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 18:25:01 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ static void	key_input_arrows_pt2(t_data *data, t_ray *ray, t_var *var)
 		if (data->map->map[(int)(ray->camera.pos.y)]
 			[(int)((cos(alpha + M_PI / 2) * var->movement)
 			+ ray->camera.pos.x)] != '1')
-			ray->camera.pos.x = (cos(alpha + M_PI / 2) * var->movement)
-				+ ray->camera.pos.x;
+			ray->camera.pos.x += (cos(alpha + M_PI / 2) * var->movement);
 	}
 	else
 		key_input_focus(data, ray);
@@ -88,8 +87,7 @@ void	key_input_arrows(t_data *data, t_ray *ray, t_var *var)
 		if (data->map->map[(int)(ray->camera.pos.y)]
 			[(int)((-cos(alpha + M_PI / 2)
 			* var->movement) + ray->camera.pos.x)] != '1')
-			ray->camera.pos.x = (-cos(alpha + M_PI / 2) * var->movement)
-				+ ray->camera.pos.x;
+			ray->camera.pos.x += (-cos(alpha + M_PI / 2) * var->movement);
 	}
 	else
 		key_input_arrows_pt2(data, ray, var);
