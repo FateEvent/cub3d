@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:15:57 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 11:02:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:01 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	free_uint_arr(uint32_t **arr, size_t size);
 char	**ft_arr_freer_index(char **arr, size_t index);
 int		**free_int_arr_index(int **arr, size_t index);
 double	**free_double_arr_index(double **arr, size_t index);
+void	**free_void_arr_index(void **arr, size_t index);
 void	ft_arr_display(char **arr);
 void	ft_print_int_arr(int **arr, size_t height, size_t width);
 void	ft_print_double_arr(double **arr, size_t height, size_t width);
