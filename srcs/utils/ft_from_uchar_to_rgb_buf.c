@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:00:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/15 16:34:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:37:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,19 @@ uint32_t	**hex_buf_creator(uint32_t *arr, size_t width, size_t height)
 	hex_buf = malloc(sizeof(uint32_t *) * height);
 	if (!hex_buf)
 		return (NULL);
-	i = 0;
+	i = -1;
 	k = 0;
-	while (i < height && k < height * width)
+	while (++i < height && k < height * width)
 	{
 		hex_buf[i] = malloc(sizeof(uint32_t) * width);
 		if (!hex_buf[i])
 			return (NULL);
-		j = 0;
-		while (j < width && k < height * width)
+		j = -1;
+		while (++j < width && k < height * width)
 		{
 			hex_buf[i][j] = arr[k];
-			j++;
 			k++;
 		}
-		i++;
 	}
 	return (hex_buf);
 }

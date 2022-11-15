@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:10:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 16:28:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:38:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	init_hud_draw2(t_data *data)
 	data->enemy.warning_text = malloc(sizeof(t_image));
 	data->enemy.warning_text->texture = mlx_load_xpm42("images/run.xpm42");
 	if (!data->enemy.warning_text->texture)
-	free_exit(data);
+		free_exit(data);
 	data->enemy.warning_text->img = mlx_texture_to_image(data->mlx,
 			&data->enemy.warning_text->texture->texture);
 	mlx_image_to_window(data->mlx, data->enemy.warning_text->img,
