@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 12:07:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 15:49:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static void	update_doors_pt2(t_data *data, t_ray *ray, size_t x, size_t y)
 			if (!ma_sound_is_playing(&data->audio.door[0]))
 				ma_sound_start(&data->audio.door[0]);
 			ray->door.door_map[y][x].sliding = 0;
+			++ray->door.door_map[y][x].index;
+			ray->door.door_map[y][x].offset += 0.20;
 		}
 	}
 }
