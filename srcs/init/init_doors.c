@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/15 10:26:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:31:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	init_door_map(t_data *data, t_ray *ray, t_var *var)
 	{
 		map[var->i] = ft_calloc(data->map->size_arr[var->i],
 				sizeof(t_door_data));
+		if (!map[var->i])
+			free_exit(data);
 		var->j = 0;
 		while (var->j < var->width && data->map->map[var->i][var->j])
 		{
@@ -51,6 +53,8 @@ void	init_doors(t_data *data)
 	ft_bzero(&var, sizeof(var));
 	ray = &data->ray_data;
 	ray->door.door_map = malloc(sizeof(t_door_data *) * data->map->size.y);
+	if (data->map->size.y > 0 && !ray->door.door_map)
+		free_exit(data);
 	ray->door.nb_doors = 0;
 	var.width = data->map->size.x;
 	var.height = data->map->size.y;

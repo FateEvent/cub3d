@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:48:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 13:41:46 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:35:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_map	*check_map_integrity(char *path)
 
 	mapstruct = malloc(sizeof(t_map));
 	if (!mapstruct)
-		throw_err_ex("Error : Cannot malloc map structure.");
+		return (NULL);
 	mapstruct->mode = -1;
 	map = ft_map_reader(path);
 	if (check_map_settings(mapstruct, map) == -1)

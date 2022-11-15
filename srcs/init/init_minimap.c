@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:29:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 11:26:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:31:31 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_minimap(t_data *data)
 {
 	data->map->minimap = malloc(sizeof(t_minimap));
 	if (!data->map->minimap)
-		throw_err_ex("Malloc error");
+		free_exit(data);
 	data->map->minimap->img = NULL;
 	data->map->minimap->img = mlx_new_image(data->mlx, 210, 150);
 	if (!data->map->minimap->img)

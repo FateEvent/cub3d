@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 14:34:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 12:23:44 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	init_sprites(t_data *data, t_ray *ray)
 	sprite->z_buffer = malloc(sizeof(double) * ray->resolution.x);
 	if (!sprite->sprites || !sprite->z_buffer || !sprite->order
 		|| !sprite->sprite_dist)
-		throw_err_ex("Malloc error");
+		free_exit(data);
 	sprite->sprites[0].x = data->enemy.pos.x;
 	sprite->sprites[0].y = data->enemy.pos.y;
 	sprite->sprites[0].texture = 6;

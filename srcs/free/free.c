@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:36:16 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 11:12:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:27:32 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ static void	free_doors_map(t_data *data)
 	while (++i < (size_t)data->map->size.y)
 		free(data->ray_data.door.door_map[i]);
 	free(data->ray_data.door.door_map);
+}
+
+void	free_exit(t_data *data)
+{
+	free_data(data);
+	throw_err_ex("Malloc error");
 }
 
 void	close_hook(void *ptr)

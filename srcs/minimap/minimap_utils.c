@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:44:45 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 11:32:40 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	get_map_str(t_data *data)
 	data->map->map_str = malloc(sizeof(char) * j + 1);
 	get_size_arr(data, i);
 	if (!data->map->map_str)
-		ft_puterror("Malloc error");
+		free_exit(data);
 	i = -1;
 	while (data->map->map[++i])
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 14:31:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	*init_textures(t_data *data)
 	texture = data->textures;
 	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 15);
 	if (!data->textures || !data->ray_data.tex_buf)
-		throw_err_ex("Malloc error");
+		free_exit(data);
 	ft_bzero(texture, sizeof(*texture));
 	texture[0].texture = mlx_load_xpm42(data->map->north_texture);
 	texture[1].texture = mlx_load_xpm42(data->map->south_texture);
@@ -87,9 +87,9 @@ void	*init_textures(t_data *data)
 		texture[5].texture = mlx_load_xpm42(data->map->floor_texture);
 	}
 	if (check_texture_integrity(data, texture))
-		throw_err_ex("Malloc error");
+		free_exit(data);
 	from_texture_to_image(data, texture);
 	if (check_image_integrity(data, texture))
-		throw_err_ex("Malloc error");
+		free_exit(data);
 	return (texture);
 }

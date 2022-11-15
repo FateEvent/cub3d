@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_from_uchar_to_rgb_buf.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:00:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/09 13:46:19 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:34:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ uint32_t	*uchar_to_arr(unsigned char *arr, size_t width,
 	if (!arr)
 		return (NULL);
 	hex_arr = malloc(sizeof(uint32_t) * width * height);
+	if (!hex_arr)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (i < width * height * 4 && j < width * height)
@@ -43,11 +45,15 @@ uint32_t	**hex_buf_creator(uint32_t *arr, size_t width, size_t height)
 	if (!arr)
 		return (NULL);
 	hex_buf = malloc(sizeof(uint32_t *) * height);
+	if (!hex_buf)
+		return (NULL);
 	i = 0;
 	k = 0;
 	while (i < height && k < height * width)
 	{
 		hex_buf[i] = malloc(sizeof(uint32_t) * width);
+		if (!hex_buf[i])
+			return (NULL);
 		j = 0;
 		while (j < width && k < height * width)
 		{

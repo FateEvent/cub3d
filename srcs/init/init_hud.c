@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_hud.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:10:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 17:21:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	init_hud_draw2(t_data *data)
 	data->enemy.warning_text = malloc(sizeof(t_image));
 	data->enemy.warning_text->texture = mlx_load_xpm42("images/run.xpm42");
 	if (!data->enemy.warning_text->texture)
-		throw_err_ex("Malloc error");
+	free_exit(data);
 	data->enemy.warning_text->img = mlx_texture_to_image(data->mlx,
 			&data->enemy.warning_text->texture->texture);
 	mlx_image_to_window(data->mlx, data->enemy.warning_text->img,
 		WIDTH / 2 - 100, HEIGHT / 2 - 200);
 	data->enemy.warning_text->img->enabled = 0;
 	if (!data->enemy.warning_text->img)
-		throw_err_ex("Malloc error");
+		free_exit(data);
 	mlx_image_to_window(data->mlx, data->map->minimap->img, 0, 0);
 }
 
@@ -39,7 +39,10 @@ void	init_hud_draw(t_data *data)
 		data->hud.sprites[i].img = mlx_texture_to_image(data->mlx,
 				&data->hud.sprites[i].texture->texture);
 		if (!data->hud.sprites[i].img)
+		{
+			free_data(data);
 			throw_err_ex("Malloc error");
+		}
 		data->hud.sprites[i].img->enabled = 0;
 	}
 	i = -1;
@@ -58,7 +61,7 @@ static void	init_hud_var(t_data *data, char *base, ssize_t *i)
 	data->hud.pos = 0;
 	data->hud.sprites = malloc(sizeof(t_image) * 20);
 	if (!data->hud.sprites)
-		throw_err_ex("Malloc error");
+		free_exit(data);
 }
 
 void	init_hud(t_data *data)
@@ -80,7 +83,10 @@ void	init_hud(t_data *data)
 		str = ft_concat(str, ".xpm42");
 		data->hud.sprites[i].texture = mlx_load_xpm42(str);
 		if (!data->hud.sprites[i].texture)
+		{
+			free_data(data);
 			throw_err_ex("Malloc error");
+		}
 		free(str);
 		free(itoa);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   death.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:05:15 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 11:55:02 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	draw_death(t_data *data)
 	background.y = 0;
 	data->enemy.death_bg = malloc(sizeof(t_image));
 	data->enemy.death_text = malloc(sizeof(t_image));
+	if (!data->enemy.death_bg || !data->enemy.death_text)
+		free_exit(data);
 	data->enemy.death_bg->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->enemy.death_text->texture = mlx_load_xpm42("images/dead.xpm42");
 	draw_rect(data->enemy.death_bg->img, background, 0xFF000047);

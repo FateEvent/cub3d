@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:46:59 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 10:56:21 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:35:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	pathfinding_list_pos(t_data *data)
 	k = 0;
 	data->enemy.valid_pos_n = pathfinding_list_pos_get(data);
 	data->enemy.valid_pos = malloc(sizeof(t_vec) * data->enemy.valid_pos_n);
+	if (data->enemy.valid_pos_n > 0 && !data->enemy.valid_pos)
+		free_exit(data);
 	while (data->map->map[i])
 	{
 		j = 0;

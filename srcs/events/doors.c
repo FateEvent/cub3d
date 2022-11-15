@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 15:56:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:12 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static t_vec	*get_doors(t_data *data)
 	i = -1;
 	get_doors_sliding(data);
 	pos = malloc(sizeof(t_vec) * data->ray_data.door.count);
+	if (data->ray_data.door.count > 0 && !pos)
+		free_exit(data);
 	data->ray_data.door.count = 0;
 	while ((int)++i < data->map->size.y)
 	{

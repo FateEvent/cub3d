@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/15 11:56:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:27:44 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -488,6 +488,7 @@ void		turn_pixel_to_color(char *pixel, t_color color);
 void		turn_img_to_color(t_image *image, t_color color);
 
 // free
+void		free_exit(t_data *data);
 void		close_hook(void *data);
 void		free_data(t_data *data);
 void		free_audio(t_data *data);

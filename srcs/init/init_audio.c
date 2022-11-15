@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:19:41 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 15:58:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:28:30 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static void	init_audio_allocate(t_data *data)
 	data->audio.smiler = malloc(sizeof(ma_sound) * 2);
 	data->audio.behind_you = malloc(sizeof(ma_sound) * 4);
 	data->audio.door = malloc(sizeof(ma_sound) * 2);
+	if (!data->audio.audio_engine || !data->audio.suspense
+		|| !data->audio.footstep || !data->audio.death || !data->audio.dead
+		|| !data->audio.smiler || !data->audio.behind_you || !data->audio.door)
+		free_exit(data);
 }
 
 static void	init_audio_volume(t_data *data)
