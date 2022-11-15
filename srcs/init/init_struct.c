@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 14:42:31 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:47:16 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	init_struct2(t_data *data, t_ray *ray)
 {
-	ray->half_width = WIDTH / 2;
 	data->render_delay = 1;
 	data->screen.display.size.x = WIDTH;
 	data->screen.display.size.y = HEIGHT;
 	ray->resolution.x = data->screen.display.size.x;
 	ray->resolution.y = data->screen.display.size.y;
+	ray->half_width = ray->resolution.x / 2;
 	data->player.fov = 70;
 	init_direction(data);
 	data->player.yaw = M_PI / 2 * data->player.start_direction;
