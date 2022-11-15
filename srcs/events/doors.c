@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 10:47:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:49:02 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	update_doors_pt2(t_data *data, t_ray *ray, size_t x, size_t y)
 			--ray->door.door_map[y][x].index;
 			ray->door.door_map[y][x].offset -= 0.20;
 			ray->door.door_map[y][x].opening_timer = data->timer;
-			printf("%d %f\n", ray->door.door_map[y][x].index, ray->door.door_map[y][x].offset);
 		}
 		if (ray->door.door_map[y][x].index == 49)
 			ray->door.door_map[y][x].sliding = 0;
