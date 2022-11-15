@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 11:07:17 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 10:30:04 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static t_vec	*get_doors(t_data *data)
+static void	get_doors_sliding(t_data *data)
 {
 	size_t	i;
 	size_t	j;
-	t_vec	*pos;
 
 	i = -1;
 	data->ray_data.door.count = 0;
@@ -25,19 +24,30 @@ static t_vec	*get_doors(t_data *data)
 		j = -1;
 		while ((int)++j < data->map->size_arr[i])
 		{
-			if (data->ray_data.door.door_map[i][j].is_door == 1 && data->ray_data.door.door_map[i][j].sliding != 0)
+			if (data->ray_data.door.door_map[i][j].is_door == 1
+				&& data->ray_data.door.door_map[i][j].sliding != 0)
 				++data->ray_data.door.count;
 		}
 	}
-	pos = malloc(sizeof(t_vec) * data->ray_data.door.count);
+}
+
+static t_vec	*get_doors(t_data *data)
+{
+	size_t	i;
+	size_t	j;
+	t_vec	*pos;
+
 	i = -1;
+	get_doors_sliding(data);
+	pos = malloc(sizeof(t_vec) * data->ray_data.door.count);
 	data->ray_data.door.count = 0;
 	while ((int)++i < data->map->size.y)
 	{
 		j = -1;
 		while ((int)++j < data->map->size_arr[i])
 		{
-			if (data->ray_data.door.door_map[i][j].is_door == 1 && data->ray_data.door.door_map[i][j].sliding != 0)
+			if (data->ray_data.door.door_map[i][j].is_door == 1
+				&& data->ray_data.door.door_map[i][j].sliding != 0)
 				pos[data->ray_data.door.count++] = (t_vec){j, i};
 		}
 	}

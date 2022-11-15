@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_doors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 11:12:09 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 10:26:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,22 @@
 
 static void	init_door_map(t_data *data, t_ray *ray, t_var *var)
 {
+	t_door_data	**map;
+
+	map = ray->door.door_map;
 	var->i = 0;
 	while (var->i < var->height)
 	{
-		ray->door.door_map[var->i] = ft_calloc(sizeof(t_door_data) * data->map->size_arr[var->i], sizeof(t_door_data));
+		map[var->i] = ft_calloc(data->map->size_arr[var->i],
+				sizeof(t_door_data));
 		var->j = 0;
 		while (var->j < var->width && data->map->map[var->i][var->j])
 		{
 			if (data->map->map[var->i][var->j] == '2')
 			{
-				ray->door.door_map[var->i][var->j].map_pos = (t_vec){var->i, var->j};
-				ray->door.door_map[var->i][var->j].is_door = 1;
-				ray->door.door_map[var->i][var->j].index = 50;
+				map[var->i][var->j].map_pos = (t_vec){var->i, var->j};
+				map[var->i][var->j].is_door = 1;
+				map[var->i][var->j].index = 50;
 				++ray->door.nb_doors;
 			}
 			var->j++;

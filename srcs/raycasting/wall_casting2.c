@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/14 17:11:46 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 10:27:21 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	texture_y_pos_calculator(t_data *data, t_ray *ray)
 
 void	texture_x_pos_calculator(t_data *data, t_ray *ray)
 {
-	size_t	img_width;
+	size_t		img_width;
+	t_door_data	**map;
 
+	map = ray->door.door_map;
 	img_width = data->textures[ray->text_select].img->width;
 	if (ray->side == 0)
 		ray->wall_x = ray->camera.pos.y + ray->wall_distance * ray->ray_dir.y;
@@ -57,7 +59,7 @@ void	texture_x_pos_calculator(t_data *data, t_ray *ray)
 		ray->wall_x = ray->camera.pos.x + ray->wall_distance * ray->ray_dir.x;
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->ray_tex == 2)
-		ray->wall_x += ray->door.door_map[ray->map_pos.y][ray->map_pos.y].offset;
+		ray->wall_x += map[ray->map_pos.y][ray->map_pos.y].offset;
 	ray->tex.x = (int)(ray->wall_x * (double)img_width);
 }
 
