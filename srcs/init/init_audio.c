@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:19:41 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 12:05:32 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/15 15:58:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ static void	init_audio_volume(t_data *data)
 	ma_sound_set_volume(&data->audio.door[1], 0.60);
 }
 
+static void	init_audio_settings(t_data *data)
+{
+	ma_sound_set_looping(&data->audio.ambiance, 1);
+	ma_sound_set_looping(&data->audio.creeping_down, 1);
+	ma_sound_set_looping(&data->audio.unraveled, 1);
+	data->audio.lock = 0;
+	data->audio.lock2 = 0;
+	data->audio.volume = 1.0;
+}
+
 void	init_audio(t_data *data)
 {
 	ma_result			result;
@@ -60,12 +70,7 @@ void	init_audio(t_data *data)
 	init_audio_volume(data);
 	if (result != MA_SUCCESS)
 		throw_err_ex("Audio file initialization error");
-	ma_sound_set_looping(&data->audio.ambiance, 1);
-	ma_sound_set_looping(&data->audio.creeping_down, 1);
-	ma_sound_set_looping(&data->audio.unraveled, 1);
-	data->audio.lock = 0;
-	data->audio.lock2 = 0;
-	data->audio.volume = 1.0;
+	init_audio_settings(data);
 	ma_sound_start(&data->audio.ambiance);
 	ma_sound_start(&data->audio.creeping_down);
 }

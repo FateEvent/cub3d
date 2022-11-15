@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:08:44 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 15:49:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:56:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_vec	*get_doors(t_data *data)
 	return (pos);
 }
 
-static void	update_doors_pt2(t_data *data, t_ray *ray, size_t x, size_t y)
+static void	update_doors_close(t_data *data, t_ray *ray, size_t x, size_t y)
 {
 	if (ray->door.door_map[y][x].sliding == 2)
 	{
@@ -76,6 +76,25 @@ static void	update_doors_pt2(t_data *data, t_ray *ray, size_t x, size_t y)
 	}
 }
 
+static void	update_doors_open(t_data *data, t_ray *ray, size_t x, size_t y)
+{
+	ray->map->map[y][x] = ray->door.door_map[y][x].index;
+	if (data->timer >= ray->door.door_map[y][x].opening_timer + 0.05)
+	{
+		if (!ma_sound_is_playing(&data->audio.door[1]))
+			ma_sound_start(&data->audio.door[1]);
+		++ray->door.door_map[y][x].index;
+		ray->door.door_map[y][x].offset += 0.20;
+		ray->door.door_map[y][x].opening_timer = data->timer;
+	}
+	if (ray->door.door_map[y][x].index == 56)
+	{
+		--ray->door.door_map[y][x].index;
+		ray->door.door_map[y][x].offset -= 0.20;
+		ray->door.door_map[y][x].sliding = 0;
+	}
+}
+
 void	update_doors(t_data *data, t_ray *ray)
 {
 	t_vec	*pos;
@@ -90,25 +109,9 @@ void	update_doors(t_data *data, t_ray *ray)
 		x = pos[i].x;
 		y = pos[i].y;
 		if (ray->door.door_map[y][x].sliding == 1)
-		{
-			ray->map->map[y][x] = ray->door.door_map[y][x].index;
-			if (data->timer >= ray->door.door_map[y][x].opening_timer + 0.05)
-			{
-				if (!ma_sound_is_playing(&data->audio.door[1]))
-					ma_sound_start(&data->audio.door[1]);
-				++ray->door.door_map[y][x].index;
-				ray->door.door_map[y][x].offset += 0.20;
-				ray->door.door_map[y][x].opening_timer = data->timer;
-			}
-			if (ray->door.door_map[y][x].index == 56)
-			{
-				--ray->door.door_map[y][x].index;
-				ray->door.door_map[y][x].offset -= 0.20;
-				ray->door.door_map[y][x].sliding = 0;
-			}
-		}
+			update_doors_open(data, ray, x, y);
 		else if (ray->door.door_map[y][x].sliding == 2)
-			update_doors_pt2(data, ray, x, y);
+			update_doors_close(data, ray, x, y);
 	}
 	free(pos);
 }
