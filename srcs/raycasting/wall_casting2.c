@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_casting2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/15 15:54:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:33:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	choose_wall_texture(t_ray *ray)
 		ray->text_select = 13;
 	if (ray->ray_tex == 7)
 		ray->text_select = 14;
+	if (ray->ray_tex == 8)
+		ray->text_select = 15;
 }
 
 void	texture_y_pos_calculator(t_data *data, t_ray *ray)

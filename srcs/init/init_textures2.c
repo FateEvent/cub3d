@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:42:39 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 15:50:12 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 10:31:10 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_door_image(t_data *data, t_image *texture)
 	ssize_t	i;
 
 	i = 8;
-	while (++i < 15)
+	while (++i < 16)
 	{
 		tex_to_img(data, texture, i);
 		if (!texture[i].img)

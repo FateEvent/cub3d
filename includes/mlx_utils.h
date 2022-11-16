@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/15 16:27:44 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:04:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,6 +281,12 @@ typedef struct s_shading
 	double	distance;
 }				t_shading;
 
+typedef struct s_quest
+{
+	size_t		n_pages;
+}				t_quest;
+
+
 typedef struct s_data
 {
 	mlx_t			*mlx;
@@ -301,6 +307,7 @@ typedef struct s_data
 	int				exit;
 	t_enemy			enemy;
 	t_hud			hud;
+	t_quest			quest;
 	t_audio			audio;
 	t_shading		shading;
 }				t_data;
@@ -311,6 +318,7 @@ typedef struct s_var
 	double		old_plane_x;
 	double		rotation;
 	double		movement;
+	double		alpha;
 	uint32_t	width;
 	uint32_t	height;
 	uint32_t	color;
@@ -374,6 +382,7 @@ void		init_audio_ambiance(t_data *data, ma_result *result);
 void		init_audio_suspense(t_data *data, ma_result *result);
 void		init_audio_doors(t_data *data, ma_result *result);
 void		*init_textures(t_data *data);
+void		init_quest(t_data *data);
 
 // window functions
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,
@@ -385,6 +394,7 @@ void		key_input(t_data *data);
 void		update_key(mlx_key_data_t keydata, void *param);
 void		key_input_arrows(t_data *data, t_ray *ray, t_var *var);
 void		mouse_input(double x, double y, void *param);
+int			check_collision(t_data *data, t_var var, int mode);
 void		update_render(void *param);
 
 // parsing functions
@@ -518,5 +528,6 @@ void		free_door_arrays_index(t_ray *ray, size_t index, size_t size);
 t_vec		ft_get_coordinates(char **map, char prop);
 t_vec		ft_get_x_and_y(char **map, char prop);
 int			is_wasd(t_data *data);
+double		check_double_overflow(double value);
 
 #endif

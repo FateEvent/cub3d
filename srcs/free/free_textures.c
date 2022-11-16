@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:40:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/11 01:03:09 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 10:25:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_textures(t_data *data)
 	ssize_t	i;
 
 	i = -1;
-	while (++i < 15)
+	while (++i < 16)
 	{
 		if (data->map->mode == -1 && (i == 4 || i == 5))
 			continue ;

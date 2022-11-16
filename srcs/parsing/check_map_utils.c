@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/25 16:24:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 11:40:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int	space_check(char **map, ssize_t i, ssize_t j)
 	tmp = j;
 	while (tmp >= 0 && map[i][tmp])
 	{
-		if (map[i][tmp] == '1')
+		if (map[i][tmp] == '1' || map[i][tmp] == '8')
 			return (0);
 		--tmp;
 	}
 	tmp = j;
 	while (map[i][tmp] && tmp <= (ssize_t)ft_strlen(map[i]) - 1)
 	{
-		if (map[i][tmp] == '1')
+		if (map[i][tmp] == '1' || map[i][tmp] == '8')
 			return (0);
 		++tmp;
 	}

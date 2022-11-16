@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:46:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/08 16:24:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:05:14 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,13 @@ void	sort_sprites(int *order, double *dist, int amount)
 		else
 			i++;
 	}
+}
+
+double	check_double_overflow(double value)
+{
+	if (value > 1)
+		return (1);
+	else if (value < -1)
+		return (-1);
+	return (value);
 }

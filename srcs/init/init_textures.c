@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/15 16:28:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 10:31:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static int	check_texture_integrity(t_data *data, t_image *texture)
 {
 	if (!texture[0].texture || !texture[1].texture || !texture[2].texture
 		|| !texture[3].texture || (data->map->mode == 1
-			&& (!texture[4].texture || !texture[5].texture)))
+			&& (!texture[4].texture || !texture[5].texture))
+			|| !texture[15].texture)
 		return (1);
 	else
 		return (0);
@@ -26,7 +27,7 @@ static int	check_image_integrity(t_data *data, t_image *texture)
 {
 	if (!texture[0].img || !texture[1].img || !texture[2].img
 		|| !texture[3].img || (data->map->mode == 1
-			&& (!texture[4].img || !texture[5].img)))
+			&& (!texture[4].img || !texture[5].img)) || !texture[15].img)
 		return (1);
 	else
 		return (0);
@@ -71,9 +72,9 @@ void	*init_textures(t_data *data)
 {
 	t_image	*texture;
 
-	data->textures = malloc(sizeof(t_image) * 15);
+	data->textures = malloc(sizeof(t_image) * 16);
 	texture = data->textures;
-	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 15);
+	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 16);
 	if (!data->textures || !data->ray_data.tex_buf)
 		free_exit(data);
 	ft_bzero(texture, sizeof(*texture));
@@ -86,6 +87,8 @@ void	*init_textures(t_data *data)
 		texture[4].texture = mlx_load_xpm42(data->map->ceiling_texture);
 		texture[5].texture = mlx_load_xpm42(data->map->floor_texture);
 	}
+	texture[15].texture = mlx_load_xpm42("images/dirtycarpet_page.xpm42");
+	tex_to_img(data, texture, 15);
 	if (check_texture_integrity(data, texture))
 		free_exit(data);
 	from_texture_to_image(data, texture);

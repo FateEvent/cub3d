@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:56:23 by albaur            #+#    #+#             */
-/*   Updated: 2022/10/14 17:57:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 11:45:14 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	wall_check_first(char *map)
 	{
 		if (map[i] == ' ')
 			++i;
-		else if (map[i] == '1')
+		else if (map[i] == '1' || map[i] == 8)
 			break ;
 		else
 			return (-1);
@@ -37,7 +37,8 @@ static int	wall_check_both(char **map, ssize_t i, ssize_t j)
 		while (map[j][++i])
 		{
 			if (!wall_check_first(map[j])
-				&& map[j][ft_strlen(map[j]) - 1] == '1')
+				&& (map[j][ft_strlen(map[j]) - 1] == '1'
+				|| map[j][ft_strlen(map[j]) - 1] == '8'))
 				continue ;
 			return (-1);
 		}
@@ -57,15 +58,16 @@ int	wall_check(char **map)
 	last_row = ft_arrlen(map) - 1;
 	while (map[0][++i])
 	{
-		if (map[0][i] == '1' || (map[0][i] == ' ' && !space_check(map, 0, i)))
+		if ((map[0][i] == '1' || map[0][i] == '8') || (map[0][i] == ' '
+			&& !space_check(map, 0, i)))
 			continue ;
 		return (-1);
 	}
 	i = -1;
 	while (map[last_row][++i])
 	{
-		if (map[last_row][i] == '1' || (map[last_row][i] == ' '
-			&& !space_check(map, last_row, i)))
+		if ((map[last_row][i] == '1' || map[last_row][i] == '8')
+			|| (map[last_row][i] == ' ' && !space_check(map, last_row, i)))
 			continue ;
 		return (-1);
 	}

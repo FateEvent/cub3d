@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:13:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/10 12:44:38 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:04:01 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,9 @@ static void	key_input_child(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_S)
 	{
-		if (data->map->map[(int)(ray->camera.pos.y - ray->camera.dir.y
-				* var->movement)][(int)(ray->camera.pos.x)] != '1')
+		if (!check_collision(data, *var, 2))
 			ray->camera.pos.y -= ray->camera.dir.y * var->movement;
-		if (data->map->map[(int)(ray->camera.pos.y)]
-				[(int)(ray->camera.pos.x - ray->camera.dir.x
-				* var->movement)] != '1')
+		if (!check_collision(data, *var, 3))
 			ray->camera.pos.x -= ray->camera.dir.x * var->movement;
 	}
 	else
@@ -94,14 +91,9 @@ void	key_input(t_data *data)
 	var.movement = data->player.speed.movement;
 	if (data->key == (keys_t)MLX_KEY_W)
 	{
-		if (data->map->map[(int)
-				(ray->camera.pos.y)][(int)
-			(ray->camera.pos.x + ray->camera.dir.x
-				* var.movement)] != '1')
+		if (!check_collision(data, var, 0))
 			ray->camera.pos.x += ray->camera.dir.x * var.movement;
-		if (data->map->map[(int)
-				(ray->camera.pos.y + ray->camera.dir.y * var.movement)]
-			[(int)(ray->camera.pos.x)] != '1')
+		if (!check_collision(data, var, 1))
 			ray->camera.pos.y += ray->camera.dir.y * var.movement;
 	}
 	else

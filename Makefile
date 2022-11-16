@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/14 17:05:58 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/16 11:10:05 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	cub3d
 ARGS		=	map.cub
 CC			=	gcc
 FLAGS		=	-Wall -Wextra -Werror -g3
-LINKS		=	-lglfw -L /Users/${USER}/goinfre/.brew/opt/glfw/lib/ #-ldl -lm -pthread #linuxflags
+LINKS		=	-lglfw -L /Users/${USER}/goinfre/.brew/opt/glfw/lib/ -ldl -lm -pthread #linuxflags
 LIBLINKS	=	-I./MLX42/include/MLX42 -I./includes -I./libft/includes -I/Users/${USER}/goinfre/.brew/opt/glfw/include
 SRC_PATH	=	srcs/
 OBJ_PATH	=	bin/
@@ -26,7 +26,8 @@ SRCS_FILES	+=	$(addprefix $(MAIN_PATH), $(MAIN_FILES))
 
 INIT_PATH	=	init/
 INIT_FILES	=	init_struct init_direction init_minimap init_sprites init_hud \
-				init_textures init_textures2 init_doors init_audio init_audio_batch
+				init_textures init_textures2 init_doors init_audio init_audio_batch \
+				init_quest
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 PARSE_PATH	=	parsing/
