@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/16 10:31:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:38:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_texture_integrity(t_data *data, t_image *texture)
 	if (!texture[0].texture || !texture[1].texture || !texture[2].texture
 		|| !texture[3].texture || (data->map->mode == 1
 			&& (!texture[4].texture || !texture[5].texture))
-			|| !texture[15].texture)
+		|| !texture[15].texture)
 		return (1);
 	else
 		return (0);

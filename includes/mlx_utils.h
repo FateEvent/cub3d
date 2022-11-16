@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/16 13:04:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:41:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,7 +286,6 @@ typedef struct s_quest
 	size_t		n_pages;
 }				t_quest;
 
-
 typedef struct s_data
 {
 	mlx_t			*mlx;
@@ -319,6 +318,7 @@ typedef struct s_var
 	double		rotation;
 	double		movement;
 	double		alpha;
+	double		slide;
 	uint32_t	width;
 	uint32_t	height;
 	uint32_t	color;
@@ -394,7 +394,7 @@ void		key_input(t_data *data);
 void		update_key(mlx_key_data_t keydata, void *param);
 void		key_input_arrows(t_data *data, t_ray *ray, t_var *var);
 void		mouse_input(double x, double y, void *param);
-int			check_collision(t_data *data, t_var var, int mode);
+int			check_collision(t_data *data, t_var *var, int mode);
 void		update_render(void *param);
 
 // parsing functions

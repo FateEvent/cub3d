@@ -6,12 +6,28 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/16 11:10:33 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:37:30 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 #include "miniaudio.h"
+
+static void	batch_init(t_data *data)
+{
+	init_struct(data);
+	data->mlx = mlx_init(data->screen.display.size.x,
+			data->screen.display.size.y, "cub3d", true);
+	data->screen.display.img = mlx_new_image(data->mlx,
+			data->screen.display.size.x, data->screen.display.size.y);
+	if (!data->screen.display.img)
+		throw_err_ex("Error : Creating new MLX image failed.");
+	init_textures(data);
+	init_minimap(data);
+	init_hud(data);
+	init_quest(data);
+	init_audio(data);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -21,18 +37,7 @@ int	main(int argc, char *argv[])
 	data.map = check(argc, argv);
 	if (!data.map->map)
 		ft_puterror("Error!");
-	init_struct(&data);
-	data.mlx = mlx_init(data.screen.display.size.x,
-			data.screen.display.size.y, "cub3d", true);
-	data.screen.display.img = mlx_new_image(data.mlx,
-			data.screen.display.size.x, data.screen.display.size.y);
-	if (!data.screen.display.img)
-		throw_err_ex("Error : Creating new MLX image failed.");
-	init_textures(&data);
-	init_minimap(&data);
-	init_hud(&data);
-	init_quest(&data);
-	init_audio(&data);
+	batch_init(&data);
 	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(data.mlx, data.screen.display.img, 0, 0);
 	mlx_loop_hook(data.mlx, update_render, &data);

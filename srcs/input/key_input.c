@@ -6,13 +6,26 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:13:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 13:04:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:28:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
 
-static void	key_input_other(t_data *data, t_ray *ray, t_var *var)
+void	update_key(mlx_key_data_t keydata, void *param)
+{
+	t_data	*data;
+
+	data = param;
+	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
+		data->key = keydata.key;
+	if (keydata.action == MLX_PRESS)
+		data->key = keydata.key;
+	else if (keydata.action == MLX_RELEASE && keydata.key == (keys_t)data->key)
+		data->key = 0;
+}
+
+static void	key_input3(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_LEFT)
 	{
@@ -34,7 +47,7 @@ static void	key_input_other(t_data *data, t_ray *ray, t_var *var)
 		key_input_arrows(data, ray, var);
 }
 
-static void	key_input_rest(t_data *data, t_ray *ray, t_var *var)
+static void	key_input2(t_data *data, t_ray *ray, t_var *var)
 {
 	if (data->key == (keys_t)MLX_KEY_RIGHT)
 	{
@@ -51,33 +64,7 @@ static void	key_input_rest(t_data *data, t_ray *ray, t_var *var)
 		data->player.yaw += data->player.speed.rotation;
 	}
 	else
-		key_input_other(data, ray, var);
-}
-
-static void	key_input_child(t_data *data, t_ray *ray, t_var *var)
-{
-	if (data->key == (keys_t)MLX_KEY_S)
-	{
-		if (!check_collision(data, *var, 2))
-			ray->camera.pos.y -= ray->camera.dir.y * var->movement;
-		if (!check_collision(data, *var, 3))
-			ray->camera.pos.x -= ray->camera.dir.x * var->movement;
-	}
-	else
-		key_input_rest(data, ray, var);
-}
-
-void	update_key(mlx_key_data_t keydata, void *param)
-{
-	t_data	*data;
-
-	data = param;
-	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
-		data->key = keydata.key;
-	if (keydata.action == MLX_PRESS)
-		data->key = keydata.key;
-	else if (keydata.action == MLX_RELEASE && keydata.key == (keys_t)data->key)
-		data->key = 0;
+		key_input3(data, ray, var);
 }
 
 void	key_input(t_data *data)
@@ -91,11 +78,18 @@ void	key_input(t_data *data)
 	var.movement = data->player.speed.movement;
 	if (data->key == (keys_t)MLX_KEY_W)
 	{
-		if (!check_collision(data, var, 0))
-			ray->camera.pos.x += ray->camera.dir.x * var.movement;
-		if (!check_collision(data, var, 1))
-			ray->camera.pos.y += ray->camera.dir.y * var.movement;
+		if (!check_collision(data, &var, 0))
+			ray->camera.pos.x += var.slide;
+		if (!check_collision(data, &var, 1))
+			ray->camera.pos.y += var.slide;
+	}
+	else if (data->key == (keys_t)MLX_KEY_S)
+	{
+		if (!check_collision(data, &var, 2))
+			ray->camera.pos.y -= var.slide;
+		if (!check_collision(data, &var, 3))
+			ray->camera.pos.x -= var.slide;
 	}
 	else
-		key_input_child(data, ray, &var);
+		key_input2(data, ray, &var);
 }
