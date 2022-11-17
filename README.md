@@ -20,18 +20,18 @@ Credits :
 - mackron for the audio library (https://miniaud.io/)
 
 good tutorials are the following ones:
-* <https://github.com/vinibiavatti1/RayCastingTutorial/wiki/Utilities>;
-* <https://lodev.org/cgtutor/raycasting.html>;
-* <https://www.youtube.com/watch?v=NbSee-XM7WA>;
-* <https://www.youtube.com/playlist?list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW>;
+* <https://github.com/vinibiavatti1/RayCastingTutorial/wiki/Utilities>
+* <https://lodev.org/cgtutor/raycasting.html>
+* <https://www.youtube.com/watch?v=NbSee-XM7WA>
+* <https://www.youtube.com/playlist?list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW>
 
 more stuff:
-* <http://backrooms-wiki.wikidot.com>;
-* <https://www.youtube.com/watch?v=l-u6uxnOmH0>;
-* <https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm>;
+* <http://backrooms-wiki.wikidot.com>
+* <https://www.youtube.com/watch?v=l-u6uxnOmH0>
+* <https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm>
 
 for the bonus part:
-* <https://lodev.org/cgtutor/raycasting4.html>;
-* <http://andrewmushel.com/raycast-demo>;
-* <https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents>;
-* <https://medium.com/@Powersaurus/pico-8-raycaster-doors-cd8de9d943b>;
+* <https://lodev.org/cgtutor/raycasting4.html>
+* <http://andrewmushel.com/raycast-demo>
+* <https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents>
+* <https://medium.com/@Powersaurus/pico-8-raycaster-doors-cd8de9d943b>
