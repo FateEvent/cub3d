@@ -1,5 +1,9 @@
 # cub3d - backrooms edition
 
+> If you're not careful and you noclip out of reality in the wrong areas, you'll end up in the Backrooms, where it's nothing but the stink of old moist carpet, the madness of mono-yellow, the endless background noise of fluorescent lights at maximum hum-buzz, and approximately six hundred million square miles of randomly segmented empty rooms to be trapped in.
+> God save you if you hear something wandering around nearby, because it's sure as hell it has heard you.
+Anonymous user, 4chan: <https://archive.4plebs.org/x/thread/22661164/#22666250>
+
 This is a backrooms version of the cub3d project based on the rewritten version of MLX42, with cool features such as enemies, jumpscares, audio, a slender-based quest...
 
 <p align="center">
@@ -15,9 +19,6 @@ Credits :
 - W2Wizard for the headaches :p (https://github.com/codam-coding-college/MLX42)
 - mackron for the audio library (https://miniaud.io/)
 
-cool stuff:
-* <http://backrooms-wiki.wikidot.com>;
-
 good tutorials are the following ones:
 * <https://github.com/vinibiavatti1/RayCastingTutorial/wiki/Utilities>;
 * <https://lodev.org/cgtutor/raycasting.html>;
@@ -25,6 +26,7 @@ good tutorials are the following ones:
 * <https://www.youtube.com/playlist?list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW>;
 
 more stuff:
+* <http://backrooms-wiki.wikidot.com>;
 * <https://www.youtube.com/watch?v=l-u6uxnOmH0>;
 * <https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm>;
 
