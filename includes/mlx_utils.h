@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/17 12:31:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/17 12:32:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct s_key_hook
 	double		psin;
 	double		ncos;
 	double		nsin;
-}				t_key;
+}				t_key_hook;
 
 typedef struct s_sprite_caster
 {
@@ -197,7 +197,7 @@ typedef struct s_ray_data
 	double		tex_pos;
 	int			ray_tex;
 	t_floor		fl;
-	t_key		k;
+	t_key_hook	k;
 	t_mouse		m;
 	int			half_width;
 	t_map		*map;
