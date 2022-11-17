@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:56:23 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 11:45:14 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 17:35:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	wall_check_first(char *map)
 	{
 		if (map[i] == ' ')
 			++i;
-		else if (map[i] == '1' || map[i] == 8)
+		else if (map[i] == '1' || map[i] == '8')
 			break ;
 		else
 			return (-1);
