@@ -13,6 +13,7 @@ Credits :
 - Valve for the doors sound effects and textures
 - Many textures / sound ambiance are taken from Inside the Backrooms (https://store.steampowered.com/app/1987080/Inside_the_Backrooms/), really amazing game you should try
 - W2Wizard for the headaches :p (https://github.com/codam-coding-college/MLX42)
+- mackron for the audio library (https://miniaud.io/)
 
 cool stuff:
 * <http://backrooms-wiki.wikidot.com>;
