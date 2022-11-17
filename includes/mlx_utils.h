@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/17 11:35:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:31:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -420,7 +420,6 @@ int			check_texture(t_map *m, char *map, int *count, t_ctexture c);
 int			check_texture_batch(t_map *m, char **map, size_t i, int *count);
 int			get_spawn_position(t_map *m);
 void		init_direction(t_data *data);
-void		ft_count_items(char **map);
 
 // ray casting tools
 void		floor_casting(t_data *data, t_ray *ray);

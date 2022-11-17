@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 13:13:32 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/17 11:35:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:28:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char *argv[])
 	if (!data.map->map)
 		ft_puterror("Error!");
 	batch_init(&data);
-	ft_count_items(data.map->map);
 	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(data.mlx, data.screen.display.img, 0, 0);
 	mlx_loop_hook(data.mlx, update_render, &data);

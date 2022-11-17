@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_quest.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:34:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 17:30:09 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/17 12:29:49 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,8 @@ void	init_quest(t_data *data)
 	data->quest.exit_win->img->enabled = 0;
 	data->quest.n_pickup = 0;
 	data->quest.done = 0;
+	if (data->quest.n_pages)
+		ft_printf("Find %d pages to escape.\n", data->quest.n_pages);
+	else
+		ft_printf("No pages in the map. You can't escape.");
 }
