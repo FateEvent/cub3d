@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:07:41 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/10 11:25:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:51:54 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	minimap_get(t_map *map, int x, int y)
 	if (x < 0 || y < 0 || (y < map->buf_size && x >= map->size_arr[y])
 		|| y >= map->size.y)
 		return (0);
-	if (map->map_str[pos] == '1')
+	if (map->map_str[pos] == '1' || map->map_str[pos] == '8'
+		|| map->map_str[pos] == '9')
 		return (1);
 	else
 		return (0);

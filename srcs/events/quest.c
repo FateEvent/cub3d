@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:07:19 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 17:33:10 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 17:51:10 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	update_quest_hud_exit(t_data *data, t_vec pos)
 		data->quest.exit_key->img->enabled = 1;
 		if (data->key == MLX_KEY_E)
 		{
+			printf("You escaped in %fs\n", data->timer);
 			data->map->minimap->img->enabled = 0;
 			data->quest.exit_key->img->enabled = 0;
 			mlx_image_to_window(data->mlx, data->quest.exit_bg->img, 0, 0);
@@ -27,6 +28,7 @@ static void	update_quest_hud_exit(t_data *data, t_vec pos)
 			data->enemy.alive = 0;
 			mlx_set_cursor_mode(data->mlx, MLX_MOUSE_NORMAL);
 			data->ray_data.m.focus = 1;
+			data->key = 0;
 		}
 	}
 	else if (data->quest.done != 3)
@@ -49,6 +51,7 @@ static void	update_quest_hud(t_data *data)
 			ma_sound_start(&data->audio.pickup);
 			data->map->map[pos.y][pos.x] = '1';
 			++data->quest.n_pickup;
+			data->key = 0;
 		}
 	}
 	else
