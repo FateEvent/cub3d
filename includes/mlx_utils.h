@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/16 16:39:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 17:30:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,8 @@ typedef struct s_quest
 	t_image		*pickup;
 	t_image		*exit;
 	t_image		*exit_key;
-	t_image		*exit_screen;
+	t_image		*exit_win;
+	t_image		*exit_bg;
 	size_t		n_pickup;
 	int			done;
 	t_vec		exit_pos;
@@ -394,6 +395,7 @@ void		init_audio_suspense(t_data *data, ma_result *result);
 void		init_audio_doors(t_data *data, ma_result *result);
 void		*init_textures(t_data *data);
 void		init_quest(t_data *data);
+void		init_quest_walls(t_data *data, t_image *texture);
 
 // window functions
 void		mlx_draw_square(mlx_image_t *img, uint32_t width, uint32_t height,

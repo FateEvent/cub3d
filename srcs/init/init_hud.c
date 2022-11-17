@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:10:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 16:40:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 17:26:59 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	init_hud_draw2(t_data *data)
 	mlx_image_to_window(data->mlx, data->quest.pickup->img,
 		WIDTH / 2 - 100, HEIGHT / 2 + 100);
 	mlx_image_to_window(data->mlx, data->quest.exit_key->img,
-		WIDTH / 2 - 100, HEIGHT / 2 - 200);
-	mlx_image_to_window(data->mlx, data->quest.exit_screen->img,
+		WIDTH / 2 - 100, HEIGHT / 2 + 100);
+	mlx_image_to_window(data->mlx, data->quest.exit_win->img,
 		0, 0);
 	data->enemy.warning_text->img->enabled = 0;
 	if (!data->enemy.warning_text->img)

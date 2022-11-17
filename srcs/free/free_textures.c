@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:40:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 16:55:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 17:26:59 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 static void	free_textures_quest(t_data *data)
 {
-	mlx_delete_xpm42(data->quest.pickup->texture);
-	mlx_delete_xpm42(data->quest.exit_key->texture);
-	mlx_delete_xpm42(data->quest.exit_screen->texture);
+	if (data->quest.pickup)
+		mlx_delete_xpm42(data->quest.pickup->texture);
+	if (data->quest.exit_key)
+		mlx_delete_xpm42(data->quest.exit_key->texture);
+	if (data->quest.exit_win)
+		mlx_delete_xpm42(data->quest.exit_win->texture);
 	free(data->quest.pickup);
 	free(data->quest.exit_key);
-	free(data->quest.exit_screen);
+	free(data->quest.exit_win);
 	free(data->quest.exit);
+	free(data->quest.exit_bg);
 }
 
 void	free_textures(t_data *data)
