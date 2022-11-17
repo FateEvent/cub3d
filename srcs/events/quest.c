@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:07:19 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/17 12:39:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:08:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static void	update_quest_hud(t_data *data)
 			ma_sound_start(&data->audio.pickup);
 			data->map->map[pos.y][pos.x] = '1';
 			++data->quest.n_pickup;
-			if (data->quest.n_pages - data->quest.n_pickup)
-				ft_printf("Collected pages: %i/%i.\n",
-					data->quest.n_pickup, data->quest.n_pages);
-			else
-				ft_printf("A portal opened up somewhere.\n");
+			printf("\rCollected pages: %zu/%zu.",
+				data->quest.n_pickup, data->quest.n_pages);
+			fflush(stdout);
+			if (data->quest.n_pages - data->quest.n_pickup == 0)
+				ft_printf("\nA portal opened up somewhere.\n");
 			data->key = 0;
 		}
 	}
