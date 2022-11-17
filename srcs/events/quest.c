@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quest.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:07:19 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/17 12:32:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/17 12:39:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ static void	update_quest_hud(t_data *data)
 			data->map->map[pos.y][pos.x] = '1';
 			++data->quest.n_pickup;
 			if (data->quest.n_pages - data->quest.n_pickup)
-				ft_printf("Pages collected : %i/%i.\n",
+				ft_printf("Collected pages: %i/%i.\n",
 					data->quest.n_pickup, data->quest.n_pages);
 			else
-				ft_printf("An exit opened somewhere.\n");
+				ft_printf("A portal opened up somewhere.\n");
 			data->key = 0;
 		}
 	}
