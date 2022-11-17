@@ -2,6 +2,10 @@
 
 This is a backrooms version of the cub3d project based on the rewritten version of MLX42, with cool features such as enemies, jumpscares, audio, a slender-based quest...
 
+<p align="center">
+  <img src="https://i.imgur.com/bg3H6uw.png">
+</p>
+
 Credits :
 
 - ttranche for the minimap algorithm (https://github.com/ttranche/cub3d)
