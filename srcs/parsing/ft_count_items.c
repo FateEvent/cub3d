@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:21:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/17 11:21:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:43:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_count_items(char **map)
 		}
 	}
 	if (count)
-		ft_printf("%d items left.", count);
+		ft_printf("%d pages left.\n", count);
 	else
-		ft_printf("Wonderful, all the items have been collected!");
+		ft_printf("No pages in the map.");
 }

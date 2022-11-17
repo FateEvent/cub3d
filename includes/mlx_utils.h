@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/17 11:17:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:35:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,7 +306,6 @@ typedef struct s_data
 	uint32_t		render_delay;
 	uint32_t		img_index;
 	t_image			*textures;
-	int				edge_size;	
 	t_player		player;
 	t_ray			ray_data;
 	int				keycode;
@@ -339,7 +338,6 @@ typedef struct s_var
 	uint8_t		*pixels;
 	uint32_t	i;
 	uint32_t	j;
-	int			is_wall_defined;
 }				t_var;
 
 typedef struct s_getcolor
@@ -366,14 +364,6 @@ typedef struct s_shape
 	double	dim;
 	t_image	*img;
 }				t_shape;
-
-typedef struct s_anode
-{
-	struct s_anode	*parent;
-	int				dist;
-	t_vec			pos;
-	struct s_anode	*next;
-}				t_anode;
 
 // init
 void		init_sprites(t_data *data, t_ray *ray);

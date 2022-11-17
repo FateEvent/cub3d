@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quest.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:07:19 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 17:51:10 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/17 11:42:35 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ static void	update_quest_hud(t_data *data)
 			ma_sound_start(&data->audio.pickup);
 			data->map->map[pos.y][pos.x] = '1';
 			++data->quest.n_pickup;
+			if (data->quest.n_pages - data->quest.n_pickup)
+				ft_printf("Noice! Only %u pages left!\n",
+					data->quest.n_pages - data->quest.n_pickup);
+			else
+				ft_printf("Wow! You collected all the pages.\n\
+					Find the portal, now!\n");
 			data->key = 0;
 		}
 	}
