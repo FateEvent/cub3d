@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_hud.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:10:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 16:38:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 16:40:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	init_hud_draw2(t_data *data)
 {
 	data->hud.sprites[0].img->enabled = 1;
 	data->enemy.warning_text = malloc(sizeof(t_image));
+	if (!data->enemy.warning_text)
+		free_exit(data);
 	data->enemy.warning_text->texture = mlx_load_xpm42("images/run.xpm42");
 	if (!data->enemy.warning_text->texture)
 		free_exit(data);
@@ -23,6 +25,12 @@ static void	init_hud_draw2(t_data *data)
 			&data->enemy.warning_text->texture->texture);
 	mlx_image_to_window(data->mlx, data->enemy.warning_text->img,
 		WIDTH / 2 - 100, HEIGHT / 2 - 200);
+	mlx_image_to_window(data->mlx, data->quest.pickup->img,
+		WIDTH / 2 - 100, HEIGHT / 2 + 100);
+	mlx_image_to_window(data->mlx, data->quest.exit_key->img,
+		WIDTH / 2 - 100, HEIGHT / 2 - 200);
+	mlx_image_to_window(data->mlx, data->quest.exit_screen->img,
+		0, 0);
 	data->enemy.warning_text->img->enabled = 0;
 	if (!data->enemy.warning_text->img)
 		free_exit(data);

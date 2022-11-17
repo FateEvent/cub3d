@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/16 11:33:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 15:40:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,8 @@ void	choose_wall_texture(t_ray *ray)
 		ray->text_select = 2;
 	if (ray->side == 0 && ray->ray_dir.x > 0)
 		ray->text_select = 3;
-	if (ray->ray_tex == 2)
-		ray->text_select = 9;
-	if (ray->ray_tex == 3)
-		ray->text_select = 10;
-	if (ray->ray_tex == 4)
-		ray->text_select = 11;
-	if (ray->ray_tex == 5)
-		ray->text_select = 12;
-	if (ray->ray_tex == 6)
-		ray->text_select = 13;
-	if (ray->ray_tex == 7)
-		ray->text_select = 14;
-	if (ray->ray_tex == 8)
-		ray->text_select = 15;
+	if (ray->ray_tex >= 2 && ray->ray_tex <= 9)
+		ray->text_select = ray->ray_tex + 7;
 }
 
 void	texture_y_pos_calculator(t_data *data, t_ray *ray)

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:19:27 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/16 13:38:07 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 16:11:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	*init_textures(t_data *data)
 {
 	t_image	*texture;
 
-	data->textures = malloc(sizeof(t_image) * 16);
+	data->textures = malloc(sizeof(t_image) * 17);
 	texture = data->textures;
-	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 16);
+	data->ray_data.tex_buf = malloc(sizeof(uint32_t *) * 17);
 	if (!data->textures || !data->ray_data.tex_buf)
 		free_exit(data);
 	ft_bzero(texture, sizeof(*texture));
@@ -87,8 +87,10 @@ void	*init_textures(t_data *data)
 		texture[4].texture = mlx_load_xpm42(data->map->ceiling_texture);
 		texture[5].texture = mlx_load_xpm42(data->map->floor_texture);
 	}
-	texture[15].texture = mlx_load_xpm42("images/dirtycarpet_page.xpm42");
+	texture[15].texture = mlx_load_xpm42("images/wall_page.xpm42");
 	tex_to_img(data, texture, 15);
+	texture[16].texture = mlx_load_xpm42("images/exit.xpm42");
+	tex_to_img(data, texture, 16);
 	if (check_texture_integrity(data, texture))
 		free_exit(data);
 	from_texture_to_image(data, texture);

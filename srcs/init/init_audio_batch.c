@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_audio_batch.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:25:05 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 11:56:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 14:26:28 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_audio_behind_you(t_data *data, ma_result *result)
 			&data->audio.behind_you[3]);
 }
 
-void	init_audio_footstep(t_data *data, ma_result *result)
+void	init_audio_player(t_data *data, ma_result *result)
 {
 	result += ma_sound_init_from_file(data->audio.audio_engine,
 			"audio/footstep1.flac", 64, NULL, NULL, &data->audio.footstep[0]);
@@ -48,6 +48,8 @@ void	init_audio_footstep(t_data *data, ma_result *result)
 			"audio/footstep4.flac", 64, NULL, NULL, &data->audio.footstep[3]);
 	result += ma_sound_init_from_file(data->audio.audio_engine,
 			"audio/footstep5.flac", 64, NULL, NULL, &data->audio.footstep[4]);
+	result += ma_sound_init_from_file(data->audio.audio_engine,
+			"audio/pickup.flac", 64, NULL, NULL, &data->audio.pickup);
 }
 
 void	init_audio_ambiance(t_data *data, ma_result *result)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:53:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 14:56:03 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:51:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	update_jumpscare(t_data *data)
 {
 	ssize_t	i;
 
+	if (data->enemy.disable_ai == 1)
+		return ;
 	i = rand() % 2;
 	if (i == 0)
 		i = 2;
@@ -78,8 +80,9 @@ int	update_events(t_data *data)
 		init_hud_draw(data);
 	if (!is_wasd(data))
 		update_move(data);
+	update_quest(data);
 	if (data->enemy.kill_countdown <= 0 && data->enemy.disable_ai == 0
-		&& data->enemy.alive == 1)
+		&& data->enemy.alive == 1 && data->quest.done != 3)
 		draw_death(data);
 	update_enemy(data, &data->ray_data);
 	update_jumpscare(data);

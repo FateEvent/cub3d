@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_audio.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:19:41 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 16:28:30 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 14:34:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	init_audio_volume(t_data *data)
 	ma_sound_set_volume(&data->audio.footstep[4], 0.40);
 	ma_sound_set_volume(&data->audio.door[0], 0.60);
 	ma_sound_set_volume(&data->audio.door[1], 0.60);
+	ma_sound_set_volume(&data->audio.pickup, 2.00);
 }
 
 static void	init_audio_settings(t_data *data)
@@ -67,7 +68,7 @@ void	init_audio(t_data *data)
 	if (result != MA_SUCCESS)
 		throw_err_ex("Audio initialization error");
 	init_audio_ambiance(data, &result);
-	init_audio_footstep(data, &result);
+	init_audio_player(data, &result);
 	init_audio_behind_you(data, &result);
 	init_audio_suspense(data, &result);
 	init_audio_doors(data, &result);

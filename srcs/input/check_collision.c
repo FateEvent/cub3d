@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:17:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 13:40:58 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 16:12:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	check_collision(t_data *data, t_var *var, int mode)
 		[(int)(ray->camera.pos.x - var->slide)];
 	else
 		check_collision2(data, var, mode, &c);
-	if (c != '1' && c != '8')
+	if (c != '1' && c != '8' && c != '9')
 		return (0);
 	return (1);
 }

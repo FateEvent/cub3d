@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:13:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 13:28:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:51:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	update_key(mlx_key_data_t keydata, void *param)
 	t_data	*data;
 
 	data = param;
-	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
-		data->key = keydata.key;
 	if (keydata.action == MLX_PRESS)
 		data->key = keydata.key;
 	else if (keydata.action == MLX_RELEASE && keydata.key == (keys_t)data->key)

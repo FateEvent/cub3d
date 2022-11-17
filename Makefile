@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/11/16 13:17:25 by albaur           ###   ########.fr        #
+#    Updated: 2022/11/16 15:09:03 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ RC_FILES	=	update_render ray_casting_tools wall_casting \
 SRCS_FILES	+=	$(addprefix $(RC_PATH), $(RC_FILES))
 
 EVENTS_PATH		=	events/
-EVENTS_FILES	=	events enemy death doors move
+EVENTS_FILES	=	events enemy death doors move quest
 SRCS_FILES		+=	$(addprefix $(EVENTS_PATH), $(EVENTS_FILES))
 
 INPUT_PATH	=	input/

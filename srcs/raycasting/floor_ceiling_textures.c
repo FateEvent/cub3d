@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:54:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/16 11:06:14 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 15:31:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ uint32_t	get_shading(t_data *data, uint32_t color, double distance)
 
 	if (distance <= 1.00)
 		return (color);
-	if (distance > 25.00)
+	if (distance > 50.00)
 		return (0x000000FF);
 	else if (distance == data->shading.distance)
 	{
@@ -63,7 +63,7 @@ uint32_t	get_shading(t_data *data, uint32_t color, double distance)
 	}		
 	else
 	{
-		data->shading.multiplier = 0.7 / distance * 1.5;
+		data->shading.multiplier = data->shading.ratio / distance * 1.5;
 		if (data->shading.multiplier > 1.0)
 			data->shading.multiplier = 1.0;
 		data->shading.distance = distance;

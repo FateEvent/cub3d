@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:21:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/14 11:01:33 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:51:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	update_render(void *param)
 	data->delay += get_delay(0, 16666);
 	++data->time;
 	data->timer = get_time();
-	if (data->enemy.alive == 0)
+	if (data->enemy.alive == 0 && data->quest.done != 3)
 		show_death(data);
 }

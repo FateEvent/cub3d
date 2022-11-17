@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 12:06:01 by faventur          #+#    #+#             */
-/*   Updated: 2022/11/16 13:41:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/16 16:39:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,7 @@ typedef struct s_audio
 	ma_sound	*footstep;
 	ma_sound	geiger;
 	ma_sound	*door;
+	ma_sound	pickup;
 	int			lock;
 	int			lock2;
 	double		volume;
@@ -279,11 +280,21 @@ typedef struct s_shading
 {
 	double	multiplier;
 	double	distance;
+	double	ratio;
+	double	timer;
+	int		shading_lock;
 }				t_shading;
 
 typedef struct s_quest
 {
 	size_t		n_pages;
+	t_image		*pickup;
+	t_image		*exit;
+	t_image		*exit_key;
+	t_image		*exit_screen;
+	size_t		n_pickup;
+	int			done;
+	t_vec		exit_pos;
 }				t_quest;
 
 typedef struct s_data
@@ -377,7 +388,7 @@ void		init_doors(t_data *data);
 void		init_door_texture(t_data *data, t_image *texture);
 void		init_audio(t_data *data);
 void		init_audio_behind_you(t_data *data, ma_result *result);
-void		init_audio_footstep(t_data *data, ma_result *result);
+void		init_audio_player(t_data *data, ma_result *result);
 void		init_audio_ambiance(t_data *data, ma_result *result);
 void		init_audio_suspense(t_data *data, ma_result *result);
 void		init_audio_doors(t_data *data, ma_result *result);
@@ -394,7 +405,6 @@ void		key_input(t_data *data);
 void		update_key(mlx_key_data_t keydata, void *param);
 void		key_input_arrows(t_data *data, t_ray *ray, t_var *var);
 void		mouse_input(double x, double y, void *param);
-int			check_collision(t_data *data, t_var *var, int mode);
 void		update_render(void *param);
 
 // parsing functions
@@ -440,9 +450,11 @@ uint32_t	get_shading(t_data *data, uint32_t color, double distance);
 
 // events
 int			update_events(t_data *data);
+void		update_quest(t_data *data);
 void		update_enemy(t_data *data, t_ray *ray);
 void		update_doors(t_data *data, t_ray *ray);
 void		show_death(t_data *data);
+int			check_collision(t_data *data, t_var *var, int mode);
 
 // drawing tools
 void		draw_line(mlx_image_t *img, t_vec2 start, t_vec2 finish,
@@ -503,7 +515,7 @@ void		close_hook(void *data);
 void		free_data(t_data *data);
 void		free_audio(t_data *data);
 void		free_audio_behind_you(t_data *data);
-void		free_audio_footstep(t_data *data);
+void		free_audio_player(t_data *data);
 void		free_audio_ambiance(t_data *data);
 void		free_audio_suspense(t_data *data);
 void		free_textures(t_data *data);

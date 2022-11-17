@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 14:47:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:44:44 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,8 @@ void	init_struct(t_data *data)
 	ray->m.psin = sin(data->player.speed.rotation / 2);
 	ray->m.ncos = cos(-data->player.speed.rotation / 2);
 	ray->m.nsin = sin(-data->player.speed.rotation / 2);
+	data->shading.ratio = 0.7;
+	data->shading.shading_lock = 0;
+	data->shading.timer = 0.0;
 	init_struct2(data, ray);
 }
