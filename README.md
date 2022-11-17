@@ -10,7 +10,7 @@ Credits :
 
 - ttranche for the minimap algorithm (https://github.com/ttranche/cub3d)
 - Feldup for the ambiance soundtracks (https://youtube.com/c/Feldup)
-- Valve for the doors sound effects
+- Valve for the doors sound effects and textures
 - Many textures / sound ambiance are taken from Inside the Backrooms (https://store.steampowered.com/app/1987080/Inside_the_Backrooms/), really amazing game you should try
 - W2Wizard for the headaches :p (https://github.com/codam-coding-college/MLX42)
 
