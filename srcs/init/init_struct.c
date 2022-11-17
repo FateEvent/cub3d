@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:32:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/16 16:44:44 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/17 11:03:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_struct(t_data *data)
 	ft_bzero(ray, sizeof(*ray));
 	ray->camera.pos.x = 0.5 + data->map->spawn_pos.x;
 	ray->camera.pos.y = 0.5 + data->map->spawn_pos.y;
-	data->player.speed.movement = 0.12;
+	data->player.speed.movement = 0.06;
 	data->player.speed.rotation = 0.3;
 	ray->k.pcos = cos(data->player.speed.rotation);
 	ray->k.psin = sin(data->player.speed.rotation);
