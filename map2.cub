@@ -1,10 +1,10 @@
-NO ./images/wall1.xpm42
-SO ./images/wall2.xpm42
-WE ./images/wall1.xpm42
-EA ./images/wall2.xpm42
+NO ./images/north.xpm42
+SO ./images/south.xpm42
+WE ./images/west.xpm42
+EA ./images/east.xpm42
 
-CT ./images/ceiling2.xpm42
-FT ./images/dirtycarpet2.xpm42
+C 255,0,0
+F 0,255,0
 
         1111811111111111111111111
         1000000000110000000000001
