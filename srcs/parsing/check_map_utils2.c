@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:13:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/09 16:22:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/11/21 15:49:02 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	check_texture_batch(t_map *m, char **map, size_t i, int *count)
 		|| !check_texture(m, map[i], count, (t_ctexture){"EA", 3})
 		|| !check_texture(m, map[i], count, (t_ctexture){"CT", 4})
 		|| !check_texture(m, map[i], count, (t_ctexture){"FT", 5})
-		|| !check_texture(m, map[i], count, (t_ctexture){"C\0", 0})
-		|| !check_texture(m, map[i], count, (t_ctexture){"F\0", 1}))
+		|| !check_texture(m, map[i], count, (t_ctexture){"F\0", 0})
+		|| !check_texture(m, map[i], count, (t_ctexture){"C\0", 1}))
 		return (0);
 	else
 		return (1);
