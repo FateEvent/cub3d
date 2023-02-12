@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:15:57 by albaur            #+#    #+#             */
-/*   Updated: 2022/11/15 16:28:01 by faventur         ###   ########.fr       */
+/*   Updated: 2023/02/07 13:56:24 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,5 @@ char	**ft_create_chartab(t_stack *stack);
 t_stack	*ft_charr_to_stack_converter(char **arr);
 int		ft_stacklen(t_stack *stack);
 int		ft_stacktablen(t_stack **stack);
-void	node_del(t_node *node, t_stack **av);
 
 #endif
